@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2025-06-25" />
+<meta name="date" content="2025-06-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -163,7 +163,21 @@ div.csl-indent {
 <li><a href="./">Notas de métodos estadísticos</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introducción</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#introducción-a-r-y-rstudio"><i class="fa fa-check"></i>1. Introducción a R y RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#qué-es-r"><i class="fa fa-check"></i>¿Qué es R?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#qué-es-rstudio"><i class="fa fa-check"></i>¿Qué es RStudio?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#enlaces-de-descarga"><i class="fa fa-check"></i>Enlaces de descarga</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#introducción-a-tidyverse"><i class="fa fa-check"></i>2. Introducción a Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#representación-visual-del-ecosistema-tidyverse"><i class="fa fa-check"></i>Representación visual del ecosistema Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#principales-paquetes-del-tidyverse"><i class="fa fa-check"></i>Principales paquetes del Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instalación-del-tidyverse-en-r"><i class="fa fa-check"></i>Instalación del Tidyverse en R</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="prerequisites.html"><a href="prerequisites.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
 <li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
@@ -202,9 +216,9 @@ div.csl-indent {
 <h1><span class="header-section-number">Capítulo 1</span> Prerequisites<a href="prerequisites.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports, e.g., a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
 <p>The <strong>bookdown</strong> package can be installed from CRAN or Github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="prerequisites.html#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</span>
-<span id="cb1-2"><a href="prerequisites.html#cb1-2" tabindex="-1"></a><span class="co"># or the development version</span></span>
-<span id="cb1-3"><a href="prerequisites.html#cb1-3" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="prerequisites.html#cb3-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</span>
+<span id="cb3-2"><a href="prerequisites.html#cb3-2" tabindex="-1"></a><span class="co"># or the development version</span></span>
+<span id="cb3-3"><a href="prerequisites.html#cb3-3" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></span></code></pre></div>
 <p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
 <p>To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.org/tinytex/" class="uri">https://yihui.org/tinytex/</a>.</p>
 
