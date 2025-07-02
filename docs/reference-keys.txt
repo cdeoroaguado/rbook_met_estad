@@ -1,6 +1,3 @@
-fig:nice-fig
-tab:nice-tab
-prerequisites
 intro
 literature
 methods
@@ -9,3 +6,13 @@ applications
 example-one
 example-two
 final-words
+instala
+introducción-a-r-y-rstudio
+qué-es-r
+descargar-r
+qué-es-rstudio
+descargar-rstudio
+introducción-a-tidyverse
+principales-paquetes-del-tidyverse
+instalación-del-tidyverse-en-r
+representación-visual-del-ecosistema-tidyverse
