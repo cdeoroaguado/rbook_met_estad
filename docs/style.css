@@ -31,3 +31,162 @@ body::before {
 p {
   text-align: justify;
 }
+
+
+/* Contenedor general */
+.admon-box {
+  border-left: 5px solid #43b581;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+/* BLOQUES FIJOS (no colapsables) */
+.admon-title {
+  font-weight: bold;
+  padding: 0.8em 1em;
+  font-size: 1.05em;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.admon-title .icon::before {
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+/* COLORES encabezado fijo por tipo */
+.admon-box.ejercicio .admon-title { background-color: #e6f9ef; border-bottom-color: #c8f2dc; }
+.admon-box.definicion .admon-title { background-color: #eaf3fb; border-bottom-color: #d0e5f5; }
+.admon-box.teorema .admon-title { background-color: #f3eafa; border-bottom-color: #e2d1f3; }
+.admon-box.ejemplo .admon-title { background-color: #ecfdf5; border-bottom-color: #d1fae5; }
+.admon-box.advertencia .admon-title { background-color: #fdecea; border-bottom-color: #f5c6c6; }
+.admon-box.nota .admon-title { background-color: #fff8e1; border-bottom-color: #ffe9b3; }
+.admon-box.observacion .admon-title { background-color: #e0f7f4; border-bottom-color: #b2ebe4; }
+.admon-box.ventaja .admon-title { background-color: #c8cbf7; border-bottom-color: #6c71d4; }
+
+/* Íconos por tipo */
+.admon-box.definicion       { border-left-color: #3498db; }
+.admon-box.definicion .icon::before { content: "📖"; }
+
+.admon-box.teorema          { border-left-color: #9b59b6; }
+.admon-box.teorema .icon::before { content: "∑"; }
+
+.admon-box.ejemplo          { border-left-color: #2ecc71; }
+.admon-box.ejemplo .icon::before { content: "✅"; }
+
+.admon-box.ejercicio        { border-left-color: #43b581; }
+.admon-box.ejercicio .icon::before { content: "🧠"; }
+
+.admon-box.advertencia      { border-left-color: #e74c3c; }
+.admon-box.advertencia .icon::before { content: "⚠️"; }
+
+.admon-box.nota             { border-left-color: #f39c12; }
+.admon-box.nota .icon::before { content: "🗒️"; }
+
+.admon-box.observacion      { border-left-color: #1abc9c; }
+.admon-box.observacion .icon::before { content: "👁️"; }
+
+.admon-box.ventaja          { border-left-color: #6c71d4;}
+.admon-box.ventaja .icon::before { content: "🚀";}
+
+/* Ejemplos de uso
+
+<div class="admon-box ejercicio">
+  <div class="admon-title"><span class="icon"></span> Ejercicio</div>
+  <ol>
+    <li>Abre el archivo <code>GabrielGarciaMarquez.txt</code> e imprímelo usando <code>with</code>.</li>
+    <li>Imprime solo las primeras 3 líneas usando <code>readline()</code>.</li>
+  </ol>
+</div>
+
+<div class="admon-box definicion">
+  <div class="admon-title"><span class="icon"></span> Definición</div>
+  <p>Una variable es un símbolo que representa un valor que puede cambiar.</p>
+</div>
+*/
+
+/* BLOQUES COLAPSABLES (details) */
+.admon-box details {
+  padding: 0;
+  background-color: transparent;
+}
+
+.admon-box summary {
+  cursor: pointer;
+  list-style: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  border-radius: 8px;
+}
+
+/* Ícono interior en colapsables */
+.admon-box summary .icon::before {
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+/* Texto derecho personalizado */
+.admon-box summary::after {
+  content: "Click to show";
+  font-size: 0.8em;
+  color: #333;
+  font-weight: normal;
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.admon-box[open] summary::after {
+  content: "Click to hide";
+}
+
+/* Oculta marcador nativo */
+.admon-box summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Contenido expandido */
+.admon-box[open] > *:not(summary) {
+  padding: 1em 1.5em;
+  background-color: #ffffff;
+}
+
+/* COLORES encabezado colapsable */
+.admon-box.ejercicio summary { background-color: #e6f9ef; }
+.admon-box.definicion summary { background-color: #eaf3fb; }
+.admon-box.teorema summary { background-color: #f3eafa; }
+.admon-box.ejemplo summary { background-color: #ecfdf5; }
+.admon-box.advertencia summary { background-color: #fdecea; }
+.admon-box.nota summary { background-color: #fff8e1; }
+.admon-box.observacion summary { background-color: #e0f7f4; }
+.admon-box.ventaja summary { background-color: #ffdbdb; }
+
+/* Ejemplos de uso del colapsable
+
+<details class="admon-box ejercicio">
+  <summary class="admon-title"><span class="icon"></span> ¿Por qué serializar datos?</summary>
+  <ol>
+    <li><strong>Almacenamiento</strong>: Puedes guardar un objeto complejo (como un diccionario o un árbol binario) en un archivo y cargarlo más tarde sin perder su estructura.</li>
+    <li><strong>Comunicación entre procesos</strong>: Los datos serializados pueden enviarse entre diferentes procesos de un programa o entre programas diferentes (por ejemplo, entre un cliente y un servidor en una aplicación web).</li>
+    <li><strong>Persistencia de objetos</strong>: Los datos serializados permiten almacenar el estado de un objeto, de modo que pueda ser restaurado más tarde y seguir funcionando donde se dejó.</li>
+  </ol>
+</details>
+
+<details class="admon-box definicion">
+  <summary class="admon-title"><span class="icon"></span> ¿Por qué serializar datos?</summary>
+  <ol>
+    <li><strong>Almacenamiento</strong>: Puedes guardar un objeto complejo (como un diccionario o un árbol binario) en un archivo y cargarlo más tarde sin perder su estructura.</li>
+    <li><strong>Comunicación entre procesos</strong>: Los datos serializados pueden enviarse entre diferentes procesos de un programa o entre programas diferentes (por ejemplo, entre un cliente y un servidor en una aplicación web).</li>
+    <li><strong>Persistencia de objetos</strong>: Los datos serializados permiten almacenar el estado de un objeto, de modo que pueda ser restaurado más tarde y seguir funcionando donde se dejó.</li>
+  </ol>
+</details>
+*/
+
+
+
