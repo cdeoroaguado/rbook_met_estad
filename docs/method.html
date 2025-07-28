@@ -427,41 +427,34 @@ n<br />
 <li>Carguemos el conjunto de datos:</li>
 </ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="method.html#cb1-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/cdeoroaguado/Datos/refs/heads/main/datamanip/sales.csv&quot;</span></span>
-<span id="cb1-2"><a href="method.html#cb1-2" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="method.html#cb7-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/cdeoroaguado/Datos/refs/heads/main/datamanip/sales.csv&quot;</span></span>
+<span id="cb7-2"><a href="method.html#cb7-2" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url)</span></code></pre></div>
 </details>
 <ul>
 <li>Verifiquemos que leímos bien los datos viendo el encabezado y la cola de los datos:</li>
 </ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="method.html#cb2-1" tabindex="-1"></a><span class="fu">head</span>(datos,<span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="method.html#cb8-1" tabindex="-1"></a><span class="fu">head</span>(datos,<span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
 </details>
-<pre><code>##   X store type department       date weekly_sales is_holiday temperature_c
-## 1 0     1    A          1 2010-02-05     24924.50      False      5.727778
-## 2 1     1    A          1 2010-03-05     21827.90      False      8.055556
-## 3 2     1    A          1 2010-04-02     57258.43      False     16.816667
-## 4 3     1    A          1 2010-05-07     17413.94      False     22.527778
-## 5 4     1    A          1 2010-06-04     17558.09      False     27.050000
-##   fuel_price_usd_per_l unemployment
-## 1            0.6794508        8.106
-## 2            0.6934520        8.106
-## 3            0.7182841        7.808
-## 4            0.7489281        7.808
-## 5            0.7145857        7.808</code></pre>
+<pre><code>##   X store type department       date weekly_sales is_holiday temperature_c fuel_price_usd_per_l unemployment
+## 1 0     1    A          1 2010-02-05     24924.50      False      5.727778            0.6794508        8.106
+## 2 1     1    A          1 2010-03-05     21827.90      False      8.055556            0.6934520        8.106
+## 3 2     1    A          1 2010-04-02     57258.43      False     16.816667            0.7182841        7.808
+## 4 3     1    A          1 2010-05-07     17413.94      False     22.527778            0.7489281        7.808
+## 5 4     1    A          1 2010-06-04     17558.09      False     27.050000            0.7145857        7.808</code></pre>
 <p>Las dimensiones, los nombres de las columnas y la estructura de la base de datos se obtienen con los códigos:</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="method.html#cb4-1" tabindex="-1"></a><span class="fu">dim</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="method.html#cb10-1" tabindex="-1"></a><span class="fu">dim</span>(datos)</span></code></pre></div>
 </details>
 <pre><code>## [1] 10774    10</code></pre>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="method.html#cb6-1" tabindex="-1"></a><span class="fu">colnames</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="method.html#cb12-1" tabindex="-1"></a><span class="fu">colnames</span>(datos)</span></code></pre></div>
 </details>
-<pre><code>##  [1] &quot;X&quot;                    &quot;store&quot;                &quot;type&quot;                
-##  [4] &quot;department&quot;           &quot;date&quot;                 &quot;weekly_sales&quot;        
-##  [7] &quot;is_holiday&quot;           &quot;temperature_c&quot;        &quot;fuel_price_usd_per_l&quot;
-## [10] &quot;unemployment&quot;</code></pre>
+<pre><code>##  [1] &quot;X&quot;                    &quot;store&quot;                &quot;type&quot;                 &quot;department&quot;          
+##  [5] &quot;date&quot;                 &quot;weekly_sales&quot;         &quot;is_holiday&quot;           &quot;temperature_c&quot;       
+##  [9] &quot;fuel_price_usd_per_l&quot; &quot;unemployment&quot;</code></pre>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="method.html#cb8-1" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="method.html#cb14-1" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
 </details>
 <pre><code>## &#39;data.frame&#39;:    10774 obs. of  10 variables:
 ##  $ X                   : int  0 1 2 3 4 5 6 7 8 9 ...
@@ -478,44 +471,38 @@ n<br />
 <li>Eliminemos la variable <code>X</code> y <code>date</code>, ya que no estan en nuestra investigación:</li>
 </ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="method.html#cb10-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb10-2"><a href="method.html#cb10-2" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="method.html#cb10-3" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
-<span id="cb10-4"><a href="method.html#cb10-4" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>X,<span class="sc">-</span>date) <span class="ot">-&gt;</span> df</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="method.html#cb16-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb16-2"><a href="method.html#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="method.html#cb16-3" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="method.html#cb16-4" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>X,<span class="sc">-</span>date) <span class="ot">-&gt;</span> df</span></code></pre></div>
 </details>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="method.html#cb11-1" tabindex="-1"></a><span class="fu">head</span>(df, <span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="method.html#cb17-1" tabindex="-1"></a><span class="fu">head</span>(df, <span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
 </details>
-<pre><code>##   store type department weekly_sales is_holiday temperature_c
-## 1     1    A          1     24924.50      False      5.727778
-## 2     1    A          1     21827.90      False      8.055556
-## 3     1    A          1     57258.43      False     16.816667
-## 4     1    A          1     17413.94      False     22.527778
-## 5     1    A          1     17558.09      False     27.050000
-##   fuel_price_usd_per_l unemployment
-## 1            0.6794508        8.106
-## 2            0.6934520        8.106
-## 3            0.7182841        7.808
-## 4            0.7489281        7.808
-## 5            0.7145857        7.808</code></pre>
+<pre><code>##   store type department weekly_sales is_holiday temperature_c fuel_price_usd_per_l unemployment
+## 1     1    A          1     24924.50      False      5.727778            0.6794508        8.106
+## 2     1    A          1     21827.90      False      8.055556            0.6934520        8.106
+## 3     1    A          1     57258.43      False     16.816667            0.7182841        7.808
+## 4     1    A          1     17413.94      False     22.527778            0.7489281        7.808
+## 5     1    A          1     17558.09      False     27.050000            0.7145857        7.808</code></pre>
 <ul>
 <li>Identifiquemos los valores <code>NA</code> por columna:</li>
 </ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="method.html#cb13-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="method.html#cb13-2" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.)), <span class="at">.names =</span> <span class="st">&quot;NA_{.col}&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="method.html#cb19-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="method.html#cb19-2" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.)), <span class="at">.names =</span> <span class="st">&quot;NA_{.col}&quot;</span>))</span></code></pre></div>
 </details>
-<pre><code>##   NA_store NA_type NA_department NA_weekly_sales NA_is_holiday NA_temperature_c
-## 1        0       0             0               0             0                0
-##   NA_fuel_price_usd_per_l NA_unemployment
-## 1                       0               0</code></pre>
+<pre><code>##   NA_store NA_type NA_department NA_weekly_sales NA_is_holiday NA_temperature_c NA_fuel_price_usd_per_l
+## 1        0       0             0               0             0                0                       0
+##   NA_unemployment
+## 1               0</code></pre>
 <ul>
 <li>Otra forma de hacerlo es:</li>
 </ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="method.html#cb15-1" tabindex="-1"></a><span class="fu">library</span>(Amelia)</span>
-<span id="cb15-2"><a href="method.html#cb15-2" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="method.html#cb15-3" tabindex="-1"></a><span class="fu">missmap</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="method.html#cb21-1" tabindex="-1"></a><span class="fu">library</span>(Amelia)</span>
+<span id="cb21-2"><a href="method.html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="method.html#cb21-3" tabindex="-1"></a><span class="fu">missmap</span>(df)</span></code></pre></div>
 </details>
 <p><img src="bookdown-demo_files/figure-html/na-amelia-1.png" width="672" /></p>
 </div>
@@ -525,18 +512,18 @@ n<br />
 <li>Consideremos el resumen de la <code>weekly_sales</code>:</li>
 </ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="method.html#cb16-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="method.html#cb16-2" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb16-3"><a href="method.html#cb16-3" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(weekly_sales),</span>
-<span id="cb16-4"><a href="method.html#cb16-4" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(weekly_sales),</span>
-<span id="cb16-5"><a href="method.html#cb16-5" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(weekly_sales),</span>
-<span id="cb16-6"><a href="method.html#cb16-6" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(weekly_sales),</span>
-<span id="cb16-7"><a href="method.html#cb16-7" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(weekly_sales),</span>
-<span id="cb16-8"><a href="method.html#cb16-8" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(weekly_sales),</span>
-<span id="cb16-9"><a href="method.html#cb16-9" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.25</span>),</span>
-<span id="cb16-10"><a href="method.html#cb16-10" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.75</span>),</span>
-<span id="cb16-11"><a href="method.html#cb16-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(weekly_sales)</span>
-<span id="cb16-12"><a href="method.html#cb16-12" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="method.html#cb22-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="method.html#cb22-2" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-3"><a href="method.html#cb22-3" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(weekly_sales),</span>
+<span id="cb22-4"><a href="method.html#cb22-4" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(weekly_sales),</span>
+<span id="cb22-5"><a href="method.html#cb22-5" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(weekly_sales),</span>
+<span id="cb22-6"><a href="method.html#cb22-6" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(weekly_sales),</span>
+<span id="cb22-7"><a href="method.html#cb22-7" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(weekly_sales),</span>
+<span id="cb22-8"><a href="method.html#cb22-8" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(weekly_sales),</span>
+<span id="cb22-9"><a href="method.html#cb22-9" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.25</span>),</span>
+<span id="cb22-10"><a href="method.html#cb22-10" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.75</span>),</span>
+<span id="cb22-11"><a href="method.html#cb22-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(weekly_sales)</span>
+<span id="cb22-12"><a href="method.html#cb22-12" tabindex="-1"></a>  )</span></code></pre></div>
 </details>
 <pre><code>##       n    media       ds  mediana minimo maximo       Q1       Q3      IQR
 ## 1 10774 23843.95 30220.39 12049.06  -1098 293966 3867.115 32349.85 28482.73</code></pre>
@@ -545,42 +532,42 @@ n<br />
 <li>Veamos un histograma</li>
 </ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="method.html#cb18-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="method.html#cb18-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weekly_sales)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="method.html#cb18-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), </span>
-<span id="cb18-4"><a href="method.html#cb18-4" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="dv">5000</span>, </span>
-<span id="cb18-5"><a href="method.html#cb18-5" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;#2c7fb8&quot;</span>, </span>
-<span id="cb18-6"><a href="method.html#cb18-6" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, </span>
-<span id="cb18-7"><a href="method.html#cb18-7" tabindex="-1"></a>                 <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb18-8"><a href="method.html#cb18-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb18-9"><a href="method.html#cb18-9" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb18-10"><a href="method.html#cb18-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de Ventas Semanales&quot;</span>,</span>
-<span id="cb18-11"><a href="method.html#cb18-11" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Ventas Semanales (USD)&quot;</span>,</span>
-<span id="cb18-12"><a href="method.html#cb18-12" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Densidad&quot;</span></span>
-<span id="cb18-13"><a href="method.html#cb18-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-14"><a href="method.html#cb18-14" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="method.html#cb24-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="method.html#cb24-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weekly_sales)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="method.html#cb24-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), </span>
+<span id="cb24-4"><a href="method.html#cb24-4" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="dv">5000</span>, </span>
+<span id="cb24-5"><a href="method.html#cb24-5" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;#2c7fb8&quot;</span>, </span>
+<span id="cb24-6"><a href="method.html#cb24-6" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, </span>
+<span id="cb24-7"><a href="method.html#cb24-7" tabindex="-1"></a>                 <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="method.html#cb24-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb24-9"><a href="method.html#cb24-9" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-10"><a href="method.html#cb24-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de Ventas Semanales&quot;</span>,</span>
+<span id="cb24-11"><a href="method.html#cb24-11" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Ventas Semanales (USD)&quot;</span>,</span>
+<span id="cb24-12"><a href="method.html#cb24-12" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Densidad&quot;</span></span>
+<span id="cb24-13"><a href="method.html#cb24-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-14"><a href="method.html#cb24-14" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 </details>
 <p><img src="bookdown-demo_files/figure-html/hist-ventas-semanales-1.png" width="672" /></p>
 <ul>
 <li>Veamos un diagrama de cajas y bigotes</li>
 </ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="method.html#cb19-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="method.html#cb19-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> weekly_sales)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="method.html#cb19-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#a6cee3&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#1f78b4&quot;</span>, <span class="at">outlier.color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="method.html#cb19-4" tabindex="-1"></a>  <span class="fu">stat_summary</span>(</span>
-<span id="cb19-5"><a href="method.html#cb19-5" tabindex="-1"></a>    <span class="at">fun =</span> mean,</span>
-<span id="cb19-6"><a href="method.html#cb19-6" tabindex="-1"></a>    <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,</span>
-<span id="cb19-7"><a href="method.html#cb19-7" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">20</span>,</span>
-<span id="cb19-8"><a href="method.html#cb19-8" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
-<span id="cb19-9"><a href="method.html#cb19-9" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;black&quot;</span></span>
-<span id="cb19-10"><a href="method.html#cb19-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb19-11"><a href="method.html#cb19-11" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb19-12"><a href="method.html#cb19-12" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Diagrama de cajas y bigotes de ventas semanales&quot;</span>,</span>
-<span id="cb19-13"><a href="method.html#cb19-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb19-14"><a href="method.html#cb19-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Ventas Semanales (USD)&quot;</span></span>
-<span id="cb19-15"><a href="method.html#cb19-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb19-16"><a href="method.html#cb19-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="method.html#cb25-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="method.html#cb25-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> weekly_sales)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="method.html#cb25-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#a6cee3&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#1f78b4&quot;</span>, <span class="at">outlier.color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="method.html#cb25-4" tabindex="-1"></a>  <span class="fu">stat_summary</span>(</span>
+<span id="cb25-5"><a href="method.html#cb25-5" tabindex="-1"></a>    <span class="at">fun =</span> mean,</span>
+<span id="cb25-6"><a href="method.html#cb25-6" tabindex="-1"></a>    <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,</span>
+<span id="cb25-7"><a href="method.html#cb25-7" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">20</span>,</span>
+<span id="cb25-8"><a href="method.html#cb25-8" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb25-9"><a href="method.html#cb25-9" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;black&quot;</span></span>
+<span id="cb25-10"><a href="method.html#cb25-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-11"><a href="method.html#cb25-11" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-12"><a href="method.html#cb25-12" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Diagrama de cajas y bigotes de ventas semanales&quot;</span>,</span>
+<span id="cb25-13"><a href="method.html#cb25-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb25-14"><a href="method.html#cb25-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Ventas Semanales (USD)&quot;</span></span>
+<span id="cb25-15"><a href="method.html#cb25-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-16"><a href="method.html#cb25-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 </details>
 <p><img src="bookdown-demo_files/figure-html/prom-ventas-semanales-1.png" width="672" /></p>
 <p>La distribución de weekly_sales es altamente asimétrica, con fuerte concentración de valores bajos y una cantidad significativa de valores extremos altos. Esto indica que aunque la mayoría de las tiendas tienen ventas semanales moderadas, existen algunas con ventas excepcionalmente altas que influyen notablemente en los estadísticos como la media y la desviación estándar.</p>
@@ -589,94 +576,90 @@ n<br />
 <h3><span class="header-section-number">3.4.4</span> Análisis de las variables características (independientes)<a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Analizaremos el iniciamente las variables numéricas</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="method.html#cb20-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb20-2"><a href="method.html#cb20-2" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb20-3"><a href="method.html#cb20-3" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(temperature_c),</span>
-<span id="cb20-4"><a href="method.html#cb20-4" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(temperature_c),</span>
-<span id="cb20-5"><a href="method.html#cb20-5" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(temperature_c),</span>
-<span id="cb20-6"><a href="method.html#cb20-6" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(temperature_c),</span>
-<span id="cb20-7"><a href="method.html#cb20-7" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(temperature_c),</span>
-<span id="cb20-8"><a href="method.html#cb20-8" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(temperature_c),</span>
-<span id="cb20-9"><a href="method.html#cb20-9" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(temperature_c, <span class="fl">0.25</span>),</span>
-<span id="cb20-10"><a href="method.html#cb20-10" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(temperature_c, <span class="fl">0.75</span>),</span>
-<span id="cb20-11"><a href="method.html#cb20-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(temperature_c)) <span class="sc">%&gt;%</span></span>
-<span id="cb20-12"><a href="method.html#cb20-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;temperature_c&quot;</span>) <span class="ot">-&gt;</span> var_num_temp</span>
-<span id="cb20-13"><a href="method.html#cb20-13" tabindex="-1"></a></span>
-<span id="cb20-14"><a href="method.html#cb20-14" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb20-15"><a href="method.html#cb20-15" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb20-16"><a href="method.html#cb20-16" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(fuel_price_usd_per_l),</span>
-<span id="cb20-17"><a href="method.html#cb20-17" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(fuel_price_usd_per_l),</span>
-<span id="cb20-18"><a href="method.html#cb20-18" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(fuel_price_usd_per_l),</span>
-<span id="cb20-19"><a href="method.html#cb20-19" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(fuel_price_usd_per_l),</span>
-<span id="cb20-20"><a href="method.html#cb20-20" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(fuel_price_usd_per_l),</span>
-<span id="cb20-21"><a href="method.html#cb20-21" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(fuel_price_usd_per_l),</span>
-<span id="cb20-22"><a href="method.html#cb20-22" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(fuel_price_usd_per_l, <span class="fl">0.25</span>),</span>
-<span id="cb20-23"><a href="method.html#cb20-23" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(fuel_price_usd_per_l, <span class="fl">0.75</span>),</span>
-<span id="cb20-24"><a href="method.html#cb20-24" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(fuel_price_usd_per_l)) <span class="sc">%&gt;%</span> </span>
-<span id="cb20-25"><a href="method.html#cb20-25" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;fuel_price_usd_per_l&quot;</span>) <span class="ot">-&gt;</span> var_num_fuel</span>
-<span id="cb20-26"><a href="method.html#cb20-26" tabindex="-1"></a></span>
-<span id="cb20-27"><a href="method.html#cb20-27" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb20-28"><a href="method.html#cb20-28" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb20-29"><a href="method.html#cb20-29" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(unemployment),</span>
-<span id="cb20-30"><a href="method.html#cb20-30" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(unemployment),</span>
-<span id="cb20-31"><a href="method.html#cb20-31" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(unemployment),</span>
-<span id="cb20-32"><a href="method.html#cb20-32" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(unemployment),</span>
-<span id="cb20-33"><a href="method.html#cb20-33" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(unemployment),</span>
-<span id="cb20-34"><a href="method.html#cb20-34" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(unemployment),</span>
-<span id="cb20-35"><a href="method.html#cb20-35" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(unemployment, <span class="fl">0.25</span>),</span>
-<span id="cb20-36"><a href="method.html#cb20-36" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(unemployment, <span class="fl">0.75</span>),</span>
-<span id="cb20-37"><a href="method.html#cb20-37" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(unemployment)) <span class="sc">%&gt;%</span> </span>
-<span id="cb20-38"><a href="method.html#cb20-38" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;unemployment&quot;</span>)<span class="ot">-&gt;</span> var_num_unemploy</span>
-<span id="cb20-39"><a href="method.html#cb20-39" tabindex="-1"></a></span>
-<span id="cb20-40"><a href="method.html#cb20-40" tabindex="-1"></a><span class="fu">bind_rows</span>(var_num_temp, var_num_fuel, var_num_unemploy) <span class="sc">%&gt;%</span></span>
-<span id="cb20-41"><a href="method.html#cb20-41" tabindex="-1"></a>  <span class="fu">select</span>(variable, <span class="fu">everything</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="method.html#cb26-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="method.html#cb26-2" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb26-3"><a href="method.html#cb26-3" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(temperature_c),</span>
+<span id="cb26-4"><a href="method.html#cb26-4" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(temperature_c),</span>
+<span id="cb26-5"><a href="method.html#cb26-5" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(temperature_c),</span>
+<span id="cb26-6"><a href="method.html#cb26-6" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(temperature_c),</span>
+<span id="cb26-7"><a href="method.html#cb26-7" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(temperature_c),</span>
+<span id="cb26-8"><a href="method.html#cb26-8" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(temperature_c),</span>
+<span id="cb26-9"><a href="method.html#cb26-9" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(temperature_c, <span class="fl">0.25</span>),</span>
+<span id="cb26-10"><a href="method.html#cb26-10" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(temperature_c, <span class="fl">0.75</span>),</span>
+<span id="cb26-11"><a href="method.html#cb26-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(temperature_c)) <span class="sc">%&gt;%</span></span>
+<span id="cb26-12"><a href="method.html#cb26-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;temperature_c&quot;</span>) <span class="ot">-&gt;</span> var_num_temp</span>
+<span id="cb26-13"><a href="method.html#cb26-13" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="method.html#cb26-14" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb26-15"><a href="method.html#cb26-15" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb26-16"><a href="method.html#cb26-16" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(fuel_price_usd_per_l),</span>
+<span id="cb26-17"><a href="method.html#cb26-17" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(fuel_price_usd_per_l),</span>
+<span id="cb26-18"><a href="method.html#cb26-18" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(fuel_price_usd_per_l),</span>
+<span id="cb26-19"><a href="method.html#cb26-19" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(fuel_price_usd_per_l),</span>
+<span id="cb26-20"><a href="method.html#cb26-20" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(fuel_price_usd_per_l),</span>
+<span id="cb26-21"><a href="method.html#cb26-21" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(fuel_price_usd_per_l),</span>
+<span id="cb26-22"><a href="method.html#cb26-22" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(fuel_price_usd_per_l, <span class="fl">0.25</span>),</span>
+<span id="cb26-23"><a href="method.html#cb26-23" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(fuel_price_usd_per_l, <span class="fl">0.75</span>),</span>
+<span id="cb26-24"><a href="method.html#cb26-24" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(fuel_price_usd_per_l)) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-25"><a href="method.html#cb26-25" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;fuel_price_usd_per_l&quot;</span>) <span class="ot">-&gt;</span> var_num_fuel</span>
+<span id="cb26-26"><a href="method.html#cb26-26" tabindex="-1"></a></span>
+<span id="cb26-27"><a href="method.html#cb26-27" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb26-28"><a href="method.html#cb26-28" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb26-29"><a href="method.html#cb26-29" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(unemployment),</span>
+<span id="cb26-30"><a href="method.html#cb26-30" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(unemployment),</span>
+<span id="cb26-31"><a href="method.html#cb26-31" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(unemployment),</span>
+<span id="cb26-32"><a href="method.html#cb26-32" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(unemployment),</span>
+<span id="cb26-33"><a href="method.html#cb26-33" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(unemployment),</span>
+<span id="cb26-34"><a href="method.html#cb26-34" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(unemployment),</span>
+<span id="cb26-35"><a href="method.html#cb26-35" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(unemployment, <span class="fl">0.25</span>),</span>
+<span id="cb26-36"><a href="method.html#cb26-36" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(unemployment, <span class="fl">0.75</span>),</span>
+<span id="cb26-37"><a href="method.html#cb26-37" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(unemployment)) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-38"><a href="method.html#cb26-38" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;unemployment&quot;</span>)<span class="ot">-&gt;</span> var_num_unemploy</span>
+<span id="cb26-39"><a href="method.html#cb26-39" tabindex="-1"></a></span>
+<span id="cb26-40"><a href="method.html#cb26-40" tabindex="-1"></a><span class="fu">bind_rows</span>(var_num_temp, var_num_fuel, var_num_unemploy) <span class="sc">%&gt;%</span></span>
+<span id="cb26-41"><a href="method.html#cb26-41" tabindex="-1"></a>  <span class="fu">select</span>(variable, <span class="fu">everything</span>())</span></code></pre></div>
 </details>
-<pre><code>##               variable     n      media         ds    mediana     minimo
-## 1        temperature_c 10774 15.7319782 9.92244608 16.9666667 -8.3666667
-## 2 fuel_price_usd_per_l 10774  0.7497458 0.05949359  0.7433805  0.6641289
-## 3         unemployment 10774  8.0820086 0.62435501  8.0990000  3.8790000
-##      maximo        Q1         Q3         IQR
-## 1 33.827778 7.5833333 24.1666667 16.58333333
-## 2  1.107674 0.7082456  0.7814213  0.07317569
-## 3  9.765000 7.7950000  8.3600000  0.56500000</code></pre>
+<pre><code>##               variable     n      media         ds    mediana     minimo    maximo        Q1         Q3         IQR
+## 1        temperature_c 10774 15.7319782 9.92244608 16.9666667 -8.3666667 33.827778 7.5833333 24.1666667 16.58333333
+## 2 fuel_price_usd_per_l 10774  0.7497458 0.05949359  0.7433805  0.6641289  1.107674 0.7082456  0.7814213  0.07317569
+## 3         unemployment 10774  8.0820086 0.62435501  8.0990000  3.8790000  9.765000 7.7950000  8.3600000  0.56500000</code></pre>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="method.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb22-2"><a href="method.html#cb22-2" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="method.html#cb22-3" tabindex="-1"></a><span class="co"># Boxplot de temperature_c</span></span>
-<span id="cb22-4"><a href="method.html#cb22-4" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb22-5"><a href="method.html#cb22-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> temperature_c)) <span class="sc">+</span></span>
-<span id="cb22-6"><a href="method.html#cb22-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1f77b4&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb22-7"><a href="method.html#cb22-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb22-8"><a href="method.html#cb22-8" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribucion de temperatura&quot;</span>,</span>
-<span id="cb22-9"><a href="method.html#cb22-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Temperatura (°C)&quot;</span>,</span>
-<span id="cb22-10"><a href="method.html#cb22-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb22-11"><a href="method.html#cb22-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb22-12"><a href="method.html#cb22-12" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb22-13"><a href="method.html#cb22-13" tabindex="-1"></a></span>
-<span id="cb22-14"><a href="method.html#cb22-14" tabindex="-1"></a><span class="co"># Boxplot de fuel_price_usd_per_l</span></span>
-<span id="cb22-15"><a href="method.html#cb22-15" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb22-16"><a href="method.html#cb22-16" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y =</span> fuel_price_usd_per_l)) <span class="sc">+</span></span>
-<span id="cb22-17"><a href="method.html#cb22-17" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#2ca02c&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb22-18"><a href="method.html#cb22-18" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb22-19"><a href="method.html#cb22-19" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribucion del precio del combustible&quot;</span>,</span>
-<span id="cb22-20"><a href="method.html#cb22-20" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Precio (USD/litro)&quot;</span>,</span>
-<span id="cb22-21"><a href="method.html#cb22-21" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb22-22"><a href="method.html#cb22-22" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb22-23"><a href="method.html#cb22-23" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb22-24"><a href="method.html#cb22-24" tabindex="-1"></a></span>
-<span id="cb22-25"><a href="method.html#cb22-25" tabindex="-1"></a><span class="co"># Boxplot de unemployment</span></span>
-<span id="cb22-26"><a href="method.html#cb22-26" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb22-27"><a href="method.html#cb22-27" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y =</span> unemployment)) <span class="sc">+</span></span>
-<span id="cb22-28"><a href="method.html#cb22-28" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#d62728&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb22-29"><a href="method.html#cb22-29" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb22-30"><a href="method.html#cb22-30" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribucion del desempleo&quot;</span>,</span>
-<span id="cb22-31"><a href="method.html#cb22-31" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Tasa de desempleo (%)&quot;</span>,</span>
-<span id="cb22-32"><a href="method.html#cb22-32" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb22-33"><a href="method.html#cb22-33" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb22-34"><a href="method.html#cb22-34" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb22-35"><a href="method.html#cb22-35" tabindex="-1"></a></span>
-<span id="cb22-36"><a href="method.html#cb22-36" tabindex="-1"></a><span class="co"># Unir los tres gráficos en una sola visualización</span></span>
-<span id="cb22-37"><a href="method.html#cb22-37" tabindex="-1"></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3  </span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="method.html#cb28-1" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb28-2"><a href="method.html#cb28-2" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="method.html#cb28-3" tabindex="-1"></a><span class="co"># Boxplot de temperature_c</span></span>
+<span id="cb28-4"><a href="method.html#cb28-4" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="method.html#cb28-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> temperature_c)) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="method.html#cb28-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1f77b4&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb28-7"><a href="method.html#cb28-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb28-8"><a href="method.html#cb28-8" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribucion de temperatura&quot;</span>,</span>
+<span id="cb28-9"><a href="method.html#cb28-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Temperatura (°C)&quot;</span>,</span>
+<span id="cb28-10"><a href="method.html#cb28-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb28-11"><a href="method.html#cb28-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb28-12"><a href="method.html#cb28-12" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb28-13"><a href="method.html#cb28-13" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="method.html#cb28-14" tabindex="-1"></a><span class="co"># Boxplot de fuel_price_usd_per_l</span></span>
+<span id="cb28-15"><a href="method.html#cb28-15" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb28-16"><a href="method.html#cb28-16" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y =</span> fuel_price_usd_per_l)) <span class="sc">+</span></span>
+<span id="cb28-17"><a href="method.html#cb28-17" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#2ca02c&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb28-18"><a href="method.html#cb28-18" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb28-19"><a href="method.html#cb28-19" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribucion del precio del combustible&quot;</span>,</span>
+<span id="cb28-20"><a href="method.html#cb28-20" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Precio (USD/litro)&quot;</span>,</span>
+<span id="cb28-21"><a href="method.html#cb28-21" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb28-22"><a href="method.html#cb28-22" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb28-23"><a href="method.html#cb28-23" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb28-24"><a href="method.html#cb28-24" tabindex="-1"></a></span>
+<span id="cb28-25"><a href="method.html#cb28-25" tabindex="-1"></a><span class="co"># Boxplot de unemployment</span></span>
+<span id="cb28-26"><a href="method.html#cb28-26" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb28-27"><a href="method.html#cb28-27" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y =</span> unemployment)) <span class="sc">+</span></span>
+<span id="cb28-28"><a href="method.html#cb28-28" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#d62728&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb28-29"><a href="method.html#cb28-29" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb28-30"><a href="method.html#cb28-30" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribucion del desempleo&quot;</span>,</span>
+<span id="cb28-31"><a href="method.html#cb28-31" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Tasa de desempleo (%)&quot;</span>,</span>
+<span id="cb28-32"><a href="method.html#cb28-32" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb28-33"><a href="method.html#cb28-33" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb28-34"><a href="method.html#cb28-34" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb28-35"><a href="method.html#cb28-35" tabindex="-1"></a></span>
+<span id="cb28-36"><a href="method.html#cb28-36" tabindex="-1"></a><span class="co"># Unir los tres gráficos en una sola visualización</span></span>
+<span id="cb28-37"><a href="method.html#cb28-37" tabindex="-1"></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3  </span></code></pre></div>
 </details>
 <p><img src="bookdown-demo_files/figure-html/dc-var-ind-1.png" width="672" /></p>
 <div class="admon-box ejercicio">
@@ -689,38 +672,38 @@ La interpretación de la tabla y el gráfico quedan como ejercicio
 </div>
 <p>Ahora analizaremos las variables categóricas</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="method.html#cb23-1" tabindex="-1"></a><span class="co"># Tabla de frecuencias para type</span></span>
-<span id="cb23-2"><a href="method.html#cb23-2" tabindex="-1"></a>tabla_type <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb23-3"><a href="method.html#cb23-3" tabindex="-1"></a>  <span class="fu">count</span>(type, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-4"><a href="method.html#cb23-4" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-5"><a href="method.html#cb23-5" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
-<span id="cb23-6"><a href="method.html#cb23-6" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;type&quot;</span>,</span>
-<span id="cb23-7"><a href="method.html#cb23-7" tabindex="-1"></a>    <span class="at">Categoria =</span> <span class="fu">as.character</span>(type)</span>
-<span id="cb23-8"><a href="method.html#cb23-8" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb23-9"><a href="method.html#cb23-9" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
-<span id="cb23-10"><a href="method.html#cb23-10" tabindex="-1"></a></span>
-<span id="cb23-11"><a href="method.html#cb23-11" tabindex="-1"></a><span class="co"># Tabla de frecuencias para department</span></span>
-<span id="cb23-12"><a href="method.html#cb23-12" tabindex="-1"></a>tabla_department <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb23-13"><a href="method.html#cb23-13" tabindex="-1"></a>  <span class="fu">count</span>(department, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-14"><a href="method.html#cb23-14" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-15"><a href="method.html#cb23-15" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
-<span id="cb23-16"><a href="method.html#cb23-16" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;department&quot;</span>,</span>
-<span id="cb23-17"><a href="method.html#cb23-17" tabindex="-1"></a>    <span class="at">Categoria =</span> <span class="fu">as.character</span>(department)</span>
-<span id="cb23-18"><a href="method.html#cb23-18" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb23-19"><a href="method.html#cb23-19" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
-<span id="cb23-20"><a href="method.html#cb23-20" tabindex="-1"></a></span>
-<span id="cb23-21"><a href="method.html#cb23-21" tabindex="-1"></a><span class="co"># Tabla de frecuencias para is_holiday</span></span>
-<span id="cb23-22"><a href="method.html#cb23-22" tabindex="-1"></a>tabla_holiday <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb23-23"><a href="method.html#cb23-23" tabindex="-1"></a>  <span class="fu">count</span>(is_holiday, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-24"><a href="method.html#cb23-24" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-25"><a href="method.html#cb23-25" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
-<span id="cb23-26"><a href="method.html#cb23-26" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;is_holiday&quot;</span>,</span>
-<span id="cb23-27"><a href="method.html#cb23-27" tabindex="-1"></a>    <span class="at">Categoria =</span> <span class="fu">as.character</span>(is_holiday)</span>
-<span id="cb23-28"><a href="method.html#cb23-28" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb23-29"><a href="method.html#cb23-29" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
-<span id="cb23-30"><a href="method.html#cb23-30" tabindex="-1"></a></span>
-<span id="cb23-31"><a href="method.html#cb23-31" tabindex="-1"></a><span class="co"># Unir todas las tablas</span></span>
-<span id="cb23-32"><a href="method.html#cb23-32" tabindex="-1"></a><span class="fu">bind_rows</span>(tabla_type, tabla_department, tabla_holiday)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="method.html#cb29-1" tabindex="-1"></a><span class="co"># Tabla de frecuencias para type</span></span>
+<span id="cb29-2"><a href="method.html#cb29-2" tabindex="-1"></a>tabla_type <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="method.html#cb29-3" tabindex="-1"></a>  <span class="fu">count</span>(type, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="method.html#cb29-4" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-5"><a href="method.html#cb29-5" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb29-6"><a href="method.html#cb29-6" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;type&quot;</span>,</span>
+<span id="cb29-7"><a href="method.html#cb29-7" tabindex="-1"></a>    <span class="at">Categoria =</span> <span class="fu">as.character</span>(type)</span>
+<span id="cb29-8"><a href="method.html#cb29-8" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb29-9"><a href="method.html#cb29-9" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb29-10"><a href="method.html#cb29-10" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="method.html#cb29-11" tabindex="-1"></a><span class="co"># Tabla de frecuencias para department</span></span>
+<span id="cb29-12"><a href="method.html#cb29-12" tabindex="-1"></a>tabla_department <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb29-13"><a href="method.html#cb29-13" tabindex="-1"></a>  <span class="fu">count</span>(department, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-14"><a href="method.html#cb29-14" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-15"><a href="method.html#cb29-15" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb29-16"><a href="method.html#cb29-16" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;department&quot;</span>,</span>
+<span id="cb29-17"><a href="method.html#cb29-17" tabindex="-1"></a>    <span class="at">Categoria =</span> <span class="fu">as.character</span>(department)</span>
+<span id="cb29-18"><a href="method.html#cb29-18" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb29-19"><a href="method.html#cb29-19" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb29-20"><a href="method.html#cb29-20" tabindex="-1"></a></span>
+<span id="cb29-21"><a href="method.html#cb29-21" tabindex="-1"></a><span class="co"># Tabla de frecuencias para is_holiday</span></span>
+<span id="cb29-22"><a href="method.html#cb29-22" tabindex="-1"></a>tabla_holiday <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb29-23"><a href="method.html#cb29-23" tabindex="-1"></a>  <span class="fu">count</span>(is_holiday, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-24"><a href="method.html#cb29-24" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-25"><a href="method.html#cb29-25" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb29-26"><a href="method.html#cb29-26" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;is_holiday&quot;</span>,</span>
+<span id="cb29-27"><a href="method.html#cb29-27" tabindex="-1"></a>    <span class="at">Categoria =</span> <span class="fu">as.character</span>(is_holiday)</span>
+<span id="cb29-28"><a href="method.html#cb29-28" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb29-29"><a href="method.html#cb29-29" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb29-30"><a href="method.html#cb29-30" tabindex="-1"></a></span>
+<span id="cb29-31"><a href="method.html#cb29-31" tabindex="-1"></a><span class="co"># Unir todas las tablas</span></span>
+<span id="cb29-32"><a href="method.html#cb29-32" tabindex="-1"></a><span class="fu">bind_rows</span>(tabla_type, tabla_department, tabla_holiday)</span></code></pre></div>
 </details>
 <pre><code>##      Variable Categoria Frecuencia Porcentaje
 ## 1        type         A       9872      91.63
@@ -811,50 +794,50 @@ La interpretación de la tabla y el gráfico quedan como ejercicio
 <p>Existen más de <span class="math inline">\(80\)</span> categorías distintas. La mayoría de los departamentos tienen la misma frecuencia de <span class="math inline">\(144\)</span> observaciones (<span class="math inline">\(1.34\%\)</span>), lo que sugiere una distribución uniforme entre muchas de las categorías. Tambien nos inidica que hay una alta dispersión en las frecuencias de los departamentos, lo que indica que no todos los departamentos tienen el mismo nivel de actividad. Algunos departamentos deben ser tratados con precaución en los análisis inferenciales por su baja frecuencia.</p>
 <p>Solo el <span class="math inline">\(0.39\%\)</span> de los registros corresponden a días festivos. Esto muestra una clara desproporción: los días feriados son poco frecuentes en los datos. Aunque son escasos, los registros en días festivos pueden tener un comportamiento distinto (por ejemplo, picos de ventas o cambios de demanda), por lo que deben analizarse por separado o con métodos robustos que no se vean afectados por el desbalance.</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="method.html#cb25-1" tabindex="-1"></a>tabla_type_b <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="method.html#cb25-2" tabindex="-1"></a>  <span class="fu">count</span>(type, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="method.html#cb25-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
-<span id="cb25-4"><a href="method.html#cb25-4" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
-<span id="cb25-5"><a href="method.html#cb25-5" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="method.html#cb25-6" tabindex="-1"></a><span class="fu">ggplot</span>(tabla_type_b, <span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
-<span id="cb25-7"><a href="method.html#cb25-7" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb25-8"><a href="method.html#cb25-8" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb25-9"><a href="method.html#cb25-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;Distribución de la variable type&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb25-10"><a href="method.html#cb25-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
-<span id="cb25-11"><a href="method.html#cb25-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Tipo de tienda&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-12"><a href="method.html#cb25-12" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb25-13"><a href="method.html#cb25-13" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb25-14"><a href="method.html#cb25-14" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb25-15"><a href="method.html#cb25-15" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb25-16"><a href="method.html#cb25-16" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb25-17"><a href="method.html#cb25-17" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb25-18"><a href="method.html#cb25-18" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="method.html#cb31-1" tabindex="-1"></a>tabla_type_b <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="method.html#cb31-2" tabindex="-1"></a>  <span class="fu">count</span>(type, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="method.html#cb31-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb31-4"><a href="method.html#cb31-4" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb31-5"><a href="method.html#cb31-5" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="method.html#cb31-6" tabindex="-1"></a><span class="fu">ggplot</span>(tabla_type_b, <span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
+<span id="cb31-7"><a href="method.html#cb31-7" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb31-8"><a href="method.html#cb31-8" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb31-9"><a href="method.html#cb31-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;Distribución de la variable type&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb31-10"><a href="method.html#cb31-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb31-11"><a href="method.html#cb31-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Tipo de tienda&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb31-12"><a href="method.html#cb31-12" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb31-13"><a href="method.html#cb31-13" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb31-14"><a href="method.html#cb31-14" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb31-15"><a href="method.html#cb31-15" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb31-16"><a href="method.html#cb31-16" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb31-17"><a href="method.html#cb31-17" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb31-18"><a href="method.html#cb31-18" tabindex="-1"></a>  )</span></code></pre></div>
 </details>
 <p><img src="bookdown-demo_files/figure-html/db-cat-type-1.png" width="672" /></p>
 <p>La gran mayoría de las observaciones (<span class="math inline">\(91.6\%\)</span>) corresponden al tipo A, con <span class="math inline">\(9872\)</span> registros. Solo el <span class="math inline">\(8.4\%\)</span> restante corresponde al tipo B, con <span class="math inline">\(902\)</span> registros.</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="method.html#cb26-1" tabindex="-1"></a><span class="co"># Crear tabla de frecuencias para department</span></span>
-<span id="cb26-2"><a href="method.html#cb26-2" tabindex="-1"></a>tabla_department_b <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="method.html#cb26-3" tabindex="-1"></a>  <span class="fu">count</span>(department, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-4"><a href="method.html#cb26-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
-<span id="cb26-5"><a href="method.html#cb26-5" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
-<span id="cb26-6"><a href="method.html#cb26-6" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="method.html#cb26-7" tabindex="-1"></a><span class="co"># Gráfico</span></span>
-<span id="cb26-8"><a href="method.html#cb26-8" tabindex="-1"></a><span class="fu">ggplot</span>(tabla_department_b, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(department), <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
-<span id="cb26-9"><a href="method.html#cb26-9" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb26-10"><a href="method.html#cb26-10" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb26-11"><a href="method.html#cb26-11" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;Distribución de la variable department&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb26-12"><a href="method.html#cb26-12" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.10</span>))) <span class="sc">+</span></span>
-<span id="cb26-13"><a href="method.html#cb26-13" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Departamento&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb26-14"><a href="method.html#cb26-14" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb26-15"><a href="method.html#cb26-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb26-16"><a href="method.html#cb26-16" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb26-17"><a href="method.html#cb26-17" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb26-18"><a href="method.html#cb26-18" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb26-19"><a href="method.html#cb26-19" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb26-20"><a href="method.html#cb26-20" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb26-21"><a href="method.html#cb26-21" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)  </span>
-<span id="cb26-22"><a href="method.html#cb26-22" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="method.html#cb32-1" tabindex="-1"></a><span class="co"># Crear tabla de frecuencias para department</span></span>
+<span id="cb32-2"><a href="method.html#cb32-2" tabindex="-1"></a>tabla_department_b <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="method.html#cb32-3" tabindex="-1"></a>  <span class="fu">count</span>(department, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="method.html#cb32-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb32-5"><a href="method.html#cb32-5" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb32-6"><a href="method.html#cb32-6" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="method.html#cb32-7" tabindex="-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb32-8"><a href="method.html#cb32-8" tabindex="-1"></a><span class="fu">ggplot</span>(tabla_department_b, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(department), <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
+<span id="cb32-9"><a href="method.html#cb32-9" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb32-10"><a href="method.html#cb32-10" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb32-11"><a href="method.html#cb32-11" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;Distribución de la variable department&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb32-12"><a href="method.html#cb32-12" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.10</span>))) <span class="sc">+</span></span>
+<span id="cb32-13"><a href="method.html#cb32-13" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Departamento&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb32-14"><a href="method.html#cb32-14" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb32-15"><a href="method.html#cb32-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb32-16"><a href="method.html#cb32-16" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb32-17"><a href="method.html#cb32-17" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb32-18"><a href="method.html#cb32-18" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb32-19"><a href="method.html#cb32-19" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb32-20"><a href="method.html#cb32-20" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb32-21"><a href="method.html#cb32-21" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)  </span>
+<span id="cb32-22"><a href="method.html#cb32-22" tabindex="-1"></a>  )</span></code></pre></div>
 </details>
 <p><img src="bookdown-demo_files/figure-html/db-cat-dep-1.png" width="672" /></p>
 <div class="admon-box ejercicio">
@@ -877,16 +860,16 @@ Realiza el gráfico para la variable <code>is_holiday</code> e interprétalo.
 <li>Realizaremos la comparacion de la variable <code>weekly_sales</code> con respecto a las variables numéricas independientes.</li>
 </ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="method.html#cb27-1" tabindex="-1"></a><span class="co"># Diagrama de dispersión: weekly_sales vs temperature_c</span></span>
-<span id="cb27-2"><a href="method.html#cb27-2" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb27-3"><a href="method.html#cb27-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> temperature_c, <span class="at">y =</span> weekly_sales)) <span class="sc">+</span></span>
-<span id="cb27-4"><a href="method.html#cb27-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">&quot;#1E90FF&quot;</span>) <span class="sc">+</span></span>
-<span id="cb27-5"><a href="method.html#cb27-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb27-6"><a href="method.html#cb27-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Temperatura (°C)&quot;</span>,</span>
-<span id="cb27-7"><a href="method.html#cb27-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Ventas semanales (uds)&quot;</span></span>
-<span id="cb27-8"><a href="method.html#cb27-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb27-9"><a href="method.html#cb27-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb27-10"><a href="method.html#cb27-10" tabindex="-1"></a>  <span class="fu">facet_grid</span>(.<span class="sc">~</span> <span class="st">&quot;Dispersión entre Weekly Sales y Temperature (°C)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="method.html#cb33-1" tabindex="-1"></a><span class="co"># Diagrama de dispersión: weekly_sales vs temperature_c</span></span>
+<span id="cb33-2"><a href="method.html#cb33-2" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="method.html#cb33-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> temperature_c, <span class="at">y =</span> weekly_sales)) <span class="sc">+</span></span>
+<span id="cb33-4"><a href="method.html#cb33-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">&quot;#1E90FF&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="method.html#cb33-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="method.html#cb33-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Temperatura (°C)&quot;</span>,</span>
+<span id="cb33-7"><a href="method.html#cb33-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Ventas semanales (uds)&quot;</span></span>
+<span id="cb33-8"><a href="method.html#cb33-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-9"><a href="method.html#cb33-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb33-10"><a href="method.html#cb33-10" tabindex="-1"></a>  <span class="fu">facet_grid</span>(.<span class="sc">~</span> <span class="st">&quot;Dispersión entre Weekly Sales y Temperature (°C)&quot;</span>)</span></code></pre></div>
 </details>
 <p><img src="bookdown-demo_files/figure-html/disp-1.png" width="672" /></p>
 <p>Los puntos están muy dispersos a lo largo de todo el eje de temperatura (desde aproximadamente <span class="math inline">\(-10 °C\)</span> hasta <span class="math inline">\(35 °C\)</span>), pero no muestran una tendencia clara ascendente ni descendente. La mayoría de las tiendas se agrupan entre temperaturas de <span class="math inline">\(0 °C\)</span> y <span class="math inline">\(30 °C\)</span>, lo que es esperado para regiones con climas templados. A lo largo del eje de temperatura, las ventas semanales presentan alta variabilidad, es decir, hay tiendas con ventas altas y bajas a cualquier temperatura.</p>
@@ -904,84 +887,83 @@ Realiza el diagrama de dispersión para la variable <code>weekly_sales</code> co
 <li>Realizaremos la comparacion de la variable <code>weekly_sales</code> con respecto a las variables categóricas independientes.</li>
 </ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="method.html#cb28-1" tabindex="-1"></a><span class="co"># Agrupación por &#39;type&#39;</span></span>
-<span id="cb28-2"><a href="method.html#cb28-2" tabindex="-1"></a>type_week <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="method.html#cb28-3" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span></span>
-<span id="cb28-4"><a href="method.html#cb28-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(weekly_sales),</span>
-<span id="cb28-5"><a href="method.html#cb28-5" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(weekly_sales),</span>
-<span id="cb28-6"><a href="method.html#cb28-6" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(weekly_sales),</span>
-<span id="cb28-7"><a href="method.html#cb28-7" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(weekly_sales),</span>
-<span id="cb28-8"><a href="method.html#cb28-8" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(weekly_sales),</span>
-<span id="cb28-9"><a href="method.html#cb28-9" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(weekly_sales),</span>
-<span id="cb28-10"><a href="method.html#cb28-10" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.25</span>),</span>
-<span id="cb28-11"><a href="method.html#cb28-11" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.75</span>),</span>
-<span id="cb28-12"><a href="method.html#cb28-12" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(weekly_sales)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-13"><a href="method.html#cb28-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;type&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(type)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-14"><a href="method.html#cb28-14" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>type)</span>
-<span id="cb28-15"><a href="method.html#cb28-15" tabindex="-1"></a></span>
-<span id="cb28-16"><a href="method.html#cb28-16" tabindex="-1"></a><span class="co"># Agrupación por &#39;store&#39;</span></span>
-<span id="cb28-17"><a href="method.html#cb28-17" tabindex="-1"></a>store_week <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb28-18"><a href="method.html#cb28-18" tabindex="-1"></a>  <span class="fu">group_by</span>(store) <span class="sc">%&gt;%</span></span>
-<span id="cb28-19"><a href="method.html#cb28-19" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(weekly_sales),</span>
-<span id="cb28-20"><a href="method.html#cb28-20" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(weekly_sales),</span>
-<span id="cb28-21"><a href="method.html#cb28-21" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(weekly_sales),</span>
-<span id="cb28-22"><a href="method.html#cb28-22" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(weekly_sales),</span>
-<span id="cb28-23"><a href="method.html#cb28-23" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(weekly_sales),</span>
-<span id="cb28-24"><a href="method.html#cb28-24" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(weekly_sales),</span>
-<span id="cb28-25"><a href="method.html#cb28-25" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.25</span>),</span>
-<span id="cb28-26"><a href="method.html#cb28-26" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.75</span>),</span>
-<span id="cb28-27"><a href="method.html#cb28-27" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(weekly_sales)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-28"><a href="method.html#cb28-28" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;store&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(store)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-29"><a href="method.html#cb28-29" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>store)</span>
-<span id="cb28-30"><a href="method.html#cb28-30" tabindex="-1"></a></span>
-<span id="cb28-31"><a href="method.html#cb28-31" tabindex="-1"></a><span class="co"># Agrupación por &#39;department&#39;</span></span>
-<span id="cb28-32"><a href="method.html#cb28-32" tabindex="-1"></a>dep_week <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb28-33"><a href="method.html#cb28-33" tabindex="-1"></a>  <span class="fu">group_by</span>(department) <span class="sc">%&gt;%</span></span>
-<span id="cb28-34"><a href="method.html#cb28-34" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(weekly_sales),</span>
-<span id="cb28-35"><a href="method.html#cb28-35" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(weekly_sales),</span>
-<span id="cb28-36"><a href="method.html#cb28-36" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(weekly_sales),</span>
-<span id="cb28-37"><a href="method.html#cb28-37" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(weekly_sales),</span>
-<span id="cb28-38"><a href="method.html#cb28-38" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(weekly_sales),</span>
-<span id="cb28-39"><a href="method.html#cb28-39" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(weekly_sales),</span>
-<span id="cb28-40"><a href="method.html#cb28-40" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.25</span>),</span>
-<span id="cb28-41"><a href="method.html#cb28-41" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.75</span>),</span>
-<span id="cb28-42"><a href="method.html#cb28-42" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(weekly_sales)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-43"><a href="method.html#cb28-43" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;department&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(department)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-44"><a href="method.html#cb28-44" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>department)</span>
-<span id="cb28-45"><a href="method.html#cb28-45" tabindex="-1"></a></span>
-<span id="cb28-46"><a href="method.html#cb28-46" tabindex="-1"></a><span class="co"># Agrupación por &#39;is_holiday&#39;</span></span>
-<span id="cb28-47"><a href="method.html#cb28-47" tabindex="-1"></a>holi_week <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb28-48"><a href="method.html#cb28-48" tabindex="-1"></a>  <span class="fu">group_by</span>(is_holiday) <span class="sc">%&gt;%</span></span>
-<span id="cb28-49"><a href="method.html#cb28-49" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(weekly_sales),</span>
-<span id="cb28-50"><a href="method.html#cb28-50" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(weekly_sales),</span>
-<span id="cb28-51"><a href="method.html#cb28-51" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(weekly_sales),</span>
-<span id="cb28-52"><a href="method.html#cb28-52" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(weekly_sales),</span>
-<span id="cb28-53"><a href="method.html#cb28-53" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(weekly_sales),</span>
-<span id="cb28-54"><a href="method.html#cb28-54" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(weekly_sales),</span>
-<span id="cb28-55"><a href="method.html#cb28-55" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.25</span>),</span>
-<span id="cb28-56"><a href="method.html#cb28-56" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.75</span>),</span>
-<span id="cb28-57"><a href="method.html#cb28-57" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(weekly_sales)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-58"><a href="method.html#cb28-58" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;is_holiday&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(is_holiday)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-59"><a href="method.html#cb28-59" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>is_holiday)</span>
-<span id="cb28-60"><a href="method.html#cb28-60" tabindex="-1"></a></span>
-<span id="cb28-61"><a href="method.html#cb28-61" tabindex="-1"></a><span class="co"># Unión de todas las tablas</span></span>
-<span id="cb28-62"><a href="method.html#cb28-62" tabindex="-1"></a><span class="fu">bind_rows</span>(type_week, store_week, dep_week, holi_week)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="method.html#cb34-1" tabindex="-1"></a><span class="co"># Agrupación por &#39;type&#39;</span></span>
+<span id="cb34-2"><a href="method.html#cb34-2" tabindex="-1"></a>type_week <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="method.html#cb34-3" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span></span>
+<span id="cb34-4"><a href="method.html#cb34-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(weekly_sales),</span>
+<span id="cb34-5"><a href="method.html#cb34-5" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(weekly_sales),</span>
+<span id="cb34-6"><a href="method.html#cb34-6" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(weekly_sales),</span>
+<span id="cb34-7"><a href="method.html#cb34-7" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(weekly_sales),</span>
+<span id="cb34-8"><a href="method.html#cb34-8" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(weekly_sales),</span>
+<span id="cb34-9"><a href="method.html#cb34-9" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(weekly_sales),</span>
+<span id="cb34-10"><a href="method.html#cb34-10" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.25</span>),</span>
+<span id="cb34-11"><a href="method.html#cb34-11" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.75</span>),</span>
+<span id="cb34-12"><a href="method.html#cb34-12" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(weekly_sales)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-13"><a href="method.html#cb34-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;type&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(type)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-14"><a href="method.html#cb34-14" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>type)</span>
+<span id="cb34-15"><a href="method.html#cb34-15" tabindex="-1"></a></span>
+<span id="cb34-16"><a href="method.html#cb34-16" tabindex="-1"></a><span class="co"># Agrupación por &#39;store&#39;</span></span>
+<span id="cb34-17"><a href="method.html#cb34-17" tabindex="-1"></a>store_week <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb34-18"><a href="method.html#cb34-18" tabindex="-1"></a>  <span class="fu">group_by</span>(store) <span class="sc">%&gt;%</span></span>
+<span id="cb34-19"><a href="method.html#cb34-19" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(weekly_sales),</span>
+<span id="cb34-20"><a href="method.html#cb34-20" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(weekly_sales),</span>
+<span id="cb34-21"><a href="method.html#cb34-21" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(weekly_sales),</span>
+<span id="cb34-22"><a href="method.html#cb34-22" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(weekly_sales),</span>
+<span id="cb34-23"><a href="method.html#cb34-23" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(weekly_sales),</span>
+<span id="cb34-24"><a href="method.html#cb34-24" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(weekly_sales),</span>
+<span id="cb34-25"><a href="method.html#cb34-25" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.25</span>),</span>
+<span id="cb34-26"><a href="method.html#cb34-26" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.75</span>),</span>
+<span id="cb34-27"><a href="method.html#cb34-27" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(weekly_sales)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-28"><a href="method.html#cb34-28" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;store&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(store)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-29"><a href="method.html#cb34-29" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>store)</span>
+<span id="cb34-30"><a href="method.html#cb34-30" tabindex="-1"></a></span>
+<span id="cb34-31"><a href="method.html#cb34-31" tabindex="-1"></a><span class="co"># Agrupación por &#39;department&#39;</span></span>
+<span id="cb34-32"><a href="method.html#cb34-32" tabindex="-1"></a>dep_week <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb34-33"><a href="method.html#cb34-33" tabindex="-1"></a>  <span class="fu">group_by</span>(department) <span class="sc">%&gt;%</span></span>
+<span id="cb34-34"><a href="method.html#cb34-34" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(weekly_sales),</span>
+<span id="cb34-35"><a href="method.html#cb34-35" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(weekly_sales),</span>
+<span id="cb34-36"><a href="method.html#cb34-36" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(weekly_sales),</span>
+<span id="cb34-37"><a href="method.html#cb34-37" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(weekly_sales),</span>
+<span id="cb34-38"><a href="method.html#cb34-38" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(weekly_sales),</span>
+<span id="cb34-39"><a href="method.html#cb34-39" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(weekly_sales),</span>
+<span id="cb34-40"><a href="method.html#cb34-40" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.25</span>),</span>
+<span id="cb34-41"><a href="method.html#cb34-41" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.75</span>),</span>
+<span id="cb34-42"><a href="method.html#cb34-42" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(weekly_sales)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-43"><a href="method.html#cb34-43" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;department&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(department)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-44"><a href="method.html#cb34-44" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>department)</span>
+<span id="cb34-45"><a href="method.html#cb34-45" tabindex="-1"></a></span>
+<span id="cb34-46"><a href="method.html#cb34-46" tabindex="-1"></a><span class="co"># Agrupación por &#39;is_holiday&#39;</span></span>
+<span id="cb34-47"><a href="method.html#cb34-47" tabindex="-1"></a>holi_week <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb34-48"><a href="method.html#cb34-48" tabindex="-1"></a>  <span class="fu">group_by</span>(is_holiday) <span class="sc">%&gt;%</span></span>
+<span id="cb34-49"><a href="method.html#cb34-49" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(weekly_sales),</span>
+<span id="cb34-50"><a href="method.html#cb34-50" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(weekly_sales),</span>
+<span id="cb34-51"><a href="method.html#cb34-51" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(weekly_sales),</span>
+<span id="cb34-52"><a href="method.html#cb34-52" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(weekly_sales),</span>
+<span id="cb34-53"><a href="method.html#cb34-53" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(weekly_sales),</span>
+<span id="cb34-54"><a href="method.html#cb34-54" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(weekly_sales),</span>
+<span id="cb34-55"><a href="method.html#cb34-55" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.25</span>),</span>
+<span id="cb34-56"><a href="method.html#cb34-56" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(weekly_sales, <span class="fl">0.75</span>),</span>
+<span id="cb34-57"><a href="method.html#cb34-57" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(weekly_sales)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-58"><a href="method.html#cb34-58" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;is_holiday&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(is_holiday)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-59"><a href="method.html#cb34-59" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>is_holiday)</span>
+<span id="cb34-60"><a href="method.html#cb34-60" tabindex="-1"></a></span>
+<span id="cb34-61"><a href="method.html#cb34-61" tabindex="-1"></a><span class="co"># Unión de todas las tablas</span></span>
+<span id="cb34-62"><a href="method.html#cb34-62" tabindex="-1"></a><span class="fu">bind_rows</span>(type_week, store_week, dep_week, holi_week)</span></code></pre></div>
 </details>
 <pre><code>## # A tibble: 96 × 11
-##    variable niveles     n  media     ds mediana minimo  maximo    Q1     Q3
-##    &lt;chr&gt;    &lt;chr&gt;   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-##  1 type     A        9872 23675. 30129.  11944.  -1098 293966. 3862. 31982.
-##  2 type     B         902 25697. 31156.  13336.   -798 232559. 3998. 38195.
-##  3 store    1         901 20897. 26994.   9775.   -698 140504. 3199  30186.
-##  4 store    2         897 26517. 32682.  13765.  -1098 178983. 4892. 34612.
-##  5 store    4         901 26127. 31202.  13064.    -88 165766. 4571. 35552.
-##  6 store    6         894 21561. 23658.  13201.   -698 119812. 4284. 30962.
-##  7 store    10        902 25697. 31156.  13336.   -798 232559. 3998. 38195.
-##  8 store    13        913 25664. 31499.  13050.    -98 166872. 4396. 34686.
-##  9 store    14        885 30384. 40467.  14793.   -498 293966. 4386  37384.
-## 10 store    19        906 19931. 24662.  11092.   -449 147449. 3695. 24861.
-## # ℹ 86 more rows
-## # ℹ 1 more variable: IQR &lt;dbl&gt;</code></pre>
+##    variable niveles     n  media     ds mediana minimo  maximo    Q1     Q3    IQR
+##    &lt;chr&gt;    &lt;chr&gt;   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 type     A        9872 23675. 30129.  11944.  -1098 293966. 3862. 31982. 28120.
+##  2 type     B         902 25697. 31156.  13336.   -798 232559. 3998. 38195. 34197.
+##  3 store    1         901 20897. 26994.   9775.   -698 140504. 3199  30186. 26987.
+##  4 store    2         897 26517. 32682.  13765.  -1098 178983. 4892. 34612. 29720.
+##  5 store    4         901 26127. 31202.  13064.    -88 165766. 4571. 35552. 30982.
+##  6 store    6         894 21561. 23658.  13201.   -698 119812. 4284. 30962. 26678.
+##  7 store    10        902 25697. 31156.  13336.   -798 232559. 3998. 38195. 34197.
+##  8 store    13        913 25664. 31499.  13050.    -98 166872. 4396. 34686. 30290.
+##  9 store    14        885 30384. 40467.  14793.   -498 293966. 4386  37384. 32998.
+## 10 store    19        906 19931. 24662.  11092.   -449 147449. 3695. 24861. 21166.
+## # ℹ 86 more rows</code></pre>
 <p>La variable <code>type</code> clasifica las tiendas en dos categorías: A y B, donde el <span class="math inline">\(91.6\%\)</span> de los registros corresponde a tiendas tipo A (<span class="math inline">\(n = 9872\)</span>) y solo el <span class="math inline">\(8.4\%\)</span> a tipo B (<span class="math inline">\(n = 902\)</span>). A pesar de su menor frecuencia, las tiendas tipo B presentan una media de ventas semanales más alta de <span class="math inline">\(25696.68\)</span> usd (DS = <span class="math inline">\(31155.87\)</span> usd) comparada con las de tipo A de <span class="math inline">\(23674.67\)</span> usd (DS = <span class="math inline">\(30129.41\)</span> usd). El <span class="math inline">\(50\%\)</span> de las tiendas tipo B tiene ventas semanales por debajo de 13336.08 usd, mientras que en las tipo A este valor es de <span class="math inline">\(11943.920\)</span> usd. Además, las tiendas tipo B presentan un rango intercuartílico más amplio (IQR = <span class="math inline">\(34196.80\)</span> usd) en comparación con las tipo A (IQR = <span class="math inline">\(28119.99\)</span> usd), lo que indica una mayor dispersión en la distribución de sus ventas semanales. Estos datos sugieren que, aunque las tiendas tipo B son menos frecuentes, tienden a mostrar un mejor desempeño en ventas, acompañado de una mayor variabilidad en sus resultados.</p>
 <p>La variable <code>is_holiday</code> identifica si una semana corresponde a un periodo festivo (<code>True</code>) o no (<code>False</code>). La mayoría de los registros (<span class="math inline">\(99.6\%\)</span>) corresponden a semanas no festivas (<span class="math inline">\(n = 10732\)</span>), mientras que solo el <span class="math inline">\(0.4\%\)</span> pertenece a semanas festivas (<span class="math inline">\(n = 42\)</span>). Las semanas no festivas presentan una media de ventas semanales de <span class="math inline">\(23934.91 usd\)</span> (DS = <span class="math inline">\(30,244.33\)</span> usd), significativamente superior a la de las semanas festivas, que registran en promedio apenas <span class="math inline">\(600.55\)</span> usd (DS = <span class="math inline">\(1054.73\)</span> usd). El <span class="math inline">\(50\%\)</span> de las semanas no festivas tiene ventas por debajo de <span class="math inline">\(12135.16\)</span> usd, mientras que en las semanas festivas ese valor cae a tan solo <span class="math inline">\(37.50\)</span> usd. El rango intercuartílico (IQR) también es mucho más amplio en las semanas no festivas (<span class="math inline">\(28555.85\)</span> usd) que en las festivas (<span class="math inline">\(928\)</span> usd), lo que indica no solo un volumen mayor de ventas en semanas regulares, sino también una mayor variabilidad. Estos resultados reflejan que las semanas festivas se asocian con un desempeño comercial considerablemente menor en comparación con las semanas ordinarias.</p>
 <div class="admon-box ejercicio">
@@ -993,16 +975,16 @@ Realiza la interpretación para la variable <code>weekly_sales</code> con respec
 </p>
 </div>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="method.html#cb30-1" tabindex="-1"></a><span class="co"># boxplot: weekly_sales vs tipo</span></span>
-<span id="cb30-2"><a href="method.html#cb30-2" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb30-3"><a href="method.html#cb30-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> weekly_sales)) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="method.html#cb30-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#87CEFA&quot;</span>, <span class="at">outlier.colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">outlier.shape =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
-<span id="cb30-5"><a href="method.html#cb30-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb30-6"><a href="method.html#cb30-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Tipo de tienda&quot;</span>,</span>
-<span id="cb30-7"><a href="method.html#cb30-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Ventas semanales (usd)&quot;</span></span>
-<span id="cb30-8"><a href="method.html#cb30-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb30-9"><a href="method.html#cb30-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb30-10"><a href="method.html#cb30-10" tabindex="-1"></a>  <span class="fu">facet_grid</span>(.<span class="sc">~</span><span class="st">&quot;Distribución de Weekly Sales por tipo de tienda&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="method.html#cb36-1" tabindex="-1"></a><span class="co"># boxplot: weekly_sales vs tipo</span></span>
+<span id="cb36-2"><a href="method.html#cb36-2" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb36-3"><a href="method.html#cb36-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> weekly_sales)) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="method.html#cb36-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#87CEFA&quot;</span>, <span class="at">outlier.colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">outlier.shape =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="method.html#cb36-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-6"><a href="method.html#cb36-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Tipo de tienda&quot;</span>,</span>
+<span id="cb36-7"><a href="method.html#cb36-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Ventas semanales (usd)&quot;</span></span>
+<span id="cb36-8"><a href="method.html#cb36-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-9"><a href="method.html#cb36-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb36-10"><a href="method.html#cb36-10" tabindex="-1"></a>  <span class="fu">facet_grid</span>(.<span class="sc">~</span><span class="st">&quot;Distribución de Weekly Sales por tipo de tienda&quot;</span>)</span></code></pre></div>
 </details>
 <p><img src="bookdown-demo_files/figure-html/comp_boxplot-1.png" width="672" /></p>
 <p>El gráfico compara las ventas semanales de las tiendas tipo A y B. Se observa que, aunque hay muchas más tiendas tipo A, las tiendas tipo B presentan un promedio de ventas semanales ligeramente más alto, lo cual se refleja en el rombo azul más elevado en su caja. Además, las tiendas tipo B muestran mayor variación en sus ventas, es decir, algunas venden mucho y otras menos, mientras que las tipo A tienen un comportamiento un poco más concentrado. Los puntos rojos sobre las cajas indican semanas con ventas excepcionalmente altas, siendo más frecuentes en las tiendas tipo A. En conjunto, esto sugiere que las tiendas tipo B, aunque menos numerosas, tienden a tener un mejor desempeño promedio, pero con mayor variabilidad; mientras que las tiendas tipo A tienen más casos extremos de ventas muy altas.</p>
@@ -1032,16 +1014,16 @@ Realiza el análisis bivariado con respecto a las variables independiente
 <p>Esto es especialmente útil para detectar patrones, asociaciones o valores atípicos en conjuntos de datos con múltiples variables.</p>
 <p>Su instalación y carga del paquete</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="method.html#cb31-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;GGally&quot;</span>)</span>
-<span id="cb31-2"><a href="method.html#cb31-2" tabindex="-1"></a><span class="fu">library</span>(GGally)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="method.html#cb37-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;GGally&quot;</span>)</span>
+<span id="cb37-2"><a href="method.html#cb37-2" tabindex="-1"></a><span class="fu">library</span>(GGally)</span></code></pre></div>
 </details>
 </p>
 </div>
 <p>Modo de uso del paquete <code>GGally</code>:</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="method.html#cb32-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb32-2"><a href="method.html#cb32-2" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb32-3"><a href="method.html#cb32-3" tabindex="-1"></a>  <span class="fu">ggpairs</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="method.html#cb38-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb38-2"><a href="method.html#cb38-2" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="method.html#cb38-3" tabindex="-1"></a>  <span class="fu">ggpairs</span>()</span></code></pre></div>
 </details>
 <p><img src="bookdown-demo_files/figure-html/ggally-1.png" width="672" /></p>
 <div class="admon-box ejercicio">
