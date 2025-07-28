@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 Literature | Notas de métodos estadísticos</title>
+  <title>Capítulo 2 Reglas de curso y diagnostico | Notas de métodos estadísticos</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 Literature | Notas de métodos estadísticos" />
+  <meta property="og:title" content="Capítulo 2 Reglas de curso y diagnostico | Notas de métodos estadísticos" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 Literature | Notas de métodos estadísticos" />
+  <meta name="twitter:title" content="Capítulo 2 Reglas de curso y diagnostico | Notas de métodos estadísticos" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2025-07-07" />
+<meta name="date" content="2025-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="intro.html"/>
-<link rel="next" href="methods.html"/>
+<link rel="next" href="method.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,75 +49,12 @@
 
 
 
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <style type="text/css">
   
@@ -164,10 +101,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.1" data-path="02-literature.html"><a href="#video-paso-a-paso-de-la-publicaci%C3%B3n-del-libro-en-github-pages"><i class="fa fa-check"></i><b>1.4.1</b> Video paso a paso de la publicación del libro en GitHub Pages</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>2</b> Literature</a></li>
-<li class="chapter" data-level="3" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>3</b> Methods</a>
+<li class="chapter" data-level="2" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>2</b> Reglas de curso y diagnostico</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="methods.html"><a href="methods.html#math-example"><i class="fa fa-check"></i><b>3.1</b> math example</a></li>
+<li class="chapter" data-level="2.1" data-path="literature.html"><a href="literature.html#reglas-de-las-clases"><i class="fa fa-check"></i><b>2.1</b> Reglas de las clases</a></li>
+<li class="chapter" data-level="2.2" data-path="02-literature.html"><a href="#pol%C3%ADtica-de-evaluaci%C3%B3n-y-normas-de-integridad-acad%C3%A9mica"><i class="fa fa-check"></i><b>2.2</b> Política de evaluación y normas de integridad académica</a></li>
+<li class="chapter" data-level="2.3" data-path="literature.html"><a href="literature.html#fechas-de-taller-y-examenes"><i class="fa fa-check"></i><b>2.3</b> Fechas de taller y examenes</a></li>
+<li class="chapter" data-level="2.4" data-path="02-literature.html"><a href="#programaci%C3%B3n-del-curso-por-unidad"><i class="fa fa-check"></i><b>2.4</b> Programación del curso por unidad</a></li>
+<li class="chapter" data-level="2.5" data-path="literature.html"><a href="literature.html#referencias"><i class="fa fa-check"></i><b>2.5</b> Referencias</a></li>
+<li class="chapter" data-level="2.6" data-path="02-literature.html"><a href="#terminos-b%C3%A1sicos-de-la-estad%C3%ADstica"><i class="fa fa-check"></i><b>2.6</b> Terminos básicos de la estadística</a></li>
+<li class="chapter" data-level="2.7" data-path="02-literature.html"><a href="#diagnostico-de-estad%C3%ADstica-b%C3%A1sica"><i class="fa fa-check"></i><b>2.7</b> Diagnostico de estadística básica</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="method.html"><a href="method.html"><i class="fa fa-check"></i><b>3</b> Análisis exploratorio de datos (EDA)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="02-literature.html"><a href="#cu%C3%A1ndo-debo-utilizarlo"><i class="fa fa-check"></i><b>3.1</b> ¿Cuándo debo utilizarlo?</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="02-literature.html"><a href="#tipos-de-an%C3%A1lisis-exploratorio"><i class="fa fa-check"></i><b>3.1.1</b> Tipos de análisis exploratorio:</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="02-literature.html"><a href="#representaci%C3%B3n-de-datos-seg%C3%BAn-su-naturaleza"><i class="fa fa-check"></i><b>3.2</b> Representación de datos según su naturaleza</a></li>
+<li class="chapter" data-level="3.3" data-path="02-literature.html"><a href="#presentaci%C3%B3n-y-an%C3%A1lisis-de-la-informaci%C3%B3n-en-estudios-descriptivos"><i class="fa fa-check"></i><b>3.3</b> Presentación y análisis de la información en estudios descriptivos</a></li>
+<li class="chapter" data-level="3.4" data-path="02-literature.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-num%C3%A9rica"><i class="fa fa-check"></i><b>3.4</b> Análisis explotario con variable respuesta numérica</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="method.html"><a href="method.html#contexto-de-los-datos-de-walmart"><i class="fa fa-check"></i><b>3.4.1</b> Contexto de los datos de Walmart</a></li>
+<li class="chapter" data-level="3.4.2" data-path="02-literature.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl"><i class="fa fa-check"></i><b>3.4.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.4.3" data-path="02-literature.html"><a href="#an%C3%A1lisis-de-la-variable-weekly_sales-target"><i class="fa fa-check"></i><b>3.4.3</b> Análisis de la variable <code>weekly_sales</code> (Target)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="02-literature.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes"><i class="fa fa-check"></i><b>3.4.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="02-literature.html"><a href="#an%C3%A1lisis-exploratorio-bivariado"><i class="fa fa-check"></i><b>3.4.5</b> Análisis exploratorio bivariado</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="02-literature.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-categ%C3%B3rica"><i class="fa fa-check"></i><b>3.5</b> Análisis explotario con variable respuesta categórica</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>4</b> Applications</a>
 <ul>
@@ -197,9 +157,655 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="literature" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Capítulo 2</span> Literature<a href="literature.html#literature" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Here is a review of existing methods.</p>
+<h1><span class="header-section-number">Capítulo 2</span> Reglas de curso y diagnostico<a href="literature.html#literature" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Para asegurar que nuestro espacio de aprendizaje sea un ambiente productivo, respetuoso y justo para cada uno de ustedes, es fundamental que sigamos algunas pautas de convivencia y evaluación. Estas reglas están diseñadas para fomentar la concentración, facilitar la participación y garantizar la integridad académica en todo momento.</p>
+<div id="reglas-de-las-clases" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Reglas de las clases<a href="literature.html#reglas-de-las-clases" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="admon-box advertencia">
+<div class="admon-title">
+<span class="icon"></span> <strong>Durante la clase</strong>
+</div>
+<ol>
+<li>
+Respeto durante explicaciones. <strong>Evitar el uso de celulares cuando no sea requerido.</strong>
+</li>
+<li>
+Evite conversaciones que puedan irrumpir con el desarrollo de las clases.
+</li>
+<li>
+Si tiene alguna duda, pregunte todo lo que necesite.
+</li>
+</ol>
+</div>
+<div class="admon-box advertencia">
+<div class="admon-title">
+<span class="icon"></span> <strong>Durante los exámenes o evaluaciones</strong>
+</div>
+<ol>
+<li>
+<strong>No se admite ningún tipo de pregunta</strong> relacionada con las temáticas vistas.
+</li>
+<li>
+Solo se responderán preguntas para aclaraciones relacionadas con <strong>redacción o instrucciones.</strong>
+</li>
+<li>
+No se permiten dispositivos electrónicos.
+</li>
+</ol>
+</div>
+</div>
+<div id="política-de-evaluación-y-normas-de-integridad-académica" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Política de evaluación y normas de integridad académica<a href="#pol%C3%ADtica-de-evaluaci%C3%B3n-y-normas-de-integridad-acad%C3%A9mica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="admon-box advertencia">
+<div class="admon-title">
+<span class="icon"></span> <strong>Normas de evaluación y sanciones</strong>
+</div>
+<p><strong>Todo fraude o intento de fraude, en cualquier tipo de evaluación, acarreará al estudiante una calificación de 0.0, sin perjuicio de las acciones disciplinarias a que hubiere lugar</strong></p>
+<ol>
+<li>
+Se entiende por <strong>FRAUDE ACADÉMICO</strong>, cualquier comportamiento o práctica ilícita, empleada para obtener una nota o alcanzar un objetivo en el desarrollo de una actividad académica, que vaya en contra de las normas, reglamentos y procesos pedagógicos que la Institución establece y que atenta contra la integridad intelectual y moral del estudiante.
+</li>
+<li>
+<strong>Las evaluaciones parciales o finales no presentadas serán calificadas con cero (0.0).</strong> Esta calificación solo podrá ser modificada por la calificación obtenida en una evaluación supletoria.
+</li>
+</ol>
+<p>Fuente: <a href="https://www.uninorte.edu.co/reglamento_estudiantil">Reglamento Estudiantil - Universidad del Norte</a></p>
+</div>
+<div class="admon-box advertencia">
+<div class="admon-title">
+<span class="icon"></span> <strong>Inasistencia</strong>
+</div>
+<p>
+<p>En toda clase se tomará asistencia. Si las faltas exceden el 25% del total de las clases, el estudiante perderá el derecho del examen final, el cual será calificado en 0,0.</p>
+<p>Fuente: <a href="https://www.uninorte.edu.co/reglamento_estudiantil">Reglamento Estudiantil - Universidad del Norte</a></p>
+</p>
+</div>
+<div class="admon-box advertencia">
+<div class="admon-title">
+<span class="icon"></span> Inasistencias
+</div>
+<p>
+<p>Cuando un estudiante no pueda presentar exámenes o compromisos académicos en la fecha programada por motivos de fuerza mayor, podrá solicitar una <strong>evaluación supletoria</strong> al profesor de la asignatura, quien tendrá la facultad de autorizar la realización de la misma.</p>
+<p><strong>La evaluación supletoria se realizará dentro de los diez (10) días hábiles siguientes a la fecha inicialmente programada</strong> y es <strong>indispensable que el estudiante realice el trámite correspondiente en el sistema de información académico</strong> donde será aprobado y fijada la fecha de su realización.</p>
+<p>Fuente: <a href="https://www.uninorte.edu.co/reglamento_estudiantil">Reglamento Estudiantil - Universidad del Norte</a></p>
+</p>
+</div>
+</div>
+<div id="fechas-de-taller-y-examenes" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Fechas de taller y examenes<a href="literature.html#fechas-de-taller-y-examenes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Estas son las fecha de los taller y los examenes:</p>
+<div class="admon-box observacion">
+<div class="admon-title">
+<span class="icon"></span> Fechas importantes
+</div>
+<table>
+<caption><span id="tab:evaluacion">Tabla 2.1: </span>Fechas de cortes y distribución de porcentajes</caption>
+<thead>
+<tr class="header">
+<th align="left">Corte</th>
+<th align="left">Porcentaje</th>
+<th align="left">Evaluación</th>
+<th align="left">Semana</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Primer Corte 25%</td>
+<td align="left">5%</td>
+<td align="left">Actividades</td>
+<td align="left">Hasta la semana 5</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">20%</td>
+<td align="left">Parcial</td>
+<td align="left">Semana 5</td>
+</tr>
+<tr class="odd">
+<td align="left">Segundo Corte 25%</td>
+<td align="left">5%</td>
+<td align="left">Actividades</td>
+<td align="left">Hasta la semana 9</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">20%</td>
+<td align="left">Parcial</td>
+<td align="left">Semana 9</td>
+</tr>
+<tr class="odd">
+<td align="left">Tercer Corte 25%</td>
+<td align="left">5%</td>
+<td align="left">Actividades</td>
+<td align="left">Hasta la semana 13</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">20%</td>
+<td align="left">Parcial</td>
+<td align="left">Semana 13</td>
+</tr>
+<tr class="odd">
+<td align="left">Cuarto Corte 25%</td>
+<td align="left">5%</td>
+<td align="left">Actividades</td>
+<td align="left">Hasta la semana 16</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">20%</td>
+<td align="left">Parcial</td>
+<td align="left">Fecha de registro</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Otras fechas para tener en cuenta:</p>
+<ul>
+<li><span class="math inline">\(6-12\)</span> de octubre. <strong>Semana de receso</strong></li>
+<li><strong>Fecha limite de retiro</strong>: 5 de noviembre</li>
+</ul>
+</div>
+<div id="programación-del-curso-por-unidad" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Programación del curso por unidad<a href="#programaci%C3%B3n-del-curso-por-unidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Este el contenido del curso de métodos estadísticos:</p>
+<div class="admon-box observacion">
+<div class="admon-title">
+<span class="icon"></span> <strong>Contenido por corte</strong>
+</div>
+<ol>
+<li>
+<strong>I corte. Diagnósticos Inferencial</strong>
+<ul>
+<li>
+Análisis de correlación y RLS: introducción
+</li>
+<li>
+Términos básicos
+</li>
+</ul>
+</li>
+<li>
+<strong>II corte. Análisis de correlación y RLS</strong>
+<ul>
+<li>
+Modelación y aplicaciones
+</li>
+<li>
+Supuestos e inferencia sobre los parámetros
+</li>
+</ul>
+</li>
+<li>
+<strong>III corte. RLM: Matemáticas y aplicaciones</strong>
+<ul>
+<li>
+Supuestos e inferencia sobre los parámetros
+</li>
+</ul>
+</li>
+<li>
+<strong>Temas adicionales</strong>
+<ul>
+<li>
+Otros modelos de regresión
+</li>
+<li>
+Introducción al análisis multivariado
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="referencias" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Referencias<a href="literature.html#referencias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Estas son algunas referencias para la clase de métodos</p>
+<div class="admon-box observacion">
+<div class="admon-title">
+<span class="icon"></span> Referencias bibliográficas
+</div>
+<p>
+<table style="width:100%;">
+<caption><span id="tab:biblio">Tabla 2.2: </span>Referencias bibliográficas del curso</caption>
+<colgroup>
+<col width="64%" />
+<col width="10%" />
+<col width="2%" />
+<col width="7%" />
+<col width="4%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Referencia Bibliográfica</th>
+<th align="left">Tipo de referencia</th>
+<th align="left">Guía</th>
+<th align="left">De Referencia</th>
+<th align="left">Idioma</th>
+<th align="left">Existe en Biblioteca</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Probabilidad Y Estadística Para Ingeniería Y Ciencias, 2015, CENGAGE Learning.</td>
+<td align="left">Libro impreso</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left">Español</td>
+<td align="left">Sí</td>
+</tr>
+<tr class="even">
+<td align="left">Estadística descriptiva y distribuciones de probabilidad, Ediciones Uninorte 2015. ISBN: 9587419154.</td>
+<td align="left">Libro impreso</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left">Español</td>
+<td align="left">Sí</td>
+</tr>
+<tr class="odd">
+<td align="left">Estadística inferencial, Ediciones Uninorte 2020. ISBN: 9587419154.</td>
+<td align="left">Libro impreso</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left">Español</td>
+<td align="left">Sí</td>
+</tr>
+<tr class="even">
+<td align="left">Practical Guide to Cluster Analysis in R: Unsupervised Machine Learning, 2017, STHDA.</td>
+<td align="left">Libro impreso</td>
+<td align="left"></td>
+<td align="left">x</td>
+<td align="left">Inglés</td>
+<td align="left">Sí</td>
+</tr>
+<tr class="odd">
+<td align="left">Practical Guide To Principal Component Methods in R: PCA, M(CA), FAMD, MFA, HCPC, factoextra, 2017, STHDA.</td>
+<td align="left">Libro impreso</td>
+<td align="left"></td>
+<td align="left">x</td>
+<td align="left">Inglés</td>
+<td align="left">Sí</td>
+</tr>
+<tr class="even">
+<td align="left">Hands-On Time Series Analysis with R: Perform time series analysis and forecasting using R, 2019, Packt Publishing Ltd.</td>
+<td align="left">Libro impreso</td>
+<td align="left"></td>
+<td align="left">x</td>
+<td align="left">Inglés</td>
+<td align="left">Sí</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+<div id="terminos-básicos-de-la-estadística" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Terminos básicos de la estadística<a href="#terminos-b%C3%A1sicos-de-la-estad%C3%ADstica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> <strong> Definición: Unidad experimental.</strong>
+</div>
+<p>
+Es el objeto o entidad sobre la cual se realiza una observación o medición dentro de un estudio estadístico.
+<div class="admon-box ejemplo">
+<div class="admon-title">
+<span class="icon"></span> <strong>Ejemplo</strong>
+</div>
+<p>
+En un estudio clínico, cada paciente corresponde a una unidad experimental.
+</p>
+</div>
+</p>
+</div>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> <strong> Definición: Población, muestra, censo.</strong>
+</div>
+<ul>
+<li>
+La <strong>población</strong> es el conjunto completo de unidades experimentales de interés
+</li>
+<li>
+La <strong>muestra</strong> es un subconjunto de unidades experimentales o de una población. Debe ser representativa y aleatoria.
+</li>
+<li>
+El <strong>censo</strong> es la enumeración completa de las unidades experimentales de una población.
+</li>
+</ul>
+<div class="admon-box ejemplo">
+<div class="admon-title">
+<span class="icon"></span> <strong>Ejemplo</strong>
+</div>
+<p>
+La colección de promedios por carreras de la Universidad del Norte (PPCUN) puede
+servir como una población estadística, y cualquier subcolección, digamos los PPCUN
+de la carrera de medicina, puede servir como una muestra de esa población.
+</p>
+</div>
+</div>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> <strong> Definición: Variable aleatoria, dato y observación </strong>
+</div>
+<ul>
+<li>
+La <strong>variable</strong> es la característica que se desea medir u observar.
+</li>
+<li>
+El <strong>dato:</strong> es el valor específico que toma una variable para una unidad experimental.
+</li>
+<li>
+La <strong>observación</strong> es el conjunto de datos registrados para una unidad experimental.
+</li>
+</ul>
+</div>
+<div class="admon-box ejemplo">
+<div class="admon-title">
+<span class="icon"></span> <strong>Ejemplo</strong>
+</div>
+<p>
+<p>Una universidad está realizando un estudio para conocer el perfil de sus estudiantes de primer semestre. Para ello, se recolecta información de cada estudiante, como su edad, programa académico y puntaje obtenido en las pruebas de admisión.</p>
+Para el estudiante Laura Torres, se registraron los siguientes valores:
+<ul>
+<li>
+Edad: 18 años
+</li>
+<li>
+Programa académico: Psicología
+</li>
+<li>
+Puntaje de admisión: 92
+</li>
+</ul>
+<p style="text-align: center;">
+<strong>Solución</strong>
+</p>
+<ul>
+<li><p><strong>Variable:</strong> Edad, programa académico, puntaje de admisión.</p></li>
+<li><p><strong>Dato:</strong> <em>18 años</em> es el dato para la variable edad, <em>Psicología</em> para programa académico”, <em>92</em> para “Puntaje de admisión”.</p></li>
+<li><p><strong>Observación:</strong> Edad = 18, Programa = Psicología, Puntaje = 92</p></li>
+</ul>
+</p>
+</div>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> <strong> Definición: Parametro, estadístico.</strong>
+</div>
+<ul>
+<li>
+Un <strong>parámetro</strong> es cualquier caractéristica numérica de una población.
+</li>
+<li>
+Un <strong>estadístico</strong> es cualquier caractéristica numérica de una muestra.
+</li>
+</ul>
+</div>
+<div class="admon-box ejemplo">
+<div class="admon-title">
+<span class="icon"></span> <strong>Ejemplo</strong>
+</div>
+<p>
+<p>Una universidad quiere conocer el promedio de edad de todos sus estudiantes de primer semestre. Como sería costoso y demorado consultar a toda la población, se toma una muestra aleatoria de 100 estudiantes y se calcula su promedio de edad. Identifique el paramétro y el estadístico.</p>
+<p style="text-align: center;">
+<strong>Solución</strong>
+</p>
+<ul>
+<li><strong>Parametro:</strong> El promedio real de edad de <strong>todos</strong> los estudiantes de primer semestre de la universidad.</li>
+<li><strong>Estadístico:</strong> El promedio de edad calculado con los <strong>100 estudiantes</strong> seleccionados en la muestra.</li>
+</ul>
+</p>
+</div>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> <strong> Definición: Estadística descriptiva e inferencial.</strong>
+</div>
+<ul>
+<li>
+<strong>Estadística descriptiva</strong>: Parte de la estadística que organiza, resume y presenta los datos de forma útil.
+</li>
+<li>
+<strong>Estadística inferencial</strong>: Parte de la estadística que permite <strong>inferir propiedades poblacionales</strong> a partir de una muestra, sin necesidad de censar toda la población.
+</li>
+</ul>
+</div>
+</div>
+<div id="diagnostico-de-estadística-básica" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Diagnostico de estadística básica<a href="#diagnostico-de-estad%C3%ADstica-b%C3%A1sica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se realizará un diagnoticos de conceptos básicos</p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<ol>
+<li>
+En una muestra de pacientes, el número de varones dividido entre el total de pacientes es:
+</li>
+<li>
+¿Cuál de las siguientes medidas define mejor la tendencia central de los datos:<br />
+5, 4, 42, 4, 6?
+</li>
+<li>
+<strong>Estadística inferencial</strong> es la rama de la estadística que se encarga de:
+<ol>
+<li>
+Describir la información obtenida del estudio de una muestra para hacer inferencias sobre la población
+</li>
+<li>
+Describir un conjunto de datos recopilados en una muestra
+</li>
+<li>
+Diseñar científicamente un estudio con el objetivo de tomar decisiones respecto a un problema
+</li>
+<li>
+Estudiar el conjunto de individuos que poseen la característica sujeta a estudio
+</li>
+</ol>
+</li>
+<li>
+<strong>La distribución normal:</strong>:
+<ol>
+<li>
+Es simétrica
+</li>
+<li>
+Es una distribución de probabilidad de variable discreta
+</li>
+<li>
+Es asimétrica
+</li>
+<li>
+La mediana no coincide con la moda
+</li>
+<li>
+Es bimodal
+</li>
+</ol>
+</li>
+<li>
+<strong>El intervalo [media muestral ± 1,96 EEM (error estándar de la media)]:</strong>:
+<ol>
+<li>
+No dice gran cosa
+</li>
+<li>
+Comprende un 95% de las veces a la media poblacional
+</li>
+<li>
+Comprende un 99% de las veces a la media poblacional
+</li>
+<li>
+Da una seguridad del 68%
+</li>
+<li>
+Da una seguridad del 5%
+</li>
+</ol>
+</li>
+<li>
+<strong>El intervalo [media muestral ± 1,96 EEM (error estándar de la media)]:</strong>:
+<ol>
+<li>
+No dice gran cosa
+</li>
+<li>
+Comprende un 95% de las veces a la media poblacional
+</li>
+<li>
+Comprende un 99% de las veces a la media poblacional
+</li>
+<li>
+Da una seguridad del 68%
+</li>
+<li>
+Da una seguridad del 5%
+</li>
+</ol>
+</li>
+<li>
+<strong>Un estimador es:</strong>
+<ol>
+<li>
+Un parámetro que se utiliza para estimar los estadísticos
+</li>
+<li>
+Un estadístico que se utiliza para estimar los parámetros de la muestra
+</li>
+<li>
+Un estadístico que se utiliza para estimar parámetros poblacionales
+</li>
+<li>
+Un parámetro que se utiliza para estimar algunos estadísticos
+</li>
+<li>
+Son todas falsas
+</li>
+</ol>
+</li>
+<li>
+<strong>Los grados de libertad de una tabla de contingencia (independencia) <span class="math inline">\(2\times 2\)</span> son:</strong>
+<ol>
+<li>
+1
+</li>
+<li>
+2
+</li>
+<li>
+3
+</li>
+<li>
+4
+</li>
+<li>
+5
+</li>
+</ol>
+</li>
+<li>
+<strong>La estimación de medias se hace con:</strong>
+<ol>
+<li>
+La distribución normal
+</li>
+<li>
+El error estándar
+</li>
+<li>
+La distribución <span class="math inline">\(t\)</span> de Student
+</li>
+<li>
+La distribución binomial
+</li>
+<li>
+Ciertas i, ii y iii
+</li>
+</ol>
+</li>
+<li>
+<strong>La estimación de porcentajes se hace con (Señalar lo falso):</strong>
+<ol>
+<li>
+La distribución normal
+</li>
+<li>
+La distribución t de Student
+</li>
+<li>
+La distribución binomial
+</li>
+<li>
+El porcentaje muestral
+</li>
+<li>
+El error estándar del porcentaje
+</li>
+</ol>
+</li>
+<li>
+<strong>Se desea comparar la talla media entre hombres y mujeres. ¿Cuál será la prueba estadística más apropiada?</strong>
+<ol>
+<li>
+F de Snedecor
+</li>
+<li>
+Chi-cuadrado
+</li>
+<li>
+t de Student
+</li>
+<li>
+Coeficiente de correlación de Pearson
+</li>
+<li>
+Ninguna de las anteriores
+</li>
+</ol>
+</li>
+<li>
+<strong>Si el contraste <span class="math inline">\(H_0: \mu = 50\)</span> , <span class="math inline">\(H_1: \mu &lt; 50\)</span> no se rechaza con un <span class="math inline">\(p-valor = 0,12\)</span>, el contraste <span class="math inline">\(H_0: \mu \geq 30\)</span> , <span class="math inline">\(H_1: \mu &lt; 30\)</span>:</strong>
+<ol>
+<li>
+Se rechaza <span class="math inline">\(H_0\)</span>
+</li>
+<li>
+Contraste unilateral cola a la izquierda
+</li>
+<li>
+<span class="math inline">\(p-valor = 0.12\)</span>
+</li>
+<li>
+<span class="math inline">\(p-valor = 0.88\)</span>
+</li>
+<li>
+Ciertas 2 y 4
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Si el contraste <span class="math inline">\(H_0: \mu = 100\)</span> , <span class="math inline">\(H_1: μ &gt; 100\)</span> se acepta con un <span class="math inline">\(p-valor = 0,10\)</span>, el contraste <span class="math inline">\(H_0: \mu \leq 100\)</span> , <span class="math inline">\(H_1: \mu &gt; 100\)</span> tiene:</strong></p>
+<ol>
+<li>
+<span class="math inline">\(p-valor = 0.10\)</span>
+</li>
+<li>
+Contraste unilateral cola a la derecha
+</li>
+<li>
+<span class="math inline">\(p-valor = 0.05\)</span>
+</li>
+<li>
+<span class="math inline">\(p-valor = 0.90\)</span>
+</li>
+<li>
+Ciertas 2 y 3
+</li>
+</ol>
+</li>
+</ol>
+</div>
 
+</div>
 </div>
             </section>
 
@@ -207,7 +813,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="method.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
