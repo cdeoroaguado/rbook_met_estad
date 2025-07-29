@@ -62,3 +62,6 @@ fig:r-fig
 tab:tipo
 tab:representacion
 fig:r-fig-2
+eda
+contexto-del-conjunto-de-datos-de-marketing-de-un-banco
+reglas
