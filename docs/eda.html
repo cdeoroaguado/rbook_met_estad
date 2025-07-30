@@ -1687,6 +1687,62 @@ Realiza el gráfico boxplot para las variables <code>balance</code>, <code>durat
 Realiza la interpretación para las variables independientes según <code>y</code>.
 </p>
 </div>
+<ul>
+<li>Realizaremos la comparacion de las variables categóricas independientes con respecto a la variable <code>y</code></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="eda.html#cb66-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb66-2"><a href="eda.html#cb66-2" tabindex="-1"></a>  <span class="fu">group_by</span>(y) <span class="sc">%&gt;%</span></span>
+<span id="cb66-3"><a href="eda.html#cb66-3" tabindex="-1"></a>  <span class="fu">count</span>(marital, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb66-4"><a href="eda.html#cb66-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> marital,</span>
+<span id="cb66-5"><a href="eda.html#cb66-5" tabindex="-1"></a>    <span class="at">variable =</span> <span class="st">&quot;marital&quot;</span>,</span>
+<span id="cb66-6"><a href="eda.html#cb66-6" tabindex="-1"></a>    <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb66-7"><a href="eda.html#cb66-7" tabindex="-1"></a>  <span class="fu">select</span>(y, variable, categoria, n, porcentaje)</span></code></pre></div>
+</details>
+<pre><code>## # A tibble: 6 × 5
+## # Groups:   y [2]
+##   y     variable categoria     n porcentaje
+##   &lt;fct&gt; &lt;chr&gt;    &lt;fct&gt;     &lt;int&gt;      &lt;dbl&gt;
+## 1 no    marital  divorced    451       11.3
+## 2 no    marital  married    2520       63  
+## 3 no    marital  single     1029       25.7
+## 4 yes   marital  divorced     77       14.8
+## 5 yes   marital  married     277       53.2
+## 6 yes   marital  single      167       32.1</code></pre>
+<p>La distribución del estado civil según la respuesta del marketing muestra diferencias relevantes en los patrones de respuesta. Entre quienes respondieron afirmativamente (<code>yes</code>), el <span class="math inline">\(53.17\%\)</span> están casados, el <span class="math inline">\(32.05\%\)</span> solteros y el <span class="math inline">\(14.78\%\)</span> divorciados. En contraste, en el grupo que respondió negativamente (<code>no</code>), la mayoría (<span class="math inline">\(63\%\)</span>) también está casada, pero la proporción de solteros (<span class="math inline">\(25.73%\)</span>) y divorciados (<span class="math inline">\(11.28\%\)</span>) es menor. Esta diferencia sugiere que las personas solteras y divorciadas presentan una mayor disposición o probabilidad de responder afirmativamente frente a la acción evaluada por la variable y, mientras que los casados tienden más a rechazarla, lo que podría ser clave para estrategias de segmentación o análisis de comportamiento.</p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Realiza las tablas de las variables independientes segun variable respuesta <code>y</code>. Interpreta las tablas.
+</p>
+</div>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="eda.html#cb68-1" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb68-2"><a href="eda.html#cb68-2" tabindex="-1"></a>  <span class="fu">group_by</span>(y) <span class="sc">%&gt;%</span></span>
+<span id="cb68-3"><a href="eda.html#cb68-3" tabindex="-1"></a>  <span class="fu">count</span>(default, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb68-4"><a href="eda.html#cb68-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> default,</span>
+<span id="cb68-5"><a href="eda.html#cb68-5" tabindex="-1"></a>    <span class="at">variable =</span> <span class="st">&quot;default&quot;</span>,</span>
+<span id="cb68-6"><a href="eda.html#cb68-6" tabindex="-1"></a>    <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb68-7"><a href="eda.html#cb68-7" tabindex="-1"></a>  <span class="fu">select</span>(y, categoria, n, porcentaje)</span>
+<span id="cb68-8"><a href="eda.html#cb68-8" tabindex="-1"></a></span>
+<span id="cb68-9"><a href="eda.html#cb68-9" tabindex="-1"></a><span class="co"># Gráfica de barras agrupadas con etiquetas</span></span>
+<span id="cb68-10"><a href="eda.html#cb68-10" tabindex="-1"></a>df_plot <span class="sc">%&gt;%</span> </span>
+<span id="cb68-11"><a href="eda.html#cb68-11" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> n, <span class="at">fill =</span> y)) <span class="sc">+</span></span>
+<span id="cb68-12"><a href="eda.html#cb68-12" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb68-13"><a href="eda.html#cb68-13" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(porcentaje, <span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>)),</span>
+<span id="cb68-14"><a href="eda.html#cb68-14" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),</span>
+<span id="cb68-15"><a href="eda.html#cb68-15" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>,</span>
+<span id="cb68-16"><a href="eda.html#cb68-16" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb68-17"><a href="eda.html#cb68-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Historial de impago (default)&quot;</span>,</span>
+<span id="cb68-18"><a href="eda.html#cb68-18" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Historial de impago (default)&quot;</span>,</span>
+<span id="cb68-19"><a href="eda.html#cb68-19" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Cantidad de clientes&quot;</span></span>
+<span id="cb68-20"><a href="eda.html#cb68-20" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb68-21"><a href="eda.html#cb68-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb68-22"><a href="eda.html#cb68-22" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/graf_agrup-1.png" width="672" /></p>
 
 </div>
 </div>
