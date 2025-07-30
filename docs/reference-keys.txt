@@ -65,3 +65,4 @@ fig:r-fig-2
 eda
 contexto-del-conjunto-de-datos-de-marketing-de-un-banco
 reglas
+análisis-exploratorio-bivariado-1
