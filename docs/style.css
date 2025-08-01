@@ -62,7 +62,7 @@ p {
 .admon-box.ejercicio .admon-title { background-color: #e6f9ef; border-bottom-color: #c8f2dc; }
 .admon-box.definicion .admon-title { background-color: #eaf3fb; border-bottom-color: #d0e5f5; }
 .admon-box.teorema .admon-title { background-color: #f3eafa; border-bottom-color: #e2d1f3; }
-.admon-box.ejemplo .admon-title { background-color: #ecfdf5; border-bottom-color: #d1fae5; }
+.admon-box.ejemplo .admon-title { background-color: #f6f7be; border-bottom-color: #c0c288; }
 .admon-box.advertencia .admon-title { background-color: #fdecea; border-bottom-color: #f5c6c6; }
 .admon-box.nota .admon-title { background-color: #fff8e1; border-bottom-color: #ffe9b3; }
 .admon-box.observacion .admon-title { background-color: #e0f7f4; border-bottom-color: #b2ebe4; }
@@ -75,7 +75,7 @@ p {
 .admon-box.teorema          { border-left-color: #9b59b6; }
 .admon-box.teorema .icon::before { content: "∑"; }
 
-.admon-box.ejemplo          { border-left-color: #2ecc71; }
+.admon-box.ejemplo          { border-left-color: #8d9101; }
 .admon-box.ejemplo .icon::before { content: "✅"; }
 
 .admon-box.ejercicio        { border-left-color: #43b581; }
