@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 5 Tabla de contingencia | Notas de métodos estadísticos</title>
+  <meta name="description" content="Notas de clase de métodos estadísticos." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 5 Tabla de contingencia | Notas de métodos estadísticos" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de clase de métodos estadísticos." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 5 Tabla de contingencia | Notas de métodos estadísticos" />
+  
+  <meta name="twitter:description" content="Notas de clase de métodos estadísticos." />
+  
+
+<meta name="author" content="Carlos de Oro Aguado" />
+
+
+<meta name="date" content="2025-08-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estparynopar.html"/>
+<link rel="next" href="referencias-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Notas de métodos estadísticos</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Asignatura</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="05-tabcontingencia.html"><a href="#introducci%C3%B3n-a-r-y-rstudio"><i class="fa fa-check"></i><b>1.1</b> Introducción a R y RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="05-tabcontingencia.html"><a href="#qu%C3%A9-es-r"><i class="fa fa-check"></i><b>1.1.1</b> ¿Qué es R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="05-tabcontingencia.html"><a href="#qu%C3%A9-es-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es RStudio?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="05-tabcontingencia.html"><a href="#introducci%C3%B3n-a-git-y-github"><i class="fa fa-check"></i><b>1.2</b> Introducción a Git y GitHub</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="05-tabcontingencia.html"><a href="#qu%C3%A9-es-git"><i class="fa fa-check"></i><b>1.2.1</b> ¿Qué es Git?</a></li>
+<li class="chapter" data-level="1.2.2" data-path="05-tabcontingencia.html"><a href="#qu%C3%A9-es-github"><i class="fa fa-check"></i><b>1.2.2</b> ¿Qué es GitHub?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="05-tabcontingencia.html"><a href="#introducci%C3%B3n-a-tidyverse"><i class="fa fa-check"></i><b>1.3</b> Introducción a Tidyverse</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="05-tabcontingencia.html"><a href="#representaci%C3%B3n-visual-del-ecosistema-tidyverse"><i class="fa fa-check"></i><b>1.3.1</b> Representación visual del ecosistema Tidyverse</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#principales-paquetes-del-tidyverse"><i class="fa fa-check"></i><b>1.3.2</b> Principales paquetes del Tidyverse</a></li>
+<li class="chapter" data-level="1.3.3" data-path="05-tabcontingencia.html"><a href="#instalaci%C3%B3n-del-tidyverse-en-r"><i class="fa fa-check"></i><b>1.3.3</b> Instalación del Tidyverse en R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#pasos-para-publicar-un-libro-bookdown-en-github-pages"><i class="fa fa-check"></i><b>1.4</b> Pasos para publicar un libro <code>bookdown</code> en GitHub Pages</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="05-tabcontingencia.html"><a href="#video-paso-a-paso-de-la-publicaci%C3%B3n-del-libro-en-github-pages"><i class="fa fa-check"></i><b>1.4.1</b> Video paso a paso de la publicación del libro en GitHub Pages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="reglas.html"><a href="reglas.html"><i class="fa fa-check"></i><b>2</b> Reglas de curso y diagnostico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="reglas.html"><a href="reglas.html#reglas-de-las-clases"><i class="fa fa-check"></i><b>2.1</b> Reglas de las clases</a></li>
+<li class="chapter" data-level="2.2" data-path="05-tabcontingencia.html"><a href="#pol%C3%ADtica-de-evaluaci%C3%B3n-y-normas-de-integridad-acad%C3%A9mica"><i class="fa fa-check"></i><b>2.2</b> Política de evaluación y normas de integridad académica</a></li>
+<li class="chapter" data-level="2.3" data-path="reglas.html"><a href="reglas.html#fechas-de-taller-y-examenes"><i class="fa fa-check"></i><b>2.3</b> Fechas de taller y examenes</a></li>
+<li class="chapter" data-level="2.4" data-path="05-tabcontingencia.html"><a href="#programaci%C3%B3n-del-curso-por-unidad"><i class="fa fa-check"></i><b>2.4</b> Programación del curso por unidad</a></li>
+<li class="chapter" data-level="2.5" data-path="reglas.html"><a href="reglas.html#referencias"><i class="fa fa-check"></i><b>2.5</b> Referencias</a></li>
+<li class="chapter" data-level="2.6" data-path="05-tabcontingencia.html"><a href="#terminos-b%C3%A1sicos-de-la-estad%C3%ADstica"><i class="fa fa-check"></i><b>2.6</b> Terminos básicos de la estadística</a></li>
+<li class="chapter" data-level="2.7" data-path="05-tabcontingencia.html"><a href="#diagnostico-de-estad%C3%ADstica-b%C3%A1sica"><i class="fa fa-check"></i><b>2.7</b> Diagnostico de estadística básica</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>3</b> Análisis exploratorio de datos (EDA)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="05-tabcontingencia.html"><a href="#cu%C3%A1ndo-debo-utilizarlo"><i class="fa fa-check"></i><b>3.1</b> ¿Cuándo debo utilizarlo?</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="05-tabcontingencia.html"><a href="#tipos-de-an%C3%A1lisis-exploratorio"><i class="fa fa-check"></i><b>3.1.1</b> Tipos de análisis exploratorio:</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="05-tabcontingencia.html"><a href="#representaci%C3%B3n-de-datos-seg%C3%BAn-su-naturaleza"><i class="fa fa-check"></i><b>3.2</b> Representación de datos según su naturaleza</a></li>
+<li class="chapter" data-level="3.3" data-path="05-tabcontingencia.html"><a href="#presentaci%C3%B3n-y-an%C3%A1lisis-de-la-informaci%C3%B3n-en-estudios-descriptivos"><i class="fa fa-check"></i><b>3.3</b> Presentación y análisis de la información en estudios descriptivos</a></li>
+<li class="chapter" data-level="3.4" data-path="05-tabcontingencia.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-num%C3%A9rica"><i class="fa fa-check"></i><b>3.4</b> Análisis explotario con variable respuesta numérica</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="eda.html"><a href="eda.html#contexto-de-los-datos-de-walmart"><i class="fa fa-check"></i><b>3.4.1</b> Contexto de los datos de Walmart</a></li>
+<li class="chapter" data-level="3.4.2" data-path="05-tabcontingencia.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl"><i class="fa fa-check"></i><b>3.4.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.4.3" data-path="05-tabcontingencia.html"><a href="#an%C3%A1lisis-de-la-variable-weekly_sales-target"><i class="fa fa-check"></i><b>3.4.3</b> Análisis de la variable <code>weekly_sales</code> (Target)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="05-tabcontingencia.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes"><i class="fa fa-check"></i><b>3.4.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="05-tabcontingencia.html"><a href="#an%C3%A1lisis-exploratorio-bivariado"><i class="fa fa-check"></i><b>3.4.5</b> Análisis exploratorio bivariado</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="05-tabcontingencia.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-categ%C3%B3rica"><i class="fa fa-check"></i><b>3.5</b> Análisis explotario con variable respuesta categórica</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="eda.html"><a href="eda.html#contexto-del-conjunto-de-datos-de-marketing-de-un-banco"><i class="fa fa-check"></i><b>3.5.1</b> Contexto del conjunto de datos de marketing de un banco</a></li>
+<li class="chapter" data-level="3.5.2" data-path="05-tabcontingencia.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl-1"><i class="fa fa-check"></i><b>3.5.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.5.3" data-path="05-tabcontingencia.html"><a href="#an%C3%A1lisis-de-la-variable-y-target"><i class="fa fa-check"></i><b>3.5.3</b> Análisis de la variable <code>y</code> (Target)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="05-tabcontingencia.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes-1"><i class="fa fa-check"></i><b>3.5.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.5.5" data-path="05-tabcontingencia.html"><a href="#an%C3%A1lisis-exploratorio-bivariado-1"><i class="fa fa-check"></i><b>3.5.5</b> Análisis exploratorio bivariado</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="estparynopar.html"><a href="estparynopar.html"><i class="fa fa-check"></i><b>4</b> Análisis de estadística paramétrica y no paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="05-tabcontingencia.html"><a href="#comparaci%C3%B3n-de-medias-entre-dos-grupos-independientes-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.1</b> Comparación de medias entre dos grupos independientes con estadística paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="estparynopar.html"><a href="estparynopar.html#condiciones-del-t-test-para-muestras-independientes"><i class="fa fa-check"></i><b>4.1.1</b> Condiciones del t-test para muestras independientes</a></li>
+<li class="chapter" data-level="4.1.2" data-path="estparynopar.html"><a href="estparynopar.html#grados-de-libertad"><i class="fa fa-check"></i><b>4.1.2</b> Grados de libertad</a></li>
+<li class="chapter" data-level="4.1.3" data-path="05-tabcontingencia.html"><a href="#error-est%C3%A1ndar-de-la-diferencia-de-medias"><i class="fa fa-check"></i><b>4.1.3</b> Error estándar de la diferencia de medias</a></li>
+<li class="chapter" data-level="4.1.4" data-path="05-tabcontingencia.html"><a href="#tama%C3%B1o-del-efecto-effect-size-en-comparaciones-de-medias"><i class="fa fa-check"></i><b>4.1.4</b> Tamaño del Efecto (Effect Size) en comparaciones de medias</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="05-tabcontingencia.html"><a href="#comparaci%C3%B3n-de-medias-entre-dos-grupos-pareados-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.2</b> Comparación de medias entre dos grupos pareados con estadística paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="estparynopar.html"><a href="estparynopar.html#supuestos-del-t-test-para-muestras-dependientes"><i class="fa fa-check"></i><b>4.2.1</b> Supuestos del t-test para muestras dependientes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="05-tabcontingencia.html"><a href="#comparaci%C3%B3n-de-dos-grupos-independientes-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.3</b> Comparación de dos grupos independientes con estadística no paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="estparynopar.html"><a href="estparynopar.html#fundamento-conceptual"><i class="fa fa-check"></i><b>4.3.1</b> Fundamento conceptual</a></li>
+<li class="chapter" data-level="4.3.2" data-path="05-tabcontingencia.html"><a href="#comparaci%C3%B3n-con-el-test-t"><i class="fa fa-check"></i><b>4.3.2</b> Comparación con el test t</a></li>
+<li class="chapter" data-level="4.3.3" data-path="05-tabcontingencia.html"><a href="#supuestos-y-condiciones-de-aplicaci%C3%B3n"><i class="fa fa-check"></i><b>4.3.3</b> Supuestos y condiciones de aplicación</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="05-tabcontingencia.html"><a href="#comparaci%C3%B3n-de-dos-grupos-pareados-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.4</b> Comparación de dos grupos pareados con estadística no paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="05-tabcontingencia.html"><a href="#cu%C3%A1ndo-se-recomienda-utilizar-esta-prueba"><i class="fa fa-check"></i><b>4.4.1</b> ¿Cuándo se recomienda utilizar esta prueba?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="05-tabcontingencia.html"><a href="#anova-an%C3%A1lisis-de-varianza-para-comparar-m%C3%BAltiples-medias"><i class="fa fa-check"></i><b>4.5</b> ANOVA (análisis de varianza para comparar múltiples medias)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="05-tabcontingencia.html"><a href="#supuestos-y-formulaci%C3%B3n-de-las-hip%C3%B3tesis"><i class="fa fa-check"></i><b>4.5.1</b> Supuestos y formulación de las hipótesis</a></li>
+<li class="chapter" data-level="4.5.2" data-path="05-tabcontingencia.html"><a href="#sumas-de-cuadrados-y-teorema-de-descomposici%C3%B3n"><i class="fa fa-check"></i><b>4.5.2</b> Sumas de cuadrados y teorema de descomposición</a></li>
+<li class="chapter" data-level="4.5.3" data-path="estparynopar.html"><a href="estparynopar.html#estimaciones-insesgadas-de-la-varianza-poblacional"><i class="fa fa-check"></i><b>4.5.3</b> Estimaciones insesgadas de la varianza poblacional</a></li>
+<li class="chapter" data-level="4.5.4" data-path="05-tabcontingencia.html"><a href="#teorema-de-contraste-para-el-an%C3%A1lisis-de-varianza"><i class="fa fa-check"></i><b>4.5.4</b> Teorema de contraste para el análisis de varianza</a></li>
+<li class="chapter" data-level="4.5.5" data-path="05-tabcontingencia.html"><a href="#comparaciones-m%C3%BAltiples"><i class="fa fa-check"></i><b>4.5.5</b> Comparaciones múltiples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="estparynopar.html"><a href="estparynopar.html#kruskalwallis"><i class="fa fa-check"></i><b>4.6</b> Kruskal–Wallis</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="05-tabcontingencia.html"><a href="#hip%C3%B3tesis-del-test"><i class="fa fa-check"></i><b>4.6.1</b> Hipótesis del test</a></li>
+<li class="chapter" data-level="4.6.2" data-path="05-tabcontingencia.html"><a href="#estad%C3%ADstico-de-prueba"><i class="fa fa-check"></i><b>4.6.2</b> Estadístico de prueba</a></li>
+<li class="chapter" data-level="4.6.3" data-path="estparynopar.html"><a href="estparynopar.html#condiciones-del-test-de-kruskalwallis"><i class="fa fa-check"></i><b>4.6.3</b> Condiciones del test de Kruskal–Wallis</a></li>
+<li class="chapter" data-level="4.6.4" data-path="estparynopar.html"><a href="estparynopar.html#comparaciones-post-hoc"><i class="fa fa-check"></i><b>4.6.4</b> Comparaciones Post-Hoc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tabcontingencia.html"><a href="tabcontingencia.html"><i class="fa fa-check"></i><b>5</b> Tabla de contingencia</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-tabcontingencia.html"><a href="#tablas-de-contingencia-con-dos-criterios-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia con dos criterios de clasificación</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notas de métodos estadísticos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tabcontingencia" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Capítulo 5</span> Tabla de contingencia<a href="tabcontingencia.html#tabcontingencia" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Las tablas de contingencia permiten analizar la relación entre dos variables cualitativas mediante la organización de los datos en una matriz de frecuencias. Cuando se utilizan dos criterios de clasificación, este tipo de tabla facilita la evaluación estadística a través de pruebas como la de independencia y la de homogeneidad, ambas basadas en la distribución ji-cuadrado (<span class="math inline">\(\chi^2\)</span>). La prueba de independencia se aplica para determinar si existe una asociación significativa entre dos variables categóricas en una sola población, bajo la hipótesis nula de que son independientes. En cambio, la prueba de homogeneidad se utiliza para comparar si la distribución de una misma variable categórica es similar en diferentes poblaciones o grupos independientes. Estas herramientas son esenciales para el análisis inferencial en estudios con datos categóricos. <span class="citation">(<a href="#ref-llinas2019">Solano 2019</a>)</span></p>
+<div id="tablas-de-contingencia-con-dos-criterios-de-clasificación" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Tablas de contingencia con dos criterios de clasificación<a href="#tablas-de-contingencia-con-dos-criterios-de-clasificaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una tabla de contingencia (tabla <a href="tabcontingencia.html#tab:tabla-contingencia">5.1</a>) de <span class="math inline">\(I \times J\)</span> permite estudiar la relación entre dos atributos cualitativos, denominados aquí como A y B. Supongamos que el atributo A tiene <span class="math inline">\(I\)</span> categorías (que se ubicarán en las filas de la tabla), y el atributo B tiene <span class="math inline">\(J\)</span> categorías (ubicadas en las columnas). La tabla resultante tendrá <span class="math inline">\(I \times J\)</span> celdas, donde cada celda <span class="math inline">\((i,j)\)</span> contendrá el número de individuos que presentan simultáneamente la categoría <span class="math inline">\(i\)</span> del atributo A y la categoría <span class="math inline">\(j\)</span> del atributo B. Denotamos estos conteos como <span class="math inline">\(O_{ij}\)</span>, y la estructura general se representa de la siguiente forma:</p>
+<table>
+<caption>
+<span id="tab:tabla-contingencia">Tabla 5.1: </span>Tabla de contingencia de <span class="math inline">\(I \times J\)</span> con dos criterios de clasificación
+</caption>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Atributo B
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Atributo A
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(1\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(2\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\cdots\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(J\)</span>
+</td>
+<td style="text-align:left;">
+Totales
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(1\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(O_{11}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(O_{12}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\cdots\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(O_{1J}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(R_1\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(2\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(O_{21}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(O_{22}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\cdots\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(O_{2J}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(R_2\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\ddots\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(I\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(O_{I1}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(O_{I2}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\cdots\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(O_{IJ}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(R_I\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Totales
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(C_1\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(C_2\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\cdots\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(C_J\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(n\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Las tablas de contingencia pueden analizarse mediante dos enfoques fundamentales según el diseño del estudio:</p>
+<ul>
+<li><p><strong>Prueba de homogeneidad:</strong> Se utiliza cuando se tienen varias poblaciones (o muestras independientes) y se desea comparar la distribución de una variable categórica común entre ellas. En este caso, cada fila representa una población diferente, y las columnas representan las categorías de la variable común. La hipótesis nula plantea que las proporciones son iguales en todas las poblaciones, es decir, que son homogéneas.</p></li>
+<li><p><strong>Prueba de independencia:</strong> Se emplea cuando se tiene una sola población y cada individuo es clasificado según dos atributos diferentes. Aquí, la tabla muestra cómo se distribuyen conjuntamente ambos atributos. La hipótesis nula establece que no existe relación entre las variables, es decir, que son independientes entre sí.</p></li>
+</ul>
+<p>Ambos enfoques hacen uso del mismo estadístico de prueba, el <span class="math inline">\(\chi^2\)</span>, aunque sus interpretaciones y supuestos de aplicación difieren según el diseño muestral.</p>
+<div class="admon-box ejemplo">
+<div class="admon-title">
+<span class="icon"></span> Ejemplo
+</div>
+<p>
+La siguiente tabla de contingencia corresponde a una situación de tipo 1 (homogeneidad), en la que se estudian tres poblaciones distintas (por ejemplo, tres regiones del país), y para cada una se registra el número de hombres y mujeres:
+</p>
+<table>
+<caption><span id="tab:ejemplo-1">Tabla 5.2: </span>Tabla de contingencia 3×2: Sexo por región</caption>
+<thead>
+<tr class="header">
+<th align="left">Sexo</th>
+<th align="right">Región.A</th>
+<th align="right">Región.B</th>
+<th align="right">Región.C</th>
+<th align="right">Totales</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Hombres</td>
+<td align="right">25</td>
+<td align="right">40</td>
+<td align="right">35</td>
+<td align="right">100</td>
+</tr>
+<tr class="even">
+<td align="left">Mujeres</td>
+<td align="right">30</td>
+<td align="right">20</td>
+<td align="right">25</td>
+<td align="right">75</td>
+</tr>
+<tr class="odd">
+<td align="left">Totales</td>
+<td align="right">55</td>
+<td align="right">60</td>
+<td align="right">60</td>
+<td align="right">175</td>
+</tr>
+</tbody>
+</table>
+<p>
+En esta tabla <a href="tabcontingencia.html#tab:ejemplo-1">5.2</a>, cada fila representa una categoría del atributo <em>Sexo</em> y cada columna representa una población distinta (<em>Región A, B y C</em>). La prueba de homogeneidad permitiría evaluar si la proporción de hombres y mujeres es similar en las tres regiones.
+</p>
+<p>
+Alternativamente, si se considerara como una única muestra clasificada por sexo y región, se podría aplicar una prueba de independencia para examinar si existe asociación entre sexo y región de procedencia.
+</p>
+</div>
+
+</div>
+</div>
+<h3>Referencias<a href="referencias-1.html#referencias-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-llinas2019" class="csl-entry">
+Solano, Humberto Llinás. 2019. <em>Estadística Inferencial</em>. Área metropolitana de Barranquilla, Colombia: Universidad del Norte.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estparynopar.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referencias-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/05-tabcontingencia.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
