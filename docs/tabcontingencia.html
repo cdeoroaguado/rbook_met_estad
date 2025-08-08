@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2025-08-05" />
+<meta name="date" content="2025-08-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,70 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
@@ -200,7 +264,11 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5" data-path="tabcontingencia.html"><a href="tabcontingencia.html"><i class="fa fa-check"></i><b>5</b> Tabla de contingencia</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="05-tabcontingencia.html"><a href="#tablas-de-contingencia-con-dos-criterios-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia con dos criterios de clasificación</a></li>
+<li class="chapter" data-level="5.1" data-path="05-tabcontingencia.html"><a href="#tablas-de-contingencia-con-dos-criterios-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia con dos criterios de clasificación</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="tabcontingencia.html"><a href="tabcontingencia.html#prueba-de-homogeneidad"><i class="fa fa-check"></i><b>5.1.1</b> Prueba de homogeneidad</a></li>
+<li class="chapter" data-level="5.1.2" data-path="tabcontingencia.html"><a href="tabcontingencia.html#prueba-de-independencia"><i class="fa fa-check"></i><b>5.1.2</b> Prueba de independencia</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -426,7 +494,548 @@ En esta tabla <a href="tabcontingencia.html#tab:ejemplo-1">5.2</a>, cada fila re
 Alternativamente, si se considerara como una única muestra clasificada por sexo y región, se podría aplicar una prueba de independencia para examinar si existe asociación entre sexo y región de procedencia.
 </p>
 </div>
+<div id="prueba-de-homogeneidad" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Prueba de homogeneidad<a href="tabcontingencia.html#prueba-de-homogeneidad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Supongamos que cada individuo de las <span class="math inline">\(I\)</span> poblaciones pertenece a exactamente una de las <span class="math inline">\(J\)</span> categorías. Utilizando las notaciones presentadas en la tabla <a href="tabcontingencia.html#tab:tabla-contingencia">5.1</a>, se tiene:</p>
+<ul>
+<li><span class="math inline">\(R_i\)</span>: tamaño de la muestra tomada de la población <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(n = R_1 + \cdots + R_I\)</span>: tamaño total de todas las muestras,</li>
+<li><span class="math inline">\(O_{ij}\)</span>: número de individuos de la muestra <span class="math inline">\(i\)</span> que cae en la categoría <span class="math inline">\(j\)</span>,</li>
+<li><span class="math inline">\(C_j\)</span>: número total de individuos que caen en la categoría <span class="math inline">\(j\)</span> entre los <span class="math inline">\(n\)</span> individuos.</li>
+</ul>
+<p>Sea además:</p>
+<p><span class="math display">\[
+p_{ij} = \text{proporción de los individuos de la población } i \text{ que cae en la categoría } j.
+\]</span></p>
+<p>Por ejemplo, las <span class="math inline">\(J\)</span> proporciones para la población 1 son <span class="math inline">\(p_{11}, p_{12}, \ldots, p_{1J}\)</span>, las cuales deben sumar 1. La hipótesis nula que se evalúa en este contexto se presenta a continuación.</p>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> Definición. Hipótesis nula de homogeneidad
+</div>
+<p>
+La <strong>hipótesis nula de homogeneidad</strong> establece que la proporción de individuos de la categoría <span class="math inline">\(j\)</span> es la misma en cada población. Es decir:
+</p>
+<p><span class="math display">\[
+H_0: p_{1j} = p_{2j} = \cdots = p_{Ij}, \quad \text{para cada } j = 1, \ldots, J.
+\]</span></p>
+</div>
+<div class="admon-box teorema">
+<div class="admon-title">
+<span class="icon"></span> Teorema. Valor estimado bajo la homogeneidad
+</div>
+<p>
+<em>Bajo la hipótesis nula de homogeneidad, el valor esperado estimado en la celda <span class="math inline">\((i, j)\)</span> es:</em>
+</p>
+<p><span class="math display">\[
+\hat{E}_{ij} = \frac{R_i C_j}{n} =
+\frac{\text{(Total fila } i) \cdot \text{(Total columna } j)}{\text{Tamaño total de la muestra}},
+\quad \text{para cada } i = 1, \ldots, I \text{ y } j = 1, \ldots, J.
+\]</span></p>
+</div>
+<p style="text-align: left;">
+<strong>Demostración del teorema</strong>
+</p>
+<p>Bajo la hipótesis nula de homogeneidad, se asume que las proporciones de individuos en cada categoría <span class="math inline">\(j\)</span> son iguales para todas las poblaciones. Sea:</p>
+<ul>
+<li><span class="math inline">\(R_i\)</span>: tamaño de la muestra de la población <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(C_j\)</span>: número total de individuos que caen en la categoría <span class="math inline">\(j\)</span>,</li>
+<li><span class="math inline">\(n\)</span>: tamaño total de la muestra, es decir, <span class="math inline">\(n = \sum_{i=1}^I R_i = \sum_{j=1}^J C_j\)</span>,</li>
+<li><span class="math inline">\(p_j\)</span>: proporción común de individuos que pertenecen a la categoría <span class="math inline">\(j\)</span>, bajo <span class="math inline">\(H_0\)</span>.</li>
+</ul>
+<p>Cuando <span class="math inline">\(H_0\)</span> es verdadera, las proporciones <span class="math inline">\(p_1, p_2, \ldots, p_J\)</span> son comunes a todas las poblaciones. Por tanto, el número esperado de individuos en la celda <span class="math inline">\((i, j)\)</span> es:</p>
+<p><span class="math display">\[
+E_{ij} = n_i p_j, \quad \text{para cada } i = 1, \ldots, I \text{ y } j = 1, \ldots, J.
+\]</span></p>
+<p>Dado que <span class="math inline">\(C_j\)</span> individuos de los <span class="math inline">\(n\)</span> totales caen en la categoría <span class="math inline">\(j\)</span>, se estima la proporción poblacional como:</p>
+<p><span class="math display">\[
+\hat{p}_j = \frac{C_j}{n}.
+\]</span></p>
+<p>Reemplazando en la expresión de <span class="math inline">\(E_{ij}\)</span>, se obtiene la siguiente fórmula para el valor esperado bajo <span class="math inline">\(H_0\)</span>:</p>
+<p><span class="math display">\[
+\hat{E}_{ij} = n_i \cdot \hat{p}_j = R_i \cdot \frac{C_j}{n} = \frac{R_i C_j}{n}.
+\]</span></p>
+<p>Este valor representa el número esperado de individuos en la celda <span class="math inline">\((i, j)\)</span> bajo la suposición de homogeneidad entre las poblaciones. <span class="math inline">\(\quad \square\)</span></p>
+<p>A continuación, se resume el procedimiento general para llevar a cabo esta prueba:</p>
+<div class="admon-box teorema">
+<div class="admon-title">
+<span class="icon"></span> Teorema. Prueba de hipótesis de homogeneidad
+</div>
+<p>
+<em>Supóngase que se toma una muestra aleatoria de tamaño <span class="math inline">\(n\)</span> en la que cada individuo pertenece a exactamente una de las <span class="math inline">\(I\)</span> poblaciones y a una de las <span class="math inline">\(J\)</span> categorías. La información se organiza en una tabla de contingencia <span class="math inline">\(I \times J\)</span>.</em>
+</p>
+<p><span class="math display">\[
+p_{ij} = \text{proporción de individuos de la población } i \text{ en la categoría } j.
+\]</span></p>
+<p>Si se cumple la hipótesis:</p>
+<p><span class="math display">\[
+H_0: p_{1j} = p_{2j} = \cdots = p_{Ij}, \quad \text{para cada } j = 1, \ldots, J,
+\]</span></p>
+<p>entonces, el número esperado en cada celda es:</p>
+<p><span class="math display">\[
+\hat{E}_{ij} = \frac{R_i C_j}{n},
+\]</span></p>
+<p>donde <span class="math inline">\(R_i\)</span> y <span class="math inline">\(C_j\)</span> son los totales de la fila <span class="math inline">\(i\)</span> y la columna <span class="math inline">\(j\)</span>, respectivamente.</p>
+<p>
+Si todos los valores esperados <span class="math inline">\(\hat{E}_{ij} \geq 5\)</span>, se puede aplicar un contraste de hipótesis utilizando el estadístico <span class="math inline">\(\chi^2\)</span>. La regla de decisión es:
+</p>
+<p><span class="math display">\[
+\text{Rechazar } H_0 \text{ si } \chi^2 &gt; \chi^2_\alpha,
+\]</span></p>
+<p>donde <span class="math inline">\(\chi^2 = \sum_{i=1}^{I} \sum_{j=1}^{J} \frac{(O_{ij} - \hat{E}_{ij})^2}{\hat{E}_{ij}}\)</span> es el estadístico de prueba y <span class="math inline">\(\chi^2_\alpha\)</span> es el valor crítico de la distribución chi-cuadrado con <span class="math inline">\((I - 1)(J - 1)\)</span> grados de libertad, que deja un área <span class="math inline">\(\alpha\)</span> a la derecha.</p>
+</div>
+<div class="admon-box ejemplo">
+<div class="admon-title">
+<span class="icon"></span> Ejemplo
+</div>
+<p>
+Supóngase que se selecciona a 200 barranquilleros, a 150 samarios y a 150 cartageneros y se les clasifica según estén a favor, en contra o no hayan decidido respecto a una nueva ley. Las respuestas observadas aparecen en la siguiente tabla de contingencia de <span class="math inline">\(3 \times 3\)</span>.
+</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="tabcontingencia.html#cb1-1" tabindex="-1"></a><span class="co"># Crear la tabla de contingencia</span></span>
+<span id="cb1-2"><a href="tabcontingencia.html#cb1-2" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">82</span>, <span class="dv">93</span>, <span class="dv">25</span>,</span>
+<span id="cb1-3"><a href="tabcontingencia.html#cb1-3" tabindex="-1"></a>                       <span class="dv">70</span>, <span class="dv">62</span>, <span class="dv">18</span>,</span>
+<span id="cb1-4"><a href="tabcontingencia.html#cb1-4" tabindex="-1"></a>                       <span class="dv">62</span>, <span class="dv">67</span>, <span class="dv">21</span>),</span>
+<span id="cb1-5"><a href="tabcontingencia.html#cb1-5" tabindex="-1"></a>                     <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-6"><a href="tabcontingencia.html#cb1-6" tabindex="-1"></a>                     <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb1-7"><a href="tabcontingencia.html#cb1-7" tabindex="-1"></a>                       <span class="at">Opinion =</span> <span class="fu">c</span>(<span class="st">&quot;A favor&quot;</span>, <span class="st">&quot;En contra&quot;</span>, <span class="st">&quot;Sin decisión&quot;</span>),</span>
+<span id="cb1-8"><a href="tabcontingencia.html#cb1-8" tabindex="-1"></a>                       <span class="at">Ciudad =</span> <span class="fu">c</span>(<span class="st">&quot;Barranquilleros&quot;</span>, <span class="st">&quot;Samarios&quot;</span>, <span class="st">&quot;Cartageneros&quot;</span>)</span>
+<span id="cb1-9"><a href="tabcontingencia.html#cb1-9" tabindex="-1"></a>                     ))</span></code></pre></div>
+</details>
+</div>
+<p style="text-align: center;">
+<strong>Solución</strong>
+</p>
+<ul>
+<li>Calculemos de totales por fila, columna y total general</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="tabcontingencia.html#cb2-1" tabindex="-1"></a><span class="co"># Totales por fila, columna y total general</span></span>
+<span id="cb2-2"><a href="tabcontingencia.html#cb2-2" tabindex="-1"></a>fila_totales <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observados)</span>
+<span id="cb2-3"><a href="tabcontingencia.html#cb2-3" tabindex="-1"></a>col_totales <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observados)</span>
+<span id="cb2-4"><a href="tabcontingencia.html#cb2-4" tabindex="-1"></a>total_general <span class="ot">&lt;-</span> <span class="fu">sum</span>(observados)</span>
+<span id="cb2-5"><a href="tabcontingencia.html#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="tabcontingencia.html#cb2-6" tabindex="-1"></a>fila_totales</span></code></pre></div>
+</details>
+<pre><code>##      A favor    En contra Sin decisión 
+##          214          222           64</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="tabcontingencia.html#cb4-1" tabindex="-1"></a>col_totales</span></code></pre></div>
+</details>
+<pre><code>## Barranquilleros        Samarios    Cartageneros 
+##             200             150             150</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="tabcontingencia.html#cb6-1" tabindex="-1"></a>total_general</span></code></pre></div>
+</details>
+<pre><code>## [1] 500</code></pre>
+<p>Ahora, hallemos las frecuencias esperadas bajo <span class="math inline">\(H_0\)</span></p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="tabcontingencia.html#cb8-1" tabindex="-1"></a>esperados <span class="ot">&lt;-</span> <span class="fu">outer</span>(fila_totales, col_totales, <span class="at">FUN =</span> <span class="cf">function</span>(f, c) f <span class="sc">*</span> c <span class="sc">/</span> total_general)</span>
+<span id="cb8-2"><a href="tabcontingencia.html#cb8-2" tabindex="-1"></a><span class="fu">dimnames</span>(esperados) <span class="ot">&lt;-</span> <span class="fu">dimnames</span>(observados)</span>
+<span id="cb8-3"><a href="tabcontingencia.html#cb8-3" tabindex="-1"></a>esperados</span></code></pre></div>
+</details>
+<pre><code>##               Ciudad
+## Opinion        Barranquilleros Samarios Cartageneros
+##   A favor                 85.6     64.2         64.2
+##   En contra               88.8     66.6         66.6
+##   Sin decisión            25.6     19.2         19.2</code></pre>
+<ul>
+<li>Seguido calculemos del estadístico <span class="math inline">\(\chi^2\)</span></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="tabcontingencia.html#cb10-1" tabindex="-1"></a>chi_cuadrado <span class="ot">&lt;-</span> <span class="fu">sum</span>((observados <span class="sc">-</span> esperados)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperados)</span>
+<span id="cb10-2"><a href="tabcontingencia.html#cb10-2" tabindex="-1"></a>chi_cuadrado</span></code></pre></div>
+</details>
+<pre><code>## [1] 1.52736</code></pre>
+<ul>
+<li>Determinemos los grados de libertad</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="tabcontingencia.html#cb12-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> (<span class="fu">nrow</span>(observados) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">ncol</span>(observados) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb12-2"><a href="tabcontingencia.html#cb12-2" tabindex="-1"></a>df</span></code></pre></div>
+</details>
+<pre><code>## [1] 4</code></pre>
+<ul>
+<li>Ahora, el valor crítico y decisión al <span class="math inline">\(5\%\)</span></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="tabcontingencia.html#cb14-1" tabindex="-1"></a>alfa <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb14-2"><a href="tabcontingencia.html#cb14-2" tabindex="-1"></a>valor_critico <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alfa, df)</span>
+<span id="cb14-3"><a href="tabcontingencia.html#cb14-3" tabindex="-1"></a>valor_critico</span></code></pre></div>
+</details>
+<pre><code>## [1] 9.487729</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="tabcontingencia.html#cb16-1" tabindex="-1"></a><span class="co"># Comparación</span></span>
+<span id="cb16-2"><a href="tabcontingencia.html#cb16-2" tabindex="-1"></a>rechaza_H0 <span class="ot">&lt;-</span> chi_cuadrado <span class="sc">&gt;</span> valor_critico</span>
+<span id="cb16-3"><a href="tabcontingencia.html#cb16-3" tabindex="-1"></a>rechaza_H0</span></code></pre></div>
+</details>
+<pre><code>## [1] FALSE</code></pre>
+<ul>
+<li>Concluimos que</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="tabcontingencia.html#cb18-1" tabindex="-1"></a><span class="cf">if</span> (rechaza_H0) {</span>
+<span id="cb18-2"><a href="tabcontingencia.html#cb18-2" tabindex="-1"></a>  conclusion <span class="ot">&lt;-</span> <span class="st">&quot;Se rechaza H0: existen diferencias significativas en las proporciones de opinión entre las ciudades.&quot;</span></span>
+<span id="cb18-3"><a href="tabcontingencia.html#cb18-3" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb18-4"><a href="tabcontingencia.html#cb18-4" tabindex="-1"></a>  conclusion <span class="ot">&lt;-</span> <span class="st">&quot;No se rechaza H0: no hay evidencia suficiente para afirmar que las proporciones de opinión son distintas entre ciudades.&quot;</span></span>
+<span id="cb18-5"><a href="tabcontingencia.html#cb18-5" tabindex="-1"></a>}</span>
+<span id="cb18-6"><a href="tabcontingencia.html#cb18-6" tabindex="-1"></a>conclusion</span></code></pre></div>
+</details>
+<pre><code>## [1] &quot;No se rechaza H0: no hay evidencia suficiente para afirmar que las proporciones de opinión son distintas entre ciudades.&quot;</code></pre>
+<ul>
+<li>Si calculamos el p-valor</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="tabcontingencia.html#cb20-1" tabindex="-1"></a>valor_p <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_cuadrado, df, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-2"><a href="tabcontingencia.html#cb20-2" tabindex="-1"></a>valor_p</span></code></pre></div>
+</details>
+<pre><code>## [1] 0.8217842</code></pre>
+<ul>
+<li>Si usamos la función <code>chisq.test</code> del paquete <code>stat</code> nos queda</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="tabcontingencia.html#cb22-1" tabindex="-1"></a><span class="fu">chisq.test</span>(observados)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  observados
+## X-squared = 1.5274, df = 4, p-value = 0.8218</code></pre>
+</div>
+<div id="prueba-de-independencia" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Prueba de independencia<a href="tabcontingencia.html#prueba-de-independencia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ahora nos enfocaremos en la relación entre dos atributos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>, diferentes de una sola población.<br />
+Sea <span class="math inline">\(I\)</span> el número de categorías del atributo <span class="math inline">\(A\)</span> y <span class="math inline">\(J\)</span> el número de categorías del atributo <span class="math inline">\(B\)</span>.<br />
+Suponemos que cada individuo pertenece exactamente a una categoría de <span class="math inline">\(A\)</span> y a una de <span class="math inline">\(B\)</span>.</p>
+<p>Representemos con <span class="math inline">\(O_{ij}\)</span> el número de individuos que caen en la categoría <span class="math inline">\(i\)</span> de <span class="math inline">\(A\)</span> y en la categoría <span class="math inline">\(j\)</span> de <span class="math inline">\(B\)</span>.<br />
+Estos datos se organizan en una tabla de contingencia <span class="math inline">\(I \times J\)</span>.</p>
+<p>Sea</p>
+<p><span class="math display">\[
+p_{ij} = \text{P(el individuo pertenece a la categoría \( i \) de \( A \) y a la categoría \( j \) de \( B \))}.
+\]</span></p>
+<p>Para cada individuo seleccionado al azar</p>
+<p><span class="math display">\[
+p_{i\cdot} = \sum_{j} p_{ij} \quad\text{y}\quad p_{\cdot j} = \sum_{i} p_{ij}.
+\]</span></p>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> Definición. Hipótesis nula de independencia
+</div>
+<p>
+La <strong>hipótesis nula de independencia</strong> establece que la categoría de un individuo con respecto al atributo <span class="math inline">\(A\)</span> es independiente de la categoría con respecto al atributo <span class="math inline">\(B\)</span>. En símbolos:
+</p>
+<p><span class="math display">\[
+p_{ij} = p_{i\cdot} \, p_{\cdot j}, \quad \text{para todo } i = 1,\ldots,I \text{ y todo } j = 1,\ldots,J.
+\]</span></p>
+</div>
+<div class="admon-box teorema">
+<div class="admon-title">
+<span class="icon"></span> Teorema. Independencia
+</div>
+<p>
+<em>Bajo la hipótesis nula de independencia, el valor esperado estimado en la celda <span class="math inline">\((i, j)\)</span> viene dado por:</em>
+</p>
+<span class="math display">\[
+\hat{E}_{ij} = \frac{R_i \, C_j}{n}
+= \frac{(\text{Total de la fila } i)(\text{Total de la columna } j)}{\text{Tamaño total de la muestra}},
+\]</span>
+<p>
+para cada <span class="math inline">\(i = 1,\ldots,I\)</span> y cada <span class="math inline">\(j = 1,\ldots,J\)</span>.
+</p>
+</div>
+<p style="text-align: left;">
+<strong>Demostración del teorema</strong>
+</p>
+<p>Cuando <span class="math inline">\(H_0\)</span> es verdadera, el valor esperado <span class="math inline">\(E_{ij}\)</span> de la celda <span class="math inline">\((i, j)\)</span> es:</p>
+<p><span class="math display">\[
+E_{ij} = n \, p_{i\cdot} \, p_{\cdot j}.
+\]</span></p>
+<p>Estimamos <span class="math inline">\(p_{i\cdot}\)</span> y <span class="math inline">\(p_{\cdot j}\)</span> usando sus estimadores de máxima verosimilitud:</p>
+<p><span class="math display">\[
+\hat{p}_{i\cdot} = \frac{R_i}{n} \quad\text{(proporción muestral para la categoría \( i \) del atributo \( A \))},
+\]</span>
+<span class="math display">\[
+\hat{p}_{\cdot j} = \frac{C_j}{n} \quad\text{(proporción muestral para la categoría \( j \) del atributo \( B \))}.
+\]</span></p>
+<p>Sustituyendo en la fórmula de <span class="math inline">\(E_{ij}\)</span>:</p>
+<p><span class="math display">\[
+\hat{E}_{ij} = n \, \hat{p}_{i\cdot} \, \hat{p}_{\cdot j}
+= n \cdot \frac{R_i}{n} \cdot \frac{C_j}{n}
+= \frac{R_i \, C_j}{n}.
+\]</span></p>
+<p><span class="math display">\[
+\boxed{\hat{E}_{ij} = \frac{(\text{Total fila } i)(\text{Total columna } j)}{\text{Tamaño total de la muestra}}}
+\]</span>
+<span class="math display">\[
+\square
+\]</span></p>
+<div class="admon-box teorema">
+<div class="admon-title">
+<span class="icon"></span> Teorema 5.2.9
+</div>
+<p>
+Cuando realizamos una tabulación cruzada, según dos atributos, de las observaciones de una muestra aleatoria de tamaño <span class="math inline">\(n\)</span> en una tabla de contingencia de <span class="math inline">\(I \times J\)</span>, si la hipótesis nula es:
+</p>
+<p><span class="math display">\[
+H_0: \text{los dos atributos en la población son independientes},
+\]</span></p>
+<p>
+entonces, bajo <span class="math inline">\(H_0\)</span>, el número esperado de observaciones en cada celda de la tabla es:
+</p>
+<p><span class="math display">\[
+\hat{E}_{ij} = \frac{R_i C_j}{n}.
+\]</span></p>
+<p>
+Donde <span class="math inline">\(R_i\)</span> y <span class="math inline">\(C_j\)</span> son los totales correspondientes, respectivamente, a las filas y a las columnas.
+Además, si todos los <span class="math inline">\(\hat{E}_{ij}\)</span> son mayores o iguales que 5, entonces, un contraste al nivel de significancia <span class="math inline">\(\alpha\)</span> de <span class="math inline">\(H_0\)</span> frente a la alternativa de que los dos atributos en la población no son independientes, estará basado en la siguiente regla de decisión:
+</p>
+<p><span class="math display">\[
+\text{Rechazar } H_0 \ \text{si} \ \chi^2 &gt; \chi^2_{\alpha}.
+\]</span></p>
+<p>
+Aquí, <span class="math inline">\(\chi^2 = \sum_{i=1}^{I} \sum_{j=1}^{J} \frac{(O_{ij} - \hat{E}_{ij})^2}{\hat{E}_{ij}}\)</span> y <span class="math inline">\(\chi^2_{\alpha}\)</span> es el valor de una variable aleatoria que deja un área de <span class="math inline">\(\alpha\)</span> a la derecha de la distribución chi–cuadrada con <span class="math inline">\((I-1)(J-1)\)</span> grados de libertad.
+</p>
+</div>
+<div class="admon-box ejemplo">
+<div class="admon-title">
+<span class="icon"></span> Ejemplo 5.2.10
+</div>
+<p>
+Una muestra aleatoria de 1.000 votantes registrados de un estado se clasifica, de acuerdo con sus ingresos, como bajo, medio y alto con el fin de establecer si están a favor o en contra de una nueva reforma constitucional. Las frecuencias observadas se presentan en la siguiente tabla de contingencia de <span class="math inline">\(2 \times 3\)</span>.
+</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="tabcontingencia.html#cb24-1" tabindex="-1"></a><span class="co"># Crear la tabla de contingencia</span></span>
+<span id="cb24-2"><a href="tabcontingencia.html#cb24-2" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">182</span>, <span class="dv">213</span>, <span class="dv">203</span>,</span>
+<span id="cb24-3"><a href="tabcontingencia.html#cb24-3" tabindex="-1"></a>                       <span class="dv">154</span>, <span class="dv">138</span>, <span class="dv">110</span>),</span>
+<span id="cb24-4"><a href="tabcontingencia.html#cb24-4" tabindex="-1"></a>                     <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-5"><a href="tabcontingencia.html#cb24-5" tabindex="-1"></a>                     <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb24-6"><a href="tabcontingencia.html#cb24-6" tabindex="-1"></a>                       <span class="at">Opinion =</span> <span class="fu">c</span>(<span class="st">&quot;A favor&quot;</span>, <span class="st">&quot;En contra&quot;</span>),</span>
+<span id="cb24-7"><a href="tabcontingencia.html#cb24-7" tabindex="-1"></a>                       <span class="at">Ingreso =</span> <span class="fu">c</span>(<span class="st">&quot;Bajo&quot;</span>, <span class="st">&quot;Medio&quot;</span>, <span class="st">&quot;Alto&quot;</span>)</span>
+<span id="cb24-8"><a href="tabcontingencia.html#cb24-8" tabindex="-1"></a>                     ))</span></code></pre></div>
+</details>
+</div>
+<p style="text-align: center;">
+<strong>Solución</strong>
+</p>
+<ul>
+<li>Hallemos los totales y valores esperados</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="tabcontingencia.html#cb25-1" tabindex="-1"></a><span class="co"># Totales por fila y columna</span></span>
+<span id="cb25-2"><a href="tabcontingencia.html#cb25-2" tabindex="-1"></a>fila_totales <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observados)</span>
+<span id="cb25-3"><a href="tabcontingencia.html#cb25-3" tabindex="-1"></a>col_totales  <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observados)</span>
+<span id="cb25-4"><a href="tabcontingencia.html#cb25-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">sum</span>(observados)</span>
+<span id="cb25-5"><a href="tabcontingencia.html#cb25-5" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="tabcontingencia.html#cb25-6" tabindex="-1"></a><span class="co"># Cálculo de valores esperados</span></span>
+<span id="cb25-7"><a href="tabcontingencia.html#cb25-7" tabindex="-1"></a>esperados <span class="ot">&lt;-</span> <span class="fu">outer</span>(fila_totales, col_totales) <span class="sc">/</span> n</span>
+<span id="cb25-8"><a href="tabcontingencia.html#cb25-8" tabindex="-1"></a>esperados</span></code></pre></div>
+</details>
+<pre><code>##              Bajo   Medio    Alto
+## A favor   200.928 209.898 187.174
+## En contra 135.072 141.102 125.826</code></pre>
+<ul>
+<li>Calculoemos el estadístico Chi-cuadrado</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="tabcontingencia.html#cb27-1" tabindex="-1"></a>chi_cuadrado <span class="ot">&lt;-</span> <span class="fu">sum</span>((observados <span class="sc">-</span> esperados)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperados)</span>
+<span id="cb27-2"><a href="tabcontingencia.html#cb27-2" tabindex="-1"></a>chi_cuadrado</span></code></pre></div>
+</details>
+<pre><code>## [1] 7.878212</code></pre>
+<ul>
+<li>Determinemos los grados de libertad</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="tabcontingencia.html#cb29-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> (<span class="fu">nrow</span>(observados) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">ncol</span>(observados) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb29-2"><a href="tabcontingencia.html#cb29-2" tabindex="-1"></a>df</span></code></pre></div>
+</details>
+<pre><code>## [1] 2</code></pre>
+<ul>
+<li>Ahora, el valor crítico y decisión al <span class="math inline">\(5\%\)</span></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="tabcontingencia.html#cb31-1" tabindex="-1"></a>alfa <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb31-2"><a href="tabcontingencia.html#cb31-2" tabindex="-1"></a>valor_critico <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alfa, df)</span>
+<span id="cb31-3"><a href="tabcontingencia.html#cb31-3" tabindex="-1"></a>valor_critico</span></code></pre></div>
+</details>
+<pre><code>## [1] 5.991465</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="tabcontingencia.html#cb33-1" tabindex="-1"></a><span class="co"># Comparación</span></span>
+<span id="cb33-2"><a href="tabcontingencia.html#cb33-2" tabindex="-1"></a>rechaza_H0 <span class="ot">&lt;-</span> chi_cuadrado <span class="sc">&gt;</span> valor_critico</span>
+<span id="cb33-3"><a href="tabcontingencia.html#cb33-3" tabindex="-1"></a>rechaza_H0</span></code></pre></div>
+</details>
+<pre><code>## [1] TRUE</code></pre>
+<ul>
+<li>Si calculamos el p-valor</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="tabcontingencia.html#cb35-1" tabindex="-1"></a>valor_p <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_cuadrado, df, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb35-2"><a href="tabcontingencia.html#cb35-2" tabindex="-1"></a>valor_p</span></code></pre></div>
+</details>
+<pre><code>## [1] 0.01946561</code></pre>
+<ul>
+<li>Si usamos la función <code>chisq.test</code> del paquete <code>stat</code> nos queda</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="tabcontingencia.html#cb37-1" tabindex="-1"></a><span class="fu">chisq.test</span>(observados)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  observados
+## X-squared = 7.8782, df = 2, p-value = 0.01947</code></pre>
+<div class="admon-box ejemplo">
+<div class="admon-title">
+<span class="icon"></span> Ejemplo
+</div>
+<p>
+La siguiente tabla de contingencia se obtiene a partir del conjunto de datos <code>Titanic</code> en R, considerando las variables <strong>Clase</strong> (Class) y <strong>Supervivencia</strong> (Survived), agregando sobre las variables Sexo y Edad.
+</p>
+<p>
+Con un nivel de significancia de 0,05, determine si la variable <code>Clase</code> y la variable <code>supervivencia</code> son independientes en los datos del <code>Titanic</code>.
+</p>
+<pre><code>##   Class    Sex   Age Survived Freq
+## 1   1st   Male Child       No    0
+## 2   2nd   Male Child       No    0
+## 3   3rd   Male Child       No   35
+## 4  Crew   Male Child       No    0
+## 5   1st Female Child       No    0</code></pre>
+</div>
+<p style="text-align: center;">
+<strong>Solución</strong>
+</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="tabcontingencia.html#cb40-1" tabindex="-1"></a><span class="co"># Tabla de contingencia entre Clase y Supervivencia</span></span>
+<span id="cb40-2"><a href="tabcontingencia.html#cb40-2" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(Freq <span class="sc">~</span> Class <span class="sc">+</span> Survived, <span class="at">data =</span> df)</span>
+<span id="cb40-3"><a href="tabcontingencia.html#cb40-3" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="tabcontingencia.html#cb40-4" tabindex="-1"></a><span class="co"># Prueba de independencia Chi-cuadrado</span></span>
+<span id="cb40-5"><a href="tabcontingencia.html#cb40-5" tabindex="-1"></a><span class="fu">chisq.test</span>(tabla)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  tabla
+## X-squared = 190.4, df = 3, p-value &lt; 2.2e-16</code></pre>
+<p>La prueba chi cuadrado nos indica que la clase en la que viajaba el pasajero está asociada con su probabilidad de supervivencia (^2_{(3)}=19.4, p-valor &lt; 0.001).</p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 1
+</div>
+<p>
+De acuerdo con un estudio de cierta universidad con relación a cierto tipo de especie animal,
+los machos sobreviven más que las hembras en invierno. Considere los siguientes datos sobre la
+sobrevivencia en el invierno de 100 machos y 100 hembras de esa especie animal:
+</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="tabcontingencia.html#cb42-1" tabindex="-1"></a><span class="co"># Tabla de contingencia</span></span>
+<span id="cb42-2"><a href="tabcontingencia.html#cb42-2" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">33</span>, <span class="dv">25</span>,</span>
+<span id="cb42-3"><a href="tabcontingencia.html#cb42-3" tabindex="-1"></a>                       <span class="dv">40</span>, <span class="dv">21</span>, <span class="dv">39</span>),</span>
+<span id="cb42-4"><a href="tabcontingencia.html#cb42-4" tabindex="-1"></a>                     <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb42-5"><a href="tabcontingencia.html#cb42-5" tabindex="-1"></a>                     <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb42-6"><a href="tabcontingencia.html#cb42-6" tabindex="-1"></a>                       <span class="at">Tiempo =</span> <span class="fu">c</span>(<span class="st">&quot;Menos de 10 días&quot;</span>, <span class="st">&quot;De 10 a 20 días&quot;</span>, <span class="st">&quot;Más de 20 días&quot;</span>),</span>
+<span id="cb42-7"><a href="tabcontingencia.html#cb42-7" tabindex="-1"></a>                       <span class="at">Sexo =</span> <span class="fu">c</span>(<span class="st">&quot;Macho&quot;</span>, <span class="st">&quot;Hembra&quot;</span>)</span>
+<span id="cb42-8"><a href="tabcontingencia.html#cb42-8" tabindex="-1"></a>                     ))</span></code></pre></div>
+</details>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 2
+</div>
+<p>
+Se calificó una muestra de universidades según el número de doctores investigadores que tenían y según si éstos tenían o no un proyecto de trabajo social.<br />
+La siguiente tabla contiene los números en cada categoría. Contraste, basándose en las universidades y el hecho de tener o no proyecto de trabajo social.
+</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="tabcontingencia.html#cb43-1" tabindex="-1"></a><span class="co"># Tabla de contingencia</span></span>
+<span id="cb43-2"><a href="tabcontingencia.html#cb43-2" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">13</span>, <span class="dv">18</span>, <span class="dv">32</span>,</span>
+<span id="cb43-3"><a href="tabcontingencia.html#cb43-3" tabindex="-1"></a>                       <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">6</span>),</span>
+<span id="cb43-4"><a href="tabcontingencia.html#cb43-4" tabindex="-1"></a>                     <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb43-5"><a href="tabcontingencia.html#cb43-5" tabindex="-1"></a>                     <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb43-6"><a href="tabcontingencia.html#cb43-6" tabindex="-1"></a>                       <span class="at">Doctores =</span> <span class="fu">c</span>(<span class="st">&quot;Menos de 5&quot;</span>, <span class="st">&quot;Entre 5 y 8&quot;</span>, <span class="st">&quot;Más de 8&quot;</span>),</span>
+<span id="cb43-7"><a href="tabcontingencia.html#cb43-7" tabindex="-1"></a>                       <span class="at">Proyecto =</span> <span class="fu">c</span>(<span class="st">&quot;Con proyecto&quot;</span>, <span class="st">&quot;Sin proyecto&quot;</span>)</span>
+<span id="cb43-8"><a href="tabcontingencia.html#cb43-8" tabindex="-1"></a>                     ))</span></code></pre></div>
+</details>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 3
+</div>
+<p>
+Como parte de un determinado cuestionario, se preguntó a muestras aleatorias de estudiantes universitarios lo siguiente:<br />
+<em>¿Se acuesta antes de las 10:00 p.m.?</em><br />
+Los resultados aparecen en la siguiente tabla.
+</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="tabcontingencia.html#cb44-1" tabindex="-1"></a><span class="co"># Tabla de contingencia</span></span>
+<span id="cb44-2"><a href="tabcontingencia.html#cb44-2" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">70</span>, <span class="dv">121</span>,</span>
+<span id="cb44-3"><a href="tabcontingencia.html#cb44-3" tabindex="-1"></a>                       <span class="dv">4</span>, <span class="dv">45</span>, <span class="dv">169</span>),</span>
+<span id="cb44-4"><a href="tabcontingencia.html#cb44-4" tabindex="-1"></a>                     <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb44-5"><a href="tabcontingencia.html#cb44-5" tabindex="-1"></a>                     <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb44-6"><a href="tabcontingencia.html#cb44-6" tabindex="-1"></a>                       <span class="at">Respuesta =</span> <span class="fu">c</span>(<span class="st">&quot;Siempre&quot;</span>, <span class="st">&quot;A veces&quot;</span>, <span class="st">&quot;Nunca&quot;</span>),</span>
+<span id="cb44-7"><a href="tabcontingencia.html#cb44-7" tabindex="-1"></a>                       <span class="at">Sexo =</span> <span class="fu">c</span>(<span class="st">&quot;Hombres&quot;</span>, <span class="st">&quot;Mujeres&quot;</span>)</span>
+<span id="cb44-8"><a href="tabcontingencia.html#cb44-8" tabindex="-1"></a>                     ))</span></code></pre></div>
+</details>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 4
+</div>
+<p>
+En un experimento para estudiar la dependencia entre los problemas de la vista y los hábitos de trabajar en el computador, se tomaron los siguientes datos de 180 personas.<br />
+Pruebe la hipótesis de que los problemas visuales son independientes de los hábitos de trabajar en el computador. Utilice un nivel de significancia de 0,05.
+</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="tabcontingencia.html#cb45-1" tabindex="-1"></a><span class="co"># Tabla de contingencia</span></span>
+<span id="cb45-2"><a href="tabcontingencia.html#cb45-2" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">19</span>, <span class="dv">26</span>, <span class="dv">48</span>,</span>
+<span id="cb45-3"><a href="tabcontingencia.html#cb45-3" tabindex="-1"></a>                       <span class="dv">30</span>, <span class="dv">36</span>, <span class="dv">21</span>),</span>
+<span id="cb45-4"><a href="tabcontingencia.html#cb45-4" tabindex="-1"></a>                     <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb45-5"><a href="tabcontingencia.html#cb45-5" tabindex="-1"></a>                     <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb45-6"><a href="tabcontingencia.html#cb45-6" tabindex="-1"></a>                       <span class="at">Vista =</span> <span class="fu">c</span>(<span class="st">&quot;Con problemas&quot;</span>, <span class="st">&quot;Sin problemas&quot;</span>),</span>
+<span id="cb45-7"><a href="tabcontingencia.html#cb45-7" tabindex="-1"></a>                       <span class="at">Computador =</span> <span class="fu">c</span>(<span class="st">&quot;Nunca&quot;</span>, <span class="st">&quot;A veces&quot;</span>, <span class="st">&quot;Siempre&quot;</span>)</span>
+<span id="cb45-8"><a href="tabcontingencia.html#cb45-8" tabindex="-1"></a>                     ))</span></code></pre></div>
+</details>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 5
+</div>
+<p>
+Una muestra de 200 estudiantes universitarios se clasifica de acuerdo con el estrato y el número de hermanos (hembras y varones) que tienen.<br />
+Pruebe la hipótesis, con un nivel de significancia de 0,05, de que el número de hermanos es independiente del estrato.
+</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="tabcontingencia.html#cb46-1" tabindex="-1"></a><span class="co"># Tabla de contingencia</span></span>
+<span id="cb46-2"><a href="tabcontingencia.html#cb46-2" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">17</span>, <span class="dv">10</span>,</span>
+<span id="cb46-3"><a href="tabcontingencia.html#cb46-3" tabindex="-1"></a>                       <span class="dv">14</span>, <span class="dv">37</span>, <span class="dv">32</span>,</span>
+<span id="cb46-4"><a href="tabcontingencia.html#cb46-4" tabindex="-1"></a>                       <span class="dv">19</span>, <span class="dv">42</span>, <span class="dv">17</span>),</span>
+<span id="cb46-5"><a href="tabcontingencia.html#cb46-5" tabindex="-1"></a>                     <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb46-6"><a href="tabcontingencia.html#cb46-6" tabindex="-1"></a>                     <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb46-7"><a href="tabcontingencia.html#cb46-7" tabindex="-1"></a>                       <span class="at">Estrato =</span> <span class="fu">c</span>(<span class="st">&quot;Bajo&quot;</span>, <span class="st">&quot;Medio&quot;</span>, <span class="st">&quot;Alto&quot;</span>),</span>
+<span id="cb46-8"><a href="tabcontingencia.html#cb46-8" tabindex="-1"></a>                       <span class="at">Hermanos =</span> <span class="fu">c</span>(<span class="st">&quot;0-1&quot;</span>, <span class="st">&quot;2-3&quot;</span>, <span class="st">&quot;Más de 3&quot;</span>)</span>
+<span id="cb46-9"><a href="tabcontingencia.html#cb46-9" tabindex="-1"></a>                     ))</span></code></pre></div>
+</details>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 6
+</div>
+<p>
+El departamento de medicina de una universidad realiza un experimento para determinar el grado de alivio que proporcionan tres remedios para la fiebre.<br />
+Cada remedio es tratado en 50 estudiantes y se registran los datos.<br />
+Pruebe la hipótesis, con un nivel de significancia de 0,05, de que los tres remedios para la fiebre son igualmente efectivos.
+</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="tabcontingencia.html#cb47-1" tabindex="-1"></a><span class="co"># Tabla de contingencia</span></span>
+<span id="cb47-2"><a href="tabcontingencia.html#cb47-2" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">14</span>,</span>
+<span id="cb47-3"><a href="tabcontingencia.html#cb47-3" tabindex="-1"></a>                       <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">9</span>,</span>
+<span id="cb47-4"><a href="tabcontingencia.html#cb47-4" tabindex="-1"></a>                       <span class="dv">32</span>, <span class="dv">28</span>, <span class="dv">27</span>),</span>
+<span id="cb47-5"><a href="tabcontingencia.html#cb47-5" tabindex="-1"></a>                     <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb47-6"><a href="tabcontingencia.html#cb47-6" tabindex="-1"></a>                     <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb47-7"><a href="tabcontingencia.html#cb47-7" tabindex="-1"></a>                       <span class="at">Alivio =</span> <span class="fu">c</span>(<span class="st">&quot;Sin alivio&quot;</span>, <span class="st">&quot;Cierto alivio&quot;</span>, <span class="st">&quot;Alivio completo&quot;</span>),</span>
+<span id="cb47-8"><a href="tabcontingencia.html#cb47-8" tabindex="-1"></a>                       <span class="at">Remedio =</span> <span class="fu">c</span>(<span class="st">&quot;Remedio 1&quot;</span>, <span class="st">&quot;Remedio 2&quot;</span>, <span class="st">&quot;Remedio 3&quot;</span>)</span>
+<span id="cb47-9"><a href="tabcontingencia.html#cb47-9" tabindex="-1"></a>                     ))</span></code></pre></div>
+</details>
+</div>
 
+</div>
 </div>
 </div>
 <h3>Referencias<a href="referencias-1.html#referencias-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
