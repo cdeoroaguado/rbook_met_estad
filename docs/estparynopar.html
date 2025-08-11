@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2025-08-06" />
+<meta name="date" content="2025-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -267,7 +267,12 @@ div.csl-indent {
 <li class="chapter" data-level="5.1" data-path="04-estparynopa.html"><a href="#tablas-de-contingencia-con-dos-criterios-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia con dos criterios de clasificación</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="tabcontingencia.html"><a href="tabcontingencia.html#prueba-de-homogeneidad"><i class="fa fa-check"></i><b>5.1.1</b> Prueba de homogeneidad</a></li>
+<li class="chapter" data-level="5.1.2" data-path="tabcontingencia.html"><a href="tabcontingencia.html#prueba-de-independencia"><i class="fa fa-check"></i><b>5.1.2</b> Prueba de independencia</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="correglin.html"><a href="correglin.html"><i class="fa fa-check"></i><b>6</b> Correlación y regresión lineal simple</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="04-estparynopa.html"><a href="#correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Correlación</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -491,6 +496,11 @@ donde <span class="math inline">\(F_{\alpha/2}(v_1, v_2)\)</span> y <span class=
 Usando el teorema de razón de varianzas verifica la salida de la función <code>var.test</code> con los datos de presión arterial.
 </p>
 </div>
+<div id="paso-a-paso-igualdad-de-varianzas" class="section level4 hasAnchor" number="4.1.4.1">
+<h4><span class="header-section-number">4.1.4.1</span> Paso a paso igualdad de varianzas<a href="estparynopar.html#paso-a-paso-igualdad-de-varianzas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>En el video pueden ver la homocedasticidad usando la función <code>var.test</code> y haciendo paso a paso con el teorema de razón de varianzas.</p>
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/qWObe71o2tQ" frameborder="0" allowfullscreen>
+</iframe>
 <ul>
 <li>Veamos si hay diferencia significativas o no en el promedio de la presión sistolica y diastolica.</li>
 </ul>
@@ -718,6 +728,7 @@ Aplica las pruebas de Bartlett, Levene y Fligner-Killeen, explica detalladamente
 ##    lower    upper 
 ## 5.833174 7.237472</code></pre>
 <p>Con base en el resultado del <strong>índice de Cohen’s d</strong>, se obtiene un valor estimado de <span class="math inline">\(6.53\)</span> (<span class="math inline">\(IC_{95\%}=(5.83,7.23)\)</span>), lo que indica un tamaño del efecto <strong>extremadamente grande</strong>. Esto indica que dicha diferencia no solo es estadísticamente significativa, sino también altamente relevante en el tipo de cuenta.</p>
+</div>
 </div>
 </div>
 <div id="comparación-de-medias-entre-dos-grupos-pareados-con-estadística-paramétrica" class="section level2 hasAnchor" number="4.2">
@@ -1641,6 +1652,79 @@ Esto se cumple <strong>para cada grupo</strong> <span class="math inline">\(j\)<
 <h3><span class="header-section-number">4.5.3</span> Estimaciones insesgadas de la varianza poblacional<a href="estparynopar.html#estimaciones-insesgadas-de-la-varianza-poblacional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>El contraste de igualdad de medias en el análisis de varianza se fundamenta en el supuesto de que las <span class="math inline">\(k\)</span> poblaciones involucradas comparten una varianza poblacional común. Si la hipótesis nula de igualdad de medias es verdadera, entonces tanto la suma de cuadrados entre grupos (SSA) como la suma de cuadrados dentro de los grupos (SSE) pueden considerarse como bases válidas para estimar dicha varianza común.</p>
 <p>No obstante, para obtener estimaciones adecuadas, es necesario dividir cada suma de cuadrados entre sus respectivos grados de libertad, conforme se establece en el siguiente teorema.</p>
+<p>Antes de iniciar con los teoremas debemos recordar algunos conceptos de teoricos</p>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> Definición. Esperanza de una variable aleatoria
+</div>
+<p>
+Sea <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span> un espacio de probabilidad y <span class="math inline">\(X\)</span> una variable aleatoria real.
+</p>
+<p>
+<strong>a)</strong> Si <span class="math inline">\(X\)</span> es una variable aleatoria discreta con valores <span class="math inline">\(x_1, x_2, \ldots\)</span>, se dice que la <strong>esperanza</strong> de <span class="math inline">\(X\)</span> existe si:
+</p>
+<p><span class="math display">\[
+  \sum_{k=1}^{\infty} |x_k| P(X = k) &lt; \infty
+  \]</span></p>
+<p>
+En este caso, se define la esperanza o valor esperado de <span class="math inline">\(X\)</span> como:
+</p>
+<p><span class="math display">\[
+  E(X) = \sum_{k=1}^{\infty} x_k P(X = k)
+  \]</span></p>
+<p>
+<strong>b)</strong> Si <span class="math inline">\(X\)</span> es una variable aleatoria continua con función de densidad <span class="math inline">\(f_X\)</span>, se dice que la esperanza de <span class="math inline">\(X\)</span> existe si:
+</p>
+<p><span class="math display">\[
+  \int_{-\infty}^{\infty} |x| f_X(x) \, dx &lt; \infty
+  \]</span></p>
+<p>
+En este caso, se define la esperanza o valor esperado de <span class="math inline">\(X\)</span> como:
+</p>
+<p><span class="math display">\[
+  E(X) = \int_{-\infty}^{\infty} x f_X(x) \, dx
+  \]</span></p>
+</div>
+<div class="admon-box teorema">
+<div class="admon-title">
+<span class="icon"></span> Teorema. Propiedades de la esperanza
+</div>
+<p>
+Sean <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span> un espacio de probabilidad y <span class="math inline">\(X\)</span> sean variables aleatorias reales. Entonces:
+</p>
+<ol>
+<li>
+<span class="math inline">\(E(a) = a\)</span>; para cada constante <span class="math inline">\(a \in \mathbb{R}\)</span>.
+</li>
+<li>
+Si <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> son constantes y si <span class="math inline">\(g\)</span> y <span class="math inline">\(h\)</span> son funciones, tales que <span class="math inline">\(g(X)\)</span> y <span class="math inline">\(h(X)\)</span> son variables aleatorias cuyos valores esperados existen, entonces el valor esperado de <span class="math inline">\((a g(X) + b h(X))\)</span> existe y:
+<span class="math display">\[
+      E(a g(X) + b h(X)) = a E(g(X)) + b E(h(X))
+      \]</span>
+</li>
+<li>
+Si <span class="math inline">\(g\)</span> y <span class="math inline">\(h\)</span> son funciones tales que <span class="math inline">\(g(X)\)</span> y <span class="math inline">\(h(X)\)</span> son variables aleatorias cuyos valores esperados existen y si <span class="math inline">\(g(x) \leq h(x)\)</span> para todo <span class="math inline">\(x\)</span>, entonces:
+<span class="math display">\[
+      E(g(X)) \leq E(h(X)).
+      \]</span>
+En particular, <span class="math inline">\(|E(X)| \leq E(|X|)\)</span>.
+</li>
+</ol>
+</div>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> Definición. Estimador insesgado
+</div>
+<p>
+Sea <span class="math inline">\(\theta\)</span> un parámetro poblacional y <span class="math inline">\(\hat{\theta}\)</span> un estimador de <span class="math inline">\(\theta\)</span>. Se dice que <span class="math inline">\(\hat{\theta}\)</span> es <strong>insesgado</strong> si su valor esperado coincide con el valor verdadero del parámetro, es decir,
+</p>
+<p><span class="math display">\[
+  E(\hat{\theta}) = \theta
+  \]</span></p>
+<p>
+En otras palabras, un estimador es insesgado cuando, en promedio, no sobrestima ni subestima el valor del parámetro que pretende estimar.
+</p>
+</div>
 <div class="admon-box teorema">
 <div class="admon-title">
 <span class="icon"></span> Teorema. MSA y MSE insesgado de <span class="math inline">\(\, \sigma^2\)</span>
@@ -1662,7 +1746,7 @@ MSE = \frac{SSE}{N - k}
 <p style="text-align: left;">
 <strong>Demostración del teorema</strong>
 </p>
-<p>Primero probemos que <span class="math inline">\(\mathbb{E}[MSE] = \sigma^2\)</span>. Sabemos que:</p>
+<p>Primero probemos que <span class="math inline">\(\mathbb{E}[MSE] = \sigma^2\)</span>. Sabemos que</p>
 <p><span class="math display">\[SSE = \sum_{j=1}^{k} \sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j)^2 = \sum_{j=1}^k (n_j - 1) s_j^2, \quad \left( s=\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}\right)\]</span></p>
 <p>Cada <span class="math inline">\(s_j^2\)</span> es un estimador insesgado de la varianza poblacional por lo que</p>
 <p><span class="math display">\[\mathbb{E}[s_j^2] = \sigma^2 \Rightarrow \mathbb{E}[(n_j - 1) s_j^2] = (n_j - 1) \sigma^2\]</span></p>

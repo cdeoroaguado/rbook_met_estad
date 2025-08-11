@@ -70,6 +70,7 @@ condiciones-del-t-test-para-muestras-independientes
 grados-de-libertad
 error-estándar-de-la-diferencia-de-medias
 tamaño-del-efecto-effect-size-en-comparaciones-de-medias
+paso-a-paso-igualdad-de-varianzas
 comparación-de-medias-entre-dos-grupos-pareados-con-estadística-paramétrica
 ejemplos-comunes
 supuestos-del-t-test-para-muestras-dependientes
@@ -96,6 +97,6 @@ comparaciones-post-hoc
 tabcontingencia
 tablas-de-contingencia-con-dos-criterios-de-clasificación
 prueba-de-homogeneidad
-demostración
 prueba-de-independencia
-demostración-del-valor-esperado-bajo-h_0
+correglin
+correlación
