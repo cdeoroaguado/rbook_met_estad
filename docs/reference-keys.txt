@@ -100,3 +100,11 @@ prueba-de-homogeneidad
 prueba-de-independencia
 correglin
 correlación
+tab:unnamed-chunk-1
+definiciones-y-teorema-de-correlación
+análisis-de-correlación-simple-dos-variables
+tipos-de-coeficientes-de-correlación
+interpretación-del-coeficiente-de-correlación
+correlación-de-pearson
+correlación-de-spearman
+correlación-de-kendall

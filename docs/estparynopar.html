@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2025-08-11" />
+<meta name="date" content="2025-08-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -272,7 +272,15 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6" data-path="correglin.html"><a href="correglin.html"><i class="fa fa-check"></i><b>6</b> Correlación y regresión lineal simple</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="04-estparynopa.html"><a href="#correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Correlación</a></li>
+<li class="chapter" data-level="6.1" data-path="04-estparynopa.html"><a href="#definiciones-y-teorema-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Definiciones y teorema de correlación</a></li>
+<li class="chapter" data-level="6.2" data-path="04-estparynopa.html"><a href="#an%C3%A1lisis-de-correlaci%C3%B3n-simple-dos-variables"><i class="fa fa-check"></i><b>6.2</b> Análisis de correlación simple (dos variables)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="04-estparynopa.html"><a href="#tipos-de-coeficientes-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.1</b> Tipos de coeficientes de correlación</a></li>
+<li class="chapter" data-level="6.2.2" data-path="04-estparynopa.html"><a href="#interpretaci%C3%B3n-del-coeficiente-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.2</b> Interpretación del coeficiente de correlación</a></li>
+<li class="chapter" data-level="6.2.3" data-path="04-estparynopa.html"><a href="#correlaci%C3%B3n-de-pearson"><i class="fa fa-check"></i><b>6.2.3</b> Correlación de Pearson</a></li>
+<li class="chapter" data-level="6.2.4" data-path="04-estparynopa.html"><a href="#correlaci%C3%B3n-de-spearman"><i class="fa fa-check"></i><b>6.2.4</b> Correlación de Spearman</a></li>
+<li class="chapter" data-level="6.2.5" data-path="04-estparynopa.html"><a href="#correlaci%C3%B3n-de-kendall"><i class="fa fa-check"></i><b>6.2.5</b> Correlación de Kendall</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -1120,11 +1128,11 @@ El propósito de este análisis es determinar si la intervención generó un cam
 <li>Carguemos el conjunto de datos</li>
 </ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="estparynopar.html#cb47-1" tabindex="-1"></a>url_dat <span class="ot">&lt;-</span> <span class="st">&quot;https://docs.google.com/spreadsheets/d/e/2PACX-1vQaVafuOSuEnOIiJJoB_OLF6GHib4EGqtAPnFBkNXFj29iB8yex4wYXYAAyIW16eA/pub?gid=1616716040&amp;single=true&amp;output=tsv&quot;</span></span>
-<span id="cb47-2"><a href="estparynopar.html#cb47-2" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(url_dat)</span>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="estparynopar.html#cb47-1" tabindex="-1"></a> <span class="co">#url_dat &lt;- &quot;https://docs.google.com/spreadsheets/d/e/2PACX-1vQaVafuOSuEnOIiJJoB_OLF6GHib4EGqtAPnFBkNXFj29iB8yex4wYXYAAyIW16eA/pub?gid=1616716040&amp;single=true&amp;output=tsv&quot;</span></span>
+<span id="cb47-2"><a href="estparynopar.html#cb47-2" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;data/dataQ.tsv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,<span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb47-3"><a href="estparynopar.html#cb47-3" tabindex="-1"></a></span>
 <span id="cb47-4"><a href="estparynopar.html#cb47-4" tabindex="-1"></a>datos <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
-<span id="cb47-5"><a href="estparynopar.html#cb47-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(Experimento, Genero,Nivel.educativo), as.factor)) </span></code></pre></div>
+<span id="cb47-5"><a href="estparynopar.html#cb47-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(Experimento, Genero,<span class="st">`</span><span class="at">Nivel educativo</span><span class="st">`</span>), as.factor)) </span></code></pre></div>
 </details>
 <div class="admon-box ejercicio">
 <div class="admon-title">
@@ -1670,7 +1678,7 @@ Sea <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span> un espacio de 
 En este caso, se define la esperanza o valor esperado de <span class="math inline">\(X\)</span> como:
 </p>
 <p><span class="math display">\[
-  E(X) = \sum_{k=1}^{\infty} x_k P(X = k)
+  \mathbb{E}(X) = \sum_{k=1}^{\infty} x_k P(X = k)
   \]</span></p>
 <p>
 <strong>b)</strong> Si <span class="math inline">\(X\)</span> es una variable aleatoria continua con función de densidad <span class="math inline">\(f_X\)</span>, se dice que la esperanza de <span class="math inline">\(X\)</span> existe si:
@@ -1682,7 +1690,7 @@ En este caso, se define la esperanza o valor esperado de <span class="math inlin
 En este caso, se define la esperanza o valor esperado de <span class="math inline">\(X\)</span> como:
 </p>
 <p><span class="math display">\[
-  E(X) = \int_{-\infty}^{\infty} x f_X(x) \, dx
+  \mathbb{E}(X) = \int_{-\infty}^{\infty} x f_X(x) \, dx
   \]</span></p>
 </div>
 <div class="admon-box teorema">
@@ -1694,20 +1702,20 @@ Sean <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span> un espacio de
 </p>
 <ol>
 <li>
-<span class="math inline">\(E(a) = a\)</span>; para cada constante <span class="math inline">\(a \in \mathbb{R}\)</span>.
+<span class="math inline">\(\mathbb{E}(a) = a\)</span>; para cada constante <span class="math inline">\(a \in \mathbb{R}\)</span>.
 </li>
 <li>
 Si <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> son constantes y si <span class="math inline">\(g\)</span> y <span class="math inline">\(h\)</span> son funciones, tales que <span class="math inline">\(g(X)\)</span> y <span class="math inline">\(h(X)\)</span> son variables aleatorias cuyos valores esperados existen, entonces el valor esperado de <span class="math inline">\((a g(X) + b h(X))\)</span> existe y:
 <span class="math display">\[
-      E(a g(X) + b h(X)) = a E(g(X)) + b E(h(X))
+      \mathbb{E}(a g(X) + b h(X)) = a \mathbb{E}(g(X)) + b \mathbb{E}(h(X))
       \]</span>
 </li>
 <li>
 Si <span class="math inline">\(g\)</span> y <span class="math inline">\(h\)</span> son funciones tales que <span class="math inline">\(g(X)\)</span> y <span class="math inline">\(h(X)\)</span> son variables aleatorias cuyos valores esperados existen y si <span class="math inline">\(g(x) \leq h(x)\)</span> para todo <span class="math inline">\(x\)</span>, entonces:
 <span class="math display">\[
-      E(g(X)) \leq E(h(X)).
+      \mathbb{E}(g(X)) \leq \mathbb{E}(h(X)).
       \]</span>
-En particular, <span class="math inline">\(|E(X)| \leq E(|X|)\)</span>.
+En particular, <span class="math inline">\(|\mathbb{E}(X)| \leq \mathbb{E}(|X|)\)</span>.
 </li>
 </ol>
 </div>
@@ -1719,7 +1727,7 @@ En particular, <span class="math inline">\(|E(X)| \leq E(|X|)\)</span>.
 Sea <span class="math inline">\(\theta\)</span> un parámetro poblacional y <span class="math inline">\(\hat{\theta}\)</span> un estimador de <span class="math inline">\(\theta\)</span>. Se dice que <span class="math inline">\(\hat{\theta}\)</span> es <strong>insesgado</strong> si su valor esperado coincide con el valor verdadero del parámetro, es decir,
 </p>
 <p><span class="math display">\[
-  E(\hat{\theta}) = \theta
+  \mathbb{E}(\hat{\theta}) = \theta
   \]</span></p>
 <p>
 En otras palabras, un estimador es insesgado cuando, en promedio, no sobrestima ni subestima el valor del parámetro que pretende estimar.
@@ -1819,7 +1827,7 @@ SSA = \sum_{j=1}^k n_j \bar{y}_j^2 - N \bar{y}^2
 \]</span></p>
 <p>y finalmente</p>
 <p><span class="math display">\[
-\mathbb{E}[SSA] = N\mu^2 + \sum n_j \tau_j^2 + k\sigma^2 - N\mu^2 - \sigma^2 = \sum n_j \tau_j^2 + (k - 1)\sigma^2
+  \mathbb{E}[SSA] = N\mu^2 + \sum n_j \tau_j^2 + k\sigma^2 - N\mu^2 - \sigma^2 = \sum n_j \tau_j^2 + (k - 1)\sigma^2
 \]</span></p>
 <p><strong>Bajo la hipótesis nula H₀: todos los <span class="math inline">\(\tau_j = 0\)</span>, entonces:</strong></p>
 <p><span class="math display">\[

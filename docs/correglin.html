@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2025-08-11" />
+<meta name="date" content="2025-08-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,10 +53,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -276,7 +272,15 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6" data-path="correglin.html"><a href="correglin.html"><i class="fa fa-check"></i><b>6</b> Correlación y regresión lineal simple</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="06-correglineal.html"><a href="#correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Correlación</a></li>
+<li class="chapter" data-level="6.1" data-path="06-correglineal.html"><a href="#definiciones-y-teorema-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Definiciones y teorema de correlación</a></li>
+<li class="chapter" data-level="6.2" data-path="06-correglineal.html"><a href="#an%C3%A1lisis-de-correlaci%C3%B3n-simple-dos-variables"><i class="fa fa-check"></i><b>6.2</b> Análisis de correlación simple (dos variables)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="06-correglineal.html"><a href="#tipos-de-coeficientes-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.1</b> Tipos de coeficientes de correlación</a></li>
+<li class="chapter" data-level="6.2.2" data-path="06-correglineal.html"><a href="#interpretaci%C3%B3n-del-coeficiente-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.2</b> Interpretación del coeficiente de correlación</a></li>
+<li class="chapter" data-level="6.2.3" data-path="06-correglineal.html"><a href="#correlaci%C3%B3n-de-pearson"><i class="fa fa-check"></i><b>6.2.3</b> Correlación de Pearson</a></li>
+<li class="chapter" data-level="6.2.4" data-path="06-correglineal.html"><a href="#correlaci%C3%B3n-de-spearman"><i class="fa fa-check"></i><b>6.2.4</b> Correlación de Spearman</a></li>
+<li class="chapter" data-level="6.2.5" data-path="06-correglineal.html"><a href="#correlaci%C3%B3n-de-kendall"><i class="fa fa-check"></i><b>6.2.5</b> Correlación de Kendall</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -302,8 +306,9 @@ div.csl-indent {
 <div id="correglin" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Capítulo 6</span> Correlación y regresión lineal simple<a href="correglin.html#correglin" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>La <strong>correlación</strong> y la <strong>regresión lineal simple</strong> son herramientas fundamentales en el análisis estadístico para estudiar la relación entre dos variables cuantitativas. La correlación, mediante el coeficiente de Pearson, mide la intensidad y dirección de la asociación lineal, permitiendo identificar si las variables se mueven en el mismo sentido, en sentido opuesto o si no presentan relación lineal. Por su parte, la regresión lineal simple no solo describe la relación, sino que establece un modelo matemático que permite predecir el comportamiento de una variable dependiente a partir de una variable independiente, expresado a través de una ecuación lineal. Mientras la correlación se enfoca en cuantificar la fuerza de la relación, la regresión ofrece un marco para la estimación y la predicción.</p>
-<div id="correlación" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Correlación<a href="#correlaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Algunos textos que tomaremos para el desarrollo del contenido son <span class="citation">(<a href="#ref-navidi2021">Navidi 2021</a>)</span>, <span class="citation">(<a href="#ref-montgomery2012">Montgomery, Peck, and Vining 2012</a>)</span> y <span class="citation">(<a href="#ref-llinas2019">Solano 2019</a>)</span>.</p>
+<div id="definiciones-y-teorema-de-correlación" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Definiciones y teorema de correlación<a href="#definiciones-y-teorema-de-correlaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Recordemos los conceptos de momento, varianza, desviación estandar y covarianza</p>
 <div class="admon-box definicion">
 <div class="admon-title">
@@ -401,7 +406,7 @@ es la llamada <strong>covarianza</strong> de <span class="math inline">\(X\)</sp
 El <strong>coeficiente de correlación</strong> de <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> está definido por:
 </p>
 <p><span class="math display">\[
-  \varrho := \varrho(X, Y) := \frac{Cov(X, Y)}{\sqrt{Var(X)Var(Y)}}
+  \rho := \rho(X, Y) := \frac{Cov(X, Y)}{\sqrt{Var(X)Var(Y)}}
   \]</span></p>
 </div>
 <div class="admon-box teorema">
@@ -447,7 +452,878 @@ Si <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</spa
   &amp; = aCov(X, Y). \quad \square
 \end{align*}
 \]</span></p>
+<div class="admon-box teorema">
+<div class="admon-title">
+<span class="icon"></span> Teorema. Propiedades del coeficiente de correlación
+</div>
+<p>
+Sean <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> variables aleatorias reales con <span class="math inline">\(Var(X), Var(Y) &lt; \infty\)</span>.
+</p>
+<ol>
+<li>
+<span class="math inline">\(\rho(X, Y) = \rho(Y, X)\)</span>
+</li>
+<li>
+<span class="math inline">\(|\rho(X, Y)| \leq 1\)</span>
+</li>
+<li>
+<span class="math inline">\(\rho(X, X) = 1\)</span> y <span class="math inline">\(\rho(X, -X) = -1\)</span>
+</li>
+<li>
+<span class="math inline">\(\rho(aX + b, Y) = \rho(X, Y)\)</span>
+</li>
+<li>
+<span class="math inline">\(\rho(X, Y) = 1\)</span> si y sólo si existen constantes <span class="math inline">\(a, b \in \mathbb{R}\)</span> no simultáneamente cero tales que <span class="math inline">\(P(Y = aX + b) = 1\)</span>
+</li>
+</ol>
+</div>
+<p style="text-align: left;">
+<strong>Demostración del teorema</strong>
+</p>
+<p>Sea <span class="math inline">\(\sigma_X^2 = \mathrm{Var}(X)\)</span> y <span class="math inline">\(\sigma_Y^2 = \mathrm{Var}(Y)\)</span> finitas y positivas.</p>
+<p>Hagamos la estandarización</p>
+<p><span class="math display">\[
+U = \frac{X - E(X)}{\sigma_X}, \quad V = \frac{Y - E(Y)}{\sigma_Y},
+\]</span></p>
+<p>por lo que <span class="math inline">\(E(U) = E(V) = 0\)</span>, <span class="math inline">\(\mathrm{Var}(U) = \mathrm{Var}(V) = 1\)</span> y</p>
+<p><span class="math display">\[
+\rho(X,Y) = \frac{\mathrm{Cov}(X,Y)}{\sigma_X \sigma_Y}
+= E\!\left[ \frac{(X - E(X))(Y - E(Y))}{\sigma_X \sigma_Y} \right]
+= E(UV).
+\]</span></p>
+<p>Aplicando la desigualdad de Cauchy–Schwarz tenemos que</p>
+<p><span class="math display">\[
+|E(UV)| \le \sqrt{E(U^2) \cdot E(V^2)}.
+\]</span></p>
+<p>por lo que</p>
+<p><span class="math display">\[
+E(U^2) = E\left[ \frac{(X - E(X))^2}{\sigma_X^2} \right]
+= \frac{E[(X - E(X))^2]}{\sigma_X^2}
+= \frac{\mathrm{Var}(X)}{\sigma_X^2}
+= \frac{\sigma_X^2}{\sigma_X^2} = 1,
+\]</span></p>
+<p>y análogamente <span class="math inline">\(E(V^2) = 1\)</span>. Por lo tanto</p>
+<p><span class="math display">\[
+|E(UV)| \le \sqrt{1 \cdot 1} = 1.
+\]</span></p>
+<p>Como <span class="math inline">\(\rho(X,Y) = E(UV)\)</span>, se sigue que</p>
+<p><span class="math display">\[
+|\rho(X,Y)| \le 1. \quad \square
+\]</span></p>
+</div>
+<div id="análisis-de-correlación-simple-dos-variables" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Análisis de correlación simple (dos variables)<a href="#an%C3%A1lisis-de-correlaci%C3%B3n-simple-dos-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En estadística, la <strong>correlación</strong> describe la relación cuantitativa entre dos variables medidas en escalas ordinales, de intervalos o de razón. Nos interesa especialmente cuantificar la intensidad y dirección de la relación lineal.</p>
+<p>Cuando el aumento de una variable viene acompañado del aumento de la otra, la correlación es <strong>positiva o directa</strong>. Si el aumento de una variable viene acompañado de una disminución en la otra, la correlación es <strong>negativa o inversa</strong>.</p>
+<p>La existencia de correlación no implica causalidad: dos variables pueden estar correlacionadas debido a la influencia de una tercera variable no observada.</p>
+<div class="admon-box nota">
+<div class="admon-title">
+<span class="icon"></span> Nota
+</div>
+<p>
+Una <strong>correlación perfecta</strong> ocurre cuando todos los puntos de un diagrama de dispersión forman una línea recta. Estas correlaciones (positivas o negativas) son muy poco frecuentes fuera de contextos físicos o matemáticos ideales.
+</p>
+</div>
+<div id="tipos-de-coeficientes-de-correlación" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Tipos de coeficientes de correlación<a href="#tipos-de-coeficientes-de-correlaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Pearson</strong> (<span class="math inline">\(r\)</span>): método <em>paramétrico</em>, se usa para datos en escala de intervalos o razón, mide la intensidad y dirección de la relación lineal y requiere supuestos como normalidad y homocedasticidad.<br />
+</li>
+<li><strong>Spearman</strong> (<span class="math inline">\(\rho_S\)</span>): método <em>no paramétrico</em>, basado en rangos, mide la relación monótona entre las variables. Útil cuando no se cumplen los supuestos de Pearson o con datos ordinales.<br />
+</li>
+<li><strong>Kendall</strong> (<span class="math inline">\(\tau\)</span>): método <em>no paramétrico</em>, basado en la concordancia y discordancia de pares de observaciones. Más robusto frente a valores atípicos y útil en muestras pequeñas o con empates en los datos.</li>
+</ul>
+</div>
+<div id="interpretación-del-coeficiente-de-correlación" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Interpretación del coeficiente de correlación<a href="#interpretaci%C3%B3n-del-coeficiente-de-correlaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El coeficiente de correlación varía entre -1 y 1:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-1">Tabla 6.1: </span>Interpretación del coeficiente de correlación</caption>
+<thead>
+<tr class="header">
+<th align="left">Rango.de.valores</th>
+<th align="left">Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">-1.00 a -0.75</td>
+<td align="left">Correlación negativa muy fuerte</td>
+</tr>
+<tr class="even">
+<td align="left">-0.75 a -0.50</td>
+<td align="left">Correlación negativa moderada</td>
+</tr>
+<tr class="odd">
+<td align="left">-0.50 a -0.25</td>
+<td align="left">Correlación negativa débil</td>
+</tr>
+<tr class="even">
+<td align="left">-0.25 a 0.25</td>
+<td align="left">Sin correlación o muy débil</td>
+</tr>
+<tr class="odd">
+<td align="left">0.25 a 0.50</td>
+<td align="left">Correlación positiva débil</td>
+</tr>
+<tr class="even">
+<td align="left">0.50 a 0.75</td>
+<td align="left">Correlación positiva moderada</td>
+</tr>
+<tr class="odd">
+<td align="left">0.75 a 1.00</td>
+<td align="left">Correlación positiva muy fuerte</td>
+</tr>
+</tbody>
+</table>
+<div class="admon-box nota">
+<div class="admon-title">
+<span class="icon"></span> Nota
+</div>
+<p>
+Un valor <span class="math inline">\(r = 0\)</span> indica ausencia de correlación <strong>lineal</strong>, pero no descarta otros tipos de relación. Además, una correlación fuerte puede no ser significativa estadísticamente y una débil puede serlo, dependiendo de factores como el tamaño de muestra, variabilidad y poder de la prueba.
+</p>
+</div>
+</div>
+<div id="correlación-de-pearson" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Correlación de Pearson<a href="#correlaci%C3%B3n-de-pearson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> Definición. Coeficiente de correlación de Pearson (<span class="math inline">\(r\)</span>)
+</div>
+<p>
+El <strong>coeficiente de correlación de Pearson</strong> es una medida estadística que cuantifica la intensidad y dirección de la relación <strong>lineal</strong> entre dos variables cuantitativas. Su valor está acotado entre <span class="math inline">\(-1\)</span> y <span class="math inline">\(1\)</span>:
+</p>
+<ul>
+<li>
+<span class="math inline">\(r = 1\)</span>: relación lineal positiva perfecta.
+</li>
+<li>
+<span class="math inline">\(r = -1\)</span>: relación lineal negativa perfecta.
+</li>
+<li>
+<span class="math inline">\(r = 0\)</span>: no existe relación lineal.
+</li>
+</ul>
+<p>
+Se trata de una medida <em>paramétrica</em> y su uso adecuado requiere que se cumplan ciertos supuestos estadísticos.
+</p>
+<p>
+Sea <span class="math inline">\((X, Y)\)</span> un par de variables aleatorias con varianza finita, el coeficiente de correlación de Pearson se define como:
+</p>
+<span class="math display">\[
+  \rho = \frac{\mathrm{Cov}(X, Y)}{\sigma_X \sigma_Y}
+  \]</span>
+<p>
+En su versión muestral, el estimador <span class="math inline">\(r\)</span> se calcula como
+</p>
+<span class="math display">\[
+  r = \frac{\sum_{i=1}^n (x_i - \bar{x}) (y_i - \bar{y})}
+  {\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2} \, \sqrt{\sum_{i=1}^n (y_i - \bar{y})^2}}
+  \]</span>
+<p>
+donde
+</p>
+<ul>
+<li>
+<span class="math inline">\(x_i, y_i\)</span>: valores individuales de las variables <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>.
+</li>
+<li>
+<span class="math inline">\(\bar{x}, \bar{y}\)</span>: medias muestrales.
+</li>
+<li>
+<span class="math inline">\(n\)</span>: número total de observaciones.
+</li>
+<li>
+<span class="math inline">\(\sigma_X, \sigma_Y\)</span>: desviaciones estándar poblacionales.
+</li>
+</ul>
+</div>
+<div class="admon-box nota">
+<div class="admon-title">
+<span class="icon"></span> Supuestos para Pearson
+</div>
+<ol>
+<li>
+<strong>Normalidad</strong>: Los datos de ambas variables deben seguir una distribución aproximadamente normal. Puede verificarse mediante pruebas como Shapiro–Wilk o Kolmogorov-Smirnoff u otra prueba o con gráficos de probabilidad normal.
+</li>
+<li>
+<strong>Linealidad</strong>: La relación entre las variables debe ser aproximadamente lineal. Puede evaluarse con un diagrama de dispersión.
+</li>
+<li>
+<strong>Homoscedasticidad</strong>: La variabilidad de una variable debe ser constante a lo largo de todos los valores de la otra.
+</li>
+<li>
+<strong>Escala de medida continua</strong>: Ambas variables deben estar medidas en escala de intervalos o de razón.
+</li>
+<li>
+<strong>Independencia</strong>: Cada observación debe ser independiente de las demás.
+</li>
+</ol>
+</div>
+<div class="admon-box teorema">
+<div class="admon-title">
+<span class="icon"></span> Pruebas de hipótesis para el coeficiente de correlación de Pearson
+</div>
+<p>
+Sea <span class="math inline">\(\rho\)</span> el coeficiente de correlación poblacional y <span class="math inline">\(r\)</span> el estimador muestral. Consideremos dos casos:
+</p>
+<p>
+<strong>1. Contraste para <span class="math inline">\(\rho = 0\)</span></strong>
+</p>
+<p>
+La prueba de hipótesis será
+</p>
+<p><span class="math display">\[
+  H_0: \rho = 0 \quad \text{vs} \quad H_1: \rho \neq 0
+  \]</span></p>
+<p>
+El estadístico de prueba es:
+</p>
+<p><span class="math display">\[
+  t_0 = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}
+  \]</span></p>
+<p>
+donde <span class="math inline">\(n - 2\)</span> son los grados de libertad. Se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(|t_0| &gt; t_{\alpha/2, n-2}\)</span>.
+</p>
+<p>
+<strong>2. Contraste para <span class="math inline">\(\rho = \rho_0 \neq 0\)</span></strong>
+</p>
+<p>
+Cuando el valor bajo <span class="math inline">\(H_0\)</span> es distinto de cero, se emplea la <strong>transformación de Fisher</strong>:
+</p>
+<p><span class="math display">\[
+  Z = \operatorname{arctanh}(r) = \frac{1}{2} \ln\left( \frac{1 + r}{1 - r} \right)
+  \]</span></p>
+<p>
+Para <span class="math inline">\(n \geq 25\)</span>, <span class="math inline">\(Z\)</span> tiene distribución aproximadamente normal con media:
+</p>
+<p><span class="math display">\[
+  \mu_Z = \operatorname{arctanh}(\rho) = \frac{1}{2} \ln\left( \frac{1 + \rho}{1 - \rho} \right)
+  \]</span></p>
+<p>
+y varianza
+</p>
+<p><span class="math display">\[
+  \sigma_Z^2 = \frac{1}{n - 3}
+  \]</span></p>
+<p>
+El estadístico de prueba es
+</p>
+<p><span class="math display">\[
+  Z_0 = \left[ \operatorname{arctanh}(r) - \operatorname{arctanh}(\rho_0) \right] \sqrt{n - 3}
+  \]</span></p>
+<p>
+y se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(|Z_0| &gt; Z_{\alpha/2}\)</span>.
+</p>
+<p>
+<strong>Intervalo de confianza para <span class="math inline">\(\rho\)</span></strong>
+</p>
+<p>
+Un intervalo de confianza de <span class="math inline">\(100(1 - \alpha)\%\)</span> para <span class="math inline">\(\rho\)</span> es:
+</p>
+<p><span class="math display">\[
+  \tanh\left( \operatorname{arctanh}(r) - \frac{Z_{1-\alpha/2}}{\sqrt{n-3}} \right)
+  \leq \rho \leq
+  \tanh\left( \operatorname{arctanh}(r) + \frac{Z_{1-\alpha/2}}{\sqrt{n-3}} \right)
+  \]</span></p>
+<p>
+donde <span class="math inline">\(\tanh(u) = \frac{e^u - e^{-u}}{e^u + e^{-u}}\)</span>.
+</p>
+</div>
+<div class="admon-box ejemplo">
+<div class="admon-title">
+<span class="icon"></span> Ejemplo
+</div>
+<p>
+Un embotellador de bebidas gaseosas desea analizar las rutas de servicio de las máquinas expendedoras en su sistema de distribución. El objetivo es <strong>evaluar la relación existente</strong> entre el tiempo necesario para que el representante de ruta atienda las máquinas expendedoras en una tienda y el peso total de producto que debe abastecer.
+</p>
+<p>
+Esta labor de servicio incluye dos actividades principales:
+</p>
+<ul>
+<li>
+<strong>Abastecimiento</strong> de la máquina con productos embotellados.
+</li>
+<li>
+<strong>Mantenimiento y limpieza</strong> básica del equipo.
+</li>
+</ul>
+<p>
+El ingeniero industrial a cargo del estudio ha identificado que, entre las posibles variables, el <strong>peso total abastecido</strong> (<em>x<sub>1</sub></em>, en kg) podría tener un efecto directo sobre el <strong>tiempo de entrega</strong> (<em>y</em>). Con este fin, se recolectaron <strong>25 observaciones</strong> de ambas variables, registradas en el archivo <a href="https://github.com/cdeoroaguado/Datos/blob/main/datadescrip/datos_entrega_gaseosa.xlsx"><code>datos_entrega_gaseosa.xlsx</code></a>.
+</p>
+<hr />
+<p>
+<strong>Preguntas a resolver:</strong>
+</p>
+<ol>
+<li>
+Realiza un diagrama de dispersión entre las variables <strong>tiempo de entrega (min)</strong> y <strong>peso total abastecido (kg)</strong>.
+</li>
+<li>
+Verificar si las variables <strong>tiempo de entrega (min)</strong> y <strong>peso total abastecido (kg)</strong> presentan un <strong>comportamiento normal</strong>.
+</li>
+<li>
+Calcular el <strong>coeficiente de correlación de Pearson</strong> entre ambas variables.
+</li>
+<li>
+Determinar si la correlación obtenida es <strong>estadísticamente significativa</strong>.
+</li>
+<li>
+Calcular el <strong>intervalo de confianza</strong> para el coeficiente de correlación.
+</li>
+</ol>
+</div>
+<p style="text-align: center;">
+<strong>Solución</strong>
+</p>
+<ul>
+<li>Carguemos las librerias a usar</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="correglin.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="correglin.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code></pre></div>
+</details>
+<ul>
+<li>Carguemos los datos</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="correglin.html#cb2-1" tabindex="-1"></a><span class="co"># Lectura de los datos</span></span>
+<span id="cb2-2"><a href="correglin.html#cb2-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/datos_entrega_gaseosa.xlsx&quot;</span>)</span>
+<span id="cb2-3"><a href="correglin.html#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="correglin.html#cb2-4" tabindex="-1"></a><span class="co"># Ver las 5 primeras obeservaciones</span></span>
+<span id="cb2-5"><a href="correglin.html#cb2-5" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+</details>
+<pre><code>## # A tibble: 6 × 4
+##   Observación `Tiempo de entrega (min)` `Peso en Kg` `Distancia (pies)`
+##         &lt;dbl&gt;                     &lt;dbl&gt;        &lt;dbl&gt;              &lt;dbl&gt;
+## 1           1                      25.7        10.1                 474
+## 2           2                      20.0         7.76                382
+## 3           3                      19.6         7.35                363
+## 4           4                      23.6         9.28                416
+## 5           5                      26.8        10.3                 537
+## 6           6                      27.3         8.57                659</code></pre>
+<ul>
+<li>Renombremos las columnas</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="correglin.html#cb4-1" tabindex="-1"></a><span class="co"># Renombrar columnas </span></span>
+<span id="cb4-2"><a href="correglin.html#cb4-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="correglin.html#cb4-3" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb4-4"><a href="correglin.html#cb4-4" tabindex="-1"></a>    <span class="at">tiempo   =</span> <span class="st">`</span><span class="at">Tiempo de entrega (min)</span><span class="st">`</span>,</span>
+<span id="cb4-5"><a href="correglin.html#cb4-5" tabindex="-1"></a>    <span class="at">peso_kg  =</span> <span class="st">`</span><span class="at">Peso en Kg</span><span class="st">`</span></span>
+<span id="cb4-6"><a href="correglin.html#cb4-6" tabindex="-1"></a>  )</span></code></pre></div>
+</details>
+<ul>
+<li>Hagamos un diagrama de dispersión</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="correglin.html#cb5-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="correglin.html#cb5-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> peso_kg, <span class="at">y =</span> tiempo)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="correglin.html#cb5-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>                         </span>
+<span id="cb5-4"><a href="correglin.html#cb5-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span> <span class="st">&#39;y~x&#39;</span>, <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb5-5"><a href="correglin.html#cb5-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-6"><a href="correglin.html#cb5-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Relación entre tiempo de entrega y peso abastecido&quot;</span>,</span>
+<span id="cb5-7"><a href="correglin.html#cb5-7" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Peso abastecido (kg)&quot;</span>,</span>
+<span id="cb5-8"><a href="correglin.html#cb5-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Tiempo de entrega (min)&quot;</span></span>
+<span id="cb5-9"><a href="correglin.html#cb5-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="correglin.html#cb5-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/disp_cor-1.png" width="672" /></p>
+<ul>
+<li>Veamos si las variables tiempo de entrega y peso abastecido tienen comportamiento normal</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="correglin.html#cb6-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(df<span class="sc">$</span>tiempo)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  df$tiempo
+## W = 0.96225, p-value = 0.4612</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="correglin.html#cb8-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(df<span class="sc">$</span>peso_kg)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  df$peso_kg
+## W = 0.96538, p-value = 0.5316</code></pre>
+<p>Con una confianza del <span class="math inline">\(95\%\)</span>, se observa que las distribuciones de <strong>tiempo de entrega</strong>
+<span class="math inline">\((W = 0.96225,\ p\text{-valor} = 0.4612)\)</span> y <strong>peso en kg</strong>
+<span class="math inline">\((W = 0.96538,\ p\text{-valor} = 0.5316)\)</span> provienen de una distribución normal.</p>
+<ul>
+<li>Hallemos la correlación de Pearson paso a paso:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="correglin.html#cb10-1" tabindex="-1"></a><span class="co"># 1) Vectores y tamaño muestral</span></span>
+<span id="cb10-2"><a href="correglin.html#cb10-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> df<span class="sc">$</span>tiempo</span>
+<span id="cb10-3"><a href="correglin.html#cb10-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> df<span class="sc">$</span>peso_kg</span>
+<span id="cb10-4"><a href="correglin.html#cb10-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb10-5"><a href="correglin.html#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="correglin.html#cb10-6" tabindex="-1"></a><span class="co"># 2) promedios</span></span>
+<span id="cb10-7"><a href="correglin.html#cb10-7" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> n</span>
+<span id="cb10-8"><a href="correglin.html#cb10-8" tabindex="-1"></a>ybar <span class="ot">&lt;-</span> <span class="fu">sum</span>(y) <span class="sc">/</span> n</span>
+<span id="cb10-9"><a href="correglin.html#cb10-9" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="correglin.html#cb10-10" tabindex="-1"></a><span class="co"># 3) desviaciones</span></span>
+<span id="cb10-11"><a href="correglin.html#cb10-11" tabindex="-1"></a>xc <span class="ot">&lt;-</span> x <span class="sc">-</span> xbar</span>
+<span id="cb10-12"><a href="correglin.html#cb10-12" tabindex="-1"></a>yc <span class="ot">&lt;-</span> y <span class="sc">-</span> ybar</span>
+<span id="cb10-13"><a href="correglin.html#cb10-13" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="correglin.html#cb10-14" tabindex="-1"></a>Sxy <span class="ot">&lt;-</span> <span class="fu">sum</span>(xc <span class="sc">*</span> yc)          <span class="co"># sumatoria de productos centrados</span></span>
+<span id="cb10-15"><a href="correglin.html#cb10-15" tabindex="-1"></a>Sxx <span class="ot">&lt;-</span> <span class="fu">sum</span>(xc<span class="sc">^</span><span class="dv">2</span>)             <span class="co"># sumatoria de cuadrados centrados de x</span></span>
+<span id="cb10-16"><a href="correglin.html#cb10-16" tabindex="-1"></a>Syy <span class="ot">&lt;-</span> <span class="fu">sum</span>(yc<span class="sc">^</span><span class="dv">2</span>)             <span class="co"># sumatoria de cuadrados centrados de y</span></span>
+<span id="cb10-17"><a href="correglin.html#cb10-17" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="correglin.html#cb10-18" tabindex="-1"></a><span class="co"># 4) Coeficiente de correlación de Pearson </span></span>
+<span id="cb10-19"><a href="correglin.html#cb10-19" tabindex="-1"></a>r <span class="ot">&lt;-</span> Sxy <span class="sc">/</span> <span class="fu">sqrt</span>(Sxx <span class="sc">*</span> Syy)</span>
+<span id="cb10-20"><a href="correglin.html#cb10-20" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="correglin.html#cb10-21" tabindex="-1"></a><span class="co"># 5) Resultados obtenidos y r</span></span>
+<span id="cb10-22"><a href="correglin.html#cb10-22" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb10-23"><a href="correglin.html#cb10-23" tabindex="-1"></a>  <span class="at">n =</span> n,</span>
+<span id="cb10-24"><a href="correglin.html#cb10-24" tabindex="-1"></a>  <span class="at">prom_tiempo =</span> xbar,</span>
+<span id="cb10-25"><a href="correglin.html#cb10-25" tabindex="-1"></a>  <span class="at">prom_peso   =</span> ybar,</span>
+<span id="cb10-26"><a href="correglin.html#cb10-26" tabindex="-1"></a>  <span class="at">Sxy =</span> Sxy,</span>
+<span id="cb10-27"><a href="correglin.html#cb10-27" tabindex="-1"></a>  <span class="at">Sxx =</span> Sxx,</span>
+<span id="cb10-28"><a href="correglin.html#cb10-28" tabindex="-1"></a>  <span class="at">Syy =</span> Syy,</span>
+<span id="cb10-29"><a href="correglin.html#cb10-29" tabindex="-1"></a>  <span class="at">r_pearson =</span> r</span>
+<span id="cb10-30"><a href="correglin.html#cb10-30" tabindex="-1"></a>)</span></code></pre></div>
+</details>
+<pre><code>## # A tibble: 1 × 7
+##       n prom_tiempo prom_peso   Sxy   Sxx   Syy r_pearson
+##   &lt;int&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
+## 1    25        25.3      9.17  111.  449.  63.0     0.662</code></pre>
+<p>Usando la función de <code>cor</code> tenemos</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="correglin.html#cb12-1" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">&#39;pearson&#39;</span>)</span></code></pre></div>
+</details>
+<pre><code>## [1] 0.6615236</code></pre>
+<ul>
+<li>Ahora veamos si la correlación es significativa o no</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="correglin.html#cb14-1" tabindex="-1"></a><span class="co"># 6) Estadístico t para H0: rho = 0</span></span>
+<span id="cb14-2"><a href="correglin.html#cb14-2" tabindex="-1"></a>gl <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb14-3"><a href="correglin.html#cb14-3" tabindex="-1"></a>t_0 <span class="ot">&lt;-</span> r <span class="sc">*</span> <span class="fu">sqrt</span>(gl) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> r<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb14-4"><a href="correglin.html#cb14-4" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="correglin.html#cb14-5" tabindex="-1"></a><span class="co"># 7b) Valor crítico t_(α/2, gl) para α = 0.05 (bilateral)</span></span>
+<span id="cb14-6"><a href="correglin.html#cb14-6" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb14-7"><a href="correglin.html#cb14-7" tabindex="-1"></a>t_tab <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> gl)</span>
+<span id="cb14-8"><a href="correglin.html#cb14-8" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="correglin.html#cb14-9" tabindex="-1"></a><span class="co"># mostrar decision</span></span>
+<span id="cb14-10"><a href="correglin.html#cb14-10" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">abs</span>(t_0) <span class="sc">&gt;</span> t_tab) {</span>
+<span id="cb14-11"><a href="correglin.html#cb14-11" tabindex="-1"></a>  decision <span class="ot">&lt;-</span> <span class="st">&quot;Rechazar H0: la correlación es significativa&quot;</span></span>
+<span id="cb14-12"><a href="correglin.html#cb14-12" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb14-13"><a href="correglin.html#cb14-13" tabindex="-1"></a>  decision <span class="ot">&lt;-</span> <span class="st">&quot;No rechazar H0: no hay evidencia suficiente de correlación&quot;</span></span>
+<span id="cb14-14"><a href="correglin.html#cb14-14" tabindex="-1"></a>}</span>
+<span id="cb14-15"><a href="correglin.html#cb14-15" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="correglin.html#cb14-16" tabindex="-1"></a>decision</span></code></pre></div>
+</details>
+<pre><code>## [1] &quot;Rechazar H0: la correlación es significativa&quot;</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="correglin.html#cb16-1" tabindex="-1"></a><span class="co"># 7b ) p-valor (bilateral) desde la t de Student</span></span>
+<span id="cb16-2"><a href="correglin.html#cb16-2" tabindex="-1"></a>p_valor <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(t_0), <span class="at">df =</span> gl)</span>
+<span id="cb16-3"><a href="correglin.html#cb16-3" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="correglin.html#cb16-4" tabindex="-1"></a><span class="co"># mostrar pvalor</span></span>
+<span id="cb16-5"><a href="correglin.html#cb16-5" tabindex="-1"></a>p_valor</span></code></pre></div>
+</details>
+<pre><code>## [1] 0.0003170025</code></pre>
+<ul>
+<li>Hallemos el intervalo de confianza</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="correglin.html#cb18-1" tabindex="-1"></a><span class="co"># 8) Intervalo de confianza del 95% vía Fisher z</span></span>
+<span id="cb18-2"><a href="correglin.html#cb18-2" tabindex="-1"></a><span class="co"># Transformación de r a z de Fisher</span></span>
+<span id="cb18-3"><a href="correglin.html#cb18-3" tabindex="-1"></a>z0 <span class="ot">&lt;-</span> <span class="fu">atanh</span>(r)              </span>
+<span id="cb18-4"><a href="correglin.html#cb18-4" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="correglin.html#cb18-5" tabindex="-1"></a><span class="co"># Error estándar de z</span></span>
+<span id="cb18-6"><a href="correglin.html#cb18-6" tabindex="-1"></a>se_z <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> <span class="dv">3</span>)</span>
+<span id="cb18-7"><a href="correglin.html#cb18-7" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="correglin.html#cb18-8" tabindex="-1"></a><span class="co"># Valor crítico z_(1-α/2) para α = 0.05 (bilateral)</span></span>
+<span id="cb18-9"><a href="correglin.html#cb18-9" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb18-10"><a href="correglin.html#cb18-10" tabindex="-1"></a>z_tab <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>)  </span>
+<span id="cb18-11"><a href="correglin.html#cb18-11" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="correglin.html#cb18-12" tabindex="-1"></a><span class="co"># Intervalo en la escala z</span></span>
+<span id="cb18-13"><a href="correglin.html#cb18-13" tabindex="-1"></a>ci_z <span class="ot">&lt;-</span> <span class="fu">c</span>(z0 <span class="sc">-</span> z_tab <span class="sc">*</span> se_z,z0 <span class="sc">+</span> z_tab <span class="sc">*</span> se_z)</span>
+<span id="cb18-14"><a href="correglin.html#cb18-14" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="correglin.html#cb18-15" tabindex="-1"></a><span class="co"># límite inferior y superior del IC para r</span></span>
+<span id="cb18-16"><a href="correglin.html#cb18-16" tabindex="-1"></a>ci_r <span class="ot">&lt;-</span> <span class="fu">tanh</span>(ci_z)  </span>
+<span id="cb18-17"><a href="correglin.html#cb18-17" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="correglin.html#cb18-18" tabindex="-1"></a><span class="co"># Mostrar resultados</span></span>
+<span id="cb18-19"><a href="correglin.html#cb18-19" tabindex="-1"></a>ci_r</span></code></pre></div>
+</details>
+<pre><code>## [1] 0.3606668 0.8376916</code></pre>
+<p>Usando la función <code>cor.test</code> nos queda:</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="correglin.html#cb20-1" tabindex="-1"></a><span class="fu">cor.test</span>(x,y, <span class="at">method =</span> <span class="st">&#39;pearson&#39;</span>)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  x and y
+## t = 4.2305, df = 23, p-value = 0.000317
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.3606668 0.8376916
+## sample estimates:
+##       cor 
+## 0.6615236</code></pre>
+<p>El análisis de correlación de Pearson entre el peso abastecido (kg) y el tiempo de entrega (min) mostró un coeficiente <span class="math inline">\(r = 0.6615,\ (IC_{95\%}=(0.3607, 0.8377))\)</span>, lo que indica una correlación positiva moderada-alta, es decir, a mayor peso abastecido, mayor es el tiempo de entrega. La prueba de significancia (<span class="math inline">\(t_{(23)} = 4.2305, p-valor &lt; 0.001\)</span>) permitió rechazar la hipótesis nula de ausencia de correlación.</p>
+</div>
+<div id="correlación-de-spearman" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> Correlación de Spearman<a href="#correlaci%C3%B3n-de-spearman" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> Definición. Coeficiente de correlación de Spearman (<span class="math inline">\(\rho_S\)</span>)
+</div>
+<p>
+El <strong>coeficiente de correlación de Spearman</strong>, también llamado <em>coeficiente de correlación por rangos de Spearman</em>, es una medida de correlación <strong>no paramétrica</strong>. Evalúa la fuerza y dirección de la relación <strong>monótona</strong> entre dos variables, basándose en el rango (orden) de los datos en lugar de los valores originales.
+</p>
+<p>
+Se utiliza cuando:
+<ul>
+<li>
+Al menos una de las variables no sigue una distribución normal.
+</li>
+<li>
+La relación entre las variables no es lineal, pero sí monótona.
+</li>
+<li>
+Los datos están en escala ordinal o son susceptibles de ordenación.
+</li>
+</ul>
+</p>
+</div>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> Fórmula
+</div>
+<p>
+Cuando no hay empates en los datos, <span class="math inline">\(\rho_S\)</span> se calcula como:
+</p>
+<span class="math display">\[
+  \rho_S = 1 - \frac{6 \sum_{i=1}^n d_i^2}{n(n^2 - 1)}
+  \]</span>
+<p>
+donde:
+</p>
+<ul>
+<li>
+<span class="math inline">\(d_i\)</span> = diferencia entre los rangos de las dos variables para la observación <span class="math inline">\(i\)</span>.
+</li>
+<li>
+<span class="math inline">\(n\)</span> = número total de observaciones.
+</li>
+</ul>
+<p>
+En presencia de empates, los rangos se asignan usando promedios y la correlación se calcula como el coeficiente de Pearson aplicado a los rangos.
+</p>
+</div>
+<div class="admon-box nota">
+<div class="admon-title">
+<span class="icon"></span> Supuestos de Spearman
+</div>
+<ol>
+<li>
+<strong>Escala ordinal o superior</strong>: Los datos deben poder ordenarse (ordinal, intervalo o razón).
+</li>
+<li>
+<strong>Relación monótona</strong>: A medida que una variable aumenta, la otra tiende a aumentar o disminuir, pero no necesariamente de forma lineal.
+</li>
+<li>
+<strong>Independencia</strong>: Las observaciones deben ser independientes entre sí.
+</li>
+<li>
+<strong>Manejo de empates</strong>: En caso de empates, deben asignarse rangos promedio antes de calcular <span class="math inline">\(\rho_S\)</span>.
+</li>
+</ol>
+</div>
+<div class="admon-box teorema">
+<div class="admon-title">
+<span class="icon"></span> Prueba de hipótesis para <span class="math inline">\(\ \rho_S\)</span>
+</div>
+<p>
+Para contrastar si existe correlación monótona significativa entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>:
+</p>
+<ul>
+<li>
+<strong>Hipótesis nula</strong> <span class="math inline">\(H_0: \rho_S = 0\)</span> (no hay relación monótona).
+</li>
+<li>
+<strong>Hipótesis alternativa</strong> <span class="math inline">\(H_1: \rho_S \neq 0\)</span> (existe relación monótona).
+</li>
+</ul>
+<p>
+El estadístico de prueba, para <span class="math inline">\(n &gt; 10\)</span>, puede aproximarse mediante la distribución t:
+</p>
+<span class="math display">\[
+  t = \rho_S \sqrt{\frac{n - 2}{1 - \rho_S^2}}
+  \]</span>
+con <span class="math inline">\(n - 2\)</span> grados de libertad.
+</p>
+<p>
+Para muestras pequeñas o con muchos empates, se recomienda emplear tablas exactas o métodos de permutación.
+</p>
+</div>
+<div class="admon-box ejemplo">
+<div class="admon-title">
+<span class="icon"></span> Ejemplo
+</div>
+<p>
+Un equipo de ingenieros ambientales desea analizar los factores que influyen en la calidad del aire en una zona urbana. El objetivo es <strong>evaluar la relación existente</strong> entre la concentración de material particulado PM<sub>2.5</sub> y el volumen de tráfico vehicular en una avenida principal.
+</p>
+<p>
+El monitoreo de la calidad del aire se realizó mediante:
+</p>
+<ul>
+<li>
+<strong>Medición</strong> de la concentración de PM<sub>2.5</sub> (μg/m<sup>3</sup>) usando equipos de muestreo en continuo.
+</li>
+<li>
+<strong>Conteo</strong> del número de vehículos que transitan por hora en el punto de monitoreo.
+</li>
+</ul>
+<p>
+El especialista a cargo del estudio ha identificado que, entre las posibles variables, el <strong>volumen de tráfico vehicular</strong> (<em>x<sub>1</sub></em>) podría tener un efecto directo sobre la <strong>concentración de PM<sub>2.5</sub></strong> (<em>y</em>). Con este fin, se recolectaron <strong>25 observaciones</strong> de ambas variables, registradas en el archivo <a href="https://github.com/cdeoroaguado/Datos/blob/main/datadescrip/datos_calidad_aire.xlsx"><code>datos_calidad_aire.xlsx</code></a>.
+</p>
+<p>
+</p>
+<p>
+<strong>Preguntas a resolver:</strong>
+</p>
+<ol>
+<li>
+Realiza un diagrama de dispersión de las variables <strong>concentración de PM<sub>2.5</sub></strong> y <strong>volumen de tráfico vehicular</strong>.
+</li>
+<li>
+Verificar si las variables <strong>concentración de PM<sub>2.5</sub></strong> y <strong>volumen de tráfico vehicular</strong> presentan un <strong>comportamiento normal</strong>.
+</li>
+<li>
+Calcular el <strong>coeficiente de correlación de spearman</strong> entre ambas variables.
+</li>
+<li>
+Determinar si la correlación obtenida es <strong>estadísticamente significativa</strong>.
+</li>
+<li>
+Calcular el <strong>intervalo de confianza</strong> para el coeficiente de correlación.
+</li>
+</ol>
+</div>
+<p style="text-align: center;">
+<strong>Solución</strong>
+</p>
+<ul>
+<li>Carguemos los datos</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="correglin.html#cb22-1" tabindex="-1"></a><span class="co"># Lectura de los datos</span></span>
+<span id="cb22-2"><a href="correglin.html#cb22-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/datos_calidad_aire.xlsx&quot;</span>)</span>
+<span id="cb22-3"><a href="correglin.html#cb22-3" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="correglin.html#cb22-4" tabindex="-1"></a><span class="co"># Ver las 5 primeras observaciones</span></span>
+<span id="cb22-5"><a href="correglin.html#cb22-5" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+</details>
+<pre><code>## # A tibble: 6 × 4
+##   Observación `Concentración PM2.5 (µg/m³)` Volumen de tráfico (vehículos/hora…¹
+##         &lt;dbl&gt;                         &lt;dbl&gt;                                &lt;dbl&gt;
+## 1           1                          15.7                                    7
+## 2           2                          10.7                                    3
+## 3           3                          11.9                                    3
+## 4           4                          15.6                                    4
+## 5           5                          14.3                                    6
+## 6           6                          14.9                                    7
+## # ℹ abbreviated name: ¹​`Volumen de tráfico (vehículos/hora)`
+## # ℹ 1 more variable: `Distancia al punto de monitoreo (m)` &lt;dbl&gt;</code></pre>
+<ul>
+<li>Renombremos las columnas</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="correglin.html#cb24-1" tabindex="-1"></a><span class="co"># Renombrar columnas </span></span>
+<span id="cb24-2"><a href="correglin.html#cb24-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="correglin.html#cb24-3" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb24-4"><a href="correglin.html#cb24-4" tabindex="-1"></a>    <span class="at">concentracion =</span> <span class="st">`</span><span class="at">Concentración PM2.5 (µg/m³)</span><span class="st">`</span>,</span>
+<span id="cb24-5"><a href="correglin.html#cb24-5" tabindex="-1"></a>    <span class="at">volumen =</span> <span class="st">`</span><span class="at">Volumen de tráfico (vehículos/hora)</span><span class="st">`</span></span>
+<span id="cb24-6"><a href="correglin.html#cb24-6" tabindex="-1"></a>  )</span></code></pre></div>
+</details>
+<ul>
+<li>Hagamos un diagrama de dispersión</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="correglin.html#cb25-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="correglin.html#cb25-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> volumen, <span class="at">y =</span> concentracion)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="correglin.html#cb25-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>                         </span>
+<span id="cb25-4"><a href="correglin.html#cb25-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span> <span class="st">&#39;y~x&#39;</span>, <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb25-5"><a href="correglin.html#cb25-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-6"><a href="correglin.html#cb25-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Relación entre la concentración PM2.5 y el volumen de tráfico&quot;</span>,</span>
+<span id="cb25-7"><a href="correglin.html#cb25-7" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Volumen de tráfico (vehículos/hora)&quot;</span>,</span>
+<span id="cb25-8"><a href="correglin.html#cb25-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Concentración PM2.5 (µg/m³)&quot;</span></span>
+<span id="cb25-9"><a href="correglin.html#cb25-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="correglin.html#cb25-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/disp_spearman-1.png" width="672" /></p>
+<ul>
+<li>Veamos si las variables concentración PM2.5 (µg/m³) y volumen de tráfico (vehículos/hora) tienen comportamiento normal</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="correglin.html#cb26-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(df<span class="sc">$</span>concentracion)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  df$concentracion
+## W = 0.77906, p-value = 0.0001038</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="correglin.html#cb28-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(df<span class="sc">$</span>volumen)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  df$volumen
+## W = 0.76566, p-value = 6.405e-05</code></pre>
+<p>Con una confianza del <span class="math inline">\(95\%\)</span>, se observa que las distribuciones de <strong>concentración PM2.5</strong>
+<span class="math inline">\((W = 0.7791,\ p-valor &lt; 0.001)\)</span> y <strong>volumen de tráfico</strong>
+<span class="math inline">\((W = 0.7657,\ p-valor &lt; 0.001)\)</span> no tienen comportamiento de una distribución normal.</p>
+<ul>
+<li>Veamos el coeficiente de correlación y su significancia</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="correglin.html#cb30-1" tabindex="-1"></a><span class="fu">cor.test</span>(df<span class="sc">$</span>concentracion,df<span class="sc">$</span>volumen, <span class="at">method =</span> <span class="st">&#39;spearman&#39;</span>, <span class="at">exact=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  df$concentracion and df$volumen
+## S = 385.47, p-value = 6.662e-08
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.8517417</code></pre>
+<p>El análisis de correlación de <strong>Spearman</strong> entre la concentración de PM<span class="math inline">\(_{2.5}\)</span> <span class="math inline">\((\mu_g/m^3)\)</span> y el volumen de tráfico vehicular (vehículos/h) mostró un coeficiente <span class="math inline">\(\rho = 0.8517\)</span>, lo que indica una <strong>correlación positiva muy alta</strong>; es decir, a mayor volumen de tráfico, mayor es la concentración de PM<span class="math inline">\(_{2.5}\)</span>. La prueba de significancia (<span class="math inline">\(S = 385.47,\ p-valor &lt; 0.001\)</span>) permitió rechazar la hipótesis nula de ausencia de correlación, confirmando que la relación observada es estadísticamente significativa.</p>
+</div>
+<div id="correlación-de-kendall" class="section level3 hasAnchor" number="6.2.5">
+<h3><span class="header-section-number">6.2.5</span> Correlación de Kendall<a href="#correlaci%C3%B3n-de-kendall" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> Definición
+</div>
+<p>
+El <strong>coeficiente de correlación de rangos de Kendall</strong> (<span class="math inline">\(\tau\)</span>) es una medida <em>no paramétrica</em> de asociación entre dos variables ordinales o continuas.
+Evalúa el grado de <strong>concordancia</strong> o <strong>discordancia</strong> entre todos los pares posibles de observaciones.
+</p>
+</div>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> Definición: Cálculo del <span class="math inline">\(\ \tau\)</span>
+</div>
+<p>
+Sea un conjunto de <em>n</em> observaciones emparejadas <span class="math inline">\((x_i, y_i)\)</span>, se consideran todos los pares <span class="math inline">\((i, j)\)</span> con <span class="math inline">\(i &lt; j\)</span>:
+</p>
+<ul>
+<li>
+<strong>Par concordante</strong>: si <span class="math inline">\((x_j - x_i)\)</span> y <span class="math inline">\((y_j - y_i)\)</span> tienen el mismo signo.
+</li>
+<li>
+<strong>Par discordante</strong>: si <span class="math inline">\((x_j - x_i)\)</span> y <span class="math inline">\((y_j - y_i)\)</span> tienen signos opuestos.
+</li>
+<li>
+<strong>Empate</strong>: si una de las diferencias es cero.
+</li>
+</ul>
+<p style="text-align:center;">
+<span class="math inline">\(\tau = \frac{n_c - n_d}{\frac{1}{2}n(n-1)}\)</span>
+</p>
+</div>
+<div class="admon-box nota">
+<div class="admon-title">
+<span class="icon"></span> Nota
+</div>
+<ul>
+<li>
+<span class="math inline">\(\tau \approx +1\)</span>: asociación positiva perfecta.
+</li>
+<li>
+<span class="math inline">\(\tau \approx -1\)</span>: asociación negativa perfecta.
+</li>
+<li>
+<span class="math inline">\(\tau \approx 0\)</span>: ausencia de asociación.
+</li>
+</ul>
+</div>
+<div class="admon-box observacion">
+<div class="admon-title">
+<span class="icon"></span> Observación: Supuestos
+</div>
+<ul>
+<li>
+Las variables son al menos ordinales.
+</li>
+<li>
+Observaciones independientes.
+</li>
+<li>
+No se requiere normalidad.
+</li>
+</ul>
+</div>
+<div class="admon-box ventaja">
+<div class="admon-title">
+<span class="icon"></span> Ventajas
+</div>
+<ul>
+<li>
+Más robusto que Spearman cuando existen empates en los datos.
+</li>
+<li>
+Interpretación directa como diferencia entre la probabilidad de concordancia y discordancia.
+</li>
+</ul>
+</div>
+<div class="admon-box teorema">
+<div class="admon-title">
+<span class="icon"></span> Teorema. Prueba de hipótesis
+</div>
+<p>
+Para evaluar significancia estadística:
+</p>
+<p style="text-align:center;">
+<span class="math inline">\(H_0: \tau = 0 \quad\text{vs.}\quad H_1: \tau \neq 0\)</span>
+</p>
+<p>
+En R:
+</p>
+<pre><code class="language-r">cor.test(x, y, method = "kendall")</code></pre>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 1
+</div>
+<p>
+De acuerdo con un estudio de cierta universidad con relación a cierto tipo de especie animal,
+los machos sobreviven más que las hembras en invierno. Considere los siguientes datos sobre la
+sobrevivencia en el invierno de 100 machos y 100 hembras de esa especie animal:
+</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="correglin.html#cb32-1" tabindex="-1"></a><span class="co"># Tabla de contingencia</span></span>
+<span id="cb32-2"><a href="correglin.html#cb32-2" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">33</span>, <span class="dv">25</span>,</span>
+<span id="cb32-3"><a href="correglin.html#cb32-3" tabindex="-1"></a>                       <span class="dv">40</span>, <span class="dv">21</span>, <span class="dv">39</span>),</span>
+<span id="cb32-4"><a href="correglin.html#cb32-4" tabindex="-1"></a>                     <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb32-5"><a href="correglin.html#cb32-5" tabindex="-1"></a>                     <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb32-6"><a href="correglin.html#cb32-6" tabindex="-1"></a>                       <span class="at">Tiempo =</span> <span class="fu">c</span>(<span class="st">&quot;Menos de 10 días&quot;</span>, <span class="st">&quot;De 10 a 20 días&quot;</span>, <span class="st">&quot;Más de 20 días&quot;</span>),</span>
+<span id="cb32-7"><a href="correglin.html#cb32-7" tabindex="-1"></a>                       <span class="at">Sexo =</span> <span class="fu">c</span>(<span class="st">&quot;Macho&quot;</span>, <span class="st">&quot;Hembra&quot;</span>)</span>
+<span id="cb32-8"><a href="correglin.html#cb32-8" tabindex="-1"></a>                     ))</span></code></pre></div>
+</details>
+</div>
 
+</div>
+</div>
+</div>
+<h3>Referencias<a href="referencias-1.html#referencias-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-montgomery2012" class="csl-entry">
+Montgomery, Douglas C., Elizabeth A. Peck, and G. Geoffrey Vining. 2012. <em>Introducci<span>ó</span>n Al an<span>á</span>lisis de Regresi<span>ó</span>n Lineal</em>. 5ta ed. Hoboken, New Jersey: Wiley.
+</div>
+<div id="ref-navidi2021" class="csl-entry">
+Navidi, William. 2021. <em>Estad<span>í</span>stica Para Ingenieros y Cient<span>í</span>ficos</em>. 7ma ed. Ciudad de M<span>é</span>xico, M<span>é</span>xico: McGraw-Hill.
+</div>
+<div id="ref-llinas2019" class="csl-entry">
+Solano, Humberto Llinás. 2019. <em>Estadística Inferencial</em>. Área metropolitana de Barranquilla, Colombia: Universidad del Norte.
 </div>
 </div>
             </section>
