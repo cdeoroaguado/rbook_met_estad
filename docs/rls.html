@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 7 Regresión lineal simpel | Notas de métodos estadísticos</title>
+  <title>Capítulo 7 Regresión lineal simple | Notas de métodos estadísticos</title>
   <meta name="description" content="Notas de clase de métodos estadísticos." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 7 Regresión lineal simpel | Notas de métodos estadísticos" />
+  <meta property="og:title" content="Capítulo 7 Regresión lineal simple | Notas de métodos estadísticos" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Notas de clase de métodos estadísticos." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 7 Regresión lineal simpel | Notas de métodos estadísticos" />
+  <meta name="twitter:title" content="Capítulo 7 Regresión lineal simple | Notas de métodos estadísticos" />
   
   <meta name="twitter:description" content="Notas de clase de métodos estadísticos." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2025-09-08" />
+<meta name="date" content="2025-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -259,9 +259,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.5" data-path="07-rls.html"><a href="#correlaci%C3%B3n-de-kendall"><i class="fa fa-check"></i><b>6.2.5</b> Correlación de Kendall</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="correglin.html"><a href="correglin.html#correglin"><i class="fa fa-check"></i><b>7</b> Regresión lineal simpel</a>
+<li class="chapter" data-level="7" data-path="rls.html"><a href="rls.html"><i class="fa fa-check"></i><b>7</b> Regresión lineal simple</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="07-rls.html"><a href="#el-modelo-de-regresi%C3%B3n-lineal-simple-rls"><i class="fa fa-check"></i><b>7.1</b> El modelo de regresión lineal simple (RLS)</a></li>
+<li class="chapter" data-level="7.1" data-path="07-rls.html"><a href="#el-modelo-de-regresi%C3%B3n-lineal-simple-rls"><i class="fa fa-check"></i><b>7.1</b> El modelo de regresión lineal simple (RLS)</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="07-rls.html"><a href="#modelo-determinista-y-modelo-probabil%C3%ADstico"><i class="fa fa-check"></i><b>7.1.1</b> Modelo determinista y modelo probabilístico</a></li>
+<li class="chapter" data-level="7.1.2" data-path="07-rls.html"><a href="#supuestos-b%C3%A1sicos-para-el-modelo-de-regresi%C3%B3n-lineal."><i class="fa fa-check"></i><b>7.1.2</b> Supuestos básicos para el modelo de regresión lineal.</a></li>
+<li class="chapter" data-level="7.1.3" data-path="07-rls.html"><a href="#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1"><i class="fa fa-check"></i><b>7.1.3</b> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -284,8 +289,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="correglin" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Capítulo 7</span> Regresión lineal simpel<a href="correglin.html#correglin" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="rls" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Capítulo 7</span> Regresión lineal simple<a href="rls.html#rls" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>En muchos procesos productivos se controlan las condiciones de operación de un sistema. Es fundamental determinar cómo una <strong>variable respuesta</strong> cambia dependiendo de dichas condiciones.</p>
 <p>Por ejemplo, en un proceso de <strong>embutido de cárnicos</strong>, la <strong>cantidad de producto empacado (en gramos)</strong> puede depender de la <strong>velocidad</strong> y la <strong>temperatura</strong> de operación de una máquina.</p>
 <p>En la practica, por supuesto es importante</p>
@@ -327,14 +332,16 @@ x_1 = \text{velocidad}, \quad x_2 = \text{temperatura}
 </ol>
 <div id="el-modelo-de-regresión-lineal-simple-rls" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> El modelo de regresión lineal simple (RLS)<a href="#el-modelo-de-regresi%C3%B3n-lineal-simple-rls" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Consideremos un proceso donde se tienen registros de la <code>Resistencia</code>, en <code>psi</code>, y la <code>Edad</code>, en semanas, de varias soldaduras. Los datos pueden leerse en <strong>R</strong> como se muestra a continuación:</p>
+<ul>
+<li>Consideremos un proceso donde se tienen registros de la <code>Resistencia</code>, en <code>psi</code>, y la <code>Edad</code>, en semanas, de varias soldaduras. Los datos pueden leerse en <strong>R</strong> como se muestra a continuación:</li>
+</ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="correglin.html#cb1-1" tabindex="-1"></a><span class="do">## Lectura de datos desde archivo local</span></span>
-<span id="cb1-2"><a href="correglin.html#cb1-2" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="st">&quot;data/data_rls.txt&quot;</span></span>
-<span id="cb1-3"><a href="correglin.html#cb1-3" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-4"><a href="correglin.html#cb1-4" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="correglin.html#cb1-5" tabindex="-1"></a><span class="do">## Primeras 6 filas</span></span>
-<span id="cb1-6"><a href="correglin.html#cb1-6" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rls.html#cb1-1" tabindex="-1"></a><span class="do">## Lectura de datos desde archivo local</span></span>
+<span id="cb1-2"><a href="rls.html#cb1-2" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="st">&quot;data/data_rls.txt&quot;</span></span>
+<span id="cb1-3"><a href="rls.html#cb1-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-4"><a href="rls.html#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="rls.html#cb1-5" tabindex="-1"></a><span class="do">## Primeras 6 filas</span></span>
+<span id="cb1-6"><a href="rls.html#cb1-6" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
 </details>
 <pre><code>##   Resistencia Edad
 ## 1        10.9 18.7
@@ -343,7 +350,9 @@ x_1 = \text{velocidad}, \quad x_2 = \text{temperatura}
 ## 4        10.7 17.5
 ## 5        13.0 14.6
 ## 6        13.1 12.8</code></pre>
-<p>Con miras explorar si existe una relación entre la <code>Resistencia</code> y la <code>Edad</code> de la soldadura, existen dos estrategias.</p>
+<ul>
+<li>Con miras explorar si existe una relación entre la <code>Resistencia</code> y la <code>Edad</code> de la soldadura, existen dos estrategias.</li>
+</ul>
 <div class="admon-box observacion">
 <div class="admon-title">
 <span class="icon"></span> observación
@@ -358,7 +367,297 @@ Calculando el coeficiente de correlación lineal muestral
 </li>
 </ol>
 </div>
+<ul>
+<li>Para construir un gráfico de dispersión procedemos de la siguiente manera:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rls.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="rls.html#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="rls.html#cb3-3" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="rls.html#cb3-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Edad, <span class="at">y =</span> Resistencia)) <span class="sc">+</span> </span>
+<span id="cb3-5"><a href="rls.html#cb3-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb3-6"><a href="rls.html#cb3-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/dis_rls-1.png" width="672" /></p>
+<ul>
+<li><p>Observe que, aparentemente, cuanto mayor sea la <code>Edad</code> de la soldadura menor será su <code>Resistencia</code>. Por lo tanto, podemos decir que la relación entre <code>Edad</code> y <code>Resistencia</code> es <strong>inversamente proporcional</strong>.</p></li>
+<li><p>Ahora, miremos la correlación, suponiendo que los datos tienen comportamiento</p></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rls.html#cb4-1" tabindex="-1"></a><span class="do">## coeficiente de correlación</span></span>
+<span id="cb4-2"><a href="rls.html#cb4-2" tabindex="-1"></a><span class="fu">with</span>(df, <span class="fu">cor</span>(Edad, Resistencia))</span></code></pre></div>
+</details>
+<pre><code>## [1] -0.8827718</code></pre>
+<ul>
+<li>Por lo tanto, concluimos que la relación entre la <code>Edad</code> de la soldadura y su <code>Resistencia</code> es inversamente proporcional.</li>
+</ul>
+<div id="modelo-determinista-y-modelo-probabilístico" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Modelo determinista y modelo probabilístico<a href="#modelo-determinista-y-modelo-probabil%C3%ADstico" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para el modelo determinista:</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1 x_i,
+\]</span></p>
+<p>el valor observado de la <strong>Resistencia</strong> <span class="math inline">\(Y_i\)</span> es una función lineal de la <strong>Edad</strong> <span class="math inline">\(x_i\)</span>.</p>
+<p>La generalización apropiada de esto a un modelo probabilístico supone que el <strong>valor esperado</strong> de la Resistencia <span class="math inline">\(Y_i\)</span> es una <strong>función lineal</strong> de la Edad <span class="math inline">\(x_i\)</span>. Si denotamos por <span class="math inline">\(E(Y_i \,|\, X = x_i)\)</span> a la esperanza de la variable aleatoria <span class="math inline">\(Y_i\)</span>, entonces bajo el supuesto de linealidad podemos escribir:</p>
+<p><span class="math display">\[
+E(Y_i \,|\, X = x_i) \;=\; \beta_0 + \beta_1 x_i. \tag{7.1}
+\]</span></p>
+<p>En la práctica, el valor observado de <span class="math inline">\(Y_i\)</span> (Resistencia medida) se desviará inevitablemente de su valor esperado debido a la variabilidad y errores de medición.</p>
+<p>Si esta diferencia se representa mediante la variable aleatoria <span class="math inline">\(\varepsilon_i\)</span>, con media cero por (7.1), se puede establecer:</p>
+<p><span class="math display">\[
+\varepsilon_i \;=\; Y_i - E(Y_i \,|\, X = x_i) \;=\; Y_i - (\beta_0 + \beta_1 x_i),
+\]</span></p>
+<p>o de manera equivalente:</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i. \tag{7.2}
+\]</span></p>
+<p>La ecuación (7.2) es la llamada <strong>recta verdadera (o poblacional) de regresión</strong>, que describe la relación entre la <strong>Resistencia (psi)</strong> y la <strong>Edad (semanas)</strong> de las soldaduras, considerando tanto la tendencia promedio como la variabilidad aleatoria.</p>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> Definición
+</div>
+<p>
+<p>Supongamos que estamos interesados en conocer la relación entre la variable <span class="math inline">\(Y\)</span> y una independente <span class="math inline">\(X\)</span>. Si la variable <span class="math inline">\(X\)</span> toma los valores <span class="math inline">\(x_i\)</span>, entonces la ecuación de la <strong>recta poblacional de regresión</strong> expresa los correspondientes valores de <span class="math inline">\(Y_i\)</span> como:</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i,
+\]</span></p>
+donde <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> son constantes, y <span class="math inline">\(\varepsilon_i\)</span>, llamado <strong>término de error</strong>, es una variable aleatoria con media cero.
+</p>
+</div>
+</div>
+<div id="supuestos-básicos-para-el-modelo-de-regresión-lineal." class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Supuestos básicos para el modelo de regresión lineal.<a href="#supuestos-b%C3%A1sicos-para-el-modelo-de-regresi%C3%B3n-lineal." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Los supuestos para el modelo de regresión lineal son</p>
+<div class="admon-box advertencia">
+<div class="admon-title">
+<span class="icon"></span> Supuestos para el modelo de regresión lineal simple
+</div>
+<p>
+Denotemos la recta verdadera de regresión por
+<span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span> y asumamos que se dispone de
+<span class="math inline">\(n\)</span> pares de observaciones. Suelen realizarse, al respecto, los siguientes supuestos:
+</p>
+<ol>
+<li>
+Cada <span class="math inline">\(x_i\)</span> es un número fijo (asignado, por ejemplo, por un investigador)
+o es la realización de una variable aleatoria <span class="math inline">\(X_i\)</span> independiente del término de error
+<span class="math inline">\(\varepsilon_i\)</span>. En el último caso, la inferencia se realiza condicionando al valor observado <span class="math inline">\(x_i\)</span>.
+</li>
+<li>
+Los términos de error <span class="math inline">\(\varepsilon_i\)</span> son variables aleatorias con media 0,
+es decir, <span class="math inline">\(E(\varepsilon_i) = 0\)</span>, para todo <span class="math inline">\(i = 1, \ldots, n\)</span>.
+</li>
+<li>
+Las variables aleatorias <span class="math inline">\(\varepsilon_i\)</span> tienen todas la misma varianza <span class="math inline">\(\sigma^2\)</span>,
+es decir, <span class="math inline">\(V(\varepsilon_i) = \sigma^2\)</span>, para todo <span class="math inline">\(i = 1, \ldots, n\)</span>.
+</li>
+<li>
+Las variables aleatorias <span class="math inline">\(\varepsilon_i\)</span> no se hallan correlacionadas,
+luego <span class="math inline">\(E(\varepsilon_i \varepsilon_j) = 0\)</span>, para todo <span class="math inline">\(i, j = 1, \ldots, n\)</span>, con <span class="math inline">\(i \neq j\)</span>.
+</li>
+</ol>
+</div>
+<div class="admon-box teorema">
+<div class="admon-title">
+<span class="icon"></span> Teorema
+</div>
+<p>
+Denotando la recta verdadera de regresión por
+<span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span>,
+si se cumplen los supuestos del modelo de regresión, entonces, para un valor fijo <span class="math inline">\(x_i\)</span> de <span class="math inline">\(X\)</span>,
+la esperanza y varianza condicionales de <span class="math inline">\(Y_i\)</span>, dado que <span class="math inline">\(X = x_i\)</span>, vienen dadas, respectivamente, por:
+</p>
+<p style="text-align:center;">
+<span class="math inline">\(E(Y_i \,|\, X = x_i) = \beta_0 + \beta_1 x_i \quad \text{y} \quad V(Y_i \,|\, X = x_i) = \sigma^2.\)</span>
+</p>
+</div>
+<p style="text-align: left;">
+<strong>Demostración del teorema</strong>
+</p>
+<ol>
+<li>
+<strong>Esperanza condicional.</strong><br/>
+Usando linealidad de la esperanza y que <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\, x_i\)</span> son constantes dado <span class="math inline">\(X=x_i\)</span>:
+<span class="math display">\[
+      E(Y_i \mid X=x_i)
+      = E(\beta_0 + \beta_1 x_i + \varepsilon_i \mid X=x_i)
+      = \beta_0 + \beta_1 x_i + E(\varepsilon_i \mid X=x_i).
+      \]</span>
+Por independencia (o, en su defecto, por el supuesto <span class="math inline">\(E(\varepsilon_i\mid X)=0\)</span>):
+<span class="math display">\[
+      E(\varepsilon_i \mid X=x_i)=0.
+      \]</span>
+Luego,
+<span class="math display">\[
+      \boxed{\,E(Y_i \mid X=x_i)=\beta_0+\beta_1 x_i\,}.
+      \]</span>
+</li>
+<li>
+<p><strong>Varianza condicional.</strong><br/>
+La varianza de una constante es cero y <span class="math inline">\(\beta_0+\beta_1 x_i\)</span> es constante dado <span class="math inline">\(X=x_i\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+\operatorname{Var}(Y_i \mid X=x_i)
+  &amp;= \operatorname{Var}(\beta_0 + \beta_1 x_i + \varepsilon_i \mid X=x_i) \\[6pt]
+  &amp;= \operatorname{Var}(\beta_0 + \beta_1 x_i \mid X=x_i)
+     + \operatorname{Var}(\varepsilon_i \mid X=x_i) \\[6pt]
+  &amp;= 0 + \operatorname{Var}(\varepsilon_i \mid X=x_i).
+\end{align}\]</span></p>
+Por independencia (o por homocedasticidad condicional):
+<span class="math display">\[
+      \operatorname{Var}(\varepsilon_i \mid X=x_i) = \operatorname{Var}(\varepsilon_i)=\sigma^2.
+      \]</span>
+Por tanto,
+<span class="math display">\[
+      \boxed{\,\operatorname{Var}(Y_i \mid X=x_i)=\sigma^2\,}.
+      \]</span>
+</li>
+</ol>
+<p>En general, el modelo de RLS surge ante la necesidad de predecir una variable respuesta <span class="math inline">\(Y\)</span>, generalmente continua, como función de una variable controlable <span class="math inline">\(X\)</span>, donde matematicamente el modelo puede expresarse como:</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i,
+\]</span>
+<span class="math display">\[
+\varepsilon_i \sim \mathcal{N}(0,\sigma^2),
+\]</span>
+<span class="math display">\[
+\sigma^2 = \text{constante}.
+\]</span></p>
+<p>donde <span class="math inline">\((\beta_0, \beta_1, \sigma^2)\)</span> corresponden a los <strong>parámetros del modelo</strong> y <span class="math inline">\(\varepsilon_i\)</span> es el error aleatorio para la observación <span class="math inline">\(i\)</span>.</p>
+<ul>
+<li>Los términos <span class="math inline">\((\beta_0, \beta_1)\)</span> se conocen como los <strong>coeficientes del modelo</strong>.<br />
+</li>
+<li><span class="math inline">\(\sigma^2\)</span> corresponde a la <strong>varianza</strong> de los errores.</li>
+</ul>
+<p>En la práctica, se tiene o se toma una <strong>muestra aleatoria de tamaño <span class="math inline">\(n\)</span></strong> proveniente de una población o de un proceso de producción/servicios.<br />
+A partir de dicha muestra, se busca estimar los valores de <span class="math inline">\((\beta_0, \beta_1, \sigma^2)\)</span>.</p>
+</div>
+<div id="estimación-de-los-parámetros-por-minimos-cuadrados-de-beta_0-beta_1" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span><a href="#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para estimar <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> se usa el <strong>método de mínimos cuadrados</strong>. Esto es, se estiman <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> tales que la suma de los cuadrados de las diferencias entre las observaciones <span class="math inline">\(y_i\)</span> y la línea recta sea mínima.</p>
+<p>El modelo es:</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1 x_i + \varepsilon_i, \quad i=1,2,\ldots,n
+\]</span></p>
+<p>El criterio de mínimos cuadrados es:</p>
+<p><span class="math display">\[
+S(\beta_0,\beta_1) = \sum_{i=1}^n \varepsilon_i^2=\sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i)^2
+\]</span></p>
+<p>Para obtener los estimadores, derivamos respecto a <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+\frac{\partial S}{\partial \beta_0}\Big|_{\hat{\beta}_0,\hat{\beta}_1}
+&amp;= -2 \sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i) = 0 \\[6pt]
+\frac{\partial S}{\partial \beta_1}\Big|_{\hat{\beta}_0,\hat{\beta}_1}
+&amp;= -2 \sum_{i=1}^n (y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i)x_i = 0
+\end{align}\]</span></p>
+<p>Estas se simplifican a las llamadas <strong>ecuaciones normales</strong>:</p>
+<p><span class="math display">\[\begin{align}
+n\hat{\beta}_0 + \hat{\beta}_1 \sum_{i=1}^n x_i &amp;= \sum_{i=1}^n y_i \\[6pt]
+\hat{\beta}_0 \sum_{i=1}^n x_i + \hat{\beta}_1 \sum_{i=1}^n x_i^2 &amp;= \sum_{i=1}^n y_i x_i
+\end{align}\]</span></p>
+<p>La solución de este sistema es:</p>
+<p><span class="math display">\[
+\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
+\]</span></p>
+<p><span class="math display">\[
+\hat{\beta}_1 = \frac{\sum_{i=1}^n y_i x_i - \frac{1}{n}\left(\sum_{i=1}^n y_i\right)\left(\sum_{i=1}^n x_i\right)}
+{\sum_{i=1}^n x_i^2 - \frac{1}{n}\left(\sum_{i=1}^n x_i\right)^2}
+\]</span></p>
+<p>donde:</p>
+<p><span class="math display">\[
+\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i,
+\qquad
+\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i
+\]</span></p>
+<p>El modelo ajustado es:</p>
+<p><span class="math display">\[
+\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x
+\]</span></p>
+<p>De manera más sencilla, definimos:</p>
+<p><span class="math display">\[
+S_{xx} = \sum_{i=1}^n (x_i - \bar{x})^2
+\qquad \text{y} \qquad
+S_{xy} = \sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})
+\]</span></p>
+<p>Entonces, una forma conveniente de escribir la pendiente es:</p>
+<p><span class="math display">\[
+\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}}
+\]</span></p>
+<div class="admon-box observacion">
+<div class="admon-title">
+<span class="icon"></span> Observacion
+</div>
+<p>
+En la práctica, <span class="math inline">\(\hat{\beta}_1\)</span> se interpreta como <strong>el cambio unitario</strong> en el valor esperado de <span class="math inline">\(Y\)</span>, es decir, en <span class="math inline">\(E[Y\mid X]\)</span>, por cada cambio unitario del <strong>factor controlable</strong> <span class="math inline">\(X\)</span>.
+</p>
+</div>
+<ul>
+<li>Continuando con el ejemplo de los datos de soldadura, estimemos paso a paso <span class="math inline">\(\beta_0, \beta_1\)</span>:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rls.html#cb6-1" tabindex="-1"></a><span class="co"># 1. Lectura de datos</span></span>
+<span id="cb6-2"><a href="rls.html#cb6-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-3"><a href="rls.html#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="rls.html#cb6-4" tabindex="-1"></a><span class="co"># 2. Variables</span></span>
+<span id="cb6-5"><a href="rls.html#cb6-5" tabindex="-1"></a>Y <span class="ot">&lt;-</span> df<span class="sc">$</span>Resistencia</span>
+<span id="cb6-6"><a href="rls.html#cb6-6" tabindex="-1"></a>X <span class="ot">&lt;-</span> df<span class="sc">$</span>Edad</span>
+<span id="cb6-7"><a href="rls.html#cb6-7" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(X)</span>
+<span id="cb6-8"><a href="rls.html#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="rls.html#cb6-9" tabindex="-1"></a><span class="co"># 3. Medias</span></span>
+<span id="cb6-10"><a href="rls.html#cb6-10" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(X)</span>
+<span id="cb6-11"><a href="rls.html#cb6-11" tabindex="-1"></a>y_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y)</span>
+<span id="cb6-12"><a href="rls.html#cb6-12" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="rls.html#cb6-13" tabindex="-1"></a><span class="co"># 4. Cálculo de Sxx y Sxy</span></span>
+<span id="cb6-14"><a href="rls.html#cb6-14" tabindex="-1"></a>Sxx <span class="ot">&lt;-</span> <span class="fu">sum</span>((X <span class="sc">-</span> x_bar)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb6-15"><a href="rls.html#cb6-15" tabindex="-1"></a>Sxy <span class="ot">&lt;-</span> <span class="fu">sum</span>((X <span class="sc">-</span> x_bar) <span class="sc">*</span> (Y <span class="sc">-</span> y_bar))</span>
+<span id="cb6-16"><a href="rls.html#cb6-16" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="rls.html#cb6-17" tabindex="-1"></a><span class="co"># 5. Estimadores de mínimos cuadrados</span></span>
+<span id="cb6-18"><a href="rls.html#cb6-18" tabindex="-1"></a>beta1 <span class="ot">&lt;-</span> Sxy <span class="sc">/</span> Sxx</span>
+<span id="cb6-19"><a href="rls.html#cb6-19" tabindex="-1"></a>beta1</span></code></pre></div>
+</details>
+<pre><code>## [1] -0.2437636</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="rls.html#cb8-1" tabindex="-1"></a>beta0 <span class="ot">&lt;-</span> y_bar <span class="sc">-</span> beta1 <span class="sc">*</span> x_bar</span>
+<span id="cb8-2"><a href="rls.html#cb8-2" tabindex="-1"></a>beta0</span></code></pre></div>
+</details>
+<pre><code>## [1] 15.74275</code></pre>
+<p>En <strong>R</strong> la función clave paara ajustar modelos de RLS es <code>lm</code>. Para mayor información, puede consultar la ayuda de la función escribiendo <code>?lm</code> en la consola, o en la <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html">página oficial</a>.</p>
+<p>En general, la sintaxis es</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="rls.html#cb10-1" tabindex="-1"></a><span class="co"># ajuste del modelo de RLS</span></span>
+<span id="cb10-2"><a href="rls.html#cb10-2" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(Resistencia <span class="sc">~</span> Edad, <span class="at">data =</span> df)</span>
+<span id="cb10-3"><a href="rls.html#cb10-3" tabindex="-1"></a>modelo</span></code></pre></div>
+</details>
+<pre><code>## 
+## Call:
+## lm(formula = Resistencia ~ Edad, data = df)
+## 
+## Coefficients:
+## (Intercept)         Edad  
+##     15.7427      -0.2438</code></pre>
+<p>Los resultados indican que <span class="math inline">\(\hat{\beta}_0 = 15.74\)</span> y <span class="math inline">\(\hat{\beta}_1 = -0.244\)</span>. Por lo tanto, el modelo ajustado puede escribirse como:</p>
+<p><span class="math display">\[
+\widehat{\text{Resistencia}}_i = 15.74 \;-\; 0.244 \,\text{Edad}_i,
+\]</span></p>
+<p><span class="math display">\[
+\varepsilon_i \sim N(0, \sigma^2),
+\qquad
+\sigma^2 = \text{constante}.
+\]</span></p>
+<div class="admon-box nota">
+<div class="admon-title">
+<span class="icon"></span> Interpretación de <span class="math inline">\(\,\hat{\beta}_0\,\)</span> y <span class="math inline">\(\,\hat{\beta}_1\)</span>
+</div>
+<ol>
+<li>
+Se espera que, por cada semana que transcurre, la <strong>resistencia de la soldadura</strong> disminuya <strong>0.244 psi</strong>. Es decir, <span class="math inline">\(\hat{\beta}_1 = -0.244\)</span>.
+</li>
+<li>
+Una soldadura <strong>nueva</strong> <span class="math inline">\((\text{Edad} = 0)\)</span> tiene una resistencia promedio de <strong>15.74 psi</strong>. Es decir, <span class="math inline">\(\hat{\beta}_0 = 15.74\)</span>.
+</li>
+</ol>
+</div>
 
+</div>
 </div>
 </div>
             </section>

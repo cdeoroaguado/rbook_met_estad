@@ -108,3 +108,9 @@ interpretación-del-coeficiente-de-correlación
 correlación-de-pearson
 correlación-de-spearman
 correlación-de-kendall
+el-modelo-de-regresión-lineal-simple-rls
+rls
+definición-del-modelo-lineal
+modelo-determinista-y-modelo-probabilístico
+supuestos-básicos-para-el-modelo-de-regresión-lineal.
+estimación-de-los-parámetros-por-minimos-cuadrados-de-beta_0-beta_1
