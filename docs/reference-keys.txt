@@ -114,3 +114,6 @@ definición-del-modelo-lineal
 modelo-determinista-y-modelo-probabilístico
 supuestos-básicos-para-el-modelo-de-regresión-lineal.
 estimación-de-los-parámetros-por-minimos-cuadrados-de-beta_0-beta_1
+estimación-de-sigma2
+derivación-detallada-de-sse-y-de-hatsigma2
+estimación-de-sigma2-y-coeficiente-de-determinación

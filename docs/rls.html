@@ -265,8 +265,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="07-rls.html"><a href="#modelo-determinista-y-modelo-probabil%C3%ADstico"><i class="fa fa-check"></i><b>7.1.1</b> Modelo determinista y modelo probabilístico</a></li>
 <li class="chapter" data-level="7.1.2" data-path="07-rls.html"><a href="#supuestos-b%C3%A1sicos-para-el-modelo-de-regresi%C3%B3n-lineal."><i class="fa fa-check"></i><b>7.1.2</b> Supuestos básicos para el modelo de regresión lineal.</a></li>
-<li class="chapter" data-level="7.1.3" data-path="07-rls.html"><a href="#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1"><i class="fa fa-check"></i><b>7.1.3</b> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span></a></li>
 </ul></li>
+<li class="chapter" data-level="7.2" data-path="07-rls.html"><a href="#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1"><i class="fa fa-check"></i><b>7.2</b> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span></a></li>
+<li class="chapter" data-level="7.3" data-path="07-rls.html"><a href="#estimaci%C3%B3n-de-sigma2"><i class="fa fa-check"></i><b>7.3</b> Estimación de <span class="math inline">\(\sigma^2\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -452,8 +453,11 @@ Las variables aleatorias <span class="math inline">\(\varepsilon_i\)</span> tien
 es decir, <span class="math inline">\(V(\varepsilon_i) = \sigma^2\)</span>, para todo <span class="math inline">\(i = 1, \ldots, n\)</span>.
 </li>
 <li>
-Las variables aleatorias <span class="math inline">\(\varepsilon_i\)</span> no se hallan correlacionadas,
+Las variables aleatorias <span class="math inline">\(\varepsilon_i\)</span> no se hallan correlacionadas, es decir, son independientes,
 luego <span class="math inline">\(E(\varepsilon_i \varepsilon_j) = 0\)</span>, para todo <span class="math inline">\(i, j = 1, \ldots, n\)</span>, con <span class="math inline">\(i \neq j\)</span>.
+</li>
+<li>
+Los errores <span class="math inline">\(\varepsilon_i\)</span> estan distribuidos normalmente.
 </li>
 </ol>
 </div>
@@ -531,8 +535,9 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i,
 <p>En la práctica, se tiene o se toma una <strong>muestra aleatoria de tamaño <span class="math inline">\(n\)</span></strong> proveniente de una población o de un proceso de producción/servicios.<br />
 A partir de dicha muestra, se busca estimar los valores de <span class="math inline">\((\beta_0, \beta_1, \sigma^2)\)</span>.</p>
 </div>
-<div id="estimación-de-los-parámetros-por-minimos-cuadrados-de-beta_0-beta_1" class="section level3 hasAnchor" number="7.1.3">
-<h3><span class="header-section-number">7.1.3</span> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span><a href="#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="estimación-de-los-parámetros-por-minimos-cuadrados-de-beta_0-beta_1" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span><a href="#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Para estimar <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> se usa el <strong>método de mínimos cuadrados</strong>. Esto es, se estiman <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> tales que la suma de los cuadrados de las diferencias entre las observaciones <span class="math inline">\(y_i\)</span> y la línea recta sea mínima.</p>
 <p>El modelo es:</p>
 <p><span class="math display">\[
@@ -582,6 +587,31 @@ S_{xy} = \sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})
 <p><span class="math display">\[
 \hat{\beta}_1 = \frac{S_{xy}}{S_{xx}}
 \]</span></p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Queda de ejercicio verificar que en dicho punto crítico se alcanza un mínimo local. Sugerencia, realizar la segundas derivadas parciales.
+</p>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+<ol>
+<li>
+Demuestre que
+<span class="math display">\[\sum_{i=1}^n (x_i - \overline{x})(y_i - \overline{y}) = \sum_{i=1}^n x_i y_i - n \, \overline{x} \, \overline{y}\]</span>
+</li>
+<li>
+Demuestre que
+<span class="math display">\[\sum_{i=1}^n (x_i - \overline{x})^2 = \sum_{i=1}^n x_i^2 - n \overline{x}^2\]</span>
+</li>
+</ol>
+</p>
+</div>
 <div class="admon-box observacion">
 <div class="admon-title">
 <span class="icon"></span> Observacion
@@ -656,8 +686,277 @@ Una soldadura <strong>nueva</strong> <span class="math inline">\((\text{Edad} = 
 </li>
 </ol>
 </div>
-
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 1
 </div>
+<p>
+Las cantidades de un compuesto químico “y”, que se disuelven en 100 gramos de agua a varias temperaturas “x”, se registran como sigue:
+</p>
+<table>
+<thead>
+<tr>
+<th>
+x (°C)
+</th>
+<th>
+y (gramos)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+0
+</td>
+<td>
+8
+</td>
+</tr>
+<tr>
+<td>
+0
+</td>
+<td>
+6
+</td>
+</tr>
+<tr>
+<td>
+0
+</td>
+<td>
+8
+</td>
+</tr>
+<tr>
+<td>
+15
+</td>
+<td>
+12
+</td>
+</tr>
+<tr>
+<td>
+15
+</td>
+<td>
+10
+</td>
+</tr>
+<tr>
+<td>
+15
+</td>
+<td>
+14
+</td>
+</tr>
+<tr>
+<td>
+30
+</td>
+<td>
+25
+</td>
+</tr>
+<tr>
+<td>
+30
+</td>
+<td>
+21
+</td>
+</tr>
+<tr>
+<td>
+30
+</td>
+<td>
+24
+</td>
+</tr>
+<tr>
+<td>
+45
+</td>
+<td>
+31
+</td>
+</tr>
+<tr>
+<td>
+45
+</td>
+<td>
+33
+</td>
+</tr>
+<tr>
+<td>
+45
+</td>
+<td>
+28
+</td>
+</tr>
+<tr>
+<td>
+60
+</td>
+<td>
+44
+</td>
+</tr>
+<tr>
+<td>
+60
+</td>
+<td>
+39
+</td>
+</tr>
+<tr>
+<td>
+60
+</td>
+<td>
+42
+</td>
+</tr>
+<tr>
+<td>
+75
+</td>
+<td>
+48
+</td>
+</tr>
+<tr>
+<td>
+75
+</td>
+<td>
+51
+</td>
+</tr>
+<tr>
+<td>
+75
+</td>
+<td>
+44
+</td>
+</tr>
+</tbody>
+</table>
+<ol type="a">
+<li>
+Grafique un diagrama de dispersión de los datos. ¿Parecerá plausible un modelo de regresión lineal simple?
+</li>
+<li>
+Encuentre las estimaciones de mínimos cuadrados de la pendiente y la ordenada al origen del modelo de regresión lineal simple.
+</li>
+<li>
+Estime la cantidad de compuesto químico que se disolverá en 100 gramos de agua a 50°C.
+</li>
+</ol>
+</div>
+</div>
+<div id="estimación-de-sigma2" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Estimación de <span class="math inline">\(\sigma^2\)</span><a href="#estimaci%C3%B3n-de-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Además de estimar <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, se requiere un estimado de <span class="math inline">\(\sigma^2\)</span> para probar hipótesis y formar intervalos de confianza pertinentes al modelo de regresión.</p>
+<p>Ahora, se llama <strong>residuos</strong> (errores) a las desviaciones verticales</p>
+<p><span class="math display">\[\varepsilon_i = y_i - \hat{y}_i, \quad i = 1, 2, \ldots, n\]</span></p>
+<p>de la recta estimada.</p>
+<p>Cuando no se puede usar información previa, el estimado de <span class="math inline">\(\sigma^2\)</span> se obtiene de la <strong>suma de cuadrados de los errores (SSE)</strong>:</p>
+<p><span class="math display">\[
+SSE = S = \sum_{i=1}^n \varepsilon_i^2 = \sum_{i=1}^n (y_i - \hat{y}_i)^2 \tag{7.3}
+\]</span></p>
+<p>Si sustituimos <span class="math inline">\(\hat{y}_i = \hat{\beta_0}+\hat{\beta_1}x_i\)</span> en la ecuación (7.3) tenemos que</p>
+<p><span class="math display">\[\begin{align}
+SSE &amp;= \sum_{i=1}^n (y_i - \hat{y}_i)^2 \\[6pt]
+&amp;= \sum_{i=1}^n \left( y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i \right)^2 \\[6pt]
+&amp;= \sum_{i=1}^n \left( y_i - \bar{y} + \hat{\beta}_1 \bar{x} - \hat{\beta}_1 x_i \right)^2 \\[6pt]
+&amp;= \sum_{i=1}^n \left[ (y_i - \bar{y}) - \hat{\beta}_1 (x_i - \bar{x}) \right]^2 \\[6pt]
+&amp;= \sum_{i=1}^n (y_i - \bar{y})^2
+   - 2\hat{\beta}_1 \sum_{i=1}^n (y_i - \bar{y})(x_i - \bar{x})
+   + \hat{\beta}_1^2 \sum_{i=1}^n (x_i - \bar{x})^2 \\[6pt]
+&amp;= SST - 2\hat{\beta}_1 S_{xy} + \hat{\beta}_1^2 S_{xx}
+\end{align}\]</span></p>
+<p>Como <span class="math inline">\(\hat{\beta_1}=\frac{S_{xy}}{S_{xx}}\)</span> se sigue que</p>
+<p><span class="math display">\[\begin{align}
+SSE &amp;= SST - 2\hat{\beta}_1 S_{xy} + \hat{\beta}_1^2 S_{xx} \\[6pt]
+&amp;= SST - 2\hat{\beta}_1 S_{xy} + \hat{\beta}_1 \left(\frac{S_{xy}}{S_{xx}}\right) S_{xx} \\[6pt]
+&amp;= SST - 2\hat{\beta}_1 S_{xy} + \hat{\beta}_1 S_{xy} \\[6pt]
+&amp;= SST - \hat{\beta}_1 S_{xy}.
+\end{align}\]</span></p>
+<p>La suma de cuadrados de residuales tiene <span class="math inline">\(n - 2\)</span> grados de libertad, porque dos grados de libertad se asocian con los estimados <span class="math inline">\(\hat{\beta}_0\)</span> y <span class="math inline">\(\hat{\beta}_1\)</span> que se usan para obtener <span class="math inline">\(\hat{y}_i\)</span>.</p>
+<p>Por el teorema de MSA y MSE insesgado de <span class="math inline">\(\sigma^2\)</span>, sabemos que el valor esperado de <span class="math inline">\(SSE\)</span> es:</p>
+<p><span class="math display">\[
+E(SSE) = (n-2)\sigma^2,
+\]</span></p>
+<p>por lo que un <strong>estimador insesgado</strong> de <span class="math inline">\(\sigma^2\)</span> es:</p>
+<p><span class="math display">\[
+\hat{\sigma}^2 = \frac{SSE}{n-2} = MSE
+\]</span></p>
+<p>La cantidad <span class="math inline">\(MSE\)</span> se llama <strong>cuadrado medio residual</strong>. La raíz cuadrada de <span class="math inline">\(\hat{\sigma}^2\)</span> se llama, a veces, el <strong>error estándar de la regresión (RSE)</strong>, y tiene las mismas unidades que la variable respuesta <span class="math inline">\(y\)</span>.</p>
+<p>Ya que <span class="math inline">\(\hat{\sigma}^2\)</span> depende de la suma de cuadrados de residuales, cualquier violación de las hipótesis sobre los errores del modelo, o cualquier especificación equivocada de la forma del modelo, pueden dañar la utilidad de <span class="math inline">\(\hat{\sigma}^2\)</span> como estimador de <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>Como <span class="math inline">\(\sigma^2\)</span> se calcula con los residuales del modelo de regresión, se dice que es un <strong>estimador de <span class="math inline">\(\sigma^2\)</span> dependiente del modelo</strong>.</p>
+<ul>
+<li>Continuando con el ejemplo de soldaduras. Estimemos el <span class="math inline">\(\sigma\)</span>. Haciendolo paso a paso</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="rls.html#cb12-1" tabindex="-1"></a><span class="co"># 1. Cargar datos</span></span>
+<span id="cb12-2"><a href="rls.html#cb12-2" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/data_rls.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-3"><a href="rls.html#cb12-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> datos<span class="sc">$</span>Edad</span>
+<span id="cb12-4"><a href="rls.html#cb12-4" tabindex="-1"></a>y <span class="ot">&lt;-</span> datos<span class="sc">$</span>Resistencia</span>
+<span id="cb12-5"><a href="rls.html#cb12-5" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="rls.html#cb12-6" tabindex="-1"></a><span class="co"># 2. Ajustar el modelo de regresión lineal simple</span></span>
+<span id="cb12-7"><a href="rls.html#cb12-7" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(Resistencia <span class="sc">~</span> Edad, <span class="at">data =</span> datos)</span>
+<span id="cb12-8"><a href="rls.html#cb12-8" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="rls.html#cb12-9" tabindex="-1"></a><span class="co"># 3. Los coeficientes son</span></span>
+<span id="cb12-10"><a href="rls.html#cb12-10" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> modelo<span class="sc">$</span>coefficients[<span class="dv">1</span>]</span>
+<span id="cb12-11"><a href="rls.html#cb12-11" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> modelo<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span>
+<span id="cb12-12"><a href="rls.html#cb12-12" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="rls.html#cb12-13" tabindex="-1"></a><span class="co"># 4. Ajustados y residuos</span></span>
+<span id="cb12-14"><a href="rls.html#cb12-14" tabindex="-1"></a>yhat <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1 <span class="sc">*</span> x</span>
+<span id="cb12-15"><a href="rls.html#cb12-15" tabindex="-1"></a>e    <span class="ot">&lt;-</span> y <span class="sc">-</span> yhat</span>
+<span id="cb12-16"><a href="rls.html#cb12-16" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="rls.html#cb12-17" tabindex="-1"></a><span class="co"># 5. SSE por definición</span></span>
+<span id="cb12-18"><a href="rls.html#cb12-18" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> <span class="fu">sum</span>(e<span class="sc">^</span><span class="dv">2</span>) </span>
+<span id="cb12-19"><a href="rls.html#cb12-19" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="rls.html#cb12-20" tabindex="-1"></a><span class="co"># Otra forma de btener los residuos</span></span>
+<span id="cb12-21"><a href="rls.html#cb12-21" tabindex="-1"></a>residuos <span class="ot">&lt;-</span> <span class="fu">resid</span>(modelo)</span>
+<span id="cb12-22"><a href="rls.html#cb12-22" tabindex="-1"></a>SSE_otro <span class="ot">&lt;-</span> <span class="fu">sum</span>(residuos<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb12-23"><a href="rls.html#cb12-23" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="rls.html#cb12-24" tabindex="-1"></a><span class="co"># 6. Calcular MSE</span></span>
+<span id="cb12-25"><a href="rls.html#cb12-25" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(datos)              <span class="co"># número de observaciones</span></span>
+<span id="cb12-26"><a href="rls.html#cb12-26" tabindex="-1"></a>gl <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">2</span>                   <span class="co"># grados de libertad</span></span>
+<span id="cb12-27"><a href="rls.html#cb12-27" tabindex="-1"></a>MSE <span class="ot">&lt;-</span> SSE <span class="sc">/</span> gl</span>
+<span id="cb12-28"><a href="rls.html#cb12-28" tabindex="-1"></a>MSE</span></code></pre></div>
+</details>
+<pre><code>## [1] 0.3491253</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="rls.html#cb14-1" tabindex="-1"></a><span class="co"># 7. Calcular RSE</span></span>
+<span id="cb14-2"><a href="rls.html#cb14-2" tabindex="-1"></a>RSE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(MSE)</span>
+<span id="cb14-3"><a href="rls.html#cb14-3" tabindex="-1"></a>RSE</span></code></pre></div>
+</details>
+<pre><code>## [1] 0.5908683</code></pre>
+<p>Cuando ajustamos el modelo con la función <code>modelo &lt;- lm(Resistencia ~ Edad, data = datos)</code> para obtener el RSE de la siguiente forma</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="rls.html#cb16-1" tabindex="-1"></a><span class="do">## estimación de sigma</span></span>
+<span id="cb16-2"><a href="rls.html#cb16-2" tabindex="-1"></a><span class="fu">summary</span>(modelo)<span class="sc">$</span>sigma</span></code></pre></div>
+</details>
+<pre><code>## [1] 0.5908683</code></pre>
+<p>A partir de este resultado podemos concluir que <span class="math inline">\(\hat{\sigma}=0.591\)</span>. Por lo tanto, <span class="math inline">\(MSE=0.591^2=0.349\)</span>. Finalmente, el modelo ajustado puede expresarse como</p>
+<p><span class="math display">\[\begin{align}
+\widehat{\text{Resistencia}}_i &amp;\sim N(\hat{\mu}_i, \hat{\sigma}^2) \\[6pt]
+\hat{\mu}_i &amp;= 15.743 - 0.244 \, \text{Edad}_i \\[6pt]
+\hat{\sigma}^2 &amp;= 0.591^2 = 0.349
+\end{align}\]</span></p>
+
 </div>
 </div>
             </section>
