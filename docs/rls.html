@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2025-09-10" />
+<meta name="date" content="2025-09-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -268,6 +268,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="07-rls.html"><a href="#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1"><i class="fa fa-check"></i><b>7.2</b> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span></a></li>
 <li class="chapter" data-level="7.3" data-path="07-rls.html"><a href="#estimaci%C3%B3n-de-sigma2"><i class="fa fa-check"></i><b>7.3</b> Estimación de <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.4" data-path="07-rls.html"><a href="#coeficiente-de-determinaci%C3%B3n"><i class="fa fa-check"></i><b>7.4</b> Coeficiente de determinación</a></li>
+<li class="chapter" data-level="7.5" data-path="07-rls.html"><a href="#propiedades-de-estimadores-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>7.5</b> Propiedades de estimadores de mínimos cuadrados</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -890,7 +892,12 @@ SSE &amp;= \sum_{i=1}^n (y_i - \hat{y}_i)^2 \\[6pt]
 SSE &amp;= SST - 2\hat{\beta}_1 S_{xy} + \hat{\beta}_1^2 S_{xx} \\[6pt]
 &amp;= SST - 2\hat{\beta}_1 S_{xy} + \hat{\beta}_1 \left(\frac{S_{xy}}{S_{xx}}\right) S_{xx} \\[6pt]
 &amp;= SST - 2\hat{\beta}_1 S_{xy} + \hat{\beta}_1 S_{xy} \\[6pt]
-&amp;= SST - \hat{\beta}_1 S_{xy}.
+&amp;= SST - \hat{\beta}_1 S_{xy},
+\end{align}\]</span></p>
+<p>donde</p>
+<p><span class="math display">\[\begin{align}
+SST &amp;= \sum_{i=1}^n \left(y_i - \bar{y}\right)^2, \\[6pt]
+SSE &amp;= \sum_{i=1}^n \left(y_i - \hat{y}_i\right)^2.
 \end{align}\]</span></p>
 <p>La suma de cuadrados de residuales tiene <span class="math inline">\(n - 2\)</span> grados de libertad, porque dos grados de libertad se asocian con los estimados <span class="math inline">\(\hat{\beta}_0\)</span> y <span class="math inline">\(\hat{\beta}_1\)</span> que se usan para obtener <span class="math inline">\(\hat{y}_i\)</span>.</p>
 <p>Por el teorema de MSA y MSE insesgado de <span class="math inline">\(\sigma^2\)</span>, sabemos que el valor esperado de <span class="math inline">\(SSE\)</span> es:</p>
@@ -904,6 +911,23 @@ E(SSE) = (n-2)\sigma^2,
 <p>La cantidad <span class="math inline">\(MSE\)</span> se llama <strong>cuadrado medio residual</strong>. La raíz cuadrada de <span class="math inline">\(\hat{\sigma}^2\)</span> se llama, a veces, el <strong>error estándar de la regresión (RSE)</strong>, y tiene las mismas unidades que la variable respuesta <span class="math inline">\(y\)</span>.</p>
 <p>Ya que <span class="math inline">\(\hat{\sigma}^2\)</span> depende de la suma de cuadrados de residuales, cualquier violación de las hipótesis sobre los errores del modelo, o cualquier especificación equivocada de la forma del modelo, pueden dañar la utilidad de <span class="math inline">\(\hat{\sigma}^2\)</span> como estimador de <span class="math inline">\(\sigma^2\)</span>.</p>
 <p>Como <span class="math inline">\(\sigma^2\)</span> se calcula con los residuales del modelo de regresión, se dice que es un <strong>estimador de <span class="math inline">\(\sigma^2\)</span> dependiente del modelo</strong>.</p>
+<p>Finalmente, el modelo de <strong>Regresión Lineal Simple (RLS)</strong> estimado es</p>
+<p><span class="math display">\[\begin{align}
+\hat{Y}_i &amp;= \hat{\beta}_0 + \hat{\beta}_1 X_i, \\[6pt]
+\varepsilon_i &amp;\sim N(0, \hat{\sigma}^2), \\[6pt]
+\hat{\sigma}^2 &amp;= \text{constante}.
+\end{align}\]</span></p>
+<p>Otra forma de expresarlo es</p>
+<p><span class="math display">\[\begin{align}
+\hat{Y}_i &amp;\sim N(\hat{\mu}_i, \hat{\sigma}^2), \\[6pt]
+\hat{\mu}_i &amp;= \hat{\beta}_0 + \hat{\beta}_1 X_i.
+\end{align}\]</span></p>
+<ul>
+<li>A partir del modelo ajustado es posible <strong>predecir el valor esperado de <span class="math inline">\(Y\)</span></strong> para valores conocidos de <span class="math inline">\(X\)</span>, es decir, si fijamos un valor <span class="math inline">\(x_0\)</span> del factor <span class="math inline">\(X\)</span>, podemos calcular:</li>
+</ul>
+<p><span class="math display">\[
+E[Y \mid X = x_0].
+\]</span></p>
 <ul>
 <li>Continuando con el ejemplo de soldaduras. Estimemos el <span class="math inline">\(\sigma\)</span>. Haciendolo paso a paso</li>
 </ul>
@@ -956,6 +980,1017 @@ E(SSE) = (n-2)\sigma^2,
 \hat{\mu}_i &amp;= 15.743 - 0.244 \, \text{Edad}_i \\[6pt]
 \hat{\sigma}^2 &amp;= 0.591^2 = 0.349
 \end{align}\]</span></p>
+</div>
+<div id="coeficiente-de-determinación" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Coeficiente de determinación<a href="#coeficiente-de-determinaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="admon-box definicion">
+<div class="admon-title">
+<span class="icon"></span> Definición: coeficiente de determinación
+</div>
+<p>
+El <strong>Coeficiente de Determinación (<span class="math inline">\(R^2\)</span>)</strong> es una medida estadística que indica la
+proporción de la variabilidad total de la variable dependiente <span class="math inline">\(Y\)</span> que es explicada por el modelo
+de regresión.
+</p>
+<p>
+Se define como:
+<br>
+<span class="math display">\[ R^2 =  1 - \dfrac{SSE}{SST} \]</span>
+</p>
+<p>
+Su valor está comprendido entre 0 y 1:
+<ul>
+<li>
+<span class="math inline">\(R^2 \approx 1\)</span>: el modelo explica gran parte de la variabilidad de los datos.
+</li>
+<li>
+<span class="math inline">\(R^2 \approx 0\)</span>: el modelo explica muy poca variabilidad.
+</li>
+</ul>
+</p>
+</div>
+<p>El coeficiente de determinación puede escribirse de un modo diferente al introducir una tercera suma de cuadrados,
+la <strong>suma de cuadrados de regresión</strong>.</p>
+<p><span class="math display">\[\begin{align}
+SSR &amp;= \sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2 = \sum (\hat{y}_i - \bar{y})^2 = \sum \left( \hat{\beta}_0 + \hat{\beta}_1 x_i - \bar{y} \right)^2 \\[6pt]
+    &amp;= \sum \left( -\hat{\beta}_1 \bar{x} + \hat{\beta}_1 x_i \right)^2 = \hat{\beta}_1^2 \sum (x_i - \bar{x})^2 = \hat{\beta}_1 S_{xy} = SST - SSE
+\end{align}\]</span></p>
+<p>Así,</p>
+<p><span class="math display">\[\begin{align}
+R^2 = 1 - \frac{SSE}{SST} = \frac{SST - SSE}{SST} = \frac{SSR}{SST} = \frac{\hat{\beta}_1 S_{xy}}{S_{yy}}
+\end{align}\]</span></p>
+<ul>
+<li>Continuando con el ejemplo de los datos de soldadura, calculemos paso a paso el coeficiente de determinación</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="rls.html#cb18-1" tabindex="-1"></a><span class="co"># 1. Lectura de datos</span></span>
+<span id="cb18-2"><a href="rls.html#cb18-2" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="st">&quot;data/data_rls.txt&quot;</span></span>
+<span id="cb18-3"><a href="rls.html#cb18-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-4"><a href="rls.html#cb18-4" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="rls.html#cb18-5" tabindex="-1"></a><span class="co"># 2. Variables</span></span>
+<span id="cb18-6"><a href="rls.html#cb18-6" tabindex="-1"></a>Y <span class="ot">&lt;-</span> df<span class="sc">$</span>Resistencia</span>
+<span id="cb18-7"><a href="rls.html#cb18-7" tabindex="-1"></a>X <span class="ot">&lt;-</span> df<span class="sc">$</span>Edad</span>
+<span id="cb18-8"><a href="rls.html#cb18-8" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(X)</span>
+<span id="cb18-9"><a href="rls.html#cb18-9" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="rls.html#cb18-10" tabindex="-1"></a><span class="co"># 3. Medias</span></span>
+<span id="cb18-11"><a href="rls.html#cb18-11" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(X)</span>
+<span id="cb18-12"><a href="rls.html#cb18-12" tabindex="-1"></a>y_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y)</span>
+<span id="cb18-13"><a href="rls.html#cb18-13" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="rls.html#cb18-14" tabindex="-1"></a><span class="co"># 4. Cálculo de Sxx y Sxy</span></span>
+<span id="cb18-15"><a href="rls.html#cb18-15" tabindex="-1"></a>Sxx <span class="ot">&lt;-</span> <span class="fu">sum</span>((X <span class="sc">-</span> x_bar)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb18-16"><a href="rls.html#cb18-16" tabindex="-1"></a>Sxy <span class="ot">&lt;-</span> <span class="fu">sum</span>((X <span class="sc">-</span> x_bar) <span class="sc">*</span> (Y <span class="sc">-</span> y_bar))</span>
+<span id="cb18-17"><a href="rls.html#cb18-17" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="rls.html#cb18-18" tabindex="-1"></a><span class="co"># 5. Estimadores de mínimos cuadrados</span></span>
+<span id="cb18-19"><a href="rls.html#cb18-19" tabindex="-1"></a>beta1 <span class="ot">&lt;-</span> Sxy <span class="sc">/</span> Sxx</span>
+<span id="cb18-20"><a href="rls.html#cb18-20" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="rls.html#cb18-21" tabindex="-1"></a><span class="co"># 6. Estimador beta0</span></span>
+<span id="cb18-22"><a href="rls.html#cb18-22" tabindex="-1"></a>beta0 <span class="ot">&lt;-</span> y_bar <span class="sc">-</span> beta1 <span class="sc">*</span> x_bar</span>
+<span id="cb18-23"><a href="rls.html#cb18-23" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="rls.html#cb18-24" tabindex="-1"></a><span class="co"># 7. Valores ajustados</span></span>
+<span id="cb18-25"><a href="rls.html#cb18-25" tabindex="-1"></a>Y_hat <span class="ot">&lt;-</span> beta0 <span class="sc">+</span> beta1 <span class="sc">*</span> X</span>
+<span id="cb18-26"><a href="rls.html#cb18-26" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="rls.html#cb18-27" tabindex="-1"></a><span class="co"># 8. Sumas de cuadrados</span></span>
+<span id="cb18-28"><a href="rls.html#cb18-28" tabindex="-1"></a>SST <span class="ot">&lt;-</span> <span class="fu">sum</span>((Y <span class="sc">-</span> y_bar)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb18-29"><a href="rls.html#cb18-29" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> <span class="fu">sum</span>((Y <span class="sc">-</span> Y_hat)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb18-30"><a href="rls.html#cb18-30" tabindex="-1"></a>SSR <span class="ot">&lt;-</span> SST <span class="sc">-</span> SSE  <span class="co"># también se puede calcular como sum((Y_hat - y_bar)^2)</span></span>
+<span id="cb18-31"><a href="rls.html#cb18-31" tabindex="-1"></a></span>
+<span id="cb18-32"><a href="rls.html#cb18-32" tabindex="-1"></a><span class="co"># 9. Coeficiente de determinación</span></span>
+<span id="cb18-33"><a href="rls.html#cb18-33" tabindex="-1"></a>R2 <span class="ot">&lt;-</span> SSR <span class="sc">/</span> SST</span>
+<span id="cb18-34"><a href="rls.html#cb18-34" tabindex="-1"></a>R2</span></code></pre></div>
+</details>
+<pre><code>## [1] 0.7792861</code></pre>
+<ul>
+<li>Otra forma de calcular el coefiente de determinación es</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="rls.html#cb20-1" tabindex="-1"></a><span class="do">## coeficiente de determinación</span></span>
+<span id="cb20-2"><a href="rls.html#cb20-2" tabindex="-1"></a>rho_est <span class="ot">&lt;-</span> <span class="fu">with</span>(df, <span class="fu">cor</span>(Resistencia, Edad))</span>
+<span id="cb20-3"><a href="rls.html#cb20-3" tabindex="-1"></a>rho_est<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+</details>
+<pre><code>## [1] 0.7792861</code></pre>
+<ul>
+<li>Ahora, usando la función <code>lm</code></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="rls.html#cb22-1" tabindex="-1"></a><span class="co"># ajuste del modelo de RLS</span></span>
+<span id="cb22-2"><a href="rls.html#cb22-2" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(Resistencia <span class="sc">~</span> Edad, <span class="at">data =</span> df)</span>
+<span id="cb22-3"><a href="rls.html#cb22-3" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="rls.html#cb22-4" tabindex="-1"></a><span class="co"># obtención del R^2 a partir de un objeto lm</span></span>
+<span id="cb22-5"><a href="rls.html#cb22-5" tabindex="-1"></a><span class="fu">summary</span>(modelo)<span class="sc">$</span>r.squared    </span></code></pre></div>
+</details>
+<pre><code>## [1] 0.7792861</code></pre>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 1
+</div>
+<p>
+Todos los meses, durante cierto período, se midieron la temperatura promedio en °C (x)
+y el número de libras de vapor (y) consumidas por cierta planta química.
+La recta de mínimos cuadrados calculada de los datos resultantes es:
+</p>
+<p>
+<span class="math inline">\(\hat{y} = 245.82 + 1.13x\)</span>
+</p>
+<ol type="a">
+<li>
+Pronostique el número de libras del vapor consumido en un mes donde la temperatura promedio es 65 °C.
+</li>
+<li>
+Si dos meses difieren en sus temperaturas promedio por 5 °C, ¿cuánto predice que será diferente el número de libras del vapor consumido?
+</li>
+</ol>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 2
+</div>
+<p>
+En un estudio de la relación entre la dureza de Brinell (x) y la tensión de compresión en ksi (y) de elementos de cobre extruidos en frío,
+la recta de mínimos cuadrados fue:
+</p>
+<p>
+<span class="math inline">\(\hat{y} = -196.32 + 2.42x\)</span>
+</p>
+<ol type="a">
+<li>
+Pronostique la fuerza de tensión de un elemento cuya dureza de Brinell es 102.7.
+</li>
+<li>
+Si dos muestras difieren en su dureza de Brinell en 3, ¿cuánto predice que serán diferentes sus tensiones de compresión?
+</li>
+</ol>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 3
+</div>
+<p>
+Una recta de mínimos cuadrados está ajustando a un conjunto de puntos.
+Si la suma total de los cuadrados es <span class="math inline">\(\sum (y_i - \bar{y})^2 = 9615\)</span>,
+y la suma de los cuadrados de los errores es <span class="math inline">\(\sum (y_i - \hat{y}_i)^2 = 1450\)</span>,
+calcule el coeficiente de determinación <span class="math inline">\(R^2\)</span>.
+</p>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 4
+</div>
+<p>
+Una recta de mínimos cuadrados está ajustando un conjunto de puntos.
+Si la suma total de cuadrados es <span class="math inline">\(\sum (y_i - \bar{y})^2 = 181.2\)</span>,
+y la suma de los cuadrados de los errores es <span class="math inline">\(\sum (y_i - \hat{y}_i)^2 = 33.9\)</span>,
+calcule el coeficiente de determinación <span class="math inline">\(R^2\)</span>.
+</p>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 5
+</div>
+<p>
+Con los datos de las estaturas de Galton, la recta de mínimos cuadrados para pronosticar la longitud del antebrazo (y) de la estatura (x) es:
+</p>
+<p>
+<span class="math inline">\(\hat{y} = -0.2967 + 0.2738x\)</span>
+</p>
+<ol type="a">
+<li>
+Pronostique la longitud del antebrazo de un hombre cuya estatura es 70 pulgadas.
+</li>
+<li>
+¿Qué estatura debe tener un hombre con el propósito de que se pronostique que su longitud de antebrazo sea de 19 pulgadas?
+</li>
+<li>
+Todos los hombres en cierto grupo tienen 72 pulgadas de estatura.
+Explique por qué la pendiente de la recta de mínimos cuadrados es menos de 1
+si ambos, las estaturas y los antebrazos se miden en las mismas unidades (pulgadas).
+</li>
+</ol>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 6
+</div>
+<p>
+Los adelantos tecnológicos han hecho posible fabricar botes inflables. Estos botes de goma inflables,
+que pueden enrollarse formando un paquete no mayor que una bolsa de golf, tienen tamaño suficiente para
+dos pasajeros con su equipo de excursionismo.
+</p>
+<p>
+La revista <em>Canoe &amp; Kayac</em> probó los botes de nueve fabricantes para ver su funcionamiento en un
+recorrido de tres días. Uno de los criterios de evaluación fue su capacidad para equipaje que se evaluó
+utilizando una escala de 4 puntos, siendo 1 la puntuación más baja y 4 la puntuación más alta.
+</p>
+<p>
+Los datos siguientes muestran la evaluación que obtuvieron respecto a capacidad para equipaje y los precios
+de los botes (<em>Canoe Kayak</em>, marzo 2003).
+</p>
+<table>
+<thead>
+<tr>
+<th>
+Bote
+</th>
+<th>
+Capacidad para equipaje
+</th>
+<th>
+Precio ($)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+S14
+</td>
+<td>
+4
+</td>
+<td>
+1595
+</td>
+</tr>
+<tr>
+<td>
+Orinoco
+</td>
+<td>
+4
+</td>
+<td>
+1399
+</td>
+</tr>
+<tr>
+<td>
+Outside Pro
+</td>
+<td>
+4
+</td>
+<td>
+1890
+</td>
+</tr>
+<tr>
+<td>
+Explorer 380X
+</td>
+<td>
+3
+</td>
+<td>
+795
+</td>
+</tr>
+<tr>
+<td>
+River XK2
+</td>
+<td>
+2.5
+</td>
+<td>
+600
+</td>
+</tr>
+<tr>
+<td>
+Sea Tiger
+</td>
+<td>
+4
+</td>
+<td>
+1995
+</td>
+</tr>
+<tr>
+<td>
+Maverik II
+</td>
+<td>
+3
+</td>
+<td>
+1205
+</td>
+</tr>
+<tr>
+<td>
+Starlite 100
+</td>
+<td>
+2
+</td>
+<td>
+583
+</td>
+</tr>
+<tr>
+<td>
+Fat Pack Cat
+</td>
+<td>
+3
+</td>
+<td>
+1048
+</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+Trace el diagrama de dispersión de estos datos empleando la capacidad para equipaje como variable independiente.
+</li>
+<li>
+¿Qué indica el diagrama de dispersión del inciso a) respecto a la relación entre capacidad para equipaje y precio?
+</li>
+<li>
+A través de los puntos de los datos trace una línea recta para aproximar la relación lineal entre capacidad para equipaje y precio.
+</li>
+<li>
+Utilice el método de mínimos cuadrados para obtener la ecuación de regresión estimada.
+</li>
+<li>
+Dé una interpretación de la pendiente de la ecuación de regresión estimada.
+</li>
+<li>
+Diga cuál será el precio de un bote que tenga 3 en la evaluación de su capacidad para equipaje.
+</li>
+</ol>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 7
+</div>
+<p>
+Wageweb realiza estudios sobre datos salariales y presenta resúmenes de éstos en su sitio de la Red.
+Basándose en datos salariales desde el 1 de octubre de 2002, Wageweb publicó que el salario anual promedio
+de los vicepresidentes de ventas era $142 111 con una gratificación anual promedio de $15 432
+(<em>Wageweb.com</em>, 13 de marzo de 2003).
+</p>
+<p>
+Suponga que los datos siguientes sean una muestra de salarios y bonos anuales de 10 vicepresidentes de ventas.
+Los datos se dan en miles de dólares.
+</p>
+<table>
+<thead>
+<tr>
+<th>
+Vicepresidente
+</th>
+<th>
+Salario
+</th>
+<th>
+Gratificación
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+1
+</td>
+<td>
+135
+</td>
+<td>
+12
+</td>
+</tr>
+<tr>
+<td>
+2
+</td>
+<td>
+115
+</td>
+<td>
+14
+</td>
+</tr>
+<tr>
+<td>
+3
+</td>
+<td>
+147
+</td>
+<td>
+16
+</td>
+</tr>
+<tr>
+<td>
+4
+</td>
+<td>
+167
+</td>
+<td>
+22
+</td>
+</tr>
+<tr>
+<td>
+5
+</td>
+<td>
+165
+</td>
+<td>
+24
+</td>
+</tr>
+<tr>
+<td>
+6
+</td>
+<td>
+176
+</td>
+<td>
+29
+</td>
+</tr>
+<tr>
+<td>
+7
+</td>
+<td>
+98
+</td>
+<td>
+7
+</td>
+</tr>
+<tr>
+<td>
+8
+</td>
+<td>
+136
+</td>
+<td>
+17
+</td>
+</tr>
+<tr>
+<td>
+9
+</td>
+<td>
+163
+</td>
+<td>
+21
+</td>
+</tr>
+<tr>
+<td>
+10
+</td>
+<td>
+119
+</td>
+<td>
+11
+</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+Trace un diagrama de dispersión con estos datos tomando como variable independiente los salarios.
+</li>
+<li>
+¿Qué indica el diagrama de dispersión del inciso a) acerca de la relación entre salario y gratificación?
+</li>
+<li>
+Use el método de mínimos cuadrados para obtener la ecuación de regresión estimada.
+</li>
+<li>
+Dé una interpretación de la ecuación de regresión estimada.
+</li>
+<li>
+¿Cuál será la gratificación de un vicepresidente que tenga un salario anual de $120 000?
+</li>
+</ol>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 8
+</div>
+<p>
+Se midió el peso inercial (en toneladas) y el ahorro de combustible (en milla/galón)
+para una muestra de siete camiones de diésel. En la tabla siguiente se presentan los resultados.
+(De “In—Use Emissions from Heavy—Duty Diesel Vehicles,” J. Yanowitz, tesis de doctorado,
+Escuela de Minas de Colorado, 2001.)
+</p>
+<table>
+<thead>
+<tr>
+<th>
+Peso
+</th>
+<th>
+Millaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+8.00
+</td>
+<td>
+7.69
+</td>
+</tr>
+<tr>
+<td>
+24.50
+</td>
+<td>
+4.97
+</td>
+</tr>
+<tr>
+<td>
+27.00
+</td>
+<td>
+4.56
+</td>
+</tr>
+<tr>
+<td>
+14.50
+</td>
+<td>
+6.49
+</td>
+</tr>
+<tr>
+<td>
+28.50
+</td>
+<td>
+4.34
+</td>
+</tr>
+<tr>
+<td>
+12.75
+</td>
+<td>
+6.24
+</td>
+</tr>
+<tr>
+<td>
+21.25
+</td>
+<td>
+4.45
+</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+Construya un diagrama de puntos del millaje (y) contra el peso (x). Compruebe que un modelo lineal es adecuado.
+</li>
+<li>
+Calcule la recta de mínimos cuadrados para pronosticar el millaje a partir del peso.
+</li>
+<li>
+Si los dos camiones son diferentes en peso por cinco toneladas, ¿cuánto predeciría que son diferentes sus millajes?
+</li>
+<li>
+Pronostique el millaje para camiones con un peso de 15 toneladas.
+</li>
+<li>
+¿Cuáles son las unidades de la pendiente estimada <span class="math inline">\(\hat{\beta}_1\)</span>?
+</li>
+<li>
+¿Cuáles son las unidades del intercepto estimado <span class="math inline">\(\hat{\beta}_0\)</span>?
+</li>
+</ol>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 9
+</div>
+<p>
+El procesamiento de carbón natural implica el “lavado” durante el cual se elimina ceniza de carbón
+(no orgánico, material no combustible). El artículo <em>“Quantifying Sampling Precision for Coal Ash
+Using Gy’s Discrete Model of the Fundamental Error”</em>
+(<em>Journal of Coal Quality</em>, 1989, 33-39) proporciona los datos relacionados con los porcentajes
+de ceniza con la densidad de una partícula de carbón.
+</p>
+<p>
+Se midió el promedio de porcentaje de ceniza para cinco densidades de partículas de carbón.
+En la tabla siguiente se presentan los datos:
+</p>
+<table>
+<thead>
+<tr>
+<th>
+Densidad (g/cm³)
+</th>
+<th>
+Porcentaje de ceniza
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+1.25
+</td>
+<td>
+1.93
+</td>
+</tr>
+<tr>
+<td>
+1.325
+</td>
+<td>
+4.63
+</td>
+</tr>
+<tr>
+<td>
+1.375
+</td>
+<td>
+8.95
+</td>
+</tr>
+<tr>
+<td>
+1.45
+</td>
+<td>
+15.05
+</td>
+</tr>
+<tr>
+<td>
+1.55
+</td>
+<td>
+23.31
+</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+Construya un diagrama de dispersión del porcentaje de ceniza (y) contra la densidad (x). Verifique que es adecuado un modelo lineal.
+</li>
+<li>
+Calcule la recta de mínimos cuadrados para pronosticar porcentaje de ceniza a partir de la densidad.
+</li>
+<li>
+Si las dos partículas de carbón difieren en densidad por 0.1 g/cm³, ¿cuánto predeciría que será diferente el porcentaje de ceniza?
+</li>
+<li>
+Pronostique el porcentaje de ceniza para partículas con 1.40 g/cm³.
+</li>
+<li>
+Calcule los valores ajustados.
+</li>
+<li>
+Calcule los residuos. ¿Qué punto tiene el residuo con magnitud mayor?
+</li>
+<li>
+Calcule la correlación entre la densidad y el porcentaje de ceniza.
+</li>
+<li>
+Haga la suma de cuadrados de regresión, la suma de cuadrados del error y la suma total de cuadrados.
+</li>
+<li>
+Divida la suma de cuadrados de regresión entre la suma total de cuadrados. ¿Cuál es la relación entre esta cantidad y el coeficiente de correlación?
+</li>
+</ol>
+</div>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio 10
+</div>
+<p>
+Un ingeniero quiere pronosticar el valor de <em>y</em> cuando <em>x = 4.5</em> utilizando el siguiente conjunto de datos:
+</p>
+<table>
+<thead>
+<tr>
+<th>
+x
+</th>
+<th>
+y
+</th>
+<th>
+z = ln y
+</th>
+<th>
+x
+</th>
+<th>
+y
+</th>
+<th>
+z = ln y
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+1
+</td>
+<td>
+0.2
+</td>
+<td>
+-1.61
+</td>
+<td>
+6
+</td>
+<td>
+2.3
+</td>
+<td>
+0.83
+</td>
+</tr>
+<tr>
+<td>
+2
+</td>
+<td>
+0.3
+</td>
+<td>
+-1.20
+</td>
+<td>
+7
+</td>
+<td>
+2.9
+</td>
+<td>
+1.06
+</td>
+</tr>
+<tr>
+<td>
+3
+</td>
+<td>
+0.5
+</td>
+<td>
+-0.69
+</td>
+<td>
+8
+</td>
+<td>
+4.5
+</td>
+<td>
+1.50
+</td>
+</tr>
+<tr>
+<td>
+4
+</td>
+<td>
+0.5
+</td>
+<td>
+-0.69
+</td>
+<td>
+9
+</td>
+<td>
+8.7
+</td>
+<td>
+2.16
+</td>
+</tr>
+<tr>
+<td>
+5
+</td>
+<td>
+1.3
+</td>
+<td>
+0.26
+</td>
+<td>
+10
+</td>
+<td>
+12.0
+</td>
+<td>
+2.48
+</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+Construya un diagrama de dispersión de los puntos (x, y).
+</li>
+<li>
+¿La recta de mínimos cuadrados se debe utilizar para pronosticar el valor de y cuando x = 4.5?
+Si es así, calcule la recta de mínimos cuadrados y el valor pronosticado. Si no, explique.
+</li>
+<li>
+Construya un diagrama de dispersión de los puntos (x, z), donde z = ln y.
+</li>
+<li>
+Utilice la recta de mínimos cuadrados para pronosticar el valor de z cuando x = 4.5.
+¿Éste es un método adecuado de pronóstico? Explique por qué sí o no.
+</li>
+<li>
+Sea ẑ el valor pronosticado de z calculado en el inciso d).
+Sea ŷ = e<sup>ẑ</sup>. Explique por qué ŷ es un pronosticador razonable del valor de y cuando x = 4.5.
+</li>
+</ol>
+</div>
+</div>
+<div id="propiedades-de-estimadores-de-mínimos-cuadrados" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Propiedades de estimadores de mínimos cuadrados<a href="#propiedades-de-estimadores-de-m%C3%ADnimos-cuadrados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="admon-box teorema">
+<div class="admon-title">
+<span class="icon"></span> Teorema
+</div>
+<p>
+<p>Sean <span class="math inline">\(\hat{\beta}_0\)</span> y <span class="math inline">\(\hat{\beta}_1\)</span> los estimadores de mínimos cuadrados de los parámetros
+en un modelo de regresión lineal simple</p>
+<p><span class="math display">\[\begin{align}
+y_i &amp;= \beta_0 + \beta_1 x_i + \varepsilon_i, \\[6pt]
+\varepsilon_i &amp;\sim N(0, \sigma^2).
+\end{align}\]</span></p>
+Entonces
+</p>
+<ol type="a">
+<li>
+<strong>Insesgado:</strong>
+<span class="math display">\[
+      E(\hat{\beta}_1) = \beta_1, \quad E(\hat{\beta}_0) = \beta_0
+      \]</span>
+</li>
+<li>
+<strong>Varianzas:</strong>
+<span class="math display">\[
+      V(\hat{\beta}_1) = \frac{\sigma^2}{S_{xx}}, \quad
+      V(\hat{\beta}_0) = \sigma^2 \left(\frac{1}{n} + \frac{\bar{x}^2}{S_{xx}}\right)
+      \]</span>
+donde <span class="math inline">\(S_{xx} = \sum_{i=1}^{n} (x_i - \bar{x})^2\)</span>.
+</li>
+<li>
+<strong>Distribuciones:</strong>
+<span class="math display">\[
+      \hat{\beta}_1 \sim N\left(\beta_1, \frac{\sigma^2}{S_{xx}}\right), \quad
+      \hat{\beta}_0 \sim N\left(\beta_0, \sigma^2\left(\frac{1}{n} + \frac{\bar{x}^2}{S_{xx}}\right)\right)
+      \]</span>
+</li>
+</ol>
+</div>
+<p style="text-align: left;">
+<strong>Demostración del teorema</strong>
+</p>
+<p>Inicialmente probemos que <span class="math inline">\(E(\hat{\beta}_1) = \beta_1\)</span>. En efecto</p>
+<p><span class="math display">\[
+\hat{\beta}_1=\frac{S_{xy}}{S_{xx}},
+\qquad S_{xy}=\sum_{i=1}^n (x_i-\bar x)(y_i-\bar y),
+\qquad S_{xx}=\sum_{i=1}^n (x_i-\bar x)^2&gt;0.
+\]</span></p>
+<p>Ahora,</p>
+<p><span class="math display">\[\begin{align}
+\sum_{i=1}^n (x_i - \bar{x}) &amp;= \sum_{i=1}^n x_i - \sum_{i=1}^n \bar{x} = \sum_{i=1}^n x_i - n\bar{x} \\[6pt]
+&amp;= \sum_{i=1}^n x_i - n\left(\tfrac{1}{n}\sum_{i=1}^n x_i\right)= \sum_{i=1}^n x_i - \sum_{i=1}^n x_i = 0.
+\end{align}\]</span></p>
+<p>Como <span class="math inline">\(\sum_{i=1}^n (x_i-\bar x)=0\)</span> se tiene que</p>
+<p><span class="math display">\[\begin{align}
+S_{xy}
+&amp;= \sum_{i=1}^n (x_i-\bar x)y_i - \bar y \sum_{i=1}^n (x_i-\bar x) \\
+&amp;= \sum_{i=1}^n (x_i-\bar x)\, y_i,
+\end{align}\]</span></p>
+<p>de modo que</p>
+<p><span class="math display">\[
+\hat{\beta}_1=\frac{\sum_{i=1}^n (x_i-\bar x)\, y_i}{S_{xx}}.
+\]</span></p>
+<p>Sustituyendo el modelo <span class="math inline">\(y_i=\beta_0+\beta_1 x_i+\varepsilon_i\)</span> tenemos que</p>
+<p><span class="math display">\[\begin{align}
+\sum_{i=1}^n (x_i-\bar x) y_i
+&amp;= \sum_{i=1}^n (x_i-\bar x)(\beta_0+\beta_1 x_i+\varepsilon_i) \\
+&amp;= \beta_0 \sum_{i=1}^n (x_i-\bar x)
+   + \beta_1 \sum_{i=1}^n (x_i-\bar x)x_i
+   + \sum_{i=1}^n (x_i-\bar x)\varepsilon_i \\
+&amp;= 0
+   + \beta_1 \sum_{i=1}^n (x_i-\bar x)x_i
+   + \sum_{i=1}^n (x_i-\bar x)\varepsilon_i\\
+   &amp;= \beta_1 \sum_{i=1}^n (x_i-\bar x)x_i
+   + \sum_{i=1}^n (x_i-\bar x)\varepsilon_i.
+\end{align}\]</span></p>
+<p>Por otro lado,</p>
+<p><span class="math display">\[\begin{align}
+\sum_{i=1}^n (x_i - \bar{x})x_i
+&amp;= \sum_{i=1}^n \big[(x_i - \bar{x})(x_i - \bar{x} + \bar{x})\big] \\[6pt]
+&amp;= \sum_{i=1}^n (x_i - \bar{x})^2 + \bar{x}\sum_{i=1}^n (x_i - \bar{x}) \\[6pt]
+&amp;= \sum_{i=1}^n (x_i - \bar{x})^2 + \bar{x}\cdot 0 \\[6pt]
+&amp;= \sum_{i=1}^n (x_i - \bar{x})^2 \\[6pt]
+&amp;= S_{xx}.
+\end{align}\]</span></p>
+<p>Usando la identidad <span class="math inline">\(\sum_{i=1}^n (x_i-\bar x)x_i = S_{xx}\)</span> se sigue que</p>
+<p><span class="math display">\[
+\sum_{i=1}^n (x_i-\bar x) y_i = \beta_1 S_{xx} + \sum_{i=1}^n (x_i-\bar x)\varepsilon_i.
+\]</span></p>
+<p>Por tanto
+<span class="math display">\[
+\hat{\beta}_1
+= \frac{\beta_1 S_{xx} + \sum_{i=1}^n (x_i-\bar x)\varepsilon_i}{S_{xx}}
+= \beta_1 + \frac{\sum_{i=1}^n (x_i-\bar x)\varepsilon_i}{S_{xx}}.
+\]</span></p>
+<p>Como <span class="math inline">\(\hat{\beta}_1\)</span> se construye con los <span class="math inline">\(x_i\)</span> y los <span class="math inline">\(\varepsilon_i\)</span>, al condicionar en <span class="math inline">\(X\)</span> quitamos la incertidumbre de los <span class="math inline">\(x_i\)</span> y nos quedamos solo con la parte aleatoria de los errores, por lo que</p>
+<p><span class="math display">\[\begin{align}
+E[\hat{\beta}_1 \mid X]
+&amp;= \beta_1 + \frac{\sum_{i=1}^{n} (x_i-\bar x) E[\varepsilon_i]}{S_{xx}}
+= \beta_1 + \frac{0}{S_{xx}}
+= \beta_1.
+\end{align}\]</span></p>
+<p>Como la igualdad es cierta para cualquier conjunto de valores <span class="math inline">\(X\)</span>, se concluye que</p>
+<p><span class="math display">\[
+\boxed{\,E(\hat{\beta}_1)=\beta_1\,}
+\]</span></p>
+<p>Ahora, probemos que <span class="math inline">\(E(\hat{\beta}_0)=\beta_0\)</span>. En efecto, sabemos que <span class="math inline">\(\hat{\beta}_0 = \overline{y} - \hat{\beta}_1 \overline{x}\)</span>, por lo que</p>
+<p><span class="math display">\[\begin{align}
+E[\hat{\beta}_0 \mid X]
+&amp;= E[\overline{y} \mid X] - E[\hat{\beta}_1 \mid X]\overline{x} \\[6pt]
+&amp;= E[\big(\beta_0 + \beta_1 \overline{x}\big) \mid X] - E[\hat{\beta}_1 \mid X]\overline{x} \\[6pt]
+&amp;= \big(\beta_0 + \beta_1 \overline{x}\big) - \beta_1 \overline{x} \\[6pt]
+&amp;= \beta_0.
+\end{align}\]</span></p>
+<p>Y como esta igualdad vale para cualquier conjunto de valores <span class="math inline">\(X\)</span></p>
+<p><span class="math display">\[
+\boxed{E(\hat{\beta}_0) = \beta_0}
+\]</span></p>
+<p>Por otro lado, probemos que <span class="math inline">\(V(\hat{\beta}_1) = \frac{\sigma^2}{S_{xx}}\)</span>. En efecto; anteriormente probamos que</p>
+<p><span class="math display">\[\begin{align}
+\hat{\beta}_1 = \beta_1 + \frac{\sum_{i=1}^{n} (x_i - \bar{x})\varepsilon_i}{S_{xx}},
+\end{align}\]</span></p>
+<p>Como <span class="math inline">\(Var(\beta_1)=0\)</span>, ya que <span class="math inline">\(\beta_1\)</span> es constante entonces</p>
+<p><span class="math display">\[\begin{align}
+Var(\hat{\beta}_1\mid X)
+&amp;= Var\!\left(\frac{\sum_{i=1}^{n} (x_i - \bar{x})\varepsilon_i}{S_{xx}}\mid X\right).
+\end{align}\]</span></p>
+<p>Sabemos que los errores son independientes, <span class="math inline">\(E(\varepsilon_i)=0\)</span> y <span class="math inline">\(Var(\varepsilon_i)=\sigma\)</span> por lo que</p>
+<p><span class="math display">\[\begin{align}
+Var(\hat{\beta}_1\mid X)  
+&amp;= \frac{1}{S_{xx}^2} \; Var\!\left(\sum_{i=1}^{n} (x_i - \bar{x})\varepsilon_i\mid X\right)=
+\frac{1}{S_{xx}^2}Var\!\left(\sum_{i=1}^{n} (x_i - \bar{x})\varepsilon_i\mid X\right) \\[6pt]
+&amp;= \frac{1}{S_{xx}^2}\sum_{i=1}^{n} (x_i - \bar{x})^2 Var(\varepsilon_i) = \frac{1}{S_{xx}^2}\sigma^2 \sum_{i=1}^{n} (x_i - \bar{x})^2 \\[6pt]
+&amp;= \frac{1}{S_{xx}^2}\sigma^2 S_{xx}=\frac{\sigma^2}{S_{xx}}
+\end{align}\]</span></p>
+<p>En consecuencia</p>
+<p><span class="math display">\[
+\boxed{Var(\hat{\beta}_1)= \frac{\sigma^2}{S_{xx}}}
+\]</span></p>
+<p>Probemos que <span class="math inline">\(V(\hat{\beta}_0) = \sigma^2 \left(\frac{1}{n} + \frac{\bar{x}^2}{S_{xx}}\right)\)</span>. En efecto</p>
+<p><span class="math display">\[\begin{align}
+Var(\hat{\beta}_0\mid X)
+&amp;= Var(\bar{y} - \hat{\beta}_1 \bar{y}\mid X) \\[6pt]
+&amp;= Var(\bar{y}\mid X) + \bar{x}^2 Var(\hat{\beta}_1\mid X) - 2\bar{x}\,Cov(\bar{y},\hat{\beta}_1\mid X).
+\end{align}\]</span></p>
+<p>Pruebe <span class="math inline">\(Cov(\bar{y},\hat{\beta}_1\mid X) = 0\)</span>, entonces</p>
+<p><span class="math display">\[\begin{align}
+Var(\hat{\beta}_0\mid X)
+&amp;= Var(\bar{y}\mid X) + \bar{x}^2 Var(\hat{\beta}_1\mid X)\\[6pt]
+&amp;= \frac{\sigma^2}{n} + \bar{x}^2 \frac{\sigma^2}{S_{xx}}\\[6pt]
+&amp;=\sigma^2\left(\frac{1}{n}+\frac{\bar{x}^2}{S_{xx}}\right)
+\end{align}\]</span></p>
+<p>Por lo tanto</p>
+<p><span class="math display">\[
+\boxed{Var(\hat{\beta}_0)= \sigma^2\left(\frac{1}{n}+\frac{\bar{x}^2}{S_{xx}}\right)}\quad\square
+\]</span></p>
 
 </div>
 </div>

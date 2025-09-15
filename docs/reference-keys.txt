@@ -113,3 +113,9 @@ tab:tabla-anova-3
 tab:tabla-contingencia
 tab:ejemplo-1
 tab:unnamed-chunk-1
+coeficiente-de-determinación
+paso-1.-definiciones-de-sumas-de-cuadrados
+paso-2.-relación-fundamental
+paso-3.-definición-de-r2
+paso-4.-interpretación
+propiedades-de-estimadores-de-mínimos-cuadrados
