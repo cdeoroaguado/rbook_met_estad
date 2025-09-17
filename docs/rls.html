@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2025-09-14" />
+<meta name="date" content="2025-09-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -270,6 +270,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="07-rls.html"><a href="#estimaci%C3%B3n-de-sigma2"><i class="fa fa-check"></i><b>7.3</b> Estimación de <span class="math inline">\(\sigma^2\)</span></a></li>
 <li class="chapter" data-level="7.4" data-path="07-rls.html"><a href="#coeficiente-de-determinaci%C3%B3n"><i class="fa fa-check"></i><b>7.4</b> Coeficiente de determinación</a></li>
 <li class="chapter" data-level="7.5" data-path="07-rls.html"><a href="#propiedades-de-estimadores-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>7.5</b> Propiedades de estimadores de mínimos cuadrados</a></li>
+<li class="chapter" data-level="7.6" data-path="07-rls.html"><a href="#estimaci%C3%B3n-de-invervalos-de-confianza-y-prueba-de-hip%C3%B3tesis-para-beta_1-beta_0-y-sigma2"><i class="fa fa-check"></i><b>7.6</b> Estimación de invervalos de confianza y prueba de hipótesis para <span class="math inline">\(\beta_1, \beta_0\)</span> y <span class="math inline">\(\sigma^2\)</span></a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-beta_1"><i class="fa fa-check"></i><b>7.6.1</b> Intervalo de confianza para <span class="math inline">\(\beta_1\)</span></a></li>
+<li class="chapter" data-level="7.6.2" data-path="07-rls.html"><a href="#prueba-de-hip%C3%B3tesis-para-beta_1"><i class="fa fa-check"></i><b>7.6.2</b> Prueba de hipótesis para <span class="math inline">\(\beta_1\)</span></a></li>
+<li class="chapter" data-level="7.6.3" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-beta_0"><i class="fa fa-check"></i><b>7.6.3</b> Intervalo de confianza para <span class="math inline">\(\beta_0\)</span></a></li>
+<li class="chapter" data-level="7.6.4" data-path="07-rls.html"><a href="#prueba-de-hip%C3%B3tesis-para-beta_0"><i class="fa fa-check"></i><b>7.6.4</b> Prueba de hipótesis para <span class="math inline">\(\beta_0\)</span></a></li>
+<li class="chapter" data-level="7.6.5" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-sigma2"><i class="fa fa-check"></i><b>7.6.5</b> Intervalo de confianza para <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.6.6" data-path="07-rls.html"><a href="#prueba-de-hip%C3%B3tesis-para-sigma2"><i class="fa fa-check"></i><b>7.6.6</b> Prueba de hipótesis para <span class="math inline">\(\sigma^2\)</span></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -1860,8 +1869,8 @@ Entonces
 <li>
 <strong>Varianzas:</strong>
 <span class="math display">\[
-      V(\hat{\beta}_1) = \frac{\sigma^2}{S_{xx}}, \quad
-      V(\hat{\beta}_0) = \sigma^2 \left(\frac{1}{n} + \frac{\bar{x}^2}{S_{xx}}\right)
+      \hat{\sigma}^2_{\hat{\beta}_1}=Var(\hat{\beta}_1) = \frac{\sigma^2}{S_{xx}}, \quad
+      \hat{\sigma}^2_{\hat{\beta}_0}= Var(\hat{\beta}_0) = \sigma^2 \left(\frac{1}{n} + \frac{\bar{x}^2}{S_{xx}}\right)
       \]</span>
 donde <span class="math inline">\(S_{xx} = \sum_{i=1}^{n} (x_i - \bar{x})^2\)</span>.
 </li>
@@ -1991,7 +2000,222 @@ Var(\hat{\beta}_0\mid X)
 <p><span class="math display">\[
 \boxed{Var(\hat{\beta}_0)= \sigma^2\left(\frac{1}{n}+\frac{\bar{x}^2}{S_{xx}}\right)}\quad\square
 \]</span></p>
+</div>
+<div id="estimación-de-invervalos-de-confianza-y-prueba-de-hipótesis-para-beta_1-beta_0-y-sigma2" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Estimación de invervalos de confianza y prueba de hipótesis para <span class="math inline">\(\beta_1, \beta_0\)</span> y <span class="math inline">\(\sigma^2\)</span><a href="#estimaci%C3%B3n-de-invervalos-de-confianza-y-prueba-de-hip%C3%B3tesis-para-beta_1-beta_0-y-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="intervalo-de-confianza-para-beta_1" class="section level3 hasAnchor" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> Intervalo de confianza para <span class="math inline">\(\beta_1\)</span><a href="rls.html#intervalo-de-confianza-para-beta_1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En un modelo de <strong>regresión lineal simple</strong>, queremos estimar el verdadero valor de la pendiente <span class="math inline">\(\beta_1\)</span>.</p>
+<p>Para ello construimos un <strong>intervalo de confianza (IC)</strong> basado en la distribución muestral del estimador <span class="math inline">\(\hat{\beta}_1\)</span> y en las propiedades de los estimadores de mínimos cuadrados</p>
+<ol style="list-style-type: decimal">
+<li>El estadístico de prueba de la variable estandarizada es:</li>
+</ol>
+<p><span class="math display">\[
+T = \frac{\hat{\beta}_1 - \beta_1}{\widehat{\sigma}_{\hat{\beta}_1}} \sim t_{(n-2)}
+\]</span></p>
+<p>donde <span class="math inline">\(t_{(n-2)}\)</span> es la distribución t de Student con <span class="math inline">\(n-2\)</span> grados de libertad.</p>
+<p>cuya expresión de probabilidad definida de un intervalo de confianza es</p>
+<p><span class="math display">\[
+P\left(-t_{\alpha/2,\,n-2} &lt; \frac{\hat{\beta}_1 - \beta_1}{\widehat{\sigma}_{\hat{\beta}_1}} &lt; t_{\alpha/2,\,n-2}\right) = 1-\alpha
+\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Reordenando la desigualdad y despejando <span class="math inline">\(\beta_1\)</span>, obtenemos el intervalo para la pendiente</li>
+</ol>
+<p><span class="math display">\[
+\hat{\beta}_1 - t_{\alpha/2,\,n-2}\,\sqrt{\frac{\hat{\sigma}^2}{S_{xx}}}
+\;&lt;\; \beta_1 \;&lt;\;
+\hat{\beta}_1 + t_{\alpha/2,\,n-2}\,\sqrt{\frac{\hat{\sigma}^2}{S_{xx}}}
+\tag{6.1}
+\]</span></p>
+<p>donde</p>
+<ul>
+<li><span class="math inline">\(\hat{\beta}_1\)</span>: estimador de la pendiente.<br />
+</li>
+<li><span class="math inline">\(t_{\alpha/2,\,n-2}\)</span>: valor crítico de la <span class="math inline">\(t\)</span> de Student.<br />
+</li>
+<li><span class="math inline">\(\hat{\sigma}^2\)</span>: estimador de la varianza residual.<br />
+</li>
+<li><span class="math inline">\(S_{xx} = \sum (x_i - \bar{x})^2\)</span>: suma de cuadrados de la variable explicativa.</li>
+</ul>
+<p>Con este intervalo, afirmamos que con una <strong>confianza <span class="math inline">\((1-\alpha)100\%\)</span></strong>, la verdadera pendiente <span class="math inline">\(\beta_1\)</span> se encuentra dentro de los límites calculados.</p>
+<div class="admon-box observacion">
+<div class="admon-title">
+<span class="icon"></span> Observación
+</div>
+<p>
+Cuando <span class="math inline">\(n-2&gt;30\)</span>, podemos aproximar la distribución <span class="math inline">\(t_{n-2}\)</span> a la distribución normal estándar. En <strong>R</strong>, utilizaríamos la <code>pnorm()</code> en lugar de <code>pt()</code>. Para más detalles, escriba <code>?pnorm</code> en la consola del <strong>R</strong>.
+</p>
+</div>
+</div>
+<div id="prueba-de-hipótesis-para-beta_1" class="section level3 hasAnchor" number="7.6.2">
+<h3><span class="header-section-number">7.6.2</span> Prueba de hipótesis para <span class="math inline">\(\beta_1\)</span><a href="#prueba-de-hip%C3%B3tesis-para-beta_1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El par de hipótesis más común en la regresión lineal simple se plantea sobre la pendiente <span class="math inline">\(\beta_1\)</span>:</p>
+<p><span class="math display">\[
+H_0: \beta_1 = 0
+\quad \text{vs} \quad
+H_1: \beta_1 \neq 0
+\]</span></p>
+<p>La interpretación de la hipótesis nula nos queda
+- Si <span class="math inline">\(H_0\)</span> es verdadera, entonces <span class="math inline">\(E(Y \mid x) = \beta_0\)</span>, es decir, la variable explicativa <span class="math inline">\(x\)</span> <strong>no aporta información</strong> sobre la variable dependiente <span class="math inline">\(Y\)</span>.<br />
+- La prueba se conoce como <strong>prueba de utilidad del modelo</strong>: verifica si la pendiente es significativamente distinta de cero.</p>
+<p>Si <span class="math inline">\(H_0\)</span> es rechazada (para <span class="math inline">\(\alpha\)</span> pequeña), confirmamos la utilidad del modelo. Esto suele ocurrir cuando el coeficiente de determinación <span class="math inline">\(R^2\)</span> es grande.</p>
+<p>El procedimiento de prueba es</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Planteamiento de hipótesis</strong><br />
+<span class="math display">\[
+H_0 : \beta_1 = 0
+\quad \text{vs} \quad
+H_1 : \beta_1 \neq 0
+\]</span></p></li>
+<li><p><strong>Cálculo del estadístico de prueba</strong><br />
+<span class="math display">\[
+t_0 = \frac{\hat{\beta}_1}{\sqrt{\dfrac{\hat{\sigma}^2}{S_{xx}}}}
+\]</span></p></li>
+<li><p><strong>Cálculo del valor p</strong><br />
+<span class="math display">\[
+P = 2P(T &gt; |t_0|), \quad T \sim t_{(n-2)}
+\]</span></p></li>
+</ol>
+<p>de alli la decisión</p>
+<ul>
+<li>Si <span class="math inline">\(P &lt; \alpha\)</span>, <strong>rechazamos <span class="math inline">\(H_0\)</span></strong> → la variable explicativa <span class="math inline">\(x\)</span> aporta información significativa y el modelo es útil.<br />
+</li>
+<li>Si <span class="math inline">\(P \geq \alpha\)</span>, <strong>no rechazamos <span class="math inline">\(H_0\)</span></strong> → no hay evidencia suficiente para afirmar que <span class="math inline">\(\beta_1 \neq 0\)</span>.</li>
+</ul>
+</div>
+<div id="intervalo-de-confianza-para-beta_0" class="section level3 hasAnchor" number="7.6.3">
+<h3><span class="header-section-number">7.6.3</span> Intervalo de confianza para <span class="math inline">\(\beta_0\)</span><a href="rls.html#intervalo-de-confianza-para-beta_0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En la regresión lineal simple, el estimador del intercepto es:</p>
+<p><span class="math display">\[
+\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{y}
+\]</span></p>
+<p>Al igual que con la pendiente, el estadístico de prueba de la variable estandarizada es:</p>
+<p><span class="math display">\[
+T = \frac{\hat{\beta}_0 - \beta_0}{\widehat{\sigma}_{\hat{\beta}_0}} \sim t_{(n-2)}
+\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>El error estándar de <span class="math inline">\(\hat{\beta}_0\)</span> es:</li>
+</ol>
+<p><span class="math display">\[
+\widehat{\sigma}_{\hat{\beta}_0} =
+\sqrt{\hat{\sigma}^2 \left( \frac{1}{n} + \frac{\bar{x}^2}{S_{xx}} \right)}
+\]</span></p>
+<p>donde</p>
+<ul>
+<li><span class="math inline">\(n\)</span>: número de observaciones.<br />
+</li>
+<li><span class="math inline">\(\bar{x}\)</span>: media de la variable explicativa.<br />
+</li>
+<li><span class="math inline">\(S_{xx} = \sum (x_i - \bar{x})^2\)</span>.<br />
+</li>
+<li><span class="math inline">\(\hat{\sigma}^2\)</span>: estimador de la varianza residual.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>A partir de la expresión de probabilidad, se obtiene que el intervalo de confianza <span class="math inline">\((1-\alpha)100\%\)</span> para <span class="math inline">\(\beta_0\)</span> es:</li>
+</ol>
+<p><span class="math display">\[
+\hat{\beta}_0 - t_{\alpha/2,\,n-2}\,\sqrt{\hat{\sigma}^2 \left( \tfrac{1}{n} + \tfrac{\bar{x}^2}{S_{xx}} \right)}
+\;&lt;\; \beta_0 \;&lt;\;
+\hat{\beta}_0 + t_{\alpha/2,\,n-2}\,\sqrt{\hat{\sigma}^2 \left( \tfrac{1}{n} + \tfrac{\bar{x}^2}{S_{xx}} \right)}
+\]</span>
+donde</p>
+<ul>
+<li><span class="math inline">\(\hat{\beta}_0\)</span>: estimador del intercepto.<br />
+</li>
+<li><span class="math inline">\(t_{\alpha/2,\,n-2}\)</span>: valor crítico de la distribución t de Student.<br />
+</li>
+<li><span class="math inline">\(\widehat{\sigma}_{\hat{\beta}_0}\)</span>: error estándar del intercepto.</li>
+</ul>
+<p>Por lo que el intervalo nos da un rango en el cual se encuentra con probabilidad <span class="math inline">\((1-\alpha)\)</span> el verdadero valor del <strong>intercepto</strong> <span class="math inline">\(\beta_0\)</span>, es decir, el valor esperado de <span class="math inline">\(Y\)</span> cuando <span class="math inline">\(X = 0\)</span>.</p>
+</div>
+<div id="prueba-de-hipótesis-para-beta_0" class="section level3 hasAnchor" number="7.6.4">
+<h3><span class="header-section-number">7.6.4</span> Prueba de hipótesis para <span class="math inline">\(\beta_0\)</span><a href="#prueba-de-hip%C3%B3tesis-para-beta_0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El contraste de hipótesis más común sobre el intercepto <span class="math inline">\(\beta_0\)</span> es</p>
+<p><span class="math display">\[
+H_0 : \beta_0 = 0
+\quad \text{vs} \quad
+H_1 : \beta_0 \neq 0
+\]</span></p>
+<p>La interpretación de la hipótesis nula nos queda</p>
+<ul>
+<li>Si <span class="math inline">\(H_0\)</span> es verdadera, el modelo pasaría <strong>por el origen</strong>.<br />
+</li>
+<li>En este caso, el valor esperado de <span class="math inline">\(Y\)</span> cuando <span class="math inline">\(X=0\)</span> sería exactamente cero.<br />
+</li>
+<li>Rechazar <span class="math inline">\(H_0\)</span> sugiere que existe un <strong>desplazamiento inicial</strong> (intercepto distinto de cero) que debe ser tenido en cuenta en el modelo.</li>
+</ul>
+<p>El procedimiento de prueba se realiza así</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Planteamiento de hipótesis</strong><br />
+<span class="math display">\[
+H_0 : \beta_0 = 0
+\quad \text{vs} \quad
+H_1 : \beta_0 \neq 0
+\]</span></p></li>
+<li><p><strong>Cálculo del estadístico de prueba</strong><br />
+<span class="math display">\[
+t_0 = \frac{\hat{\beta}_0}{\widehat{\sigma}_{\hat{\beta}_0}}
+\]</span></p>
+<p>donde</p>
+<p><span class="math display">\[
+\widehat{\sigma}_{\hat{\beta}_0} =
+\sqrt{\hat{\sigma}^2 \left( \frac{1}{n} + \frac{\bar{x}^2}{S_{xx}} \right)}
+\]</span></p></li>
+<li><p><strong>Cálculo del valor p</strong><br />
+<span class="math display">\[
+P = 2P(T &gt; |t_0|),
+\quad T \sim t_{(n-2)}
+\]</span></p></li>
+</ol>
+<p>La decisión nos queda</p>
+<ul>
+<li>Si <span class="math inline">\(P &lt; \alpha\)</span>, <strong>rechazamos <span class="math inline">\(H_0\)</span></strong>: el intercepto es significativamente distinto de cero.<br />
+</li>
+<li>Si <span class="math inline">\(P \geq \alpha\)</span>, <strong>no rechazamos <span class="math inline">\(H_0\)</span></strong>: no hay evidencia suficiente para afirmar que <span class="math inline">\(\beta_0 \neq 0\)</span>.</li>
+</ul>
+</div>
+<div id="intervalo-de-confianza-para-sigma2" class="section level3 hasAnchor" number="7.6.5">
+<h3><span class="header-section-number">7.6.5</span> Intervalo de confianza para <span class="math inline">\(\sigma^2\)</span><a href="rls.html#intervalo-de-confianza-para-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En la regresión lineal simple, la varianza del error <span class="math inline">\(\sigma^2\)</span> se estima mediante</p>
+<p><span class="math display">\[
+\hat{\sigma}^2 = \frac{SSE}{n-2}
+= \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n-2}
+\]</span></p>
+<p>donde <span class="math inline">\(SSE\)</span> es la suma de cuadrados de los residuos.</p>
+<p>Hallemos el intervalo de confianza</p>
+<ol style="list-style-type: decimal">
+<li>La distribución muestral que se tiene es</li>
+</ol>
+<p><span class="math display">\[
+\frac{(n-2)\hat{\sigma}^2}{\sigma^2} \sim \chi^2_{(n-2)}
+\]</span></p>
+<p>es decir, la cantidad <span class="math inline">\((n-2)\hat{\sigma}^2/\sigma^2\)</span> sigue una distribución <span class="math inline">\(\chi^2\)</span> con <span class="math inline">\(n-2\)</span> grados de libertad.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>La expresión de probabilidad definida en un intervalo de confianza se deduce de</li>
+</ol>
+<p><span class="math display">\[
+P\left( \chi^2_{1-\alpha/2,\,n-2} &lt; \frac{(n-2)\hat{\sigma}^2}{\sigma^2} &lt; \chi^2_{\alpha/2,\,n-2} \right) = 1-\alpha
+\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Reordenando la desigualdad y despejando <span class="math inline">\(\sigma^2\)</span>, el intervalo de confianza <span class="math inline">\((1-\alpha)100\%\)</span> para <span class="math inline">\(\sigma^2\)</span> es</li>
+</ol>
+<p><span class="math display">\[
+\frac{(n-2)\hat{\sigma}^2}{\chi^2_{\alpha/2,\,n-2}}
+\;&lt;\; \sigma^2 \;&lt;\;
+\frac{(n-2)\hat{\sigma}^2}{\chi^2_{1-\alpha/2,\,n-2}}
+\]</span></p>
+<p>donde</p>
+<ul>
+<li><span class="math inline">\(\hat{\sigma}^2\)</span>: estimador de la varianza residual.<br />
+</li>
+<li><span class="math inline">\(\chi^2_{\alpha/2,\,n-2}\)</span> y <span class="math inline">\(\chi^2_{1-\alpha/2,\,n-2}\)</span>: valores críticos de la distribución <span class="math inline">\(\chi^2\)</span> con <span class="math inline">\(n-2\)</span> grados de libertad.<br />
+Este intervalo proporciona un rango plausible para la varianza verdadera de los errores del modelo.</li>
+</ul>
+</div>
+<div id="prueba-de-hipótesis-para-sigma2" class="section level3 hasAnchor" number="7.6.6">
+<h3><span class="header-section-number">7.6.6</span> Prueba de hipótesis para <span class="math inline">\(\sigma^2\)</span><a href="#prueba-de-hip%C3%B3tesis-para-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
+</div>
 </div>
 </div>
             </section>
