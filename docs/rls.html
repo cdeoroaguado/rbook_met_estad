@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2025-09-17" />
+<meta name="date" content="2025-09-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -278,6 +278,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6.4" data-path="07-rls.html"><a href="#prueba-de-hip%C3%B3tesis-para-beta_0"><i class="fa fa-check"></i><b>7.6.4</b> Prueba de hipótesis para <span class="math inline">\(\beta_0\)</span></a></li>
 <li class="chapter" data-level="7.6.5" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-sigma2"><i class="fa fa-check"></i><b>7.6.5</b> Intervalo de confianza para <span class="math inline">\(\sigma^2\)</span></a></li>
 <li class="chapter" data-level="7.6.6" data-path="07-rls.html"><a href="#prueba-de-hip%C3%B3tesis-para-sigma2"><i class="fa fa-check"></i><b>7.6.6</b> Prueba de hipótesis para <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.6.7" data-path="07-rls.html"><a href="#anova-en-regresi%C3%B3n-lineal"><i class="fa fa-check"></i><b>7.6.7</b> ANOVA en regresión lineal</a></li>
+<li class="chapter" data-level="7.6.8" data-path="07-rls.html"><a href="#hip%C3%B3tesis-global"><i class="fa fa-check"></i><b>7.6.8</b> Hipótesis global</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
@@ -2003,6 +2005,17 @@ Var(\hat{\beta}_0\mid X)
 </div>
 <div id="estimación-de-invervalos-de-confianza-y-prueba-de-hipótesis-para-beta_1-beta_0-y-sigma2" class="section level2 hasAnchor" number="7.6">
 <h2><span class="header-section-number">7.6</span> Estimación de invervalos de confianza y prueba de hipótesis para <span class="math inline">\(\beta_1, \beta_0\)</span> y <span class="math inline">\(\sigma^2\)</span><a href="#estimaci%C3%B3n-de-invervalos-de-confianza-y-prueba-de-hip%C3%B3tesis-para-beta_1-beta_0-y-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Al utilizar un modelo de <strong>Regresión Lineal Simple (RLS)</strong> queremos estar seguros de que el modelo ajustado es <strong>considerablemente mejor</strong> que no tener dicho modelo.<br />
+Esto equivale a determinar si la contribución del factor controlable <span class="math inline">\(X\)</span> para predecir <span class="math inline">\(E[Y \mid X = x_0]\)</span> es sustancial.</p>
+<p>Formalmente, esto se traduce en realizar una <strong>prueba de significancia global</strong> para el modelo.</p>
+<div class="admon-box observacion">
+<div class="admon-title">
+<span class="icon"></span> Observación
+</div>
+<p>La prueba de significancia global puede realizarse de dos maneras en RLS:
+1. <strong>A través de un procedimiento de pruebas de hipótesis basado en la distribución <span class="math inline">\(t\)</span> de Student</strong>.
+2. <strong>Utilizando los resultados de la Tabla ANOVA</strong>.</p>
+</div>
 <div id="intervalo-de-confianza-para-beta_1" class="section level3 hasAnchor" number="7.6.1">
 <h3><span class="header-section-number">7.6.1</span> Intervalo de confianza para <span class="math inline">\(\beta_1\)</span><a href="rls.html#intervalo-de-confianza-para-beta_1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>En un modelo de <strong>regresión lineal simple</strong>, queremos estimar el verdadero valor de la pendiente <span class="math inline">\(\beta_1\)</span>.</p>
@@ -2194,15 +2207,15 @@ P = 2P(T &gt; |t_0|),
 <li>La expresión de probabilidad definida en un intervalo de confianza se deduce de</li>
 </ol>
 <p><span class="math display">\[
-P\left( \chi^2_{1-\alpha/2,\,n-2} &lt; \frac{(n-2)\hat{\sigma}^2}{\sigma^2} &lt; \chi^2_{\alpha/2,\,n-2} \right) = 1-\alpha
+P\left( \chi^2_{\alpha/2,\,n-2} &lt; \frac{(n-2)\hat{\sigma}^2}{\sigma^2} &lt; \chi^2_{1-\alpha/2,\,n-2} \right) = 1-\alpha
 \]</span></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Reordenando la desigualdad y despejando <span class="math inline">\(\sigma^2\)</span>, el intervalo de confianza <span class="math inline">\((1-\alpha)100\%\)</span> para <span class="math inline">\(\sigma^2\)</span> es</li>
 </ol>
 <p><span class="math display">\[
-\frac{(n-2)\hat{\sigma}^2}{\chi^2_{\alpha/2,\,n-2}}
-\;&lt;\; \sigma^2 \;&lt;\;
 \frac{(n-2)\hat{\sigma}^2}{\chi^2_{1-\alpha/2,\,n-2}}
+\;&lt;\; \sigma^2 \;&lt;\;
+\frac{(n-2)\hat{\sigma}^2}{\chi^2_{\alpha/2,\,n-2}}
 \]</span></p>
 <p>donde</p>
 <ul>
@@ -2214,6 +2227,434 @@ Este intervalo proporciona un rango plausible para la varianza verdadera de los 
 </div>
 <div id="prueba-de-hipótesis-para-sigma2" class="section level3 hasAnchor" number="7.6.6">
 <h3><span class="header-section-number">7.6.6</span> Prueba de hipótesis para <span class="math inline">\(\sigma^2\)</span><a href="#prueba-de-hip%C3%B3tesis-para-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En regresión lineal simple, la varianza de los errores <span class="math inline">\(\sigma^2\)</span> se puede contrastar mediante la hipótesis:</p>
+<p><span class="math display">\[H_0: \sigma^2 = \sigma_0^2 \quad \text{vs.} \quad H_1: \sigma^2 \neq \sigma_0^2\]</span></p>
+<div id="estadístico-de-prueba-1" class="section level4 hasAnchor" number="7.6.6.1">
+<h4><span class="header-section-number">7.6.6.1</span> Estadístico de prueba<a href="#estad%C3%ADstico-de-prueba-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math display">\[
+T \;=\; \frac{SSE}{\sigma_0^2}
+\;=\; \frac{(n-2)\hat\sigma^2}{\sigma_0^2}
+\;\sim\; \chi^2_{(n-2)}
+\]</span></p>
+<p>donde</p>
+<ul>
+<li><span class="math inline">\(SSE = \sum_{i=1}^n (y_i - \hat y_i)^2\)</span> es la suma de cuadrados de los errores.<br />
+</li>
+<li><span class="math inline">\(\hat\sigma^2 = SSE/(n-2)\)</span> es el estimador de la varianza residual.<br />
+</li>
+<li><span class="math inline">\(n-2\)</span> son los grados de libertad del modelo.</li>
+</ul>
+</div>
+<div id="regla-de-decisión" class="section level4 hasAnchor" number="7.6.6.2">
+<h4><span class="header-section-number">7.6.6.2</span> Regla de decisión<a href="#regla-de-decisi%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p><strong>Prueba bilateral</strong><br />
+<span class="math display">\[\text{Rechazar } H_0 \text{ si }
+T &lt; \chi^2_{\alpha/2,\;n-2}
+\quad \text{o} \quad
+T &gt; \chi^2_{1-\alpha/2,\;n-2}.\]</span></p></li>
+<li><p><strong>Prueba unilateral superior</strong><br />
+<span class="math display">\[
+\text{Rechazar } H_0 \text{ si }
+T &gt; \chi^2_{1-\alpha,\;n-2}.
+\]</span></p></li>
+<li><p><strong>Prueba unilateral inferior</strong><br />
+<span class="math display">\[
+\text{Rechazar } H_0 \text{ si }
+T &lt; \chi^2_{\alpha,\;n-2}.
+\]</span></p></li>
+</ul>
+<hr />
+<ul>
+<li>Continuando con el ejemplo de los datos de soldadura, hallemos los intervalos de confianza para <span class="math inline">\(\sigma, \beta_1,\beta_0\)</span> y veamos si son significativos o no.</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="rls.html#cb24-1" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
+<span id="cb24-2"><a href="rls.html#cb24-2" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="st">&quot;data/data_rls.txt&quot;</span></span>
+<span id="cb24-3"><a href="rls.html#cb24-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-4"><a href="rls.html#cb24-4" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="rls.html#cb24-5" tabindex="-1"></a><span class="co"># Primeras 6 filas</span></span>
+<span id="cb24-6"><a href="rls.html#cb24-6" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+</details>
+<pre><code>##   Resistencia Edad
+## 1        10.9 18.7
+## 2        10.6 19.1
+## 3        13.4  9.3
+## 4        10.7 17.5
+## 5        13.0 14.6
+## 6        13.1 12.8</code></pre>
+<ul>
+<li>Construyamos el modelo de regresión lineal</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="rls.html#cb26-1" tabindex="-1"></a><span class="co"># ajuste del modelo de RLS</span></span>
+<span id="cb26-2"><a href="rls.html#cb26-2" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(Resistencia <span class="sc">~</span> Edad, <span class="at">data =</span> df)</span>
+<span id="cb26-3"><a href="rls.html#cb26-3" tabindex="-1"></a>modelo</span></code></pre></div>
+</details>
+<pre><code>## 
+## Call:
+## lm(formula = Resistencia ~ Edad, data = df)
+## 
+## Coefficients:
+## (Intercept)         Edad  
+##     15.7427      -0.2438</code></pre>
+<ul>
+<li>Estimemos el error estandar residual <span class="math inline">\(\hat{\sigma}\)</span>:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="rls.html#cb28-1" tabindex="-1"></a><span class="co"># estimación de sigma</span></span>
+<span id="cb28-2"><a href="rls.html#cb28-2" tabindex="-1"></a><span class="fu">summary</span>(modelo)<span class="sc">$</span>sigma</span></code></pre></div>
+</details>
+<pre><code>## [1] 0.5908683</code></pre>
+<ul>
+<li>Ahora, hallemos el intervalo de confianza para <span class="math inline">\(\sigma^2\)</span>:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="rls.html#cb30-1" tabindex="-1"></a><span class="co"># intervalo de confianza para sigma^2</span></span>
+<span id="cb30-2"><a href="rls.html#cb30-2" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb30-3"><a href="rls.html#cb30-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df)</span>
+<span id="cb30-4"><a href="rls.html#cb30-4" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo)<span class="sc">$</span>sigma</span>
+<span id="cb30-5"><a href="rls.html#cb30-5" tabindex="-1"></a>gl <span class="ot">&lt;-</span> n<span class="dv">-2</span></span>
+<span id="cb30-6"><a href="rls.html#cb30-6" tabindex="-1"></a>lim_inf <span class="ot">&lt;-</span> gl<span class="sc">*</span>sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">qchisq</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, gl)</span>
+<span id="cb30-7"><a href="rls.html#cb30-7" tabindex="-1"></a>lim_sup <span class="ot">&lt;-</span> gl<span class="sc">*</span>sigma<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="fu">qchisq</span>(alpha<span class="sc">/</span><span class="dv">2</span>, gl)</span>
+<span id="cb30-8"><a href="rls.html#cb30-8" tabindex="-1"></a><span class="fu">c</span>(<span class="at">lim_inf =</span> lim_inf, <span class="at">sigma2_hat =</span>sigma<span class="sc">^</span><span class="dv">2</span>, <span class="at">lim_inf =</span> lim_inf)</span></code></pre></div>
+</details>
+<pre><code>##    lim_inf sigma2_hat    lim_inf 
+##  0.2688068  0.3491253  0.2688068</code></pre>
+<p>Finalmente, con una confianza del <span class="math inline">\(95\%\)</span>, <span class="math inline">\(\sigma^2 \in (0.269,\;0.472)\)</span>. Ahora, como el valor <span class="math inline">\(0\)</span> <strong>no</strong> se encuentra en el intervalo de confianza, podemos afirmar que $
+^2 &gt; 0$ a nivel poblacional.</p>
+<p>Para obtener un intervalo de confianza del <span class="math inline">\(95\%\)</span> para <span class="math inline">\(\sigma\)</span>, basta calcular la raíz cuadrada de estos límites. Por lo tanto, <span class="math inline">\(\sigma \in (0.519,\;0.687)\)</span>.</p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>Verifiquemos el contraste de la hipótesis:</p>
+<p><span class="math display">\[H_0:\ \sigma^2 = 0.25
+\quad\text{vs.}\quad
+H_1:\ \sigma^2 \neq 0.25\]</span></p>
+<p>con nivel de significancia <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p>El estadístico de prueba está dado por:</p>
+<p><span class="math display">\[
+T = \frac{(n-2)\hat\sigma^2}{0.25}
+\;\;\sim\;\; \chi^2_{(n-2)}
+\]</span></p>
+<p>donde <span class="math inline">\(\hat\sigma^2 = 0.3491\)</span> es la varianza residual estimada y <span class="math inline">\(0.25\)</span> es el valor hipotético de referencia de la varianza poblacional.</p>
+</div>
+<hr />
+<ul>
+<li>Ahora, hallemos el intervalo de confianza para <span class="math inline">\(\beta_0\)</span></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="rls.html#cb32-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df)</span>
+<span id="cb32-2"><a href="rls.html#cb32-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> df<span class="sc">$</span>Edad</span>
+<span id="cb32-3"><a href="rls.html#cb32-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> df<span class="sc">$</span>Resistencia</span>
+<span id="cb32-4"><a href="rls.html#cb32-4" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb32-5"><a href="rls.html#cb32-5" tabindex="-1"></a>y_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
+<span id="cb32-6"><a href="rls.html#cb32-6" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="rls.html#cb32-7" tabindex="-1"></a><span class="co"># Sxx</span></span>
+<span id="cb32-8"><a href="rls.html#cb32-8" tabindex="-1"></a>Sxx <span class="ot">&lt;-</span> <span class="fu">sum</span>((x <span class="sc">-</span> x_bar)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb32-9"><a href="rls.html#cb32-9" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="rls.html#cb32-10" tabindex="-1"></a><span class="co"># Pendiente e intercepto</span></span>
+<span id="cb32-11"><a href="rls.html#cb32-11" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)[<span class="dv">2</span>]</span>
+<span id="cb32-12"><a href="rls.html#cb32-12" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)[<span class="dv">1</span>]</span>
+<span id="cb32-13"><a href="rls.html#cb32-13" tabindex="-1"></a></span>
+<span id="cb32-14"><a href="rls.html#cb32-14" tabindex="-1"></a><span class="co"># Sigma estimada</span></span>
+<span id="cb32-15"><a href="rls.html#cb32-15" tabindex="-1"></a>sigma_hat <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo)<span class="sc">$</span>sigma</span>
+<span id="cb32-16"><a href="rls.html#cb32-16" tabindex="-1"></a></span>
+<span id="cb32-17"><a href="rls.html#cb32-17" tabindex="-1"></a><span class="co"># Varianza de b0</span></span>
+<span id="cb32-18"><a href="rls.html#cb32-18" tabindex="-1"></a>var_b0 <span class="ot">&lt;-</span> sigma_hat<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span><span class="sc">/</span>n <span class="sc">+</span> (x_bar<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>Sxx)</span>
+<span id="cb32-19"><a href="rls.html#cb32-19" tabindex="-1"></a>se_b0 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_b0)</span>
+<span id="cb32-20"><a href="rls.html#cb32-20" tabindex="-1"></a></span>
+<span id="cb32-21"><a href="rls.html#cb32-21" tabindex="-1"></a><span class="co"># Valor crítico t</span></span>
+<span id="cb32-22"><a href="rls.html#cb32-22" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb32-23"><a href="rls.html#cb32-23" tabindex="-1"></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">2</span>)</span>
+<span id="cb32-24"><a href="rls.html#cb32-24" tabindex="-1"></a></span>
+<span id="cb32-25"><a href="rls.html#cb32-25" tabindex="-1"></a><span class="co"># Intervalo de confianza</span></span>
+<span id="cb32-26"><a href="rls.html#cb32-26" tabindex="-1"></a>inferior <span class="ot">&lt;-</span> b0 <span class="sc">-</span> t_crit <span class="sc">*</span> se_b0</span>
+<span id="cb32-27"><a href="rls.html#cb32-27" tabindex="-1"></a>superior <span class="ot">&lt;-</span> b0 <span class="sc">+</span> t_crit <span class="sc">*</span> se_b0</span>
+<span id="cb32-28"><a href="rls.html#cb32-28" tabindex="-1"></a></span>
+<span id="cb32-29"><a href="rls.html#cb32-29" tabindex="-1"></a><span class="fu">c</span>( <span class="at">LI =</span> inferior , <span class="at">beta0 =</span> b0, <span class="at">LS =</span> superior)</span></code></pre></div>
+</details>
+<pre><code>##    LI.(Intercept) beta0.(Intercept)    LS.(Intercept) 
+##          15.38816          15.74275          16.09734</code></pre>
+<ul>
+<li>Ahora, verifiquemos la prueba de hipótesis <span class="math inline">\(H_0:\beta_0=0\, vs\, H_1:\beta_0\neq 0\)</span></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="rls.html#cb34-1" tabindex="-1"></a><span class="co"># intercepto</span></span>
+<span id="cb34-2"><a href="rls.html#cb34-2" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)[<span class="dv">1</span>]</span>
+<span id="cb34-3"><a href="rls.html#cb34-3" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="rls.html#cb34-4" tabindex="-1"></a><span class="co"># se(b0) = sigma_hat * sqrt( 1/n + x̄^2 / Sxx )</span></span>
+<span id="cb34-5"><a href="rls.html#cb34-5" tabindex="-1"></a>var_b0 <span class="ot">&lt;-</span> sigma_hat<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span><span class="sc">/</span>n <span class="sc">+</span> (x_bar<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>Sxx)</span>
+<span id="cb34-6"><a href="rls.html#cb34-6" tabindex="-1"></a>se_b0 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_b0)</span>
+<span id="cb34-7"><a href="rls.html#cb34-7" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="rls.html#cb34-8" tabindex="-1"></a><span class="co"># Hipótesis: H0: beta0 = 0 vs H1: beta0 != 0</span></span>
+<span id="cb34-9"><a href="rls.html#cb34-9" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="rls.html#cb34-10" tabindex="-1"></a>t_calc <span class="ot">&lt;-</span> (b0 <span class="sc">-</span> <span class="dv">0</span>) <span class="sc">/</span> se_b0</span>
+<span id="cb34-11"><a href="rls.html#cb34-11" tabindex="-1"></a>gl <span class="ot">&lt;-</span> n<span class="dv">-2</span></span>
+<span id="cb34-12"><a href="rls.html#cb34-12" tabindex="-1"></a>p_valor <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(t_calc), gl))</span></code></pre></div>
+</details>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="rls.html#cb35-1" tabindex="-1"></a><span class="co"># Convertir a data.frame para tabla</span></span>
+<span id="cb35-2"><a href="rls.html#cb35-2" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb35-3"><a href="rls.html#cb35-3" tabindex="-1"></a>  <span class="at">beta0_hat =</span> b0,</span>
+<span id="cb35-4"><a href="rls.html#cb35-4" tabindex="-1"></a>  <span class="at">se_beta0 =</span> se_b0,</span>
+<span id="cb35-5"><a href="rls.html#cb35-5" tabindex="-1"></a>  <span class="at">estadistico_t =</span> t_calc,</span>
+<span id="cb35-6"><a href="rls.html#cb35-6" tabindex="-1"></a>  <span class="at">gl =</span> gl,</span>
+<span id="cb35-7"><a href="rls.html#cb35-7" tabindex="-1"></a>  <span class="at">p_value =</span> p_valor</span>
+<span id="cb35-8"><a href="rls.html#cb35-8" tabindex="-1"></a>)</span>
+<span id="cb35-9"><a href="rls.html#cb35-9" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="rls.html#cb35-10" tabindex="-1"></a><span class="co"># Mostrar tabla con kable</span></span>
+<span id="cb35-11"><a href="rls.html#cb35-11" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados, <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb35-12"><a href="rls.html#cb35-12" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;Resultados de la prueba de hipótesis para β₀&quot;</span>)</span></code></pre></div>
+</details>
+<table>
+<caption><span id="tab:b3">Tabla 7.1: </span>Resultados de la prueba de hipótesis para β₀</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">beta0_hat</th>
+<th align="right">se_beta0</th>
+<th align="right">estadistico_t</th>
+<th align="right">gl</th>
+<th align="right">p_value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">15.7427</td>
+<td align="right">0.1787</td>
+<td align="right">88.105</td>
+<td align="right">98</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>Ahora, hallemos el intervalo de confianza para <span class="math inline">\(\beta_1\)</span></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="rls.html#cb36-1" tabindex="-1"></a><span class="co"># Pendiente</span></span>
+<span id="cb36-2"><a href="rls.html#cb36-2" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)[<span class="dv">2</span>]</span>
+<span id="cb36-3"><a href="rls.html#cb36-3" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="rls.html#cb36-4" tabindex="-1"></a><span class="co"># Varianza y error estándar de b1</span></span>
+<span id="cb36-5"><a href="rls.html#cb36-5" tabindex="-1"></a>var_b1 <span class="ot">&lt;-</span> sigma_hat<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> Sxx</span>
+<span id="cb36-6"><a href="rls.html#cb36-6" tabindex="-1"></a>se_b1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_b1)</span>
+<span id="cb36-7"><a href="rls.html#cb36-7" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="rls.html#cb36-8" tabindex="-1"></a><span class="co"># Valor crítico t (ya lo tenías calculado)</span></span>
+<span id="cb36-9"><a href="rls.html#cb36-9" tabindex="-1"></a>t_calc <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">2</span>)</span>
+<span id="cb36-10"><a href="rls.html#cb36-10" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="rls.html#cb36-11" tabindex="-1"></a><span class="co"># Intervalo de confianza para beta_1</span></span>
+<span id="cb36-12"><a href="rls.html#cb36-12" tabindex="-1"></a>inferior <span class="ot">&lt;-</span> b1 <span class="sc">-</span> t_calc<span class="sc">*</span> se_b1</span>
+<span id="cb36-13"><a href="rls.html#cb36-13" tabindex="-1"></a>superior <span class="ot">&lt;-</span> b1 <span class="sc">+</span> t_calc <span class="sc">*</span> se_b1</span>
+<span id="cb36-14"><a href="rls.html#cb36-14" tabindex="-1"></a></span>
+<span id="cb36-15"><a href="rls.html#cb36-15" tabindex="-1"></a><span class="fu">c</span>(<span class="at">LI =</span> inferior, <span class="at">beta1 =</span> b1, <span class="at">LS =</span> superior)</span></code></pre></div>
+</details>
+<pre><code>##    LI.Edad beta1.Edad    LS.Edad 
+## -0.2697692 -0.2437636 -0.2177580</code></pre>
+<ul>
+<li>Ahora, verifiquemos la prueba de hipótesis <span class="math inline">\(H_0:\beta_1=0\, vs\, H_1:\beta_1\neq 0\)</span></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="rls.html#cb38-1" tabindex="-1"></a><span class="co"># Pendiente</span></span>
+<span id="cb38-2"><a href="rls.html#cb38-2" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)[<span class="dv">2</span>]</span>
+<span id="cb38-3"><a href="rls.html#cb38-3" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="rls.html#cb38-4" tabindex="-1"></a><span class="co"># Varianza y error estándar de beta1</span></span>
+<span id="cb38-5"><a href="rls.html#cb38-5" tabindex="-1"></a>var_b1 <span class="ot">&lt;-</span> sigma_hat<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> Sxx</span>
+<span id="cb38-6"><a href="rls.html#cb38-6" tabindex="-1"></a>se_b1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_b1)</span>
+<span id="cb38-7"><a href="rls.html#cb38-7" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="rls.html#cb38-8" tabindex="-1"></a><span class="co"># Hipótesis: H0: beta1 = 0 vs H1: beta1 != 0</span></span>
+<span id="cb38-9"><a href="rls.html#cb38-9" tabindex="-1"></a>t_calc <span class="ot">&lt;-</span> (b1 <span class="sc">-</span> <span class="dv">0</span>) <span class="sc">/</span> se_b1</span>
+<span id="cb38-10"><a href="rls.html#cb38-10" tabindex="-1"></a>gl <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb38-11"><a href="rls.html#cb38-11" tabindex="-1"></a>p_valor<span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(t_calc), gl))</span></code></pre></div>
+</details>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="rls.html#cb39-1" tabindex="-1"></a><span class="co"># Organizar resultados en data.frame</span></span>
+<span id="cb39-2"><a href="rls.html#cb39-2" tabindex="-1"></a>resultados_b1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb39-3"><a href="rls.html#cb39-3" tabindex="-1"></a>  <span class="at">beta1_hat =</span> b1,</span>
+<span id="cb39-4"><a href="rls.html#cb39-4" tabindex="-1"></a>  <span class="at">se_beta1 =</span> se_b1,</span>
+<span id="cb39-5"><a href="rls.html#cb39-5" tabindex="-1"></a>  <span class="at">estadistico_t =</span> t_calc,</span>
+<span id="cb39-6"><a href="rls.html#cb39-6" tabindex="-1"></a>  <span class="at">gl =</span> gl,</span>
+<span id="cb39-7"><a href="rls.html#cb39-7" tabindex="-1"></a>  <span class="at">p_value =</span> p_valor</span>
+<span id="cb39-8"><a href="rls.html#cb39-8" tabindex="-1"></a>)</span>
+<span id="cb39-9"><a href="rls.html#cb39-9" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="rls.html#cb39-10" tabindex="-1"></a><span class="co"># Mostrar tabla</span></span>
+<span id="cb39-11"><a href="rls.html#cb39-11" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_b1, <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb39-12"><a href="rls.html#cb39-12" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;Prueba de hipótesis para β₁ (pendiente)&quot;</span>)</span></code></pre></div>
+</details>
+<table>
+<caption><span id="tab:b6">Tabla 7.2: </span>Prueba de hipótesis para β₁ (pendiente)</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">beta1_hat</th>
+<th align="right">se_beta1</th>
+<th align="right">estadistico_t</th>
+<th align="right">gl</th>
+<th align="right">p_value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Edad</td>
+<td align="right">-0.2438</td>
+<td align="right">0.0131</td>
+<td align="right">-18.6014</td>
+<td align="right">98</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>Para probar si los calculos paso a paso estan correcto usamos las siguientes instrucciones:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="rls.html#cb40-1" tabindex="-1"></a><span class="co"># estadísticos de prueba para beta_0 y beta_1</span></span>
+<span id="cb40-2"><a href="rls.html#cb40-2" tabindex="-1"></a><span class="fu">coefficients</span>(<span class="fu">summary</span>(modelo))</span></code></pre></div>
+</details>
+<pre><code>##               Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 15.7427499 0.17868164  88.10502 3.989520e-95
+## Edad        -0.2437636 0.01310455 -18.60144 6.394519e-34</code></pre>
+<p>De acuerdo con los resultados de la regresión lineal simple, se observa que</p>
+<ul>
+<li><p>Para el intercepto (<span class="math inline">\(\beta_0\)</span>): con una confianza del <span class="math inline">\(95\%\)</span>, podemos decir el intercepto de la regresión lineal es significativo (<span class="math inline">\(t_{(98)}=88.11, p-valor &lt; 0.001\)</span>)</p></li>
+<li><p>Para la pendiente (<span class="math inline">\(\beta_1\)</span>): con una confianza del <span class="math inline">\(95\%\)</span>, podemos afirmar que la pendiente asociada a la variable <strong>Edad</strong> es significativa (<span class="math inline">\(t_{(98)} = -18.60,\; p-valor &lt; 0.001\)</span>), lo cual indica que existe una relación negativa entre Edad y Resistencia.</p></li>
+</ul>
+<blockquote>
+<p>En conclusión, ambos coeficientes resultan significativos al nivel del <span class="math inline">\(5\%\)</span> (e incluso a niveles mucho más estrictos), lo que confirma que el modelo de regresión lineal simple es adecuado para explicar la relación entre <strong>Edad</strong> y <strong>Resistencia</strong>.</p>
+</blockquote>
+<ul>
+<li>Para el mismo nivel de significancia, los intervalos de confianza pueden calcularse como en <strong>R</strong> a través de la función <code>confint.default</code>:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="rls.html#cb42-1" tabindex="-1"></a><span class="co"># intervalos de confianza via confint</span></span>
+<span id="cb42-2"><a href="rls.html#cb42-2" tabindex="-1"></a><span class="fu">confint.default</span>(modelo)</span></code></pre></div>
+</details>
+<pre><code>##                 2.5 %     97.5 %
+## (Intercept) 15.392540 16.0929595
+## Edad        -0.269448 -0.2180791</code></pre>
+<ul>
+<li><p>Para el intercepto (<span class="math inline">\(\beta_0\)</span>): con una confianza del <span class="math inline">\(95\%\)</span>, el intervalo de confianza es <span class="math inline">\((15.39,\;16.09)\)</span>. Como este intervalo no contiene el valor <span class="math inline">\(0\)</span>, podemos concluir que el intercepto es <strong>significativo</strong> en el modelo.</p></li>
+<li><p>Para la pendiente (<span class="math inline">\(\beta_1\)</span>): con una confianza del <span class="math inline">\(95\%\)</span>, el intervalo de confianza es <span class="math inline">\((-0.269,\;-0.218)\)</span>. Como el intervalo no incluye el valor <span class="math inline">\(0\)</span>, concluimos que la pendiente es <strong>estadísticamente significativa</strong>. Además, el signo negativo indica que existe una relación <strong>inversa</strong> entre la variable <strong>Edad</strong> y la variable <strong>Resistencia</strong>: a mayor Edad, menor Resistencia.</p></li>
+</ul>
+<blockquote>
+<p>En conclusión, tanto el intercepto como la pendiente resultan significativos al <span class="math inline">\(95\%\)</span> de confianza, lo que respalda la validez del modelo de regresión lineal simple para explicar la relación entre <strong>Edad</strong> y <strong>Resistencia</strong>.</p>
+</blockquote>
+</div>
+</div>
+<div id="anova-en-regresión-lineal" class="section level3 hasAnchor" number="7.6.7">
+<h3><span class="header-section-number">7.6.7</span> ANOVA en regresión lineal<a href="#anova-en-regresi%C3%B3n-lineal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El objetivo del ANOVA en el contexto de la regresión lineal es evaluar si el modelo, en su conjunto, explica una proporción significativa de la variabilidad de la variable respuesta <span class="math inline">\(Y\)</span>.</p>
+<div id="descomposición-de-la-variabilidad" class="section level4 hasAnchor" number="7.6.7.1">
+<h4><span class="header-section-number">7.6.7.1</span> Descomposición de la variabilidad<a href="#descomposici%C3%B3n-de-la-variabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>La suma total de cuadrados (SST) puede descomponerse en:</p>
+<p><span class="math display">\[SST = SSR + SSE\]</span></p>
+<ul>
+<li><span class="math inline">\(SST\)</span>: variabilidad total de <span class="math inline">\(Y\)</span>.<br />
+</li>
+<li><span class="math inline">\(SSR\)</span>: variabilidad explicada por el modelo (regresión).<br />
+</li>
+<li><span class="math inline">\(SSE\)</span>: variabilidad no explicada (error o residuos).</li>
+</ul>
+<p>Los grados de libertad se calculan de la siguiente manera</p>
+<ul>
+<li><span class="math inline">\(gl_{T} = n-1\)</span><br />
+</li>
+<li><span class="math inline">\(gl_{R} = k\)</span> (número de predictores; en RLS simple <span class="math inline">\(k=1\)</span>)<br />
+</li>
+<li><span class="math inline">\(gl_{E} = n-k-1\)</span></li>
+</ul>
+</div>
+<div id="estadístico-f" class="section level4 hasAnchor" number="7.6.7.2">
+<h4><span class="header-section-number">7.6.7.2</span> Estadístico <span class="math inline">\(F\)</span><a href="#estad%C3%ADstico-f" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El estadístico de prueba se construye como:</p>
+<p><span class="math display">\[F = \frac{MSR}{MSE}
+= \frac{SSR / gl_R}{SSE / gl_E}
+\sim F_{(gl_R,\;gl_E)} \quad \text{bajo } H_0\]</span></p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(MSR\)</span>: cuadrado medio de la regresión.<br />
+</li>
+<li><span class="math inline">\(MSE\)</span>: cuadrado medio del error.</li>
+</ul>
+</div>
+</div>
+<div id="hipótesis-global" class="section level3 hasAnchor" number="7.6.8">
+<h3><span class="header-section-number">7.6.8</span> Hipótesis global<a href="#hip%C3%B3tesis-global" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[
+H_0:\ \beta_1=0
+\quad\text{vs.}\quad
+H_1:\ \beta_1 \neq 0
+\]</span></p>
+<p>Rechazar <span class="math inline">\(H_0\)</span> indica que el modelo explica una parte significativa de la variabilidad de <span class="math inline">\(Y\)</span>.</p>
+<div class="admon-box nota">
+<div class="admon-title">
+<span class="icon"></span> Interpretación práctica de <span class="math inline">\(F_{calculado}\)</span>
+</div>
+<ol>
+<li>
+<strong><span class="math inline">\(F_{calc} \ll 1\)</span></strong>: los factores incontrolables explican mucho más que el factor controlable <span class="math inline">\(X\)</span>. Conviene explorar otro predictor.
+</li>
+<li>
+<strong><span class="math inline">\(F_{calc} \approx 1\)</span></strong>: la variabilidad de <span class="math inline">\(Y\)</span> explicada por el factor controlable y por los factores incontrolables es similar. El predictor actual apenas aporta al modelo.
+</li>
+<li>
+<strong><span class="math inline">\(F_{calc} \gg 1\)</span></strong>: la mayor parte de la variabilidad de <span class="math inline">\(Y\)</span> se explica por el factor controlable <span class="math inline">\(X\)</span> más que por los factores incontrolables. Este es el caso ideal.
+</li>
+</ol>
+</div>
+<ul>
+<li>Continuando con el ejemplo de soldadura</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="rls.html#cb44-1" tabindex="-1"></a><span class="co"># Ajustar modelo de regresión</span></span>
+<span id="cb44-2"><a href="rls.html#cb44-2" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(Resistencia <span class="sc">~</span> Edad, <span class="at">data =</span> df)</span>
+<span id="cb44-3"><a href="rls.html#cb44-3" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="rls.html#cb44-4" tabindex="-1"></a><span class="co"># ANOVA del modelo</span></span>
+<span id="cb44-5"><a href="rls.html#cb44-5" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
+</details>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Resistencia
+##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Edad       1 120.802 120.802  346.01 &lt; 2.2e-16 ***
+## Residuals 98  34.214   0.349                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<ul>
+<li>A partir del ajuste del modelo de Regresión Lineal Simple, se obtuvo el siguiente estadístico:</li>
+</ul>
+<blockquote>
+<p>Dado que el <span class="math inline">\(p-valor &lt; 0.001\)</span> es muchísimo menor que el nivel de significancia usual (<span class="math inline">\(\alpha = 0.05\)</span>), se <strong>rechaza la hipótesis nula</strong> y se concluye que el modelo ajustado es <strong>globalmente significativo</strong>. En otras palabras, la variable <strong>Edad</strong> contribuye de manera estadísticamente significativa a explicar la variabilidad de la variable <strong>Resistencia</strong>.</p>
+</blockquote>
+<hr />
+<ul>
+<li>Para obtener todo lo desarrollado paso a paso de cada una de las estimaciones podemos realizar el siguiente paso:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="rls.html#cb46-1" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+</details>
+<pre><code>## 
+## Call:
+## lm(formula = Resistencia ~ Edad, data = df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.6852 -0.3543  0.0209  0.4225  1.8004 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  15.7427     0.1787   88.11   &lt;2e-16 ***
+## Edad         -0.2438     0.0131  -18.60   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5909 on 98 degrees of freedom
+## Multiple R-squared:  0.7793, Adjusted R-squared:  0.777 
+## F-statistic:   346 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 
 </div>
 </div>
