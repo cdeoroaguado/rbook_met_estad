@@ -281,6 +281,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6.7" data-path="07-rls.html"><a href="#anova-en-regresi%C3%B3n-lineal"><i class="fa fa-check"></i><b>7.6.7</b> ANOVA en regresión lineal</a></li>
 <li class="chapter" data-level="7.6.8" data-path="07-rls.html"><a href="#hip%C3%B3tesis-global"><i class="fa fa-check"></i><b>7.6.8</b> Hipótesis global</a></li>
 </ul></li>
+<li class="chapter" data-level="7.7" data-path="rls.html"><a href="rls.html#transformaciones-para-mejorar-el-ajuste-del-modelo"><i class="fa fa-check"></i><b>7.7</b> Transformaciones para mejorar el ajuste del modelo</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="07-rls.html"><a href="#por-qu%C3%A9-transformar-variables"><i class="fa fa-check"></i><b>7.7.1</b> ¿Por qué transformar variables?</a></li>
+<li class="chapter" data-level="7.7.2" data-path="rls.html"><a href="rls.html#tipos-comunes-de-transformaciones"><i class="fa fa-check"></i><b>7.7.2</b> Tipos comunes de transformaciones</a></li>
+<li class="chapter" data-level="7.7.3" data-path="07-rls.html"><a href="#evaluaci%C3%B3n-posterior-a-la-transformaci%C3%B3n"><i class="fa fa-check"></i><b>7.7.3</b> Evaluación posterior a la transformación</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -2655,7 +2661,339 @@ H_1:\ \beta_1 \neq 0
 ## Residual standard error: 0.5909 on 98 degrees of freedom
 ## Multiple R-squared:  0.7793, Adjusted R-squared:  0.777 
 ## F-statistic:   346 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div id="transformaciones-para-mejorar-el-ajuste-del-modelo" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Transformaciones para mejorar el ajuste del modelo<a href="rls.html#transformaciones-para-mejorar-el-ajuste-del-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este capítulo se explora cómo las <strong>transformaciones matemáticas</strong> aplicadas a la <strong>variable respuesta (<code>Y</code>)</strong> o a las <strong>covariables (<code>X</code>)</strong> pueden ser utilizadas para <strong>mejorar el ajuste de un modelo lineal</strong>. Cuando los datos no presentan una relación lineal directa, estas transformaciones permiten acercar el comportamiento observado a uno que sí pueda ser representado por un modelo lineal clásico, facilitando así su análisis e interpretación.</p>
+<div id="por-qué-transformar-variables" class="section level3 hasAnchor" number="7.7.1">
+<h3><span class="header-section-number">7.7.1</span> ¿Por qué transformar variables?<a href="#por-qu%C3%A9-transformar-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En muchos casos, el modelo teórico que relaciona <code>Y</code> con <code>X</code> no es estrictamente lineal. Sin embargo, mediante transformaciones adecuadas, es posible <strong>linealizar la relación</strong>, de modo que el modelo ajustado en la nueva escala cumpla con los supuestos de regresión lineal (como homocedasticidad, normalidad de errores, y linealidad).</p>
+<p>Estas transformaciones son particularmente útiles cuando:</p>
+<ul>
+<li>Se detecta <strong>curvatura</strong> en los residuos.</li>
+<li>La <strong>dispersión de los errores</strong> aumenta con el valor de <code>X</code> o <code>Y</code>.</li>
+<li>El <strong>modelo lineal muestra falta de ajuste significativa</strong>.</li>
+<li>Se busca <strong>estabilizar la varianza</strong> o <strong>mejorar la normalidad</strong> de los residuos.</li>
+</ul>
+</div>
+<div id="tipos-comunes-de-transformaciones" class="section level3 hasAnchor" number="7.7.2">
+<h3><span class="header-section-number">7.7.2</span> Tipos comunes de transformaciones<a href="rls.html#tipos-comunes-de-transformaciones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A continuación se presentan algunos tipos comunes de transformaciones para <code>X</code> o <code>Y</code> que permiten linealizar relaciones no lineales:</p>
+<table>
+<colgroup>
+<col width="38%" />
+<col width="30%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Forma original del modelo no lineal</th>
+<th>Transformación sugerida</th>
+<th>Modelo lineal equivalente</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Y = a \cdot X^b\)</span></td>
+<td><code>log(Y) ~ log(X)</code></td>
+<td>Log-log (modelo potencial)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Y = a \cdot e^{bX}\)</span></td>
+<td><code>log(Y) ~ X</code></td>
+<td>Log-lineal (modelo exponencial)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(Y = \frac{1}{a + bX}\)</span></td>
+<td><code>1/Y ~ X</code></td>
+<td>Inverso de Y</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Y = a + b \cdot \log(X)\)</span></td>
+<td><code>Y ~ log(X)</code></td>
+<td>Lineal en log(X)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(Y^2 = a + bX\)</span></td>
+<td><code>sqrt(Y) ~ X</code> o <code>Y^2 ~ X</code></td>
+<td>Transformación raíz o cuadrática</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Y = a + b \cdot \sqrt{X}\)</span></td>
+<td><code>Y ~ sqrt(X)</code></td>
+<td>Lineal en raíz cuadrada de X</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>La elección de la transformación debe basarse tanto en criterios teóricos como empíricos (exploración visual, pruebas de falta de ajuste, etc.).</p>
+</blockquote>
+</div>
+<div id="evaluación-posterior-a-la-transformación" class="section level3 hasAnchor" number="7.7.3">
+<h3><span class="header-section-number">7.7.3</span> Evaluación posterior a la transformación<a href="#evaluaci%C3%B3n-posterior-a-la-transformaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Una vez aplicado el cambio de escala, es indispensable:</p>
+<ul>
+<li>Volver a <strong>graficar la relación</strong> entre las variables transformadas.</li>
+<li>Revisar los <strong>residuos del nuevo modelo</strong>.</li>
+<li>Evaluar si la transformación <strong>mejoró la linealidad y redujo la falta de ajuste</strong>.</li>
+<li>Si es necesario hacer predicciones, aplicar una <strong>retrotransformación</strong> para volver a la escala original de la variable respuesta.</li>
+</ul>
+<div id="transformación-de-la-variable-explicativa" class="section level4 hasAnchor" number="7.7.3.1">
+<h4><span class="header-section-number">7.7.3.1</span> Transformación de la variable explicativa<a href="#transformaci%C3%B3n-de-la-variable-explicativa" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>En este caso, usarás el conjunto de datos <code>taiwan_real_estate</code>, y tomarás como variable explicativa la <strong>distancia a la estación de metro más cercana</strong> (<code>dist_to_mrt_m</code>), aplicando una transformación de raíz cuadrada. El objetivo es observar si la relación con el precio por metro cuadrado (<code>price_twd_msq</code>) mejora.</p>
+<ul>
+<li>Carguemos los datos</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="rls.html#cb48-1" tabindex="-1"></a><span class="fu">library</span>(fst)</span>
+<span id="cb48-2"><a href="rls.html#cb48-2" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="rls.html#cb48-3" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&quot;data/taiwan_real_estate.fst&quot;</span>)</span>
+<span id="cb48-4"><a href="rls.html#cb48-4" tabindex="-1"></a>taiwan_real_estate <span class="ot">&lt;-</span> <span class="fu">read_fst</span>(file_path)</span>
+<span id="cb48-5"><a href="rls.html#cb48-5" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="rls.html#cb48-6" tabindex="-1"></a><span class="co"># convertirlo en un factor </span></span>
+<span id="cb48-7"><a href="rls.html#cb48-7" tabindex="-1"></a>taiwan_real_estate<span class="sc">$</span>house_age_years <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(taiwan_real_estate<span class="sc">$</span>house_age_years)</span>
+<span id="cb48-8"><a href="rls.html#cb48-8" tabindex="-1"></a></span>
+<span id="cb48-9"><a href="rls.html#cb48-9" tabindex="-1"></a><span class="co"># muestra las 3 primeras filas</span></span>
+<span id="cb48-10"><a href="rls.html#cb48-10" tabindex="-1"></a><span class="fu">head</span>(taiwan_real_estate, <span class="dv">3</span>)</span></code></pre></div>
+</details>
+<pre><code>##   dist_to_mrt_m n_convenience house_age_years price_twd_msq
+## 1      84.87882            10        30 to 45      11.46747
+## 2     306.59470             9        15 to 30      12.76853
+## 3     561.98450             5         0 to 15      14.31165</code></pre>
+<ul>
+<li>Visualicemos la relación original</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="rls.html#cb50-1" tabindex="-1"></a>taiwan_real_estate <span class="sc">%&gt;%</span> </span>
+<span id="cb50-2"><a href="rls.html#cb50-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(dist_to_mrt_m, price_twd_msq)) <span class="sc">+</span></span>
+<span id="cb50-3"><a href="rls.html#cb50-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb50-4"><a href="rls.html#cb50-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb50-5"><a href="rls.html#cb50-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Relacion original: distancia vs. precio&quot;</span>)<span class="sc">+</span></span>
+<span id="cb50-6"><a href="rls.html#cb50-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/v2-1.png" width="672" /></p>
+<ul>
+<li>Ajustando el modelo de línea recta tenemos</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="rls.html#cb51-1" tabindex="-1"></a>modelo1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price_twd_msq<span class="sc">~</span> dist_to_mrt_m, <span class="at">data=</span>taiwan_real_estate)</span></code></pre></div>
+</details>
+<ul>
+<li>El resumen del <code>modelo1</code> es</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="rls.html#cb52-1" tabindex="-1"></a><span class="fu">summary</span>(modelo1)</span></code></pre></div>
+</details>
+<pre><code>## 
+## Call:
+## lm(formula = price_twd_msq ~ dist_to_mrt_m, data = taiwan_real_estate)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -10.7097  -1.8177  -0.3617   1.4616  22.2338 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   13.8733516  0.1974616   70.26   &lt;2e-16 ***
+## dist_to_mrt_m -0.0021973  0.0001188  -18.50   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.046 on 412 degrees of freedom
+## Multiple R-squared:  0.4538, Adjusted R-squared:  0.4524 
+## F-statistic: 342.2 on 1 and 412 DF,  p-value: &lt; 2.2e-16</code></pre>
+<ul>
+<li><p>Del resultado anterior se observa que</p>
+<ul>
+<li><p>La <strong>distancia a la estación de metro más cercana (dist_to_mrt_m)</strong> es significativa por que el <span class="math inline">\(p-valor &lt; 0.0001\)</span>. Esto indica que existe evidencia estadística suficiente para afirmar que la distancia al metro influye en el precio por metro cuadrado.</p></li>
+<li><p>El coeficiente asociado a <code>dist_to_mrt_m</code> es <span class="math inline">\(-0.0021973\)</span>, lo que indica que por cada metro adicional que se aleja una propiedad de la estación de metro, el precio por metro cuadrado disminuye en promedio 0.0022 millones de <span class="math inline">\(TWD/m^2\)</span> (o sea, aproximadamente 2.197 <span class="math inline">\(TWD/m^2\)</span>). En otras palabras, <strong>a mayor distancia al metro, menor precio</strong>, lo cual tiene sentido desde un punto de vista urbano y económico.</p></li>
+<li><p>El coeficiente de determinación <span class="math inline">\(R^2=0.4538\)</span> indica que el modelo explica aproximadamente el <span class="math inline">\(45.38\%\)</span> de la variabilidad en el precio por metro cuadrado.</p></li>
+<li><p>El modelo es <strong>estadísticamente significativo</strong> en su conjunto, ya que el <span class="math inline">\(p-valor\)</span> del estadístico <span class="math inline">\(F\)</span> es <span class="math inline">\(&lt;0.001\)</span>.</p></li>
+<li><p>El error estándar residual (3.046) sugiere una dispersión moderada de los residuos alrededor de la recta de regresión.</p></li>
+</ul></li>
+</ul>
+<hr />
+<p>Ahora, si deseamos ajustar el modelo para mejorar el coeficiente de determinación, es necesario transformar la variable independiente, es decir, vamos a entrenar el modelo con <span class="math inline">\(X* = \sqrt{X}\)</span>.</p>
+<ul>
+<li>Transformemos la variable explicativa (raíz cuadrada)</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="rls.html#cb54-1" tabindex="-1"></a>taiwan_real_estate <span class="sc">%&gt;%</span> </span>
+<span id="cb54-2"><a href="rls.html#cb54-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">sqrt</span>(dist_to_mrt_m), price_twd_msq)) <span class="sc">+</span></span>
+<span id="cb54-3"><a href="rls.html#cb54-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb54-4"><a href="rls.html#cb54-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb54-5"><a href="rls.html#cb54-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Transformacion: raiz cuadrada de la distancia vs. precio&quot;</span>)<span class="sc">+</span></span>
+<span id="cb54-6"><a href="rls.html#cb54-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/v5-1.png" width="672" /></p>
+<ul>
+<li><p>Observa si los puntos siguen mejor la línea de regresión después de la transformación. Si es así, el modelo lineal será más adecuado</p></li>
+<li><p>Ajustemos el modelo</p></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="rls.html#cb55-1" tabindex="-1"></a>modelo2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price_twd_msq<span class="sc">~</span> <span class="fu">sqrt</span>(dist_to_mrt_m), <span class="at">data=</span>taiwan_real_estate)</span></code></pre></div>
+</details>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="rls.html#cb56-1" tabindex="-1"></a><span class="fu">summary</span>(modelo2) </span></code></pre></div>
+</details>
+<pre><code>## 
+## Call:
+## lm(formula = price_twd_msq ~ sqrt(dist_to_mrt_m), data = taiwan_real_estate)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -10.7843  -1.5410  -0.2594   1.2294  21.7483 
+## 
+## Coefficients:
+##                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)         16.709799   0.277741   60.16   &lt;2e-16 ***
+## sqrt(dist_to_mrt_m) -0.182843   0.008436  -21.67   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.818 on 412 degrees of freedom
+## Multiple R-squared:  0.5327, Adjusted R-squared:  0.5316 
+## F-statistic: 469.7 on 1 and 412 DF,  p-value: &lt; 2.2e-16</code></pre>
+<ul>
+<li><p>De la tabla de coeficientes del modelo se observa que:</p>
+<ul>
+<li><p>La variable <code>sqrt(dist_to_mrt_m)</code> es estadísticamente significativa, ya que su <span class="math inline">\(p-valor &lt; 0.0001\)</span>.</p></li>
+<li><p>Por cada unidad que aumenta la raíz cuadrada de la distancia a la estación de MRT (<code>sqrt(dist_to_mrt_m</code>)), el valor de la variable dependiente disminuye en 0.182843 unidades, manteniendo constante el resto de variables.</p></li>
+<li><p>El modelo presenta un <span class="math inline">\(R^2\)</span> de 0.5327, lo cual indica que aproximadamente el <span class="math inline">\(53.27\%\)</span> de la variabilidad en la variable de respuesta puede ser explicada por <code>sqrt(dist_to_mrt_m)</code>.</p></li>
+<li><p>El modelo es altamente significativo en su conjunto, como lo demuestra el estadístico <span class="math inline">\(F = 469.7\)</span> y el <span class="math inline">\(p-valor &lt; 0.001\)</span>.</p></li>
+<li><p>El error estándar residual (2.818) sugiere una dispersión moderada de los residuos alrededor de la recta de regresión.</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="transformación-de-la-variable-de-respuesta" class="section level4 hasAnchor" number="7.7.3.2">
+<h4><span class="header-section-number">7.7.3.2</span> Transformación de la variable de respuesta<a href="#transformaci%C3%B3n-de-la-variable-de-respuesta" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>También es posible transformar la <strong>variable dependiente (respuesta)</strong>, por ejemplo cuando sus valores están muy sesgados o varían demasiado. Pero al hacerlo, se requiere luego una “<strong>retrotransformación</strong>” para volver a la escala original e interpretar correctamente.</p>
+<p>En este caso, usarás el conjunto <code>ad_conversion</code>, con:</p>
+<ul>
+<li><p><code>n_impressions</code>: número de veces que se mostró el anuncio.</p></li>
+<li><p><code>n_clicks</code>: número de clics recibidos.</p></li>
+</ul>
+<p>Se transformará ambas variables con una potencia 0.25 (raíz cuarta) para estabilizar la relación.</p>
+<ul>
+<li>Carguemos los datos</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="rls.html#cb58-1" tabindex="-1"></a><span class="fu">library</span>(fst)</span>
+<span id="cb58-2"><a href="rls.html#cb58-2" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="rls.html#cb58-3" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&quot;data/ad_conversion.fst&quot;</span>)</span>
+<span id="cb58-4"><a href="rls.html#cb58-4" tabindex="-1"></a>ad_conversion <span class="ot">&lt;-</span> <span class="fu">read_fst</span>(file_path)</span>
+<span id="cb58-5"><a href="rls.html#cb58-5" tabindex="-1"></a></span>
+<span id="cb58-6"><a href="rls.html#cb58-6" tabindex="-1"></a><span class="co"># muestra las 3 primeras filas</span></span>
+<span id="cb58-7"><a href="rls.html#cb58-7" tabindex="-1"></a><span class="fu">head</span>(ad_conversion, <span class="dv">3</span>)</span></code></pre></div>
+</details>
+<pre><code>##   spent_usd n_impressions n_clicks
+## 1      1.43          7350        1
+## 2      1.82         17861        2
+## 3      1.25          4259        1</code></pre>
+<ul>
+<li>Visualicemos la relación original</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="rls.html#cb60-1" tabindex="-1"></a>ad_conversion <span class="sc">%&gt;%</span> </span>
+<span id="cb60-2"><a href="rls.html#cb60-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n_impressions, n_clicks)) <span class="sc">+</span></span>
+<span id="cb60-3"><a href="rls.html#cb60-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb60-4"><a href="rls.html#cb60-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb60-5"><a href="rls.html#cb60-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/t2-1.png" width="672" /></p>
+<ul>
+<li>Ajustando el modelo de línea recta tenemos</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="rls.html#cb61-1" tabindex="-1"></a>modelo1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(n_clicks <span class="sc">~</span> n_impressions,<span class="at">data =</span> ad_conversion)</span></code></pre></div>
+</details>
+<ul>
+<li>El resumen del <code>modelo1</code> es</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="rls.html#cb62-1" tabindex="-1"></a><span class="fu">summary</span>(modelo1)</span></code></pre></div>
+</details>
+<pre><code>## 
+## Call:
+## lm(formula = n_clicks ~ n_impressions, data = ad_conversion)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -186.099   -5.392   -1.422    2.070  119.876 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   1.683e+00  7.888e-01   2.133   0.0331 *  
+## n_impressions 1.718e-04  1.960e-06  87.654   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 19.91 on 934 degrees of freedom
+## Multiple R-squared:  0.8916, Adjusted R-squared:  0.8915 
+## F-statistic:  7683 on 1 and 934 DF,  p-value: &lt; 2.2e-16</code></pre>
+<ul>
+<li><p>De la tabla anterior se observa que:</p>
+<ul>
+<li><p>La variable n<code>_impressions</code> es altamente significativa, ya que su <span class="math inline">\(p-valor &lt; 0.001\)</span>. Esto indica una fuerte evidencia estadística de que esta variable tiene un efecto sobre la variable dependiente.</p></li>
+<li><p>Por cada impresión adicional, se espera que la variable dependiente (probablemente ingresos, clics o visitas, dependiendo del contexto) aumente en 0.0001718 unidades, manteniendo todo lo demás constante.</p></li>
+<li><p>El <span class="math inline">\(R^2\)</span> es 0.8916, lo cual indica que el modelo explica el 89.16% de la variabilidad de la variable respuesta. Esto representa un ajuste excelente del modelo a los datos.</p></li>
+<li><p>El modelo completo es significativo, ya que el <span class="math inline">\(p-valor\)</span> del estadístico <span class="math inline">\(F\)</span> también es menor a 0.001.</p></li>
+<li><p>El error estándar residual (19.91) sugiere una dispersión alta de los residuos alrededor de la recta de regresión.</p></li>
+</ul></li>
+</ul>
+<hr />
+<ul>
+<li>Transformemos la variable explicativa (raíz cuadrada)</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="rls.html#cb64-1" tabindex="-1"></a>ad_conversion <span class="sc">%&gt;%</span> </span>
+<span id="cb64-2"><a href="rls.html#cb64-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(n_impressions <span class="sc">^</span> <span class="fl">0.25</span>, n_clicks <span class="sc">^</span> <span class="fl">0.25</span>)) <span class="sc">+</span></span>
+<span id="cb64-3"><a href="rls.html#cb64-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb64-4"><a href="rls.html#cb64-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb64-5"><a href="rls.html#cb64-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/t5-1.png" width="672" /></p>
+<ul>
+<li><p>Observa si los puntos siguen mejor la línea de regresión después de la transformación. Si es así, el modelo lineal será más adecuado</p></li>
+<li><p>Ajustemos el modelo</p></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="rls.html#cb65-1" tabindex="-1"></a>modelo2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb65-2"><a href="rls.html#cb65-2" tabindex="-1"></a>  <span class="fu">I</span>(n_clicks <span class="sc">^</span> <span class="fl">0.25</span>) <span class="sc">~</span> <span class="fu">I</span>(n_impressions <span class="sc">^</span> <span class="fl">0.25</span>),</span>
+<span id="cb65-3"><a href="rls.html#cb65-3" tabindex="-1"></a>  <span class="at">data =</span> ad_conversion</span>
+<span id="cb65-4"><a href="rls.html#cb65-4" tabindex="-1"></a>)</span></code></pre></div>
+</details>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="rls.html#cb66-1" tabindex="-1"></a><span class="fu">summary</span>(modelo2) </span></code></pre></div>
+</details>
+<pre><code>## 
+## Call:
+## lm(formula = I(n_clicks^0.25) ~ I(n_impressions^0.25), data = ad_conversion)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.57061 -0.13229  0.00582  0.14494  0.46888 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           0.0717479  0.0172019   4.171 3.32e-05 ***
+## I(n_impressions^0.25) 0.1115330  0.0008844 126.108  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1969 on 934 degrees of freedom
+## Multiple R-squared:  0.9445, Adjusted R-squared:  0.9445 
+## F-statistic: 1.59e+04 on 1 and 934 DF,  p-value: &lt; 2.2e-16</code></pre>
+<ul>
+<li><p>La variable <code>I(n_impressions^0.25)</code> es altamente significativa (p &lt; 0.001), lo que indica una relación robusta con la variable dependiente.</p></li>
+<li><p>Por cada unidad que aumenta <code>n_impressions^0.25</code>, la respuesta se incrementa en 0.1115 unidades, manteniendo constante el intercepto.</p></li>
+<li><p>El modelo presenta un ajuste excelente, con un <span class="math inline">\(R^2\)</span> de 0.9445, lo que indica que explica el <span class="math inline">\(94.45\%\)</span> de la variabilidad observada.</p></li>
+<li><p>El modelo es estadísticamente significativo en su conjunto (<span class="math inline">\(F = 15900, p-valor &lt; 0.001\)</span>).</p></li>
+<li><p>El error estándar residual (0.1969) refleja una baja dispersión de los residuos respecto a la línea de ajuste.</p></li>
+</ul>
 
+</div>
 </div>
 </div>
 </div>

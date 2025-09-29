@@ -130,3 +130,9 @@ tab:ejemplo-1
 tab:unnamed-chunk-1
 tab:b3
 tab:b6
+transformaciones-para-mejorar-el-ajuste-del-modelo
+por-qué-transformar-variables
+tipos-comunes-de-transformaciones
+evaluación-posterior-a-la-transformación
+transformación-de-la-variable-explicativa
+transformación-de-la-variable-de-respuesta
