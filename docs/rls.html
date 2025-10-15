@@ -319,7 +319,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.8.5" data-path="rls.html"><a href="rls.html#varianza-constante-de-los-errores"><i class="fa fa-check"></i><b>7.8.5</b> Varianza constante de los errores</a></li>
 </ul></li>
 <li class="chapter" data-level="7.9" data-path="07-rls.html"><a href="#estimaci%C3%B3n-e-inferencia-para-la-widehatmathbbeymid-x_0-en-rls"><i class="fa fa-check"></i><b>7.9</b> Estimación e inferencia para la <span class="math inline">\(\widehat{\mathbb{E}}(y\mid x_0)\)</span> en RLS</a></li>
-<li class="chapter" data-level="7.10" data-path="07-rls.html"><a href="#intervalo-de-predicci%C3%B3n-para-una-nueva-y_0-en-x_0"><i class="fa fa-check"></i><b>7.10</b> Intervalo de <strong>predicción</strong> para una nueva <span class="math inline">\(y_0\)</span> en <span class="math inline">\(x_0\)</span></a></li>
+<li class="chapter" data-level="7.10" data-path="07-rls.html"><a href="#intervalo-de-predicci%C3%B3n-para-una-nueva-y_0-en-x_0"><i class="fa fa-check"></i><b>7.10</b> Intervalo de predicción para una nueva <span class="math inline">\(y_0\)</span> en <span class="math inline">\(x_0\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -3149,7 +3149,7 @@ La <strong>Función de Autocorrelación (ACF)</strong> puede calcularse mediante
 <span id="cb73-3"><a href="rls.html#cb73-3" tabindex="-1"></a>car<span class="sc">:::</span><span class="fu">durbinWatsonTest</span>(modelo)</span></code></pre></div>
 </details>
 <pre><code>##  lag Autocorrelation D-W Statistic p-value
-##    1     -0.02653343      2.050609   0.824
+##    1     -0.02653343      2.050609   0.814
 ##  Alternative hypothesis: rho != 0</code></pre>
 <ul>
 <li>Basados en el valor <span class="math inline">\(p\)</span>, <strong>no</strong> es posible rechazar la hipótesis nula <span class="math inline">\(H_0\)</span>, ya que el valor <span class="math inline">\(p\)</span> obtenido en la prueba de <strong>Durbin-Watson</strong> es superior al nivel de significancia <span class="math inline">\(\alpha = 0.05\)</span>. Por lo tanto, se concluye que los residuales del modelo ajustado <strong>son independientes</strong>, cumpliéndose así el supuesto de independencia de los errores.</li>
@@ -3457,7 +3457,7 @@ T\;=\;\frac{\hat y(x_0)-\mathbb{E}(y\mid x_0)}
 </blockquote>
 </div>
 <div id="intervalo-de-predicción-para-una-nueva-y_0-en-x_0" class="section level2 hasAnchor" number="7.10">
-<h2><span class="header-section-number">7.10</span> Intervalo de <strong>predicción</strong> para una nueva <span class="math inline">\(y_0\)</span> en <span class="math inline">\(x_0\)</span><a href="#intervalo-de-predicci%C3%B3n-para-una-nueva-y_0-en-x_0" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">7.10</span> Intervalo de predicción para una nueva <span class="math inline">\(y_0\)</span> en <span class="math inline">\(x_0\)</span><a href="#intervalo-de-predicci%C3%B3n-para-una-nueva-y_0-en-x_0" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><span class="math display">\[
 \hat y(x_0)\ \pm\ t_{\,1-\alpha/2;\,n-2}\;
 \sigma\,\sqrt{1+\frac{1}{n}+\frac{(x_0-\bar x)^2}{S_{xx}}}.
