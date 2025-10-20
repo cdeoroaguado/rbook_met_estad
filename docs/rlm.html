@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 8 Regresión lineal multiple | Notas de métodos estadísticos</title>
+  <meta name="description" content="Notas de clase de métodos estadísticos." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 8 Regresión lineal multiple | Notas de métodos estadísticos" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de clase de métodos estadísticos." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 8 Regresión lineal multiple | Notas de métodos estadísticos" />
+  
+  <meta name="twitter:description" content="Notas de clase de métodos estadísticos." />
+  
+
+<meta name="author" content="Carlos de Oro Aguado" />
+
+
+<meta name="date" content="2025-10-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="rls.html"/>
+<link rel="next" href="referencias-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Notas de métodos estadísticos</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Asignatura</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="08-rlm.html"><a href="#introducci%C3%B3n-a-r-y-rstudio"><i class="fa fa-check"></i><b>1.1</b> Introducción a R y RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="08-rlm.html"><a href="#qu%C3%A9-es-r"><i class="fa fa-check"></i><b>1.1.1</b> ¿Qué es R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="08-rlm.html"><a href="#qu%C3%A9-es-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es RStudio?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="08-rlm.html"><a href="#introducci%C3%B3n-a-git-y-github"><i class="fa fa-check"></i><b>1.2</b> Introducción a Git y GitHub</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="08-rlm.html"><a href="#qu%C3%A9-es-git"><i class="fa fa-check"></i><b>1.2.1</b> ¿Qué es Git?</a></li>
+<li class="chapter" data-level="1.2.2" data-path="08-rlm.html"><a href="#qu%C3%A9-es-github"><i class="fa fa-check"></i><b>1.2.2</b> ¿Qué es GitHub?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="08-rlm.html"><a href="#introducci%C3%B3n-a-tidyverse"><i class="fa fa-check"></i><b>1.3</b> Introducción a Tidyverse</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="08-rlm.html"><a href="#representaci%C3%B3n-visual-del-ecosistema-tidyverse"><i class="fa fa-check"></i><b>1.3.1</b> Representación visual del ecosistema Tidyverse</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#principales-paquetes-del-tidyverse"><i class="fa fa-check"></i><b>1.3.2</b> Principales paquetes del Tidyverse</a></li>
+<li class="chapter" data-level="1.3.3" data-path="08-rlm.html"><a href="#instalaci%C3%B3n-del-tidyverse-en-r"><i class="fa fa-check"></i><b>1.3.3</b> Instalación del Tidyverse en R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#pasos-para-publicar-un-libro-bookdown-en-github-pages"><i class="fa fa-check"></i><b>1.4</b> Pasos para publicar un libro <code>bookdown</code> en GitHub Pages</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="08-rlm.html"><a href="#video-paso-a-paso-de-la-publicaci%C3%B3n-del-libro-en-github-pages"><i class="fa fa-check"></i><b>1.4.1</b> Video paso a paso de la publicación del libro en GitHub Pages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="reglas.html"><a href="reglas.html"><i class="fa fa-check"></i><b>2</b> Reglas de curso y diagnostico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="reglas.html"><a href="reglas.html#reglas-de-las-clases"><i class="fa fa-check"></i><b>2.1</b> Reglas de las clases</a></li>
+<li class="chapter" data-level="2.2" data-path="08-rlm.html"><a href="#pol%C3%ADtica-de-evaluaci%C3%B3n-y-normas-de-integridad-acad%C3%A9mica"><i class="fa fa-check"></i><b>2.2</b> Política de evaluación y normas de integridad académica</a></li>
+<li class="chapter" data-level="2.3" data-path="reglas.html"><a href="reglas.html#fechas-de-taller-y-examenes"><i class="fa fa-check"></i><b>2.3</b> Fechas de taller y examenes</a></li>
+<li class="chapter" data-level="2.4" data-path="08-rlm.html"><a href="#programaci%C3%B3n-del-curso-por-unidad"><i class="fa fa-check"></i><b>2.4</b> Programación del curso por unidad</a></li>
+<li class="chapter" data-level="2.5" data-path="reglas.html"><a href="reglas.html#referencias"><i class="fa fa-check"></i><b>2.5</b> Referencias</a></li>
+<li class="chapter" data-level="2.6" data-path="08-rlm.html"><a href="#terminos-b%C3%A1sicos-de-la-estad%C3%ADstica"><i class="fa fa-check"></i><b>2.6</b> Terminos básicos de la estadística</a></li>
+<li class="chapter" data-level="2.7" data-path="08-rlm.html"><a href="#diagnostico-de-estad%C3%ADstica-b%C3%A1sica"><i class="fa fa-check"></i><b>2.7</b> Diagnostico de estadística básica</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>3</b> Análisis exploratorio de datos (EDA)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="08-rlm.html"><a href="#cu%C3%A1ndo-debo-utilizarlo"><i class="fa fa-check"></i><b>3.1</b> ¿Cuándo debo utilizarlo?</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="08-rlm.html"><a href="#tipos-de-an%C3%A1lisis-exploratorio"><i class="fa fa-check"></i><b>3.1.1</b> Tipos de análisis exploratorio:</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="08-rlm.html"><a href="#representaci%C3%B3n-de-datos-seg%C3%BAn-su-naturaleza"><i class="fa fa-check"></i><b>3.2</b> Representación de datos según su naturaleza</a></li>
+<li class="chapter" data-level="3.3" data-path="08-rlm.html"><a href="#presentaci%C3%B3n-y-an%C3%A1lisis-de-la-informaci%C3%B3n-en-estudios-descriptivos"><i class="fa fa-check"></i><b>3.3</b> Presentación y análisis de la información en estudios descriptivos</a></li>
+<li class="chapter" data-level="3.4" data-path="08-rlm.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-num%C3%A9rica"><i class="fa fa-check"></i><b>3.4</b> Análisis explotario con variable respuesta numérica</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="eda.html"><a href="eda.html#contexto-de-los-datos-de-walmart"><i class="fa fa-check"></i><b>3.4.1</b> Contexto de los datos de Walmart</a></li>
+<li class="chapter" data-level="3.4.2" data-path="08-rlm.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl"><i class="fa fa-check"></i><b>3.4.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.4.3" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-la-variable-weekly_sales-target"><i class="fa fa-check"></i><b>3.4.3</b> Análisis de la variable <code>weekly_sales</code> (Target)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes"><i class="fa fa-check"></i><b>3.4.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="08-rlm.html"><a href="#an%C3%A1lisis-exploratorio-bivariado"><i class="fa fa-check"></i><b>3.4.5</b> Análisis exploratorio bivariado</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="08-rlm.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-categ%C3%B3rica"><i class="fa fa-check"></i><b>3.5</b> Análisis explotario con variable respuesta categórica</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="eda.html"><a href="eda.html#contexto-del-conjunto-de-datos-de-marketing-de-un-banco"><i class="fa fa-check"></i><b>3.5.1</b> Contexto del conjunto de datos de marketing de un banco</a></li>
+<li class="chapter" data-level="3.5.2" data-path="08-rlm.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl-1"><i class="fa fa-check"></i><b>3.5.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.5.3" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-la-variable-y-target"><i class="fa fa-check"></i><b>3.5.3</b> Análisis de la variable <code>y</code> (Target)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes-1"><i class="fa fa-check"></i><b>3.5.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.5.5" data-path="08-rlm.html"><a href="#an%C3%A1lisis-exploratorio-bivariado-1"><i class="fa fa-check"></i><b>3.5.5</b> Análisis exploratorio bivariado</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="estparynopar.html"><a href="estparynopar.html"><i class="fa fa-check"></i><b>4</b> Análisis de estadística paramétrica y no paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="08-rlm.html"><a href="#comparaci%C3%B3n-de-medias-entre-dos-grupos-independientes-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.1</b> Comparación de medias entre dos grupos independientes con estadística paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="estparynopar.html"><a href="estparynopar.html#condiciones-del-t-test-para-muestras-independientes"><i class="fa fa-check"></i><b>4.1.1</b> Condiciones del t-test para muestras independientes</a></li>
+<li class="chapter" data-level="4.1.2" data-path="estparynopar.html"><a href="estparynopar.html#grados-de-libertad"><i class="fa fa-check"></i><b>4.1.2</b> Grados de libertad</a></li>
+<li class="chapter" data-level="4.1.3" data-path="08-rlm.html"><a href="#error-est%C3%A1ndar-de-la-diferencia-de-medias"><i class="fa fa-check"></i><b>4.1.3</b> Error estándar de la diferencia de medias</a></li>
+<li class="chapter" data-level="4.1.4" data-path="08-rlm.html"><a href="#tama%C3%B1o-del-efecto-effect-size-en-comparaciones-de-medias"><i class="fa fa-check"></i><b>4.1.4</b> Tamaño del Efecto (Effect Size) en comparaciones de medias</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="08-rlm.html"><a href="#comparaci%C3%B3n-de-medias-entre-dos-grupos-pareados-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.2</b> Comparación de medias entre dos grupos pareados con estadística paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="estparynopar.html"><a href="estparynopar.html#supuestos-del-t-test-para-muestras-dependientes"><i class="fa fa-check"></i><b>4.2.1</b> Supuestos del t-test para muestras dependientes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="08-rlm.html"><a href="#comparaci%C3%B3n-de-dos-grupos-independientes-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.3</b> Comparación de dos grupos independientes con estadística no paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="estparynopar.html"><a href="estparynopar.html#fundamento-conceptual"><i class="fa fa-check"></i><b>4.3.1</b> Fundamento conceptual</a></li>
+<li class="chapter" data-level="4.3.2" data-path="08-rlm.html"><a href="#comparaci%C3%B3n-con-el-test-t"><i class="fa fa-check"></i><b>4.3.2</b> Comparación con el test t</a></li>
+<li class="chapter" data-level="4.3.3" data-path="08-rlm.html"><a href="#supuestos-y-condiciones-de-aplicaci%C3%B3n"><i class="fa fa-check"></i><b>4.3.3</b> Supuestos y condiciones de aplicación</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="08-rlm.html"><a href="#comparaci%C3%B3n-de-dos-grupos-pareados-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.4</b> Comparación de dos grupos pareados con estadística no paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="08-rlm.html"><a href="#cu%C3%A1ndo-se-recomienda-utilizar-esta-prueba"><i class="fa fa-check"></i><b>4.4.1</b> ¿Cuándo se recomienda utilizar esta prueba?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="08-rlm.html"><a href="#anova-an%C3%A1lisis-de-varianza-para-comparar-m%C3%BAltiples-medias"><i class="fa fa-check"></i><b>4.5</b> ANOVA (análisis de varianza para comparar múltiples medias)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="08-rlm.html"><a href="#supuestos-y-formulaci%C3%B3n-de-las-hip%C3%B3tesis"><i class="fa fa-check"></i><b>4.5.1</b> Supuestos y formulación de las hipótesis</a></li>
+<li class="chapter" data-level="4.5.2" data-path="08-rlm.html"><a href="#sumas-de-cuadrados-y-teorema-de-descomposici%C3%B3n"><i class="fa fa-check"></i><b>4.5.2</b> Sumas de cuadrados y teorema de descomposición</a></li>
+<li class="chapter" data-level="4.5.3" data-path="estparynopar.html"><a href="estparynopar.html#estimaciones-insesgadas-de-la-varianza-poblacional"><i class="fa fa-check"></i><b>4.5.3</b> Estimaciones insesgadas de la varianza poblacional</a></li>
+<li class="chapter" data-level="4.5.4" data-path="08-rlm.html"><a href="#teorema-de-contraste-para-el-an%C3%A1lisis-de-varianza"><i class="fa fa-check"></i><b>4.5.4</b> Teorema de contraste para el análisis de varianza</a></li>
+<li class="chapter" data-level="4.5.5" data-path="08-rlm.html"><a href="#comparaciones-m%C3%BAltiples"><i class="fa fa-check"></i><b>4.5.5</b> Comparaciones múltiples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="estparynopar.html"><a href="estparynopar.html#kruskalwallis"><i class="fa fa-check"></i><b>4.6</b> Kruskal–Wallis</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="08-rlm.html"><a href="#hip%C3%B3tesis-del-test"><i class="fa fa-check"></i><b>4.6.1</b> Hipótesis del test</a></li>
+<li class="chapter" data-level="4.6.2" data-path="08-rlm.html"><a href="#estad%C3%ADstico-de-prueba"><i class="fa fa-check"></i><b>4.6.2</b> Estadístico de prueba</a></li>
+<li class="chapter" data-level="4.6.3" data-path="estparynopar.html"><a href="estparynopar.html#condiciones-del-test-de-kruskalwallis"><i class="fa fa-check"></i><b>4.6.3</b> Condiciones del test de Kruskal–Wallis</a></li>
+<li class="chapter" data-level="4.6.4" data-path="estparynopar.html"><a href="estparynopar.html#comparaciones-post-hoc"><i class="fa fa-check"></i><b>4.6.4</b> Comparaciones Post-Hoc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tabcontingencia.html"><a href="tabcontingencia.html"><i class="fa fa-check"></i><b>5</b> Tabla de contingencia</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="08-rlm.html"><a href="#tablas-de-contingencia-con-dos-criterios-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia con dos criterios de clasificación</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="tabcontingencia.html"><a href="tabcontingencia.html#prueba-de-homogeneidad"><i class="fa fa-check"></i><b>5.1.1</b> Prueba de homogeneidad</a></li>
+<li class="chapter" data-level="5.1.2" data-path="tabcontingencia.html"><a href="tabcontingencia.html#prueba-de-independencia"><i class="fa fa-check"></i><b>5.1.2</b> Prueba de independencia</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="correglin.html"><a href="correglin.html"><i class="fa fa-check"></i><b>6</b> Correlación lineal</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="08-rlm.html"><a href="#definiciones-y-teorema-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Definiciones y teorema de correlación</a></li>
+<li class="chapter" data-level="6.2" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-correlaci%C3%B3n-simple-dos-variables"><i class="fa fa-check"></i><b>6.2</b> Análisis de correlación simple (dos variables)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="08-rlm.html"><a href="#tipos-de-coeficientes-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.1</b> Tipos de coeficientes de correlación</a></li>
+<li class="chapter" data-level="6.2.2" data-path="08-rlm.html"><a href="#interpretaci%C3%B3n-del-coeficiente-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.2</b> Interpretación del coeficiente de correlación</a></li>
+<li class="chapter" data-level="6.2.3" data-path="08-rlm.html"><a href="#correlaci%C3%B3n-de-pearson"><i class="fa fa-check"></i><b>6.2.3</b> Correlación de Pearson</a></li>
+<li class="chapter" data-level="6.2.4" data-path="08-rlm.html"><a href="#correlaci%C3%B3n-de-spearman"><i class="fa fa-check"></i><b>6.2.4</b> Correlación de Spearman</a></li>
+<li class="chapter" data-level="6.2.5" data-path="08-rlm.html"><a href="#correlaci%C3%B3n-de-kendall"><i class="fa fa-check"></i><b>6.2.5</b> Correlación de Kendall</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="rls.html"><a href="rls.html"><i class="fa fa-check"></i><b>7</b> Regresión lineal simple</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="08-rlm.html"><a href="#el-modelo-de-regresi%C3%B3n-lineal-simple-rls"><i class="fa fa-check"></i><b>7.1</b> El modelo de regresión lineal simple (RLS)</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="08-rlm.html"><a href="#modelo-determinista-y-modelo-probabil%C3%ADstico"><i class="fa fa-check"></i><b>7.1.1</b> Modelo determinista y modelo probabilístico</a></li>
+<li class="chapter" data-level="7.1.2" data-path="08-rlm.html"><a href="#supuestos-b%C3%A1sicos-para-el-modelo-de-regresi%C3%B3n-lineal."><i class="fa fa-check"></i><b>7.1.2</b> Supuestos básicos para el modelo de regresión lineal.</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="08-rlm.html"><a href="#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1"><i class="fa fa-check"></i><b>7.2</b> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span></a></li>
+<li class="chapter" data-level="7.3" data-path="08-rlm.html"><a href="#estimaci%C3%B3n-de-sigma2"><i class="fa fa-check"></i><b>7.3</b> Estimación de <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.4" data-path="08-rlm.html"><a href="#coeficiente-de-determinaci%C3%B3n"><i class="fa fa-check"></i><b>7.4</b> Coeficiente de determinación</a></li>
+<li class="chapter" data-level="7.5" data-path="08-rlm.html"><a href="#propiedades-de-estimadores-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>7.5</b> Propiedades de estimadores de mínimos cuadrados</a></li>
+<li class="chapter" data-level="7.6" data-path="08-rlm.html"><a href="#estimaci%C3%B3n-de-invervalos-de-confianza-y-prueba-de-hip%C3%B3tesis-para-beta_1-beta_0-y-sigma2"><i class="fa fa-check"></i><b>7.6</b> Estimación de invervalos de confianza y prueba de hipótesis para <span class="math inline">\(\beta_1, \beta_0\)</span> y <span class="math inline">\(\sigma^2\)</span></a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-beta_1"><i class="fa fa-check"></i><b>7.6.1</b> Intervalo de confianza para <span class="math inline">\(\beta_1\)</span></a></li>
+<li class="chapter" data-level="7.6.2" data-path="08-rlm.html"><a href="#prueba-de-hip%C3%B3tesis-para-beta_1"><i class="fa fa-check"></i><b>7.6.2</b> Prueba de hipótesis para <span class="math inline">\(\beta_1\)</span></a></li>
+<li class="chapter" data-level="7.6.3" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-beta_0"><i class="fa fa-check"></i><b>7.6.3</b> Intervalo de confianza para <span class="math inline">\(\beta_0\)</span></a></li>
+<li class="chapter" data-level="7.6.4" data-path="08-rlm.html"><a href="#prueba-de-hip%C3%B3tesis-para-beta_0"><i class="fa fa-check"></i><b>7.6.4</b> Prueba de hipótesis para <span class="math inline">\(\beta_0\)</span></a></li>
+<li class="chapter" data-level="7.6.5" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-sigma2"><i class="fa fa-check"></i><b>7.6.5</b> Intervalo de confianza para <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.6.6" data-path="08-rlm.html"><a href="#prueba-de-hip%C3%B3tesis-para-sigma2"><i class="fa fa-check"></i><b>7.6.6</b> Prueba de hipótesis para <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.6.7" data-path="08-rlm.html"><a href="#anova-en-regresi%C3%B3n-lineal"><i class="fa fa-check"></i><b>7.6.7</b> ANOVA en regresión lineal</a></li>
+<li class="chapter" data-level="7.6.8" data-path="08-rlm.html"><a href="#hip%C3%B3tesis-global"><i class="fa fa-check"></i><b>7.6.8</b> Hipótesis global</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="rls.html"><a href="rls.html#transformaciones-para-mejorar-el-ajuste-del-modelo"><i class="fa fa-check"></i><b>7.7</b> Transformaciones para mejorar el ajuste del modelo</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="08-rlm.html"><a href="#por-qu%C3%A9-transformar-variables"><i class="fa fa-check"></i><b>7.7.1</b> ¿Por qué transformar variables?</a></li>
+<li class="chapter" data-level="7.7.2" data-path="rls.html"><a href="rls.html#tipos-comunes-de-transformaciones"><i class="fa fa-check"></i><b>7.7.2</b> Tipos comunes de transformaciones</a></li>
+<li class="chapter" data-level="7.7.3" data-path="08-rlm.html"><a href="#evaluaci%C3%B3n-posterior-a-la-transformaci%C3%B3n"><i class="fa fa-check"></i><b>7.7.3</b> Evaluación posterior a la transformación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-residuales"><i class="fa fa-check"></i><b>7.8</b> Análisis de residuales</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="08-rlm.html"><a href="#validaci%C3%B3n-de-supuestos"><i class="fa fa-check"></i><b>7.8.1</b> Validación de supuestos</a></li>
+<li class="chapter" data-level="7.8.2" data-path="rls.html"><a href="rls.html#independencia-de-los-errores"><i class="fa fa-check"></i><b>7.8.2</b> Independencia de los errores</a></li>
+<li class="chapter" data-level="7.8.3" data-path="rls.html"><a href="rls.html#normalidad-de-los-errores"><i class="fa fa-check"></i><b>7.8.3</b> Normalidad de los errores</a></li>
+<li class="chapter" data-level="7.8.4" data-path="rls.html"><a href="rls.html#media-cero-de-los-errores"><i class="fa fa-check"></i><b>7.8.4</b> Media cero de los errores</a></li>
+<li class="chapter" data-level="7.8.5" data-path="rls.html"><a href="rls.html#varianza-constante-de-los-errores"><i class="fa fa-check"></i><b>7.8.5</b> Varianza constante de los errores</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="08-rlm.html"><a href="#estimaci%C3%B3n-e-inferencia-para-la-widehatmathbbeymid-x_0-en-rls"><i class="fa fa-check"></i><b>7.9</b> Estimación e inferencia para la <span class="math inline">\(\widehat{\mathbb{E}}(y\mid x_0)\)</span> en RLS</a></li>
+<li class="chapter" data-level="7.10" data-path="08-rlm.html"><a href="#intervalo-de-predicci%C3%B3n-para-una-nueva-y_0-en-x_0"><i class="fa fa-check"></i><b>7.10</b> Intervalo de predicción para una nueva <span class="math inline">\(y_0\)</span> en <span class="math inline">\(x_0\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rlm.html"><a href="rlm.html"><i class="fa fa-check"></i><b>8</b> Regresión lineal multiple</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="08-rlm.html"><a href="#formulaci%C3%B3n-matem%C3%A1tica-del-modelo-de-rlm"><i class="fa fa-check"></i><b>8.1</b> Formulación matemática del modelo de RLM</a></li>
+<li class="chapter" data-level="8.2" data-path="08-rlm.html"><a href="#estimaci%C3%B3n-de-los-coeficientes-del-modelo-de-rlm"><i class="fa fa-check"></i><b>8.2</b> Estimación de los coeficientes del modelo de RLM</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="08-rlm.html"><a href="#modelo-ajustado-de-regresi%C3%B3n"><i class="fa fa-check"></i><b>8.2.1</b> Modelo ajustado de regresión</a></li>
+<li class="chapter" data-level="8.2.2" data-path="rlm.html"><a href="rlm.html#vector-de-residuales"><i class="fa fa-check"></i><b>8.2.2</b> Vector de residuales</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="rlm.html"><a href="rlm.html#propiedades-de-los-estimadores-de-beta"><i class="fa fa-check"></i><b>8.3</b> Propiedades de los estimadores de <span class="math inline">\(\beta\)</span></a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="08-rlm.html"><a href="#esperanza-del-estimador-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>8.3.1</b> Esperanza del estimador de mínimos cuadrados</a></li>
+<li class="chapter" data-level="8.3.2" data-path="08-rlm.html"><a href="#varianza-del-estimador-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>8.3.2</b> Varianza del estimador de mínimos cuadrados</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notas de métodos estadísticos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rlm" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Capítulo 8</span> Regresión lineal multiple<a href="rlm.html#rlm" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Como se mencionó en el Capítulo de <strong>rls</strong>, los modelos de <strong>regresión lineal</strong> permiten predecir valores futuros de una variable respuesta continua a partir de valores <strong>específicos</strong> de las variables <strong>controlables</strong> del proceso.</p>
+<p>En la práctica, pueden existir múltiples variables controlables en un proceso de producción o de servicios.</p>
+<p>Por ejemplo, en un proceso de <strong>pintura electrostática</strong>, puede interesar determinar el <strong>espesor de la capa de pintura</strong> (variable respuesta <span class="math inline">\(y\)</span>, en micrones) con la que se recubre una lámina de área determinada, a partir de valores conocidos de:</p>
+<ul>
+<li>la <strong>presión del aire</strong> (<span class="math inline">\(x_1\)</span>, en <em>psi</em>), y<br />
+</li>
+<li>la <strong>velocidad de la banda transportadora</strong> (<span class="math inline">\(x_2\)</span>, en <em>m/s</em>).</li>
+</ul>
+<p>En este contexto, el objetivo es:</p>
+<ol style="list-style-type: decimal">
+<li>Determinar la <strong>magnitud de la influencia</strong> de las variables <span class="math inline">\(x_1\)</span> y <span class="math inline">\(x_2\)</span> sobre el espesor esperado de la capa.<br />
+</li>
+<li>Construir una <strong>función de predicción</strong> <span class="math inline">\(f(x_1, x_2)\)</span> que permita estimar el espesor esperado.<br />
+</li>
+<li>Elaborar <strong>intervalos de confianza y predicción</strong> para dicho valor.</li>
+</ol>
+<p>Si la variable respuesta <span class="math inline">\(y\)</span> es continua y aproximadamente simétrica, los objetivos (1), (2) y (3) pueden abordarse mediante la estimación de un <strong>modelo de regresión lineal</strong>.</p>
+<p>Dado que el número de variables controlables es <span class="math inline">\(k &gt; 1\)</span>, una alternativa apropiada es utilizar el <strong>modelo de Regresión Lineal Múltiple (RLM)</strong></p>
+<div class="admon-box nota">
+<div class="admon-title">
+<span class="icon"></span> Nota
+</div>
+<p>
+El modelo de RLM es una <em>extensión</em> del modelo de RLS cuando se tiene más de una variable controlable.
+</p>
+</div>
+<p>Las notas de clase son tomadas del texto <span class="citation">(<a href="#ref-montgomery2012">Montgomery, Peck, and Vining 2012</a>)</span></p>
+<div id="formulación-matemática-del-modelo-de-rlm" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Formulación matemática del modelo de RLM<a href="#formulaci%C3%B3n-matem%C3%A1tica-del-modelo-de-rlm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El modelo RLM puede relacionar la <strong>respuesta</strong> <span class="math inline">\(y\)</span> con <span class="math inline">\(k\)</span> regresores o <strong>variables predictoras</strong>.</p>
+<p>El modelo se expresa como:</p>
+<p><span class="math display">\[
+\begin{align}
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon
+\tag{8.1}
+\end{align}
+\]</span></p>
+<p>Este se denomina <strong>modelo de regresión lineal múltiple</strong> con <span class="math inline">\(k\)</span> regresores.</p>
+<p>También, el modelo de RLM puede expresarse como:</p>
+<p><span class="math display">\[
+\begin{align}
+y_i &amp;= \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \cdots + \beta_k x_{ki} + \varepsilon_i, \\
+\varepsilon_i &amp;\sim N(0, \sigma^2), \\
+\sigma^2 &amp;= \text{constante.}
+\end{align}
+\]</span></p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(\beta_0\)</span> es la ordenada al origen,<br />
+</li>
+<li><span class="math inline">\(\beta_i\)</span> son los coeficientes de regresión que miden la influencia de cada variable <span class="math inline">\(x_i\)</span>, y<br />
+</li>
+<li><span class="math inline">\(\varepsilon_i\)</span> representa el término de error aleatorio.</li>
+</ul>
+</div>
+<div id="estimación-de-los-coeficientes-del-modelo-de-rlm" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Estimación de los coeficientes del modelo de RLM<a href="#estimaci%C3%B3n-de-los-coeficientes-del-modelo-de-rlm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los coeficientes del modelo de RLM pueden estimarse mediante el método de <strong>mínimos cuadrados ordinarios (MCO)</strong>, que busca minimizar la suma de los cuadrados de las diferencias entre los valores observados y los valores predichos por el modelo.</p>
+<p><span class="math display">\[
+\begin{align}
+y_i &amp;= \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_k x_{ik} + \varepsilon_i \\
+    &amp;= \beta_0 + \sum_{j=1}^{k} \beta_j x_{ij} + \varepsilon_i, \quad i = 1, 2, \ldots, n \tag{8.2}
+\end{align}
+\]</span></p>
+<p>La función de mínimos cuadrados es:</p>
+<p><span class="math display">\[
+\begin{align}
+S(\beta_0, \beta_1, \ldots, \beta_k) &amp;= \sum_{i=1}^{n} \varepsilon_i^2 \\
+    &amp;= \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{k} \beta_j x_{ij} \right)^2 \tag{8.3}
+\end{align}
+\]</span></p>
+<p>Se debe minimizar la función <span class="math inline">\(S\)</span> respecto a <span class="math inline">\(\beta_0, \beta_1, \ldots, \beta_k\)</span>. Los estimadores de <span class="math inline">\(\beta_0, \beta_1, \ldots, \beta_k\)</span> por mínimos cuadrados deben satisfacer:</p>
+<p><span class="math display">\[
+\begin{align}
+\left. \frac{\partial S}{\partial \beta_0} \right|_{\hat{\beta}_0, \hat{\beta}_1, \ldots, \hat{\beta}_k}
+&amp;= -2 \sum_{i=1}^{n} \left( y_i - \hat{\beta}_0 - \sum_{j=1}^{k} \hat{\beta}_j x_{ij} \right) = 0
+\tag{8.4a} \\
+\left. \frac{\partial S}{\partial \beta_j} \right|_{\hat{\beta}_0, \hat{\beta}_1, \ldots, \hat{\beta}_k}
+&amp;= -2 \sum_{i=1}^{n} \left( y_i - \hat{\beta}_0 - \sum_{j=1}^{k} \hat{\beta}_j x_{ij} \right) x_{ij} = 0,
+\quad j = 1, 2, \ldots, k
+\tag{8.4b}
+\end{align}
+\]</span></p>
+<p>Al simplificar las ecuaciones (8.4), se obtienen las <strong>ecuaciones normales de mínimos cuadrados</strong>:</p>
+<p><span class="math display">\[
+\begin{align}
+n\hat{\beta}_0 + \hat{\beta}_1 \sum_{i=1}^{n} x_{i1} + \hat{\beta}_2 \sum_{i=1}^{n} x_{i2} + \cdots + \hat{\beta}_k \sum_{i=1}^{n} x_{ik} &amp;= \sum_{i=1}^{n} y_i \\
+\hat{\beta}_0 \sum_{i=1}^{n} x_{i1} + \hat{\beta}_1 \sum_{i=1}^{n} x_{i1}^2 + \hat{\beta}_2 \sum_{i=1}^{n} x_{i1}x_{i2} + \cdots + \hat{\beta}_k \sum_{i=1}^{n} x_{i1}x_{ik} &amp;= \sum_{i=1}^{n} x_{i1}y_i \\
+\vdots \nonumber \\
+\hat{\beta}_0 \sum_{i=1}^{n} x_{ik} + \hat{\beta}_1 \sum_{i=1}^{n} x_{ik}x_{i1} + \hat{\beta}_2 \sum_{i=1}^{n} x_{ik}x_{i2} + \cdots + \hat{\beta}_k \sum_{i=1}^{n} x_{ik}^2 &amp;= \sum_{i=1}^{n} x_{ik}y_i
+\tag{8.5}
+\end{align}
+\]</span></p>
+<p>Nótese que hay <span class="math inline">\(p = k + 1\)</span> ecuaciones normales, una para cada uno de los coeficientes desconocidos del modelo de regresión. La solución de estas ecuaciones normales proporciona los <strong>estimadores por mínimos cuadrados</strong> <span class="math inline">\(\hat{\beta}_0, \hat{\beta}_1, \ldots, \hat{\beta}_k\)</span>.</p>
+<p>Es más cómodo manejar los modelos de <strong>regresión múltiple</strong> en notación <strong>matricial</strong>, ya que permite representar de manera compacta el modelo, los datos y los resultados. En notación matricial, el modelo expresado por la ecuación (8.2) es:</p>
+<p><span class="math display">\[
+\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}
+\]</span></p>
+<p>en donde:</p>
+<p><span class="math display">\[
+\mathbf{y} =
+\begin{bmatrix}
+y_1 \\[3pt]
+y_2 \\[3pt]
+\vdots \\[3pt]
+y_n
+\end{bmatrix},
+\quad
+\mathbf{X} =
+\begin{bmatrix}
+1 &amp; x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1k} \\
+1 &amp; x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2k} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{nk}
+\end{bmatrix},
+\quad
+\boldsymbol{\beta} =
+\begin{bmatrix}
+\beta_0 \\[3pt]
+\beta_1 \\[3pt]
+\vdots \\[3pt]
+\beta_k
+\end{bmatrix},
+\quad
+\boldsymbol{\varepsilon} =
+\begin{bmatrix}
+\varepsilon_1 \\[3pt]
+\varepsilon_2 \\[3pt]
+\vdots \\[3pt]
+\varepsilon_n
+\end{bmatrix}
+\]</span></p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{y}\)</span>: vector <span class="math inline">\((n \times 1)\)</span> de observaciones.<br />
+</li>
+<li><span class="math inline">\(\mathbf{X}\)</span>: matriz <span class="math inline">\((n \times p)\)</span> de niveles de las variables independientes.<br />
+</li>
+<li><span class="math inline">\(\boldsymbol{\beta}\)</span>: vector <span class="math inline">\((p \times 1)\)</span> de coeficientes de regresión.<br />
+</li>
+<li><span class="math inline">\(\boldsymbol{\varepsilon}\)</span>: vector <span class="math inline">\((n \times 1)\)</span> de términos de error aleatorio.</li>
+</ul>
+<p>Se desea determinar el vector <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> de estimadores de mínimos cuadrados que minimice:</p>
+<p><span class="math display">\[
+S(\boldsymbol{\beta}) = \sum_{i=1}^{n} \varepsilon_i^2 = \boldsymbol{\varepsilon}&#39;\boldsymbol{\varepsilon} = (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})&#39;(\mathbf{y} - \mathbf{X}\boldsymbol{\beta})
+\]</span></p>
+<p>Nótese que <span class="math inline">\(S(\boldsymbol{\beta})\)</span> puede expresarse como:</p>
+<p><span class="math display">\[
+\begin{align}
+S(\boldsymbol{\beta}) &amp;= \mathbf{y}&#39;\mathbf{y} - \boldsymbol{\beta}&#39;\mathbf{X}&#39;\mathbf{y} - \mathbf{y}&#39;\mathbf{X}\boldsymbol{\beta} + \boldsymbol{\beta}&#39;\mathbf{X}&#39;\mathbf{X}\boldsymbol{\beta} \\
+&amp;= \mathbf{y}&#39;\mathbf{y} - 2\boldsymbol{\beta}&#39;\mathbf{X}&#39;\mathbf{y} + \boldsymbol{\beta}&#39;\mathbf{X}&#39;\mathbf{X}\boldsymbol{\beta}
+\end{align}
+\]</span></p>
+<p>ya que <span class="math inline">\(\boldsymbol{\beta}&#39;\mathbf{X}&#39;\mathbf{y}\)</span> es un escalar (matriz <span class="math inline">\(1 \times 1\)</span>) y su traspuesta <span class="math inline">\((\boldsymbol{\beta}&#39;\mathbf{X}&#39;\mathbf{y})&#39; = \mathbf{y}&#39;\mathbf{X}\boldsymbol{\beta}\)</span> es el mismo escalar.</p>
+<p>Los estimadores de mínimos cuadrados deben satisfacer:</p>
+<p><span class="math display">\[
+\frac{\partial S}{\partial \boldsymbol{\beta}} = -2\mathbf{X}&#39;\mathbf{y} + 2\mathbf{X}&#39;\mathbf{X}\hat{\boldsymbol{\beta}} = 0
+\]</span></p>
+<p>lo que se simplifica a:</p>
+<p><span class="math display">\[
+\mathbf{X}&#39;\mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{X}&#39;\mathbf{y}
+\tag{8.6}
+\]</span></p>
+<p>Para resolver las ecuaciones normales se multiplican ambos lados de (8.6) por la inversa de <span class="math inline">\(\mathbf{X}&#39;\mathbf{X}\)</span>. Así, el <strong>estimador de <span class="math inline">\(\boldsymbol{\beta}\)</span> por mínimos cuadrados</strong> es:</p>
+<p><span class="math display">\[
+\hat{\boldsymbol{\beta}} = (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{y}
+\tag{8.7}
+\]</span></p>
+<p>Este estimador existe siempre que <span class="math inline">\((\mathbf{X}&#39;\mathbf{X})^{-1}\)</span> exista, lo cual ocurre si los regresores son <strong>linealmente independientes</strong>, es decir, si ninguna columna de la matriz <span class="math inline">\(\mathbf{X}\)</span> es una combinación lineal de las demás.</p>
+<p>Es fácil ver que la forma matricial de las ecuaciones normales (8.6) es idéntica a la forma escalar (8.5). Al escribir (8.6) con detalle se obtiene:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+n &amp; \displaystyle\sum_{i=1}^{n} x_{i1} &amp; \displaystyle\sum_{i=1}^{n} x_{i2} &amp; \cdots &amp; \displaystyle\sum_{i=1}^{n} x_{ik} \\[8pt]
+\displaystyle\sum_{i=1}^{n} x_{i1} &amp; \displaystyle\sum_{i=1}^{n} x_{i1}^2 &amp; \displaystyle\sum_{i=1}^{n} x_{i1}x_{i2} &amp; \cdots &amp; \displaystyle\sum_{i=1}^{n} x_{i1}x_{ik} \\[8pt]
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\[8pt]
+\displaystyle\sum_{i=1}^{n} x_{ik} &amp; \displaystyle\sum_{i=1}^{n} x_{ik}x_{i1} &amp; \displaystyle\sum_{i=1}^{n} x_{ik}x_{i2} &amp; \cdots &amp; \displaystyle\sum_{i=1}^{n} x_{ik}^2
+\end{bmatrix}
+\begin{bmatrix}
+\hat{\beta}_0 \\[3pt]
+\hat{\beta}_1 \\[3pt]
+\vdots \\[3pt]
+\hat{\beta}_k
+\end{bmatrix}
+=
+\begin{bmatrix}
+\displaystyle\sum_{i=1}^{n} y_i \\[8pt]
+\displaystyle\sum_{i=1}^{n} x_{i1}y_i \\[8pt]
+\vdots \\[8pt]
+\displaystyle\sum_{i=1}^{n} x_{ik}y_i
+\end{bmatrix}
+\]</span></p>
+<p>Si se realiza la multiplicación matricial indicada, se obtiene la forma escalar de las ecuaciones normales (8.5). En esta forma se observa que <span class="math inline">\(\mathbf{X}&#39;\mathbf{X}\)</span> es una matriz <strong>simétrica</strong> de dimensión <span class="math inline">\(p \times p\)</span>, y que <span class="math inline">\(\mathbf{X}&#39;\mathbf{y}\)</span> es un vector columna de dimensión <span class="math inline">\(p \times 1\)</span>.</p>
+<p>Los elementos diagonales de <span class="math inline">\(\mathbf{X}&#39;\mathbf{X}\)</span> son las sumas de los cuadrados de los elementos de las columnas de <span class="math inline">\(\mathbf{X}\)</span>, mientras que los elementos fuera de la diagonal son las sumas de los productos cruzados entre columnas de <span class="math inline">\(\mathbf{X}\)</span>. Los elementos de <span class="math inline">\(\mathbf{X}&#39;\mathbf{y}\)</span> son las sumas de los productos cruzados de las columnas de <span class="math inline">\(\mathbf{X}\)</span> con las observaciones <span class="math inline">\(y_i\)</span>.</p>
+<div id="modelo-ajustado-de-regresión" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Modelo ajustado de regresión<a href="#modelo-ajustado-de-regresi%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El modelo ajustado correspondiente a los niveles de las variables regresoras <span class="math inline">\(\mathbf{x}&#39; = [1, x_1, x_2, \ldots, x_k]\)</span> es:</p>
+<p><span class="math display">\[
+\hat{y} = \mathbf{x}&#39;\hat{\boldsymbol{\beta}} = \hat{\beta}_0 + \sum_{j=1}^{k} \hat{\beta}_j x_j
+\]</span></p>
+<p>El <strong>vector de valores ajustados</strong> <span class="math inline">\(\hat{\mathbf{y}}\)</span>, que corresponde a los valores observados <span class="math inline">\(\mathbf{y}\)</span>, se expresa como:</p>
+<p><span class="math display">\[
+\hat{\mathbf{y}} = \mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{X}(\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{y} = \mathbf{H}\mathbf{y}
+\tag{8.8}
+\]</span></p>
+<p>donde <span class="math inline">\(\mathbf{H} = \mathbf{X}(\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\)</span> es una matriz <span class="math inline">\(n \times n\)</span>, conocida como <strong>matriz de sombrero</strong> (<em>hat matrix</em>). Esta matriz transforma los valores observados en los valores ajustados y juega un papel central en el análisis de regresión.</p>
+</div>
+<div id="vector-de-residuales" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Vector de residuales<a href="rlm.html#vector-de-residuales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La diferencia entre el valor observado <span class="math inline">\(y_i\)</span> y el valor ajustado <span class="math inline">\(\hat{y}_i\)</span> se denomina <strong>residual</strong>:</p>
+<p><span class="math display">\[
+\varepsilon_i = y_i - \hat{y}_i
+\]</span></p>
+<p>Por lo tanto, el <strong>vector de residuales</strong> se puede escribir en notación matricial como:</p>
+<p><span class="math display">\[
+\boldsymbol{\varepsilon} = \mathbf{y} - \hat{\mathbf{y}}
+\tag{8.9a}
+\]</span></p>
+<p>De manera equivalente:</p>
+<p><span class="math display">\[
+\boldsymbol{\varepsilon} = \mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{y} - \mathbf{H}\mathbf{y} = (\mathbf{I} - \mathbf{H})\mathbf{y}
+\tag{8.9b}
+\]</span></p>
+<hr />
+<ol style="list-style-type: decimal">
+<li>Como ejemplo, consideremos los siguientes datos provenientes de un proceso de pintura electrostática: <a href="https://github.com/cdeoroaguado/Datos/blob/main/datarstudio/data_pintura.txt">datos de pintura</a></li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rlm.html#cb1-1" tabindex="-1"></a><span class="do">## lectura de datos</span></span>
+<span id="cb1-2"><a href="rlm.html#cb1-2" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&#39;data/data_pintura.txt&#39;</span></span>
+<span id="cb1-3"><a href="rlm.html#cb1-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(path, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-4"><a href="rlm.html#cb1-4" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+</details>
+<pre><code>##          y        x1 x2
+## 1 91.88308 18.722091  6
+## 2 94.37544 19.056131  3
+## 3 74.63026  9.292093  3
+## 4 93.66348 17.456714  4
+## 5 76.84981 14.626183  9
+## 6 76.05198 12.786439  9</code></pre>
+<ul>
+<li>En este caso, la variable respuesta <span class="math inline">\(y\)</span> representa el <strong>espesor de la capa de pintura</strong> (en micrones), mientras que <span class="math inline">\(x_1\)</span> corresponde a la <strong>presión del aire</strong> (en <em>psi</em>) y <span class="math inline">\(x_2\)</span> a la <strong>velocidad de la banda transportadora</strong> (en <em>m/s</em>).</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Una forma inicial de explorar si existe una <strong>relación lineal</strong> entre la variable respuesta <span class="math inline">\(y\)</span> y las variables predictoras <span class="math inline">\(x_1\)</span> y <span class="math inline">\(x_2\)</span> es mediante una <strong>red de diagramas de dispersión</strong> (<em>scatterplot matrix</em>), como se muestra a continuación.</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rlm.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb3-2"><a href="rlm.html#cb3-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-3"><a href="rlm.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="rlm.html#cb3-4" tabindex="-1"></a><span class="co"># Etiquetas para ejes/paneles</span></span>
+<span id="cb3-5"><a href="rlm.html#cb3-5" tabindex="-1"></a>labs_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span> <span class="ot">=</span> <span class="st">&quot;Presión del aire (psi)&quot;</span>,</span>
+<span id="cb3-6"><a href="rlm.html#cb3-6" tabindex="-1"></a>               <span class="st">&quot;x2&quot;</span> <span class="ot">=</span> <span class="st">&quot;Velocidad de banda (m/s)&quot;</span>,</span>
+<span id="cb3-7"><a href="rlm.html#cb3-7" tabindex="-1"></a>               <span class="st">&quot;y&quot;</span>  <span class="ot">=</span> <span class="st">&quot;Espesor (micrones)&quot;</span>)</span>
+<span id="cb3-8"><a href="rlm.html#cb3-8" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="rlm.html#cb3-9" tabindex="-1"></a><span class="co"># Red de gráficos:</span></span>
+<span id="cb3-10"><a href="rlm.html#cb3-10" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb3-11"><a href="rlm.html#cb3-11" tabindex="-1"></a><span class="fu">ggpairs</span>(</span>
+<span id="cb3-12"><a href="rlm.html#cb3-12" tabindex="-1"></a>  <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>, <span class="st">&quot;y&quot;</span>),</span>
+<span id="cb3-13"><a href="rlm.html#cb3-13" tabindex="-1"></a>  <span class="at">columnLabels =</span> labs_cols[<span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>, <span class="st">&quot;y&quot;</span>)],</span>
+<span id="cb3-14"><a href="rlm.html#cb3-14" tabindex="-1"></a>  <span class="at">diag  =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="st">&quot;densityDiag&quot;</span>),</span>
+<span id="cb3-15"><a href="rlm.html#cb3-15" tabindex="-1"></a>  <span class="at">upper =</span> <span class="fu">list</span>(<span class="at">continuous =</span> GGally<span class="sc">::</span><span class="fu">wrap</span>(<span class="st">&quot;cor&quot;</span>, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>, <span class="at">stars =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">4</span>)),</span>
+<span id="cb3-16"><a href="rlm.html#cb3-16" tabindex="-1"></a>  <span class="at">lower =</span> <span class="fu">list</span>(<span class="at">continuous =</span> GGally<span class="sc">::</span><span class="fu">wrap</span>(<span class="st">&quot;smooth&quot;</span>, <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb3-17"><a href="rlm.html#cb3-17" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb3-18"><a href="rlm.html#cb3-18" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-19"><a href="rlm.html#cb3-19" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Relaciones entre y (espesor), x1 (presión) y x2 (velocidad)&quot;</span>,</span>
+<span id="cb3-20"><a href="rlm.html#cb3-20" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Diagonal: densidades • Superior: correlación (★ p-valor) • Inferior: ajuste lineal&quot;</span>)</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/rlm-2-1.png" width="672" /></p>
+<ul>
+<li>La Figura anterior muestra la <strong>red de diagramas de dispersión</strong> entre la variable respuesta <span class="math inline">\(y\)</span> (espesor de la capa de pintura) y las variables predictoras <span class="math inline">\(x_1\)</span> (presión del aire) y <span class="math inline">\(x_2\)</span> (velocidad de la banda transportadora). A partir del gráfico se pueden obtener las siguientes conclusiones:</li>
+</ul>
+<ol style="list-style-type: lower-alpha">
+<li><p><strong>Relación entre <span class="math inline">\(y\)</span> y <span class="math inline">\(x_1\)</span> (presión del aire):</strong> Se observa una <strong>fuerte correlación positiva</strong> (<span class="math inline">\(r = 0.890\)</span>, altamente significativa).<br />
+A medida que la presión del aire aumenta, también lo hace el espesor de la capa de pintura. Esto indica que <span class="math inline">\(x_1\)</span> tiene una <strong>influencia directa e importante</strong> sobre la variable respuesta.</p></li>
+<li><p><strong>Relación entre <span class="math inline">\(y\)</span> y <span class="math inline">\(x_2\)</span> (velocidad de la banda):</strong> Se presenta una <strong>correlación negativa moderada</strong> (<span class="math inline">\(r = -0.317\)</span>), estadísticamente significativa. A mayor velocidad de la banda, el espesor tiende a disminuir, lo cual es consistente con el comportamiento físico del proceso:una mayor velocidad reduce el tiempo de exposición, y por tanto, la cantidad de pintura depositada.</p></li>
+<li><p><strong>Relación entre <span class="math inline">\(x_1\)</span> y <span class="math inline">\(x_2\)</span>:</strong>La correlación entre las variables explicativas es <strong>muy baja</strong> (<span class="math inline">\(r = -0.041\)</span>), indicando <strong>independencia práctica</strong> entre ambas. Esto es favorable, ya que sugiere <strong>ausencia de multicolinealidad</strong>, lo que garantiza estimadores más estables en el modelo.</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>Un gráfico en 3D permite explorar visualmente la <strong>relación conjunta</strong> entre las tres variables del proceso de pintura electrostática: el <strong>espesor de la capa</strong> (<span class="math inline">\(y\)</span>), la <strong>presión del aire</strong> (<span class="math inline">\(x_1\)</span>) y la <strong>velocidad de la banda transportadora</strong> (<span class="math inline">\(x_2\)</span>). Este diagrama puede generarse con el paquete <strong>scatterplot3d</strong>, como se muestra a continuación:</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rlm.html#cb4-1" tabindex="-1"></a><span class="fu">library</span>(scatterplot3d)</span>
+<span id="cb4-2"><a href="rlm.html#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="rlm.html#cb4-3" tabindex="-1"></a><span class="co"># Gráfico 3D</span></span>
+<span id="cb4-4"><a href="rlm.html#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="rlm.html#cb4-5" tabindex="-1"></a><span class="fu">scatterplot3d</span>(</span>
+<span id="cb4-6"><a href="rlm.html#cb4-6" tabindex="-1"></a><span class="at">x =</span> df<span class="sc">$</span>x1,</span>
+<span id="cb4-7"><a href="rlm.html#cb4-7" tabindex="-1"></a><span class="at">y =</span> df<span class="sc">$</span>x2,</span>
+<span id="cb4-8"><a href="rlm.html#cb4-8" tabindex="-1"></a><span class="at">z =</span> df<span class="sc">$</span>y,</span>
+<span id="cb4-9"><a href="rlm.html#cb4-9" tabindex="-1"></a><span class="at">pch =</span> <span class="dv">16</span>,</span>
+<span id="cb4-10"><a href="rlm.html#cb4-10" tabindex="-1"></a><span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>,</span>
+<span id="cb4-11"><a href="rlm.html#cb4-11" tabindex="-1"></a><span class="at">type =</span> <span class="st">&quot;h&quot;</span>,          <span class="co"># Líneas verticales desde el plano XY</span></span>
+<span id="cb4-12"><a href="rlm.html#cb4-12" tabindex="-1"></a><span class="at">highlight.3d =</span> <span class="cn">TRUE</span>, <span class="co"># Resalta profundidad con color</span></span>
+<span id="cb4-13"><a href="rlm.html#cb4-13" tabindex="-1"></a><span class="at">angle =</span> <span class="dv">55</span>,</span>
+<span id="cb4-14"><a href="rlm.html#cb4-14" tabindex="-1"></a><span class="at">xlab =</span> <span class="st">&quot;Presión del aire (psi)&quot;</span>,</span>
+<span id="cb4-15"><a href="rlm.html#cb4-15" tabindex="-1"></a><span class="at">ylab =</span> <span class="st">&quot;Velocidad de la banda (m/s)&quot;</span>,</span>
+<span id="cb4-16"><a href="rlm.html#cb4-16" tabindex="-1"></a><span class="at">zlab =</span> <span class="st">&quot;Espesor de la capa (micrones)&quot;</span>,</span>
+<span id="cb4-17"><a href="rlm.html#cb4-17" tabindex="-1"></a><span class="at">cex.lab =</span> <span class="fl">1.1</span></span>
+<span id="cb4-18"><a href="rlm.html#cb4-18" tabindex="-1"></a>)</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/rlm-3-1.png" width="672" /></p>
+<ul>
+<li>El gráfico 3D muestra que al aumentar la presión del aire, el espesor de la capa también aumenta, mientras que al incrementar la velocidad de la banda, el espesor disminuye ligeramente.</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>El mismo gráfico de dispersión 3D puede construirse de manera <strong>interactiva</strong> con el paquete <strong>plotly</strong>. Esto permite rotar, acercar o explorar los puntos desde diferentes ángulos, lo cual facilita la visualización del comportamiento del espesor frente a la presión y la velocidad.</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rlm.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb5-2"><a href="rlm.html#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="rlm.html#cb5-3" tabindex="-1"></a><span class="co"># Gráfico 3D interactivo</span></span>
+<span id="cb5-4"><a href="rlm.html#cb5-4" tabindex="-1"></a><span class="fu">plot_ly</span>(</span>
+<span id="cb5-5"><a href="rlm.html#cb5-5" tabindex="-1"></a>  <span class="at">data =</span> df,</span>
+<span id="cb5-6"><a href="rlm.html#cb5-6" tabindex="-1"></a>  <span class="at">x =</span> <span class="sc">~</span>x1,</span>
+<span id="cb5-7"><a href="rlm.html#cb5-7" tabindex="-1"></a>  <span class="at">y =</span> <span class="sc">~</span>x2,</span>
+<span id="cb5-8"><a href="rlm.html#cb5-8" tabindex="-1"></a>  <span class="at">z =</span> <span class="sc">~</span>y,</span>
+<span id="cb5-9"><a href="rlm.html#cb5-9" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;scatter3d&quot;</span>,</span>
+<span id="cb5-10"><a href="rlm.html#cb5-10" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">&quot;markers&quot;</span>,</span>
+<span id="cb5-11"><a href="rlm.html#cb5-11" tabindex="-1"></a>  <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="sc">~</span>y, <span class="at">colorscale =</span> <span class="st">&quot;Reds&quot;</span>, <span class="at">showscale =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-12"><a href="rlm.html#cb5-12" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-13"><a href="rlm.html#cb5-13" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb5-14"><a href="rlm.html#cb5-14" tabindex="-1"></a>    <span class="at">scene =</span> <span class="fu">list</span>(</span>
+<span id="cb5-15"><a href="rlm.html#cb5-15" tabindex="-1"></a>      <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&quot;Presión del aire (psi)&quot;</span>),</span>
+<span id="cb5-16"><a href="rlm.html#cb5-16" tabindex="-1"></a>      <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&quot;Velocidad de la banda (m/s)&quot;</span>),</span>
+<span id="cb5-17"><a href="rlm.html#cb5-17" tabindex="-1"></a>      <span class="at">zaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&quot;Espesor de la capa (micrones)&quot;</span>)</span>
+<span id="cb5-18"><a href="rlm.html#cb5-18" tabindex="-1"></a>    ),</span>
+<span id="cb5-19"><a href="rlm.html#cb5-19" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Gráfico 3D interactivo: relación entre presión, velocidad y espesor&quot;</span></span>
+<span id="cb5-20"><a href="rlm.html#cb5-20" tabindex="-1"></a>  )</span></code></pre></div>
+</details>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-b916b794c9dae61a9c2f" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-b916b794c9dae61a9c2f">{"x":{"visdat":{"198038165394":["function () ","plotlyVisDat"]},"cur_data":"198038165394","attrs":{"198038165394":{"x":{},"y":{},"z":{},"mode":"markers","marker":{"size":5,"color":{},"colorscale":"Reds","showscale":true},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Presión del aire (psi)"},"yaxis":{"title":"Velocidad de la banda (m/s)"},"zaxis":{"title":"Espesor de la capa (micrones)"}},"title":"Gráfico 3D interactivo: relación entre presión, velocidad y espesor","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[18.722090652445299,19.056131199467899,9.2920930217951501,17.4567143910099,14.6261827833951,12.786439236952001,16.048824719618999,7.0199989585671601,14.854884356027499,15.5759717605542,11.8661266437266,15.7866837747861,19.020083707291601,8.8314323651138693,11.934392338153,19.1002178413328,19.673396425787399,6.7623104248195904,12.1249562234152,13.404991193674499,18.560470809461499,7.0806525158695903,19.833375933812899,19.200023488374399,6.2365633714944098,12.713176765246301,10.853052006568801,18.586071963654799,11.7045444215182,17.5400638999417,16.063934266567198,17.165827119024499,10.821624242235,15.2775459410623,5.0592250819317997,17.493741203797999,5.1100122032221398,8.1148845923598891,18.5990211169701,14.176679651718599,10.693388608051499,11.536573774647,5.5614654929377103,19.6030987065751,11.476268733386,19.3636489496566,18.316323582548598,14.5996815420222,19.564499155385398,14.2825731099583,10.001408169046,10.2012237231247,10.977281171362799,16.7703916353639,5.5840473668649802,16.231930792564501,15.159152452834,7.5689649558626098,8.9163194573484397,12.7161940198857,15.134109117789199,19.7422579687554,16.393164013279598,13.4973263612483,17.745345778530499,7.8421090310439503,9.0692992205731606,17.4223772785626,15.3980723058339,8.6081710946746206,5.6448319402989,7.1071864117402601,8.2457812258508092,12.1909784630407,7.9611551342532003,15.790337565122201,5.1182710810098797,10.632349469233301,12.7161156246439,5.0235583132598496,13.724060037638999,7.3685781226959097,10.385424587875599,14.6844781760592,16.6373504395597,13.4547026234213,8.50555097917095,6.3497077452484501,6.2841809738893097,9.5782755420077592,15.0113977200817,5.0035834487061903,8.1285493541508895,18.995511910179602,18.8846712291706,16.011414515087399,9.9960797512903792,12.725949947489401,16.159619694808502,14.287388600641901],"y":[6,3,3,4,9,9,6,6,5,0,5,7,6,5,5,5,0,4,5,7,4,4,5,5,6,4,8,9,3,6,8,5,6,9,7,5,7,2,7,6,3,2,5,7,6,7,3,9,4,3,6,4,7,4,6,7,3,1,3,6,9,5,5,3,5,3,5,4,2,3,6,4,4,5,4,3,7,5,7,7,8,7,4,3,6,6,8,7,3,4,3,7,3,3,2,2,5,2,6,6],"z":[91.883082003518595,94.375444022362004,74.630259638841096,93.663484571245505,76.849807226014406,76.051983065527907,82.888568896765605,69.856807877204204,83.902921447053501,89.718415772359904,78.800849426481605,83.096405437060298,87.283683452811005,72.832677129051305,73.994750521117993,88.529624056488402,92.916080983620304,80.791686944049104,75.176210947989802,79.389919627199305,85.229884176104093,68.734074356089394,91.145337427773697,86.835717663490897,69.009549439301793,79.988337427972994,71.846549627444006,79.480186298210299,77.326186528094894,86.994867920963898,83.951905783240605,85.309947828043093,76.089954857964599,83.321554208358293,70.002912784445897,83.9868143120529,65.412290758982394,80.966785210298397,85.843051897634496,81.109208247784807,79.333568436304404,79.2945815256316,68.1292159663018,88.763401602309401,75.858276108440705,91.810450846907599,88.767660225528303,77.505753752841301,93.250160010877494,81.422519102659194,74.702077379384406,72.9937313654262,78.612317553688101,86.306738025707901,66.604649113055899,79.7667087685967,85.789413265465697,75.617825154075405,75.515956014235101,82.876113109437497,79.183469125690706,87.419843994899793,86.124614519228601,82.409560374335001,89.423841891308001,79.917323663437202,71.722386202987295,89.432441305706703,87.398305282770394,79.373879081675398,67.412641267042403,75.693527197522997,69.591494724892598,84.429507609259801,77.010280794283105,86.239612261557994,61.430384441631197,78.963123857691301,79.330353781501998,65.607461513758807,78.8589983204281,67.609818038405194,79.020587878195201,86.035441118408997,84.225653608212895,76.143896183259599,71.932866714097997,69.401674305002899,70.9409443182236,71.965687121098497,86.221752765836797,64.559444499870295,76.776904360425604,87.274740694426598,88.948602127635098,91.224654254802104,77.295471782823697,85.314413389636201,89.771978527551397,81.823904896597497],"mode":"markers","marker":{"color":[91.883082003518595,94.375444022362004,74.630259638841096,93.663484571245505,76.849807226014406,76.051983065527907,82.888568896765605,69.856807877204204,83.902921447053501,89.718415772359904,78.800849426481605,83.096405437060298,87.283683452811005,72.832677129051305,73.994750521117993,88.529624056488402,92.916080983620304,80.791686944049104,75.176210947989802,79.389919627199305,85.229884176104093,68.734074356089394,91.145337427773697,86.835717663490897,69.009549439301793,79.988337427972994,71.846549627444006,79.480186298210299,77.326186528094894,86.994867920963898,83.951905783240605,85.309947828043093,76.089954857964599,83.321554208358293,70.002912784445897,83.9868143120529,65.412290758982394,80.966785210298397,85.843051897634496,81.109208247784807,79.333568436304404,79.2945815256316,68.1292159663018,88.763401602309401,75.858276108440705,91.810450846907599,88.767660225528303,77.505753752841301,93.250160010877494,81.422519102659194,74.702077379384406,72.9937313654262,78.612317553688101,86.306738025707901,66.604649113055899,79.7667087685967,85.789413265465697,75.617825154075405,75.515956014235101,82.876113109437497,79.183469125690706,87.419843994899793,86.124614519228601,82.409560374335001,89.423841891308001,79.917323663437202,71.722386202987295,89.432441305706703,87.398305282770394,79.373879081675398,67.412641267042403,75.693527197522997,69.591494724892598,84.429507609259801,77.010280794283105,86.239612261557994,61.430384441631197,78.963123857691301,79.330353781501998,65.607461513758807,78.8589983204281,67.609818038405194,79.020587878195201,86.035441118408997,84.225653608212895,76.143896183259599,71.932866714097997,69.401674305002899,70.9409443182236,71.965687121098497,86.221752765836797,64.559444499870295,76.776904360425604,87.274740694426598,88.948602127635098,91.224654254802104,77.295471782823697,85.314413389636201,89.771978527551397,81.823904896597497],"size":5,"colorscale":"Reds","showscale":true,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<ul>
+<li>El gráfico 3D interactivo muestra que <strong>el espesor de la capa aumenta con la presión del aire</strong> y <strong>disminuye ligeramente al aumentar la velocidad de la banda</strong>, confirmando una <strong>tendencia lineal</strong> coherente con el modelo de regresión múltiple.</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>Para ajustar (entrenar) el modelo de regresión multiple, encontremos los coeficientes, lo haremos paso a paso:</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rlm.html#cb6-1" tabindex="-1"></a><span class="co"># 1) Construir matriz de diseño X (con intercepto) y vector y</span></span>
+<span id="cb6-2"><a href="rlm.html#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="rlm.html#cb6-3" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Intercept =</span> <span class="dv">1</span>, <span class="at">x1 =</span> df<span class="sc">$</span>x1, <span class="at">x2 =</span> df<span class="sc">$</span>x2)</span>
+<span id="cb6-4"><a href="rlm.html#cb6-4" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(df<span class="sc">$</span>y)</span>
+<span id="cb6-5"><a href="rlm.html#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="rlm.html#cb6-6" tabindex="-1"></a><span class="co">#2 ) Calcular X&#39;X, su inversa y X&#39;y</span></span>
+<span id="cb6-7"><a href="rlm.html#cb6-7" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="rlm.html#cb6-8" tabindex="-1"></a>XtX     <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X</span>
+<span id="cb6-9"><a href="rlm.html#cb6-9" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(XtX, <span class="dv">6</span>))</span></code></pre></div>
+</details>
+<pre><code>##           Intercept        x1       x2
+## Intercept   100.000  1286.718  503.000
+## x1         1286.718 18587.290 6435.177
+## x2          503.000  6435.177 2941.000</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="rlm.html#cb8-1" tabindex="-1"></a>XtX_inv <span class="ot">&lt;-</span> <span class="fu">solve</span>(XtX)          <span class="co"># (X&#39;X)^{-1}</span></span>
+<span id="cb8-2"><a href="rlm.html#cb8-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(XtX_inv, <span class="dv">6</span>))</span></code></pre></div>
+</details>
+<pre><code>##           Intercept        x1        x2
+## Intercept  0.159084 -0.006570 -0.012833
+## x1        -0.006570  0.000493  0.000044
+## x2        -0.012833  0.000044  0.002438</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="rlm.html#cb10-1" tabindex="-1"></a>Xty     <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
+<span id="cb10-2"><a href="rlm.html#cb10-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(Xty, <span class="dv">6</span>))</span></code></pre></div>
+</details>
+<pre><code>##                [,1]
+## Intercept   8005.60
+## x1        106059.83
+## x2         39779.69</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="rlm.html#cb12-1" tabindex="-1"></a><span class="co"># 3) Estimadores del RLM: beta_hat = (X&#39;X)^{-1} X&#39;y</span></span>
+<span id="cb12-2"><a href="rlm.html#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="rlm.html#cb12-3" tabindex="-1"></a>beta_hat <span class="ot">&lt;-</span> XtX_inv <span class="sc">%*%</span> Xty</span>
+<span id="cb12-4"><a href="rlm.html#cb12-4" tabindex="-1"></a><span class="fu">rownames</span>(beta_hat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;(Intercepto)&quot;</span>,<span class="st">&quot;x1&quot;</span>,<span class="st">&quot;x2&quot;</span>)</span>
+<span id="cb12-5"><a href="rlm.html#cb12-5" tabindex="-1"></a><span class="fu">colnames</span>(beta_hat) <span class="ot">&lt;-</span> <span class="st">&quot;Estimadores&quot;</span></span>
+<span id="cb12-6"><a href="rlm.html#cb12-6" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="rlm.html#cb12-7" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(beta_hat, <span class="dv">6</span>))</span></code></pre></div>
+</details>
+<pre><code>##              Estimadores
+## (Intercepto)   66.284831
+## x1              1.482753
+## x2             -1.055206</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Para estimar el modelo de RLM, utilizamos la función <code>lm</code> como se muestra a continuación:</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="rlm.html#cb14-1" tabindex="-1"></a><span class="do">## ajuste del modelo de RLM</span></span>
+<span id="cb14-2"><a href="rlm.html#cb14-2" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> df)</span>
+<span id="cb14-3"><a href="rlm.html#cb14-3" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+</details>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2, data = df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.0571 -1.6610 -0.1362  1.5409  8.7008 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 66.28483    1.10350  60.068  &lt; 2e-16 ***
+## x1           1.48275    0.06144  24.132  &lt; 2e-16 ***
+## x2          -1.05521    0.13660  -7.725 1.03e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.767 on 97 degrees of freedom
+## Multiple R-squared:  0.8716, Adjusted R-squared:  0.8689 
+## F-statistic: 329.1 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+<ul>
+<li>El modelo estimado con los datos experimentales es:</li>
+</ul>
+<p><span class="math display">\[
+\hat{y}_i = 66.285 + 1.483\,x_{1i} - 1.055\,x_{2i}\qquad
+\varepsilon_i \sim N(0, \sigma^2), \quad
+\sigma^2 = \text{constante.}
+\]</span></p>
+<ul>
+<li>y la interpretación seria:
+<ul>
+<li><strong><span class="math inline">\(\beta_1 = 1.483\)</span></strong>: al aumentar la presión del aire en una unidad (1 psi), el espesor promedio de la capa aumenta aproximadamente <strong>1.483 micrones</strong>, manteniendo constante la velocidad de la banda.<br />
+</li>
+<li><strong><span class="math inline">\(\beta_2 = -1.055\)</span></strong>: al incrementar la velocidad de la banda en una unidad (1 m/s), el espesor promedio disminuye en aproximadamente <strong>1.055 micrones</strong>, manteniendo constante la presión del aire.<br />
+</li>
+</ul></li>
+<li><strong><span class="math inline">\(\beta_0 = 66.285\)</span></strong>: representa el espesor promedio estimado cuando tanto la presión como la velocidad son cero (valor teórico de referencia).</li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li>Ahora, obtengamos los residuos paso a paso:</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="rlm.html#cb16-1" tabindex="-1"></a><span class="co"># Valores ajustados y residuales (opcional para comprobar)</span></span>
+<span id="cb16-2"><a href="rlm.html#cb16-2" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> X <span class="sc">%*%</span> beta_hat</span>
+<span id="cb16-3"><a href="rlm.html#cb16-3" tabindex="-1"></a>e <span class="ot">&lt;-</span> y<span class="sc">-</span>y_hat</span>
+<span id="cb16-4"><a href="rlm.html#cb16-4" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">cbind</span>(<span class="at">y_observado=</span>y[,<span class="dv">1</span>],<span class="at">y_ajustado=</span>y_hat[,<span class="dv">1</span>],<span class="at">residuo=</span>e[,<span class="dv">1</span>]))</span></code></pre></div>
+</details>
+<pre><code>##      y_observado y_ajustado    residuo
+## [1,]    91.88308   87.71384  4.1692406
+## [2,]    94.37544   91.37476  3.0006861
+## [3,]    74.63026   76.89710 -2.2668374
+## [4,]    93.66348   87.94801  5.7154730
+## [5,]    76.84981   78.47500 -1.6251960
+## [6,]    76.05198   75.74712  0.3048659</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Usando la función <code>resid</code>, obtienes el residual</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="rlm.html#cb18-1" tabindex="-1"></a>residuos <span class="ot">&lt;-</span> <span class="fu">resid</span>(modelo)</span>
+<span id="cb18-2"><a href="rlm.html#cb18-2" tabindex="-1"></a><span class="fu">head</span>(residuos)</span></code></pre></div>
+</details>
+<pre><code>##          1          2          3          4          5          6 
+##  4.1692406  3.0006861 -2.2668374  5.7154730 -1.6251960  0.3048659</code></pre>
+</div>
+</div>
+<div id="propiedades-de-los-estimadores-de-beta" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Propiedades de los estimadores de <span class="math inline">\(\beta\)</span><a href="rlm.html#propiedades-de-los-estimadores-de-beta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="esperanza-del-estimador-de-mínimos-cuadrados" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Esperanza del estimador de mínimos cuadrados<a href="#esperanza-del-estimador-de-m%C3%ADnimos-cuadrados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Las propiedades estadísticas del <strong>estimador de mínimos cuadrados</strong> <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> se pueden demostrar fácilmente. Comenzaremos examinando su <strong>sesgo</strong>.</p>
+<p>Sabemos que:</p>
+<p><span class="math display">\[
+\hat{\boldsymbol{\beta}} = (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{y}
+\]</span></p>
+<p>Dado que <span class="math inline">\(\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}\)</span>, se tiene:</p>
+<p><span class="math display">\[
+\begin{align}
+E(\hat{\boldsymbol{\beta}})
+&amp;= E\!\left[(\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{y}\right] \\[6pt]
+&amp;= E\!\left[(\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;(\mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon})\right] \\[6pt]
+&amp;= E\!\left[(\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{X}\boldsymbol{\beta} + (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\boldsymbol{\varepsilon}\right] \\[6pt]
+&amp;= E\!\left[\boldsymbol{\beta} + (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\boldsymbol{\varepsilon}\right] \\[6pt]
+&amp;= \boldsymbol{\beta} + (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;E(\boldsymbol{\varepsilon})
+\end{align}
+\]</span></p>
+<p>Como <span class="math inline">\(E(\boldsymbol{\varepsilon}) = 0\)</span>, se obtiene:</p>
+<p><span class="math display">\[
+\boxed{E(\hat{\boldsymbol{\beta}}) = \boldsymbol{\beta}}
+\]</span></p>
+<p>Por lo tanto, <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> es un <strong>estimador insesgado</strong> de <span class="math inline">\(\boldsymbol{\beta}\)</span>.</p>
+</div>
+<div id="varianza-del-estimador-de-mínimos-cuadrados" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Varianza del estimador de mínimos cuadrados<a href="#varianza-del-estimador-de-m%C3%ADnimos-cuadrados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Probemos iniciamente que <span class="math inline">\(Var(\mathbf{A}\mathbf{z}) = \mathbf{A}\,Var(\mathbf{z})\,\mathbf{A}&#39;\)</span>. En efecto, sea <span class="math inline">\(\mathbf{z}\)</span> un vector aleatorio con <span class="math inline">\(E(\mathbf{z})=\boldsymbol{\mu}\)</span> y varianza</p>
+<p><span class="math display">\[
+Var(\mathbf{z}) = E\!\left[(\mathbf{z}-\boldsymbol{\mu})(\mathbf{z}-\boldsymbol{\mu})&#39;\right].
+\]</span></p>
+<p>Sea <span class="math inline">\(\mathbf{A}\)</span> una matriz <strong>constante</strong> de dimensión compatible y definamos <span class="math inline">\(\mathbf{y}=\mathbf{A}\mathbf{z}\)</span>. Entonces <span class="math inline">\(E(\mathbf{y})=E(\mathbf{A}\mathbf{z})=\mathbf{A}E(\mathbf{z})=\mathbf{A}\boldsymbol{\mu}\)</span> por lo que</p>
+<p><span class="math display">\[
+\begin{align}
+Var(\mathbf{y})
+&amp;= E\!\left[(\mathbf{y}-E(\mathbf{y}))(\mathbf{y}-E(\mathbf{y}))&#39;\right] \\[4pt]
+&amp;= E\!\left[(\mathbf{A}\mathbf{z}-\mathbf{A}\boldsymbol{\mu})\,(\mathbf{A}\mathbf{z}-\mathbf{A}\boldsymbol{\mu})&#39;\right] \\[4pt]
+&amp;= E\!\left[\mathbf{A}(\mathbf{z}-\boldsymbol{\mu})\,(\mathbf{z}-\boldsymbol{\mu})&#39;\mathbf{A}&#39;\right]
+\quad (\text{factorizando } \mathbf{A} \text{ y } \mathbf{A}&#39; \text{ al ser constantes}) \\[4pt]
+&amp;= \mathbf{A}\,E\!\left[(\mathbf{z}-\boldsymbol{\mu})(\mathbf{z}-\boldsymbol{\mu})&#39;\right]\mathbf{A}&#39; \\[4pt]
+&amp;= \mathbf{A}\,Var(\mathbf{z})\,\mathbf{A}&#39;.
+\end{align}
+\]</span></p>
+<p>En consecuencia</p>
+<p><span class="math display">\[
+\boxed{\,Var(\mathbf{A}\mathbf{z}) = \mathbf{A}\,Var(\mathbf{z})\,\mathbf{A}&#39;\,}
+\]</span></p>
+<blockquote>
+<p>Nota: si la transformación es <strong>afín</strong> <span class="math inline">\(\mathbf{y}=\mathbf{A}\mathbf{z}+\mathbf{b}\)</span> con <span class="math inline">\(\mathbf{b}\)</span> constante, el término <span class="math inline">\(\mathbf{b}\)</span> no afecta a la varianza y el resultado se mantiene.</p>
+</blockquote>
+<p>Por lo otro, recordemos que el estimador de mínimos cuadrados se define como:</p>
+<p><span class="math display">\[
+\hat{\boldsymbol{\beta}} = (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{y}
+\]</span></p>
+<p>y que el modelo lineal se expresa como:</p>
+<p><span class="math display">\[
+\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}, \qquad E(\boldsymbol{\varepsilon}) = 0, \quad Var(\boldsymbol{\varepsilon}) = \sigma^2 \mathbf{I}.
+\]</span></p>
+<p>Sustituyendo <span class="math inline">\(\mathbf{y}\)</span> en la expresión de <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}
+\hat{\boldsymbol{\beta}}
+&amp;= (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;(\mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}) \\[6pt]
+&amp;= \boldsymbol{\beta} + (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\boldsymbol{\varepsilon}
+\end{align}
+\]</span></p>
+<p>Ahora calculamos la <strong>varianza</strong> de <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}
+Var(\hat{\boldsymbol{\beta}})
+&amp;= Var\!\left[\boldsymbol{\beta} + (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\boldsymbol{\varepsilon}\right] \\[6pt]
+&amp;= Var\!\left[(\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\boldsymbol{\varepsilon}\right]
+\end{align}
+\]</span></p>
+<blockquote>
+<p><em>Nota:</em> El término <span class="math inline">\(\boldsymbol{\beta}\)</span> es constante, por lo tanto no contribuye a la varianza.</p>
+</blockquote>
+<p>Aplicando la propiedad de la varianza de una transformación lineal <span class="math inline">\(Var(\mathbf{A}\mathbf{z}) = \mathbf{A} \, Var(\mathbf{z}) \, \mathbf{A}&#39;\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}
+Var(\hat{\boldsymbol{\beta}})
+&amp;= (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39; \, Var(\boldsymbol{\varepsilon}) \, \mathbf{X} (\mathbf{X}&#39;\mathbf{X})^{-1}
+\end{align}
+\]</span></p>
+<p>Como por hipótesis del modelo <span class="math inline">\(Var(\boldsymbol{\varepsilon}) = \sigma^2 \mathbf{I}\)</span>, sustituimos:</p>
+<p><span class="math display">\[
+\begin{align}
+Var(\hat{\boldsymbol{\beta}})
+&amp;= (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;(\sigma^2 \mathbf{I})\mathbf{X}(\mathbf{X}&#39;\mathbf{X})^{-1} \\[6pt]
+&amp;= \sigma^2 (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{X}(\mathbf{X}&#39;\mathbf{X})^{-1} \\[6pt]
+&amp;= \sigma^2 (\mathbf{X}&#39;\mathbf{X})^{-1}
+\end{align}
+\]</span></p>
+<p>Por lo tanto, la <strong>varianza del estimador de mínimos cuadrados</strong> es:</p>
+<p><span class="math display">\[
+\boxed{Var(\hat{\boldsymbol{\beta}}) = \sigma^2 (\mathbf{X}&#39;\mathbf{X})^{-1}}
+\]</span></p>
+
+</div>
+</div>
+</div>
+<h3>Referencias<a href="referencias-1.html#referencias-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-montgomery2012" class="csl-entry">
+Montgomery, Douglas C., Elizabeth A. Peck, and G. Geoffrey Vining. 2012. <em>Introducci<span>ó</span>n Al an<span>á</span>lisis de Regresi<span>ó</span>n Lineal</em>. 5ta ed. Hoboken, New Jersey: Wiley.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rls.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referencias-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/08-rlm.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

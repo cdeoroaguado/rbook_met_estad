@@ -152,3 +152,12 @@ varianza-de-hat-yx_0
 estadístico-pivote-y-distribución
 ic-del-1001-alpha-para-la-media-en-x_0
 intervalo-de-predicción-para-una-nueva-y_0-en-x_0
+regresión-lineal-multiple-rl
+formulación-matemática-del-modelo-de-rlm
+estimación-de-los-coeficientes-del-modelo-de-rlm
+rlm
+modelo-ajustado-de-regresión
+vector-de-residuales
+propiedades-de-los-estimadores-de-beta
+esperanza-del-estimador-de-mínimos-cuadrados
+varianza-del-estimador-de-mínimos-cuadrados

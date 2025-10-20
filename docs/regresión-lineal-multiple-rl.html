@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 8 Regresión lineal multiple {#rl | Notas de métodos estadísticos</title>
+  <meta name="description" content="Notas de clase de métodos estadísticos." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 8 Regresión lineal multiple {#rl | Notas de métodos estadísticos" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de clase de métodos estadísticos." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 8 Regresión lineal multiple {#rl | Notas de métodos estadísticos" />
+  
+  <meta name="twitter:description" content="Notas de clase de métodos estadísticos." />
+  
+
+<meta name="author" content="Carlos de Oro Aguado" />
+
+
+<meta name="date" content="2025-10-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="rls.html"/>
+<link rel="next" href="referencias-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Notas de métodos estadísticos</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Asignatura</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="08-rlm.html"><a href="#introducci%C3%B3n-a-r-y-rstudio"><i class="fa fa-check"></i><b>1.1</b> Introducción a R y RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="08-rlm.html"><a href="#qu%C3%A9-es-r"><i class="fa fa-check"></i><b>1.1.1</b> ¿Qué es R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="08-rlm.html"><a href="#qu%C3%A9-es-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es RStudio?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="08-rlm.html"><a href="#introducci%C3%B3n-a-git-y-github"><i class="fa fa-check"></i><b>1.2</b> Introducción a Git y GitHub</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="08-rlm.html"><a href="#qu%C3%A9-es-git"><i class="fa fa-check"></i><b>1.2.1</b> ¿Qué es Git?</a></li>
+<li class="chapter" data-level="1.2.2" data-path="08-rlm.html"><a href="#qu%C3%A9-es-github"><i class="fa fa-check"></i><b>1.2.2</b> ¿Qué es GitHub?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="08-rlm.html"><a href="#introducci%C3%B3n-a-tidyverse"><i class="fa fa-check"></i><b>1.3</b> Introducción a Tidyverse</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="08-rlm.html"><a href="#representaci%C3%B3n-visual-del-ecosistema-tidyverse"><i class="fa fa-check"></i><b>1.3.1</b> Representación visual del ecosistema Tidyverse</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#principales-paquetes-del-tidyverse"><i class="fa fa-check"></i><b>1.3.2</b> Principales paquetes del Tidyverse</a></li>
+<li class="chapter" data-level="1.3.3" data-path="08-rlm.html"><a href="#instalaci%C3%B3n-del-tidyverse-en-r"><i class="fa fa-check"></i><b>1.3.3</b> Instalación del Tidyverse en R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#pasos-para-publicar-un-libro-bookdown-en-github-pages"><i class="fa fa-check"></i><b>1.4</b> Pasos para publicar un libro <code>bookdown</code> en GitHub Pages</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="08-rlm.html"><a href="#video-paso-a-paso-de-la-publicaci%C3%B3n-del-libro-en-github-pages"><i class="fa fa-check"></i><b>1.4.1</b> Video paso a paso de la publicación del libro en GitHub Pages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="reglas.html"><a href="reglas.html"><i class="fa fa-check"></i><b>2</b> Reglas de curso y diagnostico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="reglas.html"><a href="reglas.html#reglas-de-las-clases"><i class="fa fa-check"></i><b>2.1</b> Reglas de las clases</a></li>
+<li class="chapter" data-level="2.2" data-path="08-rlm.html"><a href="#pol%C3%ADtica-de-evaluaci%C3%B3n-y-normas-de-integridad-acad%C3%A9mica"><i class="fa fa-check"></i><b>2.2</b> Política de evaluación y normas de integridad académica</a></li>
+<li class="chapter" data-level="2.3" data-path="reglas.html"><a href="reglas.html#fechas-de-taller-y-examenes"><i class="fa fa-check"></i><b>2.3</b> Fechas de taller y examenes</a></li>
+<li class="chapter" data-level="2.4" data-path="08-rlm.html"><a href="#programaci%C3%B3n-del-curso-por-unidad"><i class="fa fa-check"></i><b>2.4</b> Programación del curso por unidad</a></li>
+<li class="chapter" data-level="2.5" data-path="reglas.html"><a href="reglas.html#referencias"><i class="fa fa-check"></i><b>2.5</b> Referencias</a></li>
+<li class="chapter" data-level="2.6" data-path="08-rlm.html"><a href="#terminos-b%C3%A1sicos-de-la-estad%C3%ADstica"><i class="fa fa-check"></i><b>2.6</b> Terminos básicos de la estadística</a></li>
+<li class="chapter" data-level="2.7" data-path="08-rlm.html"><a href="#diagnostico-de-estad%C3%ADstica-b%C3%A1sica"><i class="fa fa-check"></i><b>2.7</b> Diagnostico de estadística básica</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>3</b> Análisis exploratorio de datos (EDA)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="08-rlm.html"><a href="#cu%C3%A1ndo-debo-utilizarlo"><i class="fa fa-check"></i><b>3.1</b> ¿Cuándo debo utilizarlo?</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="08-rlm.html"><a href="#tipos-de-an%C3%A1lisis-exploratorio"><i class="fa fa-check"></i><b>3.1.1</b> Tipos de análisis exploratorio:</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="08-rlm.html"><a href="#representaci%C3%B3n-de-datos-seg%C3%BAn-su-naturaleza"><i class="fa fa-check"></i><b>3.2</b> Representación de datos según su naturaleza</a></li>
+<li class="chapter" data-level="3.3" data-path="08-rlm.html"><a href="#presentaci%C3%B3n-y-an%C3%A1lisis-de-la-informaci%C3%B3n-en-estudios-descriptivos"><i class="fa fa-check"></i><b>3.3</b> Presentación y análisis de la información en estudios descriptivos</a></li>
+<li class="chapter" data-level="3.4" data-path="08-rlm.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-num%C3%A9rica"><i class="fa fa-check"></i><b>3.4</b> Análisis explotario con variable respuesta numérica</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="eda.html"><a href="eda.html#contexto-de-los-datos-de-walmart"><i class="fa fa-check"></i><b>3.4.1</b> Contexto de los datos de Walmart</a></li>
+<li class="chapter" data-level="3.4.2" data-path="08-rlm.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl"><i class="fa fa-check"></i><b>3.4.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.4.3" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-la-variable-weekly_sales-target"><i class="fa fa-check"></i><b>3.4.3</b> Análisis de la variable <code>weekly_sales</code> (Target)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes"><i class="fa fa-check"></i><b>3.4.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="08-rlm.html"><a href="#an%C3%A1lisis-exploratorio-bivariado"><i class="fa fa-check"></i><b>3.4.5</b> Análisis exploratorio bivariado</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="08-rlm.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-categ%C3%B3rica"><i class="fa fa-check"></i><b>3.5</b> Análisis explotario con variable respuesta categórica</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="eda.html"><a href="eda.html#contexto-del-conjunto-de-datos-de-marketing-de-un-banco"><i class="fa fa-check"></i><b>3.5.1</b> Contexto del conjunto de datos de marketing de un banco</a></li>
+<li class="chapter" data-level="3.5.2" data-path="08-rlm.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl-1"><i class="fa fa-check"></i><b>3.5.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.5.3" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-la-variable-y-target"><i class="fa fa-check"></i><b>3.5.3</b> Análisis de la variable <code>y</code> (Target)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes-1"><i class="fa fa-check"></i><b>3.5.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.5.5" data-path="08-rlm.html"><a href="#an%C3%A1lisis-exploratorio-bivariado-1"><i class="fa fa-check"></i><b>3.5.5</b> Análisis exploratorio bivariado</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="estparynopar.html"><a href="estparynopar.html"><i class="fa fa-check"></i><b>4</b> Análisis de estadística paramétrica y no paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="08-rlm.html"><a href="#comparaci%C3%B3n-de-medias-entre-dos-grupos-independientes-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.1</b> Comparación de medias entre dos grupos independientes con estadística paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="estparynopar.html"><a href="estparynopar.html#condiciones-del-t-test-para-muestras-independientes"><i class="fa fa-check"></i><b>4.1.1</b> Condiciones del t-test para muestras independientes</a></li>
+<li class="chapter" data-level="4.1.2" data-path="estparynopar.html"><a href="estparynopar.html#grados-de-libertad"><i class="fa fa-check"></i><b>4.1.2</b> Grados de libertad</a></li>
+<li class="chapter" data-level="4.1.3" data-path="08-rlm.html"><a href="#error-est%C3%A1ndar-de-la-diferencia-de-medias"><i class="fa fa-check"></i><b>4.1.3</b> Error estándar de la diferencia de medias</a></li>
+<li class="chapter" data-level="4.1.4" data-path="08-rlm.html"><a href="#tama%C3%B1o-del-efecto-effect-size-en-comparaciones-de-medias"><i class="fa fa-check"></i><b>4.1.4</b> Tamaño del Efecto (Effect Size) en comparaciones de medias</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="08-rlm.html"><a href="#comparaci%C3%B3n-de-medias-entre-dos-grupos-pareados-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.2</b> Comparación de medias entre dos grupos pareados con estadística paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="estparynopar.html"><a href="estparynopar.html#supuestos-del-t-test-para-muestras-dependientes"><i class="fa fa-check"></i><b>4.2.1</b> Supuestos del t-test para muestras dependientes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="08-rlm.html"><a href="#comparaci%C3%B3n-de-dos-grupos-independientes-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.3</b> Comparación de dos grupos independientes con estadística no paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="estparynopar.html"><a href="estparynopar.html#fundamento-conceptual"><i class="fa fa-check"></i><b>4.3.1</b> Fundamento conceptual</a></li>
+<li class="chapter" data-level="4.3.2" data-path="08-rlm.html"><a href="#comparaci%C3%B3n-con-el-test-t"><i class="fa fa-check"></i><b>4.3.2</b> Comparación con el test t</a></li>
+<li class="chapter" data-level="4.3.3" data-path="08-rlm.html"><a href="#supuestos-y-condiciones-de-aplicaci%C3%B3n"><i class="fa fa-check"></i><b>4.3.3</b> Supuestos y condiciones de aplicación</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="08-rlm.html"><a href="#comparaci%C3%B3n-de-dos-grupos-pareados-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.4</b> Comparación de dos grupos pareados con estadística no paramétrica</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="08-rlm.html"><a href="#cu%C3%A1ndo-se-recomienda-utilizar-esta-prueba"><i class="fa fa-check"></i><b>4.4.1</b> ¿Cuándo se recomienda utilizar esta prueba?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="08-rlm.html"><a href="#anova-an%C3%A1lisis-de-varianza-para-comparar-m%C3%BAltiples-medias"><i class="fa fa-check"></i><b>4.5</b> ANOVA (análisis de varianza para comparar múltiples medias)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="08-rlm.html"><a href="#supuestos-y-formulaci%C3%B3n-de-las-hip%C3%B3tesis"><i class="fa fa-check"></i><b>4.5.1</b> Supuestos y formulación de las hipótesis</a></li>
+<li class="chapter" data-level="4.5.2" data-path="08-rlm.html"><a href="#sumas-de-cuadrados-y-teorema-de-descomposici%C3%B3n"><i class="fa fa-check"></i><b>4.5.2</b> Sumas de cuadrados y teorema de descomposición</a></li>
+<li class="chapter" data-level="4.5.3" data-path="estparynopar.html"><a href="estparynopar.html#estimaciones-insesgadas-de-la-varianza-poblacional"><i class="fa fa-check"></i><b>4.5.3</b> Estimaciones insesgadas de la varianza poblacional</a></li>
+<li class="chapter" data-level="4.5.4" data-path="08-rlm.html"><a href="#teorema-de-contraste-para-el-an%C3%A1lisis-de-varianza"><i class="fa fa-check"></i><b>4.5.4</b> Teorema de contraste para el análisis de varianza</a></li>
+<li class="chapter" data-level="4.5.5" data-path="08-rlm.html"><a href="#comparaciones-m%C3%BAltiples"><i class="fa fa-check"></i><b>4.5.5</b> Comparaciones múltiples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="estparynopar.html"><a href="estparynopar.html#kruskalwallis"><i class="fa fa-check"></i><b>4.6</b> Kruskal–Wallis</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="08-rlm.html"><a href="#hip%C3%B3tesis-del-test"><i class="fa fa-check"></i><b>4.6.1</b> Hipótesis del test</a></li>
+<li class="chapter" data-level="4.6.2" data-path="08-rlm.html"><a href="#estad%C3%ADstico-de-prueba"><i class="fa fa-check"></i><b>4.6.2</b> Estadístico de prueba</a></li>
+<li class="chapter" data-level="4.6.3" data-path="estparynopar.html"><a href="estparynopar.html#condiciones-del-test-de-kruskalwallis"><i class="fa fa-check"></i><b>4.6.3</b> Condiciones del test de Kruskal–Wallis</a></li>
+<li class="chapter" data-level="4.6.4" data-path="estparynopar.html"><a href="estparynopar.html#comparaciones-post-hoc"><i class="fa fa-check"></i><b>4.6.4</b> Comparaciones Post-Hoc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tabcontingencia.html"><a href="tabcontingencia.html"><i class="fa fa-check"></i><b>5</b> Tabla de contingencia</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="08-rlm.html"><a href="#tablas-de-contingencia-con-dos-criterios-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia con dos criterios de clasificación</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="tabcontingencia.html"><a href="tabcontingencia.html#prueba-de-homogeneidad"><i class="fa fa-check"></i><b>5.1.1</b> Prueba de homogeneidad</a></li>
+<li class="chapter" data-level="5.1.2" data-path="tabcontingencia.html"><a href="tabcontingencia.html#prueba-de-independencia"><i class="fa fa-check"></i><b>5.1.2</b> Prueba de independencia</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="correglin.html"><a href="correglin.html"><i class="fa fa-check"></i><b>6</b> Correlación lineal</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="08-rlm.html"><a href="#definiciones-y-teorema-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Definiciones y teorema de correlación</a></li>
+<li class="chapter" data-level="6.2" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-correlaci%C3%B3n-simple-dos-variables"><i class="fa fa-check"></i><b>6.2</b> Análisis de correlación simple (dos variables)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="08-rlm.html"><a href="#tipos-de-coeficientes-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.1</b> Tipos de coeficientes de correlación</a></li>
+<li class="chapter" data-level="6.2.2" data-path="08-rlm.html"><a href="#interpretaci%C3%B3n-del-coeficiente-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.2</b> Interpretación del coeficiente de correlación</a></li>
+<li class="chapter" data-level="6.2.3" data-path="08-rlm.html"><a href="#correlaci%C3%B3n-de-pearson"><i class="fa fa-check"></i><b>6.2.3</b> Correlación de Pearson</a></li>
+<li class="chapter" data-level="6.2.4" data-path="08-rlm.html"><a href="#correlaci%C3%B3n-de-spearman"><i class="fa fa-check"></i><b>6.2.4</b> Correlación de Spearman</a></li>
+<li class="chapter" data-level="6.2.5" data-path="08-rlm.html"><a href="#correlaci%C3%B3n-de-kendall"><i class="fa fa-check"></i><b>6.2.5</b> Correlación de Kendall</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="rls.html"><a href="rls.html"><i class="fa fa-check"></i><b>7</b> Regresión lineal simple</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="08-rlm.html"><a href="#el-modelo-de-regresi%C3%B3n-lineal-simple-rls"><i class="fa fa-check"></i><b>7.1</b> El modelo de regresión lineal simple (RLS)</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="08-rlm.html"><a href="#modelo-determinista-y-modelo-probabil%C3%ADstico"><i class="fa fa-check"></i><b>7.1.1</b> Modelo determinista y modelo probabilístico</a></li>
+<li class="chapter" data-level="7.1.2" data-path="08-rlm.html"><a href="#supuestos-b%C3%A1sicos-para-el-modelo-de-regresi%C3%B3n-lineal."><i class="fa fa-check"></i><b>7.1.2</b> Supuestos básicos para el modelo de regresión lineal.</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="08-rlm.html"><a href="#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1"><i class="fa fa-check"></i><b>7.2</b> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span></a></li>
+<li class="chapter" data-level="7.3" data-path="08-rlm.html"><a href="#estimaci%C3%B3n-de-sigma2"><i class="fa fa-check"></i><b>7.3</b> Estimación de <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.4" data-path="08-rlm.html"><a href="#coeficiente-de-determinaci%C3%B3n"><i class="fa fa-check"></i><b>7.4</b> Coeficiente de determinación</a></li>
+<li class="chapter" data-level="7.5" data-path="08-rlm.html"><a href="#propiedades-de-estimadores-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>7.5</b> Propiedades de estimadores de mínimos cuadrados</a></li>
+<li class="chapter" data-level="7.6" data-path="08-rlm.html"><a href="#estimaci%C3%B3n-de-invervalos-de-confianza-y-prueba-de-hip%C3%B3tesis-para-beta_1-beta_0-y-sigma2"><i class="fa fa-check"></i><b>7.6</b> Estimación de invervalos de confianza y prueba de hipótesis para <span class="math inline">\(\beta_1, \beta_0\)</span> y <span class="math inline">\(\sigma^2\)</span></a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-beta_1"><i class="fa fa-check"></i><b>7.6.1</b> Intervalo de confianza para <span class="math inline">\(\beta_1\)</span></a></li>
+<li class="chapter" data-level="7.6.2" data-path="08-rlm.html"><a href="#prueba-de-hip%C3%B3tesis-para-beta_1"><i class="fa fa-check"></i><b>7.6.2</b> Prueba de hipótesis para <span class="math inline">\(\beta_1\)</span></a></li>
+<li class="chapter" data-level="7.6.3" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-beta_0"><i class="fa fa-check"></i><b>7.6.3</b> Intervalo de confianza para <span class="math inline">\(\beta_0\)</span></a></li>
+<li class="chapter" data-level="7.6.4" data-path="08-rlm.html"><a href="#prueba-de-hip%C3%B3tesis-para-beta_0"><i class="fa fa-check"></i><b>7.6.4</b> Prueba de hipótesis para <span class="math inline">\(\beta_0\)</span></a></li>
+<li class="chapter" data-level="7.6.5" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-sigma2"><i class="fa fa-check"></i><b>7.6.5</b> Intervalo de confianza para <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.6.6" data-path="08-rlm.html"><a href="#prueba-de-hip%C3%B3tesis-para-sigma2"><i class="fa fa-check"></i><b>7.6.6</b> Prueba de hipótesis para <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.6.7" data-path="08-rlm.html"><a href="#anova-en-regresi%C3%B3n-lineal"><i class="fa fa-check"></i><b>7.6.7</b> ANOVA en regresión lineal</a></li>
+<li class="chapter" data-level="7.6.8" data-path="08-rlm.html"><a href="#hip%C3%B3tesis-global"><i class="fa fa-check"></i><b>7.6.8</b> Hipótesis global</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="rls.html"><a href="rls.html#transformaciones-para-mejorar-el-ajuste-del-modelo"><i class="fa fa-check"></i><b>7.7</b> Transformaciones para mejorar el ajuste del modelo</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="08-rlm.html"><a href="#por-qu%C3%A9-transformar-variables"><i class="fa fa-check"></i><b>7.7.1</b> ¿Por qué transformar variables?</a></li>
+<li class="chapter" data-level="7.7.2" data-path="rls.html"><a href="rls.html#tipos-comunes-de-transformaciones"><i class="fa fa-check"></i><b>7.7.2</b> Tipos comunes de transformaciones</a></li>
+<li class="chapter" data-level="7.7.3" data-path="08-rlm.html"><a href="#evaluaci%C3%B3n-posterior-a-la-transformaci%C3%B3n"><i class="fa fa-check"></i><b>7.7.3</b> Evaluación posterior a la transformación</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-residuales"><i class="fa fa-check"></i><b>7.8</b> Análisis de residuales</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="08-rlm.html"><a href="#validaci%C3%B3n-de-supuestos"><i class="fa fa-check"></i><b>7.8.1</b> Validación de supuestos</a></li>
+<li class="chapter" data-level="7.8.2" data-path="rls.html"><a href="rls.html#independencia-de-los-errores"><i class="fa fa-check"></i><b>7.8.2</b> Independencia de los errores</a></li>
+<li class="chapter" data-level="7.8.3" data-path="rls.html"><a href="rls.html#normalidad-de-los-errores"><i class="fa fa-check"></i><b>7.8.3</b> Normalidad de los errores</a></li>
+<li class="chapter" data-level="7.8.4" data-path="rls.html"><a href="rls.html#media-cero-de-los-errores"><i class="fa fa-check"></i><b>7.8.4</b> Media cero de los errores</a></li>
+<li class="chapter" data-level="7.8.5" data-path="rls.html"><a href="rls.html#varianza-constante-de-los-errores"><i class="fa fa-check"></i><b>7.8.5</b> Varianza constante de los errores</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="08-rlm.html"><a href="#estimaci%C3%B3n-e-inferencia-para-la-widehatmathbbeymid-x_0-en-rls"><i class="fa fa-check"></i><b>7.9</b> Estimación e inferencia para la <span class="math inline">\(\widehat{\mathbb{E}}(y\mid x_0)\)</span> en RLS</a></li>
+<li class="chapter" data-level="7.10" data-path="08-rlm.html"><a href="#intervalo-de-predicci%C3%B3n-para-una-nueva-y_0-en-x_0"><i class="fa fa-check"></i><b>7.10</b> Intervalo de predicción para una nueva <span class="math inline">\(y_0\)</span> en <span class="math inline">\(x_0\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="08-rlm.html"><a href="#regresi%C3%B3n-lineal-multiple-rl"><i class="fa fa-check"></i><b>8</b> Regresión lineal multiple {#rl</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="08-rlm.html"><a href="#formulaci%C3%B3n-matem%C3%A1tica-del-modelo-de-rlm"><i class="fa fa-check"></i><b>8.1</b> Formulación matemática del modelo de RLM</a></li>
+<li class="chapter" data-level="8.2" data-path="08-rlm.html"><a href="#estimaci%C3%B3n-de-los-coeficientes-del-modelo-de-rlm"><i class="fa fa-check"></i><b>8.2</b> Estimación de los coeficientes del modelo de RLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notas de métodos estadísticos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regresión-lineal-multiple-rl" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Capítulo 8</span> Regresión lineal multiple {#rl<a href="#regresi%C3%B3n-lineal-multiple-rl" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Como se mencionó en el Capítulo de <strong>rls</strong>, los modelos de <strong>regresión lineal</strong> permiten predecir valores futuros de una variable respuesta continua a partir de valores <strong>específicos</strong> de las variables <strong>controlables</strong> del proceso.</p>
+<p>En la práctica, pueden existir múltiples variables controlables en un proceso de producción o de servicios.</p>
+<p>Por ejemplo, en un proceso de <strong>pintura electrostática</strong>, puede interesar determinar el <strong>espesor de la capa de pintura</strong> (variable respuesta <span class="math inline">\(y\)</span>, en micrones) con la que se recubre una lámina de área determinada, a partir de valores conocidos de:</p>
+<ul>
+<li>la <strong>presión del aire</strong> (<span class="math inline">\(x_1\)</span>, en <em>psi</em>), y<br />
+</li>
+<li>la <strong>velocidad de la banda transportadora</strong> (<span class="math inline">\(x_2\)</span>, en <em>m/s</em>).</li>
+</ul>
+<p>En este contexto, el objetivo es:</p>
+<ol style="list-style-type: decimal">
+<li>Determinar la <strong>magnitud de la influencia</strong> de las variables <span class="math inline">\(x_1\)</span> y <span class="math inline">\(x_2\)</span> sobre el espesor esperado de la capa.<br />
+</li>
+<li>Construir una <strong>función de predicción</strong> <span class="math inline">\(f(x_1, x_2)\)</span> que permita estimar el espesor esperado.<br />
+</li>
+<li>Elaborar <strong>intervalos de confianza y predicción</strong> para dicho valor.</li>
+</ol>
+<p>Si la variable respuesta <span class="math inline">\(y\)</span> es continua y aproximadamente simétrica, los objetivos (1), (2) y (3) pueden abordarse mediante la estimación de un <strong>modelo de regresión lineal</strong>.</p>
+<p>Dado que el número de variables controlables es <span class="math inline">\(k &gt; 1\)</span>, una alternativa apropiada es utilizar el <strong>modelo de Regresión Lineal Múltiple (RLM)</strong></p>
+<div class="admon-box nota">
+<div class="admon-title">
+<span class="icon"></span> Nota
+</div>
+<p>
+El modelo de RLM es una <em>extensión</em> del modelo de RLS cuando se tiene más de una variable controlable.
+</p>
+</div>
+<div id="formulación-matemática-del-modelo-de-rlm" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Formulación matemática del modelo de RLM<a href="#formulaci%C3%B3n-matem%C3%A1tica-del-modelo-de-rlm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Matemáticamente, el modelo de RLM puede expresarse como:</p>
+<p><span class="math display">\[
+\begin{align}
+y_i &amp;= \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \cdots + \beta_k x_{ki} + \varepsilon_i, \\
+\varepsilon_i &amp;\sim N(0, \sigma^2), \\
+\sigma^2 &amp;= \text{constante.}
+\end{align}
+\]</span></p>
+<p>donde:
+- <span class="math inline">\(\beta_0\)</span> es la ordenada al origen,<br />
+- <span class="math inline">\(\beta_i\)</span> son los coeficientes de regresión que miden la influencia de cada variable <span class="math inline">\(x_i\)</span>, y<br />
+- <span class="math inline">\(\varepsilon_i\)</span> representa el término de error aleatorio.</p>
+</div>
+<div id="estimación-de-los-coeficientes-del-modelo-de-rlm" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Estimación de los coeficientes del modelo de RLM<a href="#estimaci%C3%B3n-de-los-coeficientes-del-modelo-de-rlm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los coeficientes del modelo de RLM pueden estimarse mediante el método de <strong>mínimos cuadrados ordinarios (MCO)</strong>, que busca minimizar la suma de los cuadrados de las diferencias entre los valores observados y los valores predichos por el modelo.</p>
+<p><span class="math display">\[
+\begin{align}
+y_i &amp;= \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_k x_{ik} + \varepsilon_i \\
+    &amp;= \beta_0 + \sum_{j=1}^{k} \beta_j x_{ij} + \varepsilon_i, \quad i = 1, 2, \ldots, n \tag{3.1}
+\end{align}
+\]</span></p>
+<p>La función de mínimos cuadrados es:</p>
+<p><span class="math display">\[
+\begin{align}
+S(\beta_0, \beta_1, \ldots, \beta_k) &amp;= \sum_{i=1}^{n} \varepsilon_i^2 \\
+    &amp;= \sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{k} \beta_j x_{ij} \right)^2 \tag{3.2}
+\end{align}
+\]</span></p>
+<p>Se debe minimizar la función <span class="math inline">\(S\)</span> respecto a <span class="math inline">\(\beta_0, \beta_1, \ldots, \beta_k\)</span>. Los estimadores de <span class="math inline">\(\beta_0, \beta_1, \ldots, \beta_k\)</span> por mínimos cuadrados deben satisfacer:</p>
+<p><span class="math display">\[
+\begin{align}
+\left. \frac{\partial S}{\partial \beta_0} \right|_{\hat{\beta}_0, \hat{\beta}_1, \ldots, \hat{\beta}_k}
+&amp;= -2 \sum_{i=1}^{n} \left( y_i - \hat{\beta}_0 - \sum_{j=1}^{k} \hat{\beta}_j x_{ij} \right) = 0
+\tag{3.3a} \\
+\left. \frac{\partial S}{\partial \beta_j} \right|_{\hat{\beta}_0, \hat{\beta}_1, \ldots, \hat{\beta}_k}
+&amp;= -2 \sum_{i=1}^{n} \left( y_i - \hat{\beta}_0 - \sum_{j=1}^{k} \hat{\beta}_j x_{ij} \right) x_{ij} = 0,
+\quad j = 1, 2, \ldots, k
+\tag{3.3b}
+\end{align}
+\]</span></p>
+<p>Al simplificar las ecuaciones (3.3), se obtienen las <strong>ecuaciones normales de mínimos cuadrados</strong>:</p>
+<p><span class="math display">\[
+\begin{align}
+n\hat{\beta}_0 + \hat{\beta}_1 \sum_{i=1}^{n} x_{i1} + \hat{\beta}_2 \sum_{i=1}^{n} x_{i2} + \cdots + \hat{\beta}_k \sum_{i=1}^{n} x_{ik} &amp;= \sum_{i=1}^{n} y_i \\
+\hat{\beta}_0 \sum_{i=1}^{n} x_{i1} + \hat{\beta}_1 \sum_{i=1}^{n} x_{i1}^2 + \hat{\beta}_2 \sum_{i=1}^{n} x_{i1}x_{i2} + \cdots + \hat{\beta}_k \sum_{i=1}^{n} x_{i1}x_{ik} &amp;= \sum_{i=1}^{n} x_{i1}y_i \\
+\vdots \nonumber \\
+\hat{\beta}_0 \sum_{i=1}^{n} x_{ik} + \hat{\beta}_1 \sum_{i=1}^{n} x_{ik}x_{i1} + \hat{\beta}_2 \sum_{i=1}^{n} x_{ik}x_{i2} + \cdots + \hat{\beta}_k \sum_{i=1}^{n} x_{ik}^2 &amp;= \sum_{i=1}^{n} x_{ik}y_i
+\tag{3.11}
+\end{align}
+\]</span></p>
+<p>Nótese que hay <span class="math inline">\(p = k + 1\)</span> ecuaciones normales, una para cada uno de los coeficientes desconocidos del modelo de regresión. La solución de estas ecuaciones normales proporciona los <strong>estimadores por mínimos cuadrados</strong> <span class="math inline">\(\hat{\beta}_0, \hat{\beta}_1, \ldots, \hat{\beta}_k\)</span>.</p>
+<p>Es más cómodo manejar los modelos de <strong>regresión múltiple</strong> en notación <strong>matricial</strong>, ya que permite representar de manera compacta el modelo, los datos y los resultados. En notación matricial, el modelo expresado por la ecuación (3.1) es:</p>
+<p><span class="math display">\[
+\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}
+\]</span></p>
+<p>en donde:</p>
+<p><span class="math display">\[
+\mathbf{y} =
+\begin{bmatrix}
+y_1 \\[3pt]
+y_2 \\[3pt]
+\vdots \\[3pt]
+y_n
+\end{bmatrix},
+\quad
+\mathbf{X} =
+\begin{bmatrix}
+1 &amp; x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1k} \\
+1 &amp; x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2k} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{nk}
+\end{bmatrix},
+\quad
+\boldsymbol{\beta} =
+\begin{bmatrix}
+\beta_0 \\[3pt]
+\beta_1 \\[3pt]
+\vdots \\[3pt]
+\beta_k
+\end{bmatrix},
+\quad
+\boldsymbol{\varepsilon} =
+\begin{bmatrix}
+\varepsilon_1 \\[3pt]
+\varepsilon_2 \\[3pt]
+\vdots \\[3pt]
+\varepsilon_n
+\end{bmatrix}
+\]</span></p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{y}\)</span>: vector <span class="math inline">\((n \times 1)\)</span> de observaciones.<br />
+</li>
+<li><span class="math inline">\(\mathbf{X}\)</span>: matriz <span class="math inline">\((n \times p)\)</span> de niveles de las variables independientes.<br />
+</li>
+<li><span class="math inline">\(\boldsymbol{\beta}\)</span>: vector <span class="math inline">\((p \times 1)\)</span> de coeficientes de regresión.<br />
+</li>
+<li><span class="math inline">\(\boldsymbol{\varepsilon}\)</span>: vector <span class="math inline">\((n \times 1)\)</span> de términos de error aleatorio.</li>
+</ul>
+<p>En general, <span class="math inline">\(\mathbf{y}\)</span> es un vector de <span class="math inline">\(n \times 1\)</span> observaciones,<br />
+<span class="math inline">\(\mathbf{X}\)</span> es una matriz de <span class="math inline">\(n \times p\)</span> de niveles de las variables regresoras,<br />
+<span class="math inline">\(\boldsymbol{\beta}\)</span> es un vector de <span class="math inline">\(p \times 1\)</span> de coeficientes de regresión,<br />
+y <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> es un vector de <span class="math inline">\(n \times 1\)</span> de errores aleatorios.</p>
+<p>Se desea determinar el vector <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> de estimadores de mínimos cuadrados que minimice:</p>
+<p><span class="math display">\[
+S(\boldsymbol{\beta}) = \sum_{i=1}^{n} \varepsilon_i^2 = \mathbf{e}&#39;\mathbf{e} = (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})&#39;(\mathbf{y} - \mathbf{X}\boldsymbol{\beta})
+\]</span></p>
+<p>Nótese que <span class="math inline">\(S(\boldsymbol{\beta})\)</span> puede expresarse como:</p>
+<p><span class="math display">\[
+\begin{align}
+S(\boldsymbol{\beta}) &amp;= \mathbf{y}&#39;\mathbf{y} - \boldsymbol{\beta}&#39;\mathbf{X}&#39;\mathbf{y} - \mathbf{y}&#39;\mathbf{X}\boldsymbol{\beta} + \boldsymbol{\beta}&#39;\mathbf{X}&#39;\mathbf{X}\boldsymbol{\beta} \\
+&amp;= \mathbf{y}&#39;\mathbf{y} - 2\boldsymbol{\beta}&#39;\mathbf{X}&#39;\mathbf{y} + \boldsymbol{\beta}&#39;\mathbf{X}&#39;\mathbf{X}\boldsymbol{\beta}
+\end{align}
+\]</span></p>
+<p>ya que <span class="math inline">\(\boldsymbol{\beta}&#39;\mathbf{X}&#39;\mathbf{y}\)</span> es un escalar (matriz <span class="math inline">\(1 \times 1\)</span>) y su traspuesta <span class="math inline">\((\boldsymbol{\beta}&#39;\mathbf{X}&#39;\mathbf{y})&#39; = \mathbf{y}&#39;\mathbf{X}\boldsymbol{\beta}\)</span> es el mismo escalar.</p>
+<p>Los estimadores de mínimos cuadrados deben satisfacer:</p>
+<p><span class="math display">\[
+\frac{\partial S}{\partial \boldsymbol{\beta}} = -2\mathbf{X}&#39;\mathbf{y} + 2\mathbf{X}&#39;\mathbf{X}\hat{\boldsymbol{\beta}} = 0
+\]</span></p>
+<p>lo que se simplifica a:</p>
+<p><span class="math display">\[
+\mathbf{X}&#39;\mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{X}&#39;\mathbf{y}
+\tag{3.12}
+\]</span></p>
+<p>Para resolver las ecuaciones normales se multiplican ambos lados de (3.12) por la inversa de <span class="math inline">\(\mathbf{X}&#39;\mathbf{X}\)</span>.<br />
+Así, el <strong>estimador de <span class="math inline">\(\boldsymbol{\beta}\)</span> por mínimos cuadrados</strong> es:</p>
+<p><span class="math display">\[
+\hat{\boldsymbol{\beta}} = (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{y}
+\tag{3.13}
+\]</span></p>
+<p>Este estimador existe siempre que <span class="math inline">\((\mathbf{X}&#39;\mathbf{X})^{-1}\)</span> exista,<br />
+lo cual ocurre si los regresores son <strong>linealmente independientes</strong>, es decir, si ninguna columna de la matriz <span class="math inline">\(\mathbf{X}\)</span> es una combinación lineal de las demás.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rls.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referencias-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/08-rlm.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
