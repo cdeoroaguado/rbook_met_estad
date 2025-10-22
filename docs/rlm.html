@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2025-10-20" />
+<meta name="date" content="2025-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -342,6 +342,23 @@ div.csl-indent {
 <li class="chapter" data-level="8.3.1" data-path="08-rlm.html"><a href="#esperanza-del-estimador-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>8.3.1</b> Esperanza del estimador de mínimos cuadrados</a></li>
 <li class="chapter" data-level="8.3.2" data-path="08-rlm.html"><a href="#varianza-del-estimador-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>8.3.2</b> Varianza del estimador de mínimos cuadrados</a></li>
 </ul></li>
+<li class="chapter" data-level="8.4" data-path="08-rlm.html"><a href="#estimaci%C3%B3n-de-la-varianza-del-modelo-sigma2"><i class="fa fa-check"></i><b>8.4</b> Estimación de la varianza del modelo <span class="math inline">\(\sigma^2\)</span></a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="rlm.html"><a href="rlm.html#estimador-insesgado-de-sigma2"><i class="fa fa-check"></i><b>8.4.1</b> Estimador insesgado de <span class="math inline">\(\sigma^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="rlm.html"><a href="rlm.html#prueba-de-significancia-global-de-la-rlm"><i class="fa fa-check"></i><b>8.5</b> Prueba de significancia global de la RLM</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="08-rlm.html"><a href="#hip%C3%B3tesis"><i class="fa fa-check"></i><b>8.5.1</b> Hipótesis</a></li>
+<li class="chapter" data-level="8.5.2" data-path="08-rlm.html"><a href="#descomposici%C3%B3n-de-la-suma-de-cuadrados"><i class="fa fa-check"></i><b>8.5.2</b> Descomposición de la suma de cuadrados</a></li>
+<li class="chapter" data-level="8.5.3" data-path="08-rlm.html"><a href="#estad%C3%ADstico-de-prueba-2"><i class="fa fa-check"></i><b>8.5.3</b> Estadístico de prueba</a></li>
+<li class="chapter" data-level="8.5.4" data-path="rlm.html"><a href="rlm.html#cuadrados-medios-esperados"><i class="fa fa-check"></i><b>8.5.4</b> Cuadrados medios esperados</a></li>
+<li class="chapter" data-level="8.5.5" data-path="08-rlm.html"><a href="#par%C3%A1metro-de-no-centralidad"><i class="fa fa-check"></i><b>8.5.5</b> Parámetro de no centralidad</a></li>
+<li class="chapter" data-level="8.5.6" data-path="08-rlm.html"><a href="#regla-de-decisi%C3%B3n-1"><i class="fa fa-check"></i><b>8.5.6</b> Regla de decisión</a></li>
+<li class="chapter" data-level="8.5.7" data-path="rlm.html"><a href="rlm.html#tabla-anova-para-la-rlm"><i class="fa fa-check"></i><b>8.5.7</b> Tabla ANOVA para la RLM</a></li>
+<li class="chapter" data-level="8.5.8" data-path="rlm.html"><a href="rlm.html#formulas-de-la-suma-de-cuadrados-en-la-rlm"><i class="fa fa-check"></i><b>8.5.8</b> Formulas de la suma de cuadrados en la RLM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="rlm.html"><a href="rlm.html#prueba-individual-de-significancia-para-los-coeficientes"><i class="fa fa-check"></i><b>8.6</b> Prueba individual de significancia para los coeficientes</a></li>
+<li class="chapter" data-level="8.7" data-path="08-rlm.html"><a href="#coeficiente-de-determinaci%C3%B3n-r2-y-r2-ajustado-de-la-rlm"><i class="fa fa-check"></i><b>8.7</b> Coeficiente de determinación <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado de la RLM</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -576,16 +593,16 @@ n &amp; \displaystyle\sum_{i=1}^{n} x_{i1} &amp; \displaystyle\sum_{i=1}^{n} x_{
 <h3><span class="header-section-number">8.2.2</span> Vector de residuales<a href="rlm.html#vector-de-residuales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La diferencia entre el valor observado <span class="math inline">\(y_i\)</span> y el valor ajustado <span class="math inline">\(\hat{y}_i\)</span> se denomina <strong>residual</strong>:</p>
 <p><span class="math display">\[
-\varepsilon_i = y_i - \hat{y}_i
+e_i = y_i - \hat{y}_i
 \]</span></p>
 <p>Por lo tanto, el <strong>vector de residuales</strong> se puede escribir en notación matricial como:</p>
 <p><span class="math display">\[
-\boldsymbol{\varepsilon} = \mathbf{y} - \hat{\mathbf{y}}
+\mathbf{e} = \mathbf{y} - \hat{\mathbf{y}}
 \tag{8.9a}
 \]</span></p>
-<p>De manera equivalente:</p>
+<p>de manera equivalente:</p>
 <p><span class="math display">\[
-\boldsymbol{\varepsilon} = \mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{y} - \mathbf{H}\mathbf{y} = (\mathbf{I} - \mathbf{H})\mathbf{y}
+\mathbf{e} = \mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{y} - \mathbf{H}\mathbf{y} = (\mathbf{I} - \mathbf{H})\mathbf{y}
 \tag{8.9b}
 \]</span></p>
 <hr />
@@ -695,8 +712,8 @@ A medida que la presión del aire aumenta, también lo hace el espesor de la cap
 <span id="cb5-19"><a href="rlm.html#cb5-19" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Gráfico 3D interactivo: relación entre presión, velocidad y espesor&quot;</span></span>
 <span id="cb5-20"><a href="rlm.html#cb5-20" tabindex="-1"></a>  )</span></code></pre></div>
 </details>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-c59fd7466e39ae32b7fc" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-c59fd7466e39ae32b7fc">{"x":{"visdat":{"2a942b60e9":["function () ","plotlyVisDat"]},"cur_data":"2a942b60e9","attrs":{"2a942b60e9":{"x":{},"y":{},"z":{},"mode":"markers","marker":{"size":5,"color":{},"colorscale":"Reds","showscale":true},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Presión del aire (psi)"},"yaxis":{"title":"Velocidad de la banda (m/s)"},"zaxis":{"title":"Espesor de la capa (micrones)"}},"title":"Gráfico 3D interactivo: relación entre presión, velocidad y espesor","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[18.722090652445299,19.056131199467899,9.2920930217951501,17.4567143910099,14.6261827833951,12.786439236952001,16.048824719618999,7.0199989585671601,14.854884356027499,15.5759717605542,11.8661266437266,15.7866837747861,19.020083707291601,8.8314323651138693,11.934392338153,19.1002178413328,19.673396425787399,6.7623104248195904,12.1249562234152,13.404991193674499,18.560470809461499,7.0806525158695903,19.833375933812899,19.200023488374399,6.2365633714944098,12.713176765246301,10.853052006568801,18.586071963654799,11.7045444215182,17.5400638999417,16.063934266567198,17.165827119024499,10.821624242235,15.2775459410623,5.0592250819317997,17.493741203797999,5.1100122032221398,8.1148845923598891,18.5990211169701,14.176679651718599,10.693388608051499,11.536573774647,5.5614654929377103,19.6030987065751,11.476268733386,19.3636489496566,18.316323582548598,14.5996815420222,19.564499155385398,14.2825731099583,10.001408169046,10.2012237231247,10.977281171362799,16.7703916353639,5.5840473668649802,16.231930792564501,15.159152452834,7.5689649558626098,8.9163194573484397,12.7161940198857,15.134109117789199,19.7422579687554,16.393164013279598,13.4973263612483,17.745345778530499,7.8421090310439503,9.0692992205731606,17.4223772785626,15.3980723058339,8.6081710946746206,5.6448319402989,7.1071864117402601,8.2457812258508092,12.1909784630407,7.9611551342532003,15.790337565122201,5.1182710810098797,10.632349469233301,12.7161156246439,5.0235583132598496,13.724060037638999,7.3685781226959097,10.385424587875599,14.6844781760592,16.6373504395597,13.4547026234213,8.50555097917095,6.3497077452484501,6.2841809738893097,9.5782755420077592,15.0113977200817,5.0035834487061903,8.1285493541508895,18.995511910179602,18.8846712291706,16.011414515087399,9.9960797512903792,12.725949947489401,16.159619694808502,14.287388600641901],"y":[6,3,3,4,9,9,6,6,5,0,5,7,6,5,5,5,0,4,5,7,4,4,5,5,6,4,8,9,3,6,8,5,6,9,7,5,7,2,7,6,3,2,5,7,6,7,3,9,4,3,6,4,7,4,6,7,3,1,3,6,9,5,5,3,5,3,5,4,2,3,6,4,4,5,4,3,7,5,7,7,8,7,4,3,6,6,8,7,3,4,3,7,3,3,2,2,5,2,6,6],"z":[91.883082003518595,94.375444022362004,74.630259638841096,93.663484571245505,76.849807226014406,76.051983065527907,82.888568896765605,69.856807877204204,83.902921447053501,89.718415772359904,78.800849426481605,83.096405437060298,87.283683452811005,72.832677129051305,73.994750521117993,88.529624056488402,92.916080983620304,80.791686944049104,75.176210947989802,79.389919627199305,85.229884176104093,68.734074356089394,91.145337427773697,86.835717663490897,69.009549439301793,79.988337427972994,71.846549627444006,79.480186298210299,77.326186528094894,86.994867920963898,83.951905783240605,85.309947828043093,76.089954857964599,83.321554208358293,70.002912784445897,83.9868143120529,65.412290758982394,80.966785210298397,85.843051897634496,81.109208247784807,79.333568436304404,79.2945815256316,68.1292159663018,88.763401602309401,75.858276108440705,91.810450846907599,88.767660225528303,77.505753752841301,93.250160010877494,81.422519102659194,74.702077379384406,72.9937313654262,78.612317553688101,86.306738025707901,66.604649113055899,79.7667087685967,85.789413265465697,75.617825154075405,75.515956014235101,82.876113109437497,79.183469125690706,87.419843994899793,86.124614519228601,82.409560374335001,89.423841891308001,79.917323663437202,71.722386202987295,89.432441305706703,87.398305282770394,79.373879081675398,67.412641267042403,75.693527197522997,69.591494724892598,84.429507609259801,77.010280794283105,86.239612261557994,61.430384441631197,78.963123857691301,79.330353781501998,65.607461513758807,78.8589983204281,67.609818038405194,79.020587878195201,86.035441118408997,84.225653608212895,76.143896183259599,71.932866714097997,69.401674305002899,70.9409443182236,71.965687121098497,86.221752765836797,64.559444499870295,76.776904360425604,87.274740694426598,88.948602127635098,91.224654254802104,77.295471782823697,85.314413389636201,89.771978527551397,81.823904896597497],"mode":"markers","marker":{"color":[91.883082003518595,94.375444022362004,74.630259638841096,93.663484571245505,76.849807226014406,76.051983065527907,82.888568896765605,69.856807877204204,83.902921447053501,89.718415772359904,78.800849426481605,83.096405437060298,87.283683452811005,72.832677129051305,73.994750521117993,88.529624056488402,92.916080983620304,80.791686944049104,75.176210947989802,79.389919627199305,85.229884176104093,68.734074356089394,91.145337427773697,86.835717663490897,69.009549439301793,79.988337427972994,71.846549627444006,79.480186298210299,77.326186528094894,86.994867920963898,83.951905783240605,85.309947828043093,76.089954857964599,83.321554208358293,70.002912784445897,83.9868143120529,65.412290758982394,80.966785210298397,85.843051897634496,81.109208247784807,79.333568436304404,79.2945815256316,68.1292159663018,88.763401602309401,75.858276108440705,91.810450846907599,88.767660225528303,77.505753752841301,93.250160010877494,81.422519102659194,74.702077379384406,72.9937313654262,78.612317553688101,86.306738025707901,66.604649113055899,79.7667087685967,85.789413265465697,75.617825154075405,75.515956014235101,82.876113109437497,79.183469125690706,87.419843994899793,86.124614519228601,82.409560374335001,89.423841891308001,79.917323663437202,71.722386202987295,89.432441305706703,87.398305282770394,79.373879081675398,67.412641267042403,75.693527197522997,69.591494724892598,84.429507609259801,77.010280794283105,86.239612261557994,61.430384441631197,78.963123857691301,79.330353781501998,65.607461513758807,78.8589983204281,67.609818038405194,79.020587878195201,86.035441118408997,84.225653608212895,76.143896183259599,71.932866714097997,69.401674305002899,70.9409443182236,71.965687121098497,86.221752765836797,64.559444499870295,76.776904360425604,87.274740694426598,88.948602127635098,91.224654254802104,77.295471782823697,85.314413389636201,89.771978527551397,81.823904896597497],"size":5,"colorscale":"Reds","showscale":true,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-5a9dfc47f77190b5514e" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-5a9dfc47f77190b5514e">{"x":{"visdat":{"5a85091f18":["function () ","plotlyVisDat"]},"cur_data":"5a85091f18","attrs":{"5a85091f18":{"x":{},"y":{},"z":{},"mode":"markers","marker":{"size":5,"color":{},"colorscale":"Reds","showscale":true},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Presión del aire (psi)"},"yaxis":{"title":"Velocidad de la banda (m/s)"},"zaxis":{"title":"Espesor de la capa (micrones)"}},"title":"Gráfico 3D interactivo: relación entre presión, velocidad y espesor","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[18.722090652445299,19.056131199467899,9.2920930217951501,17.4567143910099,14.6261827833951,12.786439236952001,16.048824719618999,7.0199989585671601,14.854884356027499,15.5759717605542,11.8661266437266,15.7866837747861,19.020083707291601,8.8314323651138693,11.934392338153,19.1002178413328,19.673396425787399,6.7623104248195904,12.1249562234152,13.404991193674499,18.560470809461499,7.0806525158695903,19.833375933812899,19.200023488374399,6.2365633714944098,12.713176765246301,10.853052006568801,18.586071963654799,11.7045444215182,17.5400638999417,16.063934266567198,17.165827119024499,10.821624242235,15.2775459410623,5.0592250819317997,17.493741203797999,5.1100122032221398,8.1148845923598891,18.5990211169701,14.176679651718599,10.693388608051499,11.536573774647,5.5614654929377103,19.6030987065751,11.476268733386,19.3636489496566,18.316323582548598,14.5996815420222,19.564499155385398,14.2825731099583,10.001408169046,10.2012237231247,10.977281171362799,16.7703916353639,5.5840473668649802,16.231930792564501,15.159152452834,7.5689649558626098,8.9163194573484397,12.7161940198857,15.134109117789199,19.7422579687554,16.393164013279598,13.4973263612483,17.745345778530499,7.8421090310439503,9.0692992205731606,17.4223772785626,15.3980723058339,8.6081710946746206,5.6448319402989,7.1071864117402601,8.2457812258508092,12.1909784630407,7.9611551342532003,15.790337565122201,5.1182710810098797,10.632349469233301,12.7161156246439,5.0235583132598496,13.724060037638999,7.3685781226959097,10.385424587875599,14.6844781760592,16.6373504395597,13.4547026234213,8.50555097917095,6.3497077452484501,6.2841809738893097,9.5782755420077592,15.0113977200817,5.0035834487061903,8.1285493541508895,18.995511910179602,18.8846712291706,16.011414515087399,9.9960797512903792,12.725949947489401,16.159619694808502,14.287388600641901],"y":[6,3,3,4,9,9,6,6,5,0,5,7,6,5,5,5,0,4,5,7,4,4,5,5,6,4,8,9,3,6,8,5,6,9,7,5,7,2,7,6,3,2,5,7,6,7,3,9,4,3,6,4,7,4,6,7,3,1,3,6,9,5,5,3,5,3,5,4,2,3,6,4,4,5,4,3,7,5,7,7,8,7,4,3,6,6,8,7,3,4,3,7,3,3,2,2,5,2,6,6],"z":[91.883082003518595,94.375444022362004,74.630259638841096,93.663484571245505,76.849807226014406,76.051983065527907,82.888568896765605,69.856807877204204,83.902921447053501,89.718415772359904,78.800849426481605,83.096405437060298,87.283683452811005,72.832677129051305,73.994750521117993,88.529624056488402,92.916080983620304,80.791686944049104,75.176210947989802,79.389919627199305,85.229884176104093,68.734074356089394,91.145337427773697,86.835717663490897,69.009549439301793,79.988337427972994,71.846549627444006,79.480186298210299,77.326186528094894,86.994867920963898,83.951905783240605,85.309947828043093,76.089954857964599,83.321554208358293,70.002912784445897,83.9868143120529,65.412290758982394,80.966785210298397,85.843051897634496,81.109208247784807,79.333568436304404,79.2945815256316,68.1292159663018,88.763401602309401,75.858276108440705,91.810450846907599,88.767660225528303,77.505753752841301,93.250160010877494,81.422519102659194,74.702077379384406,72.9937313654262,78.612317553688101,86.306738025707901,66.604649113055899,79.7667087685967,85.789413265465697,75.617825154075405,75.515956014235101,82.876113109437497,79.183469125690706,87.419843994899793,86.124614519228601,82.409560374335001,89.423841891308001,79.917323663437202,71.722386202987295,89.432441305706703,87.398305282770394,79.373879081675398,67.412641267042403,75.693527197522997,69.591494724892598,84.429507609259801,77.010280794283105,86.239612261557994,61.430384441631197,78.963123857691301,79.330353781501998,65.607461513758807,78.8589983204281,67.609818038405194,79.020587878195201,86.035441118408997,84.225653608212895,76.143896183259599,71.932866714097997,69.401674305002899,70.9409443182236,71.965687121098497,86.221752765836797,64.559444499870295,76.776904360425604,87.274740694426598,88.948602127635098,91.224654254802104,77.295471782823697,85.314413389636201,89.771978527551397,81.823904896597497],"mode":"markers","marker":{"color":[91.883082003518595,94.375444022362004,74.630259638841096,93.663484571245505,76.849807226014406,76.051983065527907,82.888568896765605,69.856807877204204,83.902921447053501,89.718415772359904,78.800849426481605,83.096405437060298,87.283683452811005,72.832677129051305,73.994750521117993,88.529624056488402,92.916080983620304,80.791686944049104,75.176210947989802,79.389919627199305,85.229884176104093,68.734074356089394,91.145337427773697,86.835717663490897,69.009549439301793,79.988337427972994,71.846549627444006,79.480186298210299,77.326186528094894,86.994867920963898,83.951905783240605,85.309947828043093,76.089954857964599,83.321554208358293,70.002912784445897,83.9868143120529,65.412290758982394,80.966785210298397,85.843051897634496,81.109208247784807,79.333568436304404,79.2945815256316,68.1292159663018,88.763401602309401,75.858276108440705,91.810450846907599,88.767660225528303,77.505753752841301,93.250160010877494,81.422519102659194,74.702077379384406,72.9937313654262,78.612317553688101,86.306738025707901,66.604649113055899,79.7667087685967,85.789413265465697,75.617825154075405,75.515956014235101,82.876113109437497,79.183469125690706,87.419843994899793,86.124614519228601,82.409560374335001,89.423841891308001,79.917323663437202,71.722386202987295,89.432441305706703,87.398305282770394,79.373879081675398,67.412641267042403,75.693527197522997,69.591494724892598,84.429507609259801,77.010280794283105,86.239612261557994,61.430384441631197,78.963123857691301,79.330353781501998,65.607461513758807,78.8589983204281,67.609818038405194,79.020587878195201,86.035441118408997,84.225653608212895,76.143896183259599,71.932866714097997,69.401674305002899,70.9409443182236,71.965687121098497,86.221752765836797,64.559444499870295,76.776904360425604,87.274740694426598,88.948602127635098,91.224654254802104,77.295471782823697,85.314413389636201,89.771978527551397,81.823904896597497],"size":5,"colorscale":"Reds","showscale":true,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>El gráfico 3D interactivo muestra que <strong>el espesor de la capa aumenta con la presión del aire</strong> y <strong>disminuye ligeramente al aumentar la velocidad de la banda</strong>, confirmando una <strong>tendencia lineal</strong> coherente con el modelo de regresión múltiple.</li>
 </ul>
@@ -789,8 +806,8 @@ A medida que la presión del aire aumenta, también lo hace el espesor de la cap
 </li>
 <li><strong><span class="math inline">\(\beta_2 = -1.055\)</span></strong>: al incrementar la velocidad de la banda en una unidad (1 m/s), el espesor promedio disminuye en aproximadamente <strong>1.055 micrones</strong>, manteniendo constante la presión del aire.<br />
 </li>
-</ul></li>
 <li><strong><span class="math inline">\(\beta_0 = 66.285\)</span></strong>: representa el espesor promedio estimado cuando tanto la presión como la velocidad son cero (valor teórico de referencia).</li>
+</ul></li>
 </ul>
 <ol start="7" style="list-style-type: decimal">
 <li>Ahora, obtengamos los residuos paso a paso:</li>
@@ -917,8 +934,602 @@ Var(\hat{\boldsymbol{\beta}})
 <p><span class="math display">\[
 \boxed{Var(\hat{\boldsymbol{\beta}}) = \sigma^2 (\mathbf{X}&#39;\mathbf{X})^{-1}}
 \]</span></p>
-
+<p>La varianza de <span class="math inline">\(\hat{\beta}_j\)</span> y la covarianza entre <span class="math inline">\(\hat{\beta}_i\)</span> y <span class="math inline">\(\hat{\beta}_j\)</span> están dadas por:</p>
+<p><span class="math display">\[
+\begin{align}
+Var(\hat{\beta}_j) &amp;= \sigma^2 (\mathbf{X}&#39;\mathbf{X})^{-1}_{jj},
+\qquad j = 0, 1, 2, \ldots, p; \\[6pt]
+Cov(\hat{\beta}_i, \hat{\beta}_j) &amp;= \sigma^2 (\mathbf{X}&#39;\mathbf{X})^{-1}_{ij},
+\qquad i \neq j.
+\end{align}
+\]</span></p>
+<p>A partir de <span class="math inline">\(E[\hat{\beta}_j]\)</span> y <span class="math inline">\(Var(\hat{\beta}_j)\)</span>, es posible realizar <strong>inferencia estadística</strong> sobre el parámetro <span class="math inline">\(\beta_j\)</span>,<br />
+para <span class="math inline">\(j = 1, 2, \ldots, k\)</span>.</p>
+<p>Sin embargo, se debe notar que <span class="math inline">\(Var(\hat{\beta}_j)\)</span> depende de <span class="math inline">\(\sigma^2\)</span>, la <strong>varianza del modelo</strong> de regresión lineal múltiple, la cual se estima a través del <strong>Error Cuadrático Medio (MSE)</strong>.</p>
+<ul>
+<li>Los coeficientes del modelo de <strong>RLM ajustado</strong> para los datos provenientes del proceso de pintura electrostática se obtienen haciendo:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="rlm.html#cb20-1" tabindex="-1"></a><span class="co"># coeficientes estimados</span></span>
+<span id="cb20-2"><a href="rlm.html#cb20-2" tabindex="-1"></a><span class="fu">coefficients</span>(modelo)</span></code></pre></div>
+</details>
+<pre><code>## (Intercept)          x1          x2 
+##   66.284831    1.482753   -1.055206</code></pre>
+<p>A partir de estos coeficientes, el modelo ajustado será</p>
+<p><span class="math display">\[
+\hat{y}= 66.285 +1.483x_1-1.055x_2
+\]</span></p>
+<p>Note que esta es la ecuación de un plano en el espacio <span class="math inline">\((x_1,x_2,y)\)</span>.</p>
 </div>
+</div>
+<div id="estimación-de-la-varianza-del-modelo-sigma2" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Estimación de la varianza del modelo <span class="math inline">\(\sigma^2\)</span><a href="#estimaci%C3%B3n-de-la-varianza-del-modelo-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Al igual que en la regresión lineal simple, en la regresión múltiple es posible estimar la varianza <span class="math inline">\(\sigma^2\)</span> a partir de la <strong>suma de cuadrados de los residuos</strong>, definida como:</p>
+<p><span class="math display">\[
+SSE = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+          = \sum_{i=1}^{n} e_i^2
+          = \mathbf{e}&#39;\mathbf{e}
+\]</span></p>
+<p>donde <span class="math inline">\(\mathbf{e}\)</span> representa el vector de residuos.</p>
+<p>Sustituyendo <span class="math inline">\(\mathbf{e} = \mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}}\)</span>, se obtiene:</p>
+<p><span class="math display">\[
+\begin{align}
+SSE
+&amp;= (\mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}})&#39;(\mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}}) \\[6pt]
+&amp;= \mathbf{y}&#39;\mathbf{y} - \hat{\boldsymbol{\beta}}&#39;\mathbf{X}&#39;\mathbf{y} - \mathbf{y}&#39;\mathbf{X}\hat{\boldsymbol{\beta}} + \hat{\boldsymbol{\beta}}&#39;\mathbf{X}&#39;\mathbf{X}\hat{\boldsymbol{\beta}} \\[6pt]
+&amp;= \mathbf{y}&#39;\mathbf{y} - 2\hat{\boldsymbol{\beta}}&#39;\mathbf{X}&#39;\mathbf{y} + \hat{\boldsymbol{\beta}}&#39;\mathbf{X}&#39;\mathbf{X}\hat{\boldsymbol{\beta}}\\[6pt]
+&amp;=\mathbf{y}&#39;\mathbf{y} - \hat{\boldsymbol{\beta}}&#39;\mathbf{X}&#39;\mathbf{y}, \hspace{1cm}\text{puesto que }\mathbf{X}&#39;\mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{X}&#39;\mathbf{y}
+\end{align}
+\]</span></p>
+<p>Luego la suma de cuadrados residual <span class="math inline">\(SSE\)</span> tiene <span class="math inline">\(n - p\)</span> grados de libertad, donde <span class="math inline">\(p\)</span> es el número de parámetros estimados (incluyendo el intercepto). Por lo tanto, el <strong>cuadrado medio residual</strong> o <strong>Error Cuadrático Medio (MSE)</strong> se define como:</p>
+<p><span class="math display">\[
+MSE = \frac{SSE}{n - p}
+\]</span></p>
+<div id="estimador-insesgado-de-sigma2" class="section level3 hasAnchor" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Estimador insesgado de <span class="math inline">\(\sigma^2\)</span><a href="rlm.html#estimador-insesgado-de-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Demostremos que <span class="math inline">\(E(MSE)=\sigma^2\)</span>. En efecto.</p>
+<p>Los supuestos del MLR: <span class="math inline">\(\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}\)</span>, <span class="math inline">\(E(\boldsymbol{\varepsilon})=\mathbf{0}\)</span>, <span class="math inline">\(Var(\boldsymbol{\varepsilon})=\sigma^2\mathbf{I}\)</span>, con <span class="math inline">\(\mathbf{X}\)</span> fija (no aleatoria).</p>
+<p>Definimos la matriz “sombrero” <span class="math inline">\(\mathbf{H}=\mathbf{X}(\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\)</span>. Los residuos son <span class="math inline">\(\mathbf{e}=\mathbf{y}-\hat{\mathbf{y}}=(\mathbf{I}-\mathbf{H})\mathbf{y}\)</span>.</p>
+<p>Como <span class="math inline">\(\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}\)</span> y <span class="math inline">\((\mathbf{I}-\mathbf{H})\mathbf{X}=\mathbf{0}\)</span>, entonces:</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf{e}
+&amp;= (\mathbf{I} - \mathbf{H})(\mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}) \\[6pt]
+&amp;= (\mathbf{I} - \mathbf{H})\mathbf{X}\boldsymbol{\beta} + (\mathbf{I} - \mathbf{H})\boldsymbol{\varepsilon}\\[6pt]
+&amp;=(\mathbf{I} - \mathbf{H})\boldsymbol{\varepsilon}.
+\end{align}
+\]</span></p>
+<p>La <strong>suma de cuadrados residual</strong> es <span class="math inline">\(SSE=\mathbf{e}&#39;\mathbf{e}\)</span>. Por lo anterior,</p>
+<p><span class="math display">\[
+\begin{align}
+SSE
+&amp;= \mathbf{e}&#39;(\mathbf{I}-\mathbf{H})\boldsymbol{\varepsilon}\\[6pt]
+&amp;= \boldsymbol{\varepsilon}&#39;(\mathbf{I}-\mathbf{H})&#39;(\mathbf{I}-\mathbf{H})\boldsymbol{\varepsilon}\\[6pt]
+&amp;=\boldsymbol{\varepsilon}&#39;(\mathbf{I}-\mathbf{H})\boldsymbol{\varepsilon},\hspace{1cm} \text{puesto que } \mathbf{I}-\mathbf{H} \text{ es idempotente}
+\end{align}
+\]</span></p>
+<p>Tomamos esperanza usando la identidad <span class="math inline">\(E(\mathbf{z}&#39;\mathbf{A}\mathbf{z})=\mathrm{tr}\!\big(\mathbf{A}\,E(\mathbf{z}\mathbf{z}&#39;)\big)\)</span> para matriz
+constante <span class="math inline">\(\mathbf{A}\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}
+E(SSE) &amp;=E(\boldsymbol{\varepsilon}&#39;(\mathbf{I}-\mathbf{H})\boldsymbol{\varepsilon})= E\!\left[\mathrm{tr}\big((\mathbf{I}-\mathbf{H})\,\boldsymbol{\varepsilon}\boldsymbol{\varepsilon}&#39;\big)\right] \\[4pt]
+&amp;= \mathrm{tr}\!\left((\mathbf{I}-\mathbf{H})\,E(\boldsymbol{\varepsilon}\boldsymbol{\varepsilon}&#39;)\right) = \mathrm{tr}\!\left((\mathbf{I}-\mathbf{H})\,Var(\boldsymbol{\varepsilon})\right) \\[4pt]
+&amp;= \mathrm{tr}\!\left((\mathbf{I}-\mathbf{H})\,\sigma^2\mathbf{I}\right) = \sigma^2\,\mathrm{tr}(\mathbf{I}-\mathbf{H}) \\[4pt]
+&amp;= \sigma^2\,(n - \mathrm{tr}(\mathbf{H})).
+\end{align}
+\]</span></p>
+<p>Como <span class="math inline">\(\mathbf{H}\)</span> es idempotente y simétrica, <span class="math inline">\(\mathrm{tr}(\mathbf{H})=\mathrm{rank}(\mathbf{H})=p\)</span> (número de parámetros, incluyendo intercepto). Por tanto,</p>
+<p><span class="math display">\[
+E(SSE)=\sigma^2 (n-p).
+\]</span></p>
+<p>El <strong>cuadrado medio residual</strong> es <span class="math inline">\(MSE=\dfrac{SSE}{n-p}\)</span>. Luego,</p>
+<p><span class="math display">\[
+E(MSE)=\frac{E(SSE)}{n-p}=\frac{\sigma^2 (n-p)}{n-p}=\sigma^2.\square
+\]</span></p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Demuestre que <span class="math inline">\(E(\mathbf{z}&#39;\mathbf{A}\mathbf{z})=\mathrm{tr}\!\big(\mathbf{A}\,E(\mathbf{z}\mathbf{z}&#39;)\big)\)</span> para matriz
+constante <span class="math inline">\(\mathbf{A}\)</span>
+</p>
+</div>
+<hr />
+<ul>
+<li>Continuando con el ejemplo del espesor de pintura:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="rlm.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb22-2"><a href="rlm.html#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="rlm.html#cb22-3" tabindex="-1"></a><span class="co"># lectura de datos</span></span>
+<span id="cb22-4"><a href="rlm.html#cb22-4" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&#39;data/data_pintura.txt&#39;</span></span>
+<span id="cb22-5"><a href="rlm.html#cb22-5" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(path, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-6"><a href="rlm.html#cb22-6" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+</details>
+<pre><code>##          y        x1 x2
+## 1 91.88308 18.722091  6
+## 2 94.37544 19.056131  3
+## 3 74.63026  9.292093  3
+## 4 93.66348 17.456714  4
+## 5 76.84981 14.626183  9
+## 6 76.05198 12.786439  9</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="rlm.html#cb24-1" tabindex="-1"></a><span class="co"># Variables target e independientes</span></span>
+<span id="cb24-2"><a href="rlm.html#cb24-2" tabindex="-1"></a>y  <span class="ot">&lt;-</span> df<span class="sc">$</span>y</span>
+<span id="cb24-3"><a href="rlm.html#cb24-3" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> df<span class="sc">$</span>x1</span>
+<span id="cb24-4"><a href="rlm.html#cb24-4" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> df<span class="sc">$</span>x2</span>
+<span id="cb24-5"><a href="rlm.html#cb24-5" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="rlm.html#cb24-6" tabindex="-1"></a><span class="co"># 1) Matriz de diseño X</span></span>
+<span id="cb24-7"><a href="rlm.html#cb24-7" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Intercepto =</span> <span class="dv">1</span>, <span class="at">x1 =</span> x1, <span class="at">x2 =</span> x2)</span>
+<span id="cb24-8"><a href="rlm.html#cb24-8" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="rlm.html#cb24-9" tabindex="-1"></a><span class="co"># 2) Estimación de betas</span></span>
+<span id="cb24-10"><a href="rlm.html#cb24-10" tabindex="-1"></a>XtX   <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X</span>
+<span id="cb24-11"><a href="rlm.html#cb24-11" tabindex="-1"></a>Xty   <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
+<span id="cb24-12"><a href="rlm.html#cb24-12" tabindex="-1"></a>beta_hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(XtX, Xty)</span>
+<span id="cb24-13"><a href="rlm.html#cb24-13" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="rlm.html#cb24-14" tabindex="-1"></a><span class="fu">print</span>(beta_hat)</span></code></pre></div>
+</details>
+<pre><code>##                 [,1]
+## Intercepto 66.284831
+## x1          1.482753
+## x2         -1.055206</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="rlm.html#cb26-1" tabindex="-1"></a><span class="co"># 3) Calcular SSE usando:</span></span>
+<span id="cb26-2"><a href="rlm.html#cb26-2" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">t</span>(y) <span class="sc">%*%</span> y <span class="sc">-</span> <span class="fu">t</span>(beta_hat) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y)</span>
+<span id="cb26-3"><a href="rlm.html#cb26-3" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="rlm.html#cb26-4" tabindex="-1"></a><span class="co"># 4) Verificación con residuos directos</span></span>
+<span id="cb26-5"><a href="rlm.html#cb26-5" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> X <span class="sc">%*%</span> beta_hat</span>
+<span id="cb26-6"><a href="rlm.html#cb26-6" tabindex="-1"></a>e <span class="ot">&lt;-</span> y <span class="sc">-</span> y_hat</span>
+<span id="cb26-7"><a href="rlm.html#cb26-7" tabindex="-1"></a>SSE_residuos <span class="ot">&lt;-</span> <span class="fu">sum</span>(e<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb26-8"><a href="rlm.html#cb26-8" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="rlm.html#cb26-9" tabindex="-1"></a><span class="co"># 5) MSE y RMSE</span></span>
+<span id="cb26-10"><a href="rlm.html#cb26-10" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X)           <span class="co"># número de observaciones</span></span>
+<span id="cb26-11"><a href="rlm.html#cb26-11" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ncol</span>(X)           <span class="co"># número de parámetros (incluido intercepto)</span></span>
+<span id="cb26-12"><a href="rlm.html#cb26-12" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="rlm.html#cb26-13" tabindex="-1"></a>MSE  <span class="ot">&lt;-</span> SSE <span class="sc">/</span> (n <span class="sc">-</span> p)   <span class="co"># Error cuadrático medio</span></span>
+<span id="cb26-14"><a href="rlm.html#cb26-14" tabindex="-1"></a>RMSE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(MSE)       <span class="co"># Raíz del error cuadrático medio</span></span>
+<span id="cb26-15"><a href="rlm.html#cb26-15" tabindex="-1"></a></span>
+<span id="cb26-16"><a href="rlm.html#cb26-16" tabindex="-1"></a><span class="co"># 6) Mostrar resultados</span></span>
+<span id="cb26-17"><a href="rlm.html#cb26-17" tabindex="-1"></a></span>
+<span id="cb26-18"><a href="rlm.html#cb26-18" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-19"><a href="rlm.html#cb26-19" tabindex="-1"></a>  Métrica <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;n (obs)&quot;</span>, <span class="st">&quot;p (parámetros)&quot;</span>, <span class="st">&quot;SSE&quot;</span>, <span class="st">&quot;MSE&quot;</span>, <span class="st">&quot;RMSE&quot;</span>),</span>
+<span id="cb26-20"><a href="rlm.html#cb26-20" tabindex="-1"></a>  <span class="at">Valor =</span> <span class="fu">c</span>(n, p, SSE, MSE, RMSE)</span>
+<span id="cb26-21"><a href="rlm.html#cb26-21" tabindex="-1"></a>)</span>
+<span id="cb26-22"><a href="rlm.html#cb26-22" tabindex="-1"></a></span>
+<span id="cb26-23"><a href="rlm.html#cb26-23" tabindex="-1"></a><span class="fu">kable</span>(resultados, <span class="at">digits =</span> <span class="dv">6</span>, <span class="at">align =</span> <span class="fu">c</span>(<span class="st">&quot;c&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="at">caption =</span> <span class="st">&quot;Resumen de resultados del modelo&quot;</span>)</span></code></pre></div>
+</details>
+<table>
+<caption><span id="tab:rlm-10">Tabla 8.1: </span>Resumen de resultados del modelo</caption>
+<thead>
+<tr class="header">
+<th align="center">Métrica</th>
+<th align="center">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">n (obs)</td>
+<td align="center">100.000000</td>
+</tr>
+<tr class="even">
+<td align="center">p (parámetros)</td>
+<td align="center">3.000000</td>
+</tr>
+<tr class="odd">
+<td align="center">SSE</td>
+<td align="center">742.490379</td>
+</tr>
+<tr class="even">
+<td align="center">MSE</td>
+<td align="center">7.654540</td>
+</tr>
+<tr class="odd">
+<td align="center">RMSE</td>
+<td align="center">2.766684</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Usando la función <code>lm</code> sería:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="rlm.html#cb27-1" tabindex="-1"></a><span class="co"># estimación de sigma^2</span></span>
+<span id="cb27-2"><a href="rlm.html#cb27-2" tabindex="-1"></a><span class="fu">summary</span>(modelo)<span class="sc">$</span>sigma<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+</details>
+<pre><code>## [1] 7.65454</code></pre>
+<p>Por lo tanto, el modelo estimado será:</p>
+<p><span class="math display">\[
+\begin{align}
+\hat{y} &amp;= 66.285 + 1.483x_1 - 1.055x_2 \\[6pt]
+\varepsilon &amp;\sim N(0, \sigma^2) \\[6pt]
+\hat{\sigma}^2 &amp;= 7.655
+\end{align}
+\]</span></p>
+</div>
+</div>
+<div id="prueba-de-significancia-global-de-la-rlm" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Prueba de significancia global de la RLM<a href="rlm.html#prueba-de-significancia-global-de-la-rlm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La se utiliza para determinar si existe una entre la variable respuesta <span class="math inline">\(y\)</span> y al menos una de las variables regresoras <span class="math inline">\(x_1, x_2, \ldots, x_k\)</span>. Este procedimiento se considera una prueba general o global de la adecuación del modelo.</p>
+<div id="hipótesis" class="section level3 hasAnchor" number="8.5.1">
+<h3><span class="header-section-number">8.5.1</span> Hipótesis<a href="#hip%C3%B3tesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[
+\begin{align}
+H_0 &amp;: \beta_1 = \beta_2 = \cdots = \beta_k = 0 \\[4pt]
+H_1 &amp;: \beta_j \neq 0 \quad \text{para al menos una } j
+\end{align}
+\]</span></p>
+<p>El rechazo de <span class="math inline">\(H_0\)</span> implica que al menos uno de los regresores
+<span class="math inline">\(x_1, x_2, \ldots, x_k\)</span> contribuye de manera significativa al modelo.</p>
+</div>
+<div id="descomposición-de-la-suma-de-cuadrados" class="section level3 hasAnchor" number="8.5.2">
+<h3><span class="header-section-number">8.5.2</span> Descomposición de la suma de cuadrados<a href="#descomposici%C3%B3n-de-la-suma-de-cuadrados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La suma total de cuadrados puede expresarse como:</p>
+<p><span class="math display">\[
+\begin{align}
+SST = SSR + SSE
+\end{align}
+\]</span></p>
+donde
+</div>
+<div id="estadístico-de-prueba-2" class="section level3 hasAnchor" number="8.5.3">
+<h3><span class="header-section-number">8.5.3</span> Estadístico de prueba<a href="#estad%C3%ADstico-de-prueba-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El estadístico de prueba <span class="math inline">\(F_0\)</span> se define como:</p>
+<p><span class="math display">\[
+\begin{align}
+F_0 = \frac{SSR / k}{SSE / (n - k - 1)}
+    = \frac{MSR}{MSE}
+\end{align}
+\]</span></p>
+<p>Bajo <span class="math inline">\(H_0\)</span>, este estadístico sigue una distribución <span class="math inline">\(F_{k,\,n-k-1}\)</span>.</p>
+</div>
+<div id="cuadrados-medios-esperados" class="section level3 hasAnchor" number="8.5.4">
+<h3><span class="header-section-number">8.5.4</span> Cuadrados medios esperados<a href="rlm.html#cuadrados-medios-esperados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se cumple que</p>
+<p><span class="math display">\[
+\begin{align}
+E(MSE) &amp;= \sigma^2 \\[6pt]
+E(MSR) &amp;= \sigma^2 + \frac{\boldsymbol{\beta}^{*&#39;} \mathbf{X}_c&#39; \mathbf{X}_c \boldsymbol{\beta}^*}{k\sigma^2}
+\end{align}
+\]</span></p>
+<p>tal que</p>
+<p><span class="math display">\[
+\boldsymbol{\beta}^* = (\beta_1, \beta_2, \ldots, \beta_k)&#39; \quad \text{y} \quad
+\mathbf{X}_c =
+\begin{bmatrix}
+x_{11}-\bar{x}_1 &amp; x_{12}-\bar{x}_2 &amp; \cdots &amp; x_{1k}-\bar{x}_k \\
+x_{21}-\bar{x}_1 &amp; x_{22}-\bar{x}_2 &amp; \cdots &amp; x_{2k}-\bar{x}_k \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+x_{n1}-\bar{x}_1 &amp; x_{n2}-\bar{x}_2 &amp; \cdots &amp; x_{nk}-\bar{x}_k
+\end{bmatrix}
+\]</span></p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Demuestre que <span class="math inline">\(E(MSR) = \sigma^2 + \frac{\boldsymbol{\beta}^{*&#39;} \mathbf{X}_c&#39; \mathbf{X}_c \boldsymbol{\beta}^*}{k\sigma^2}\)</span>
+</p>
+</div>
+</div>
+<div id="parámetro-de-no-centralidad" class="section level3 hasAnchor" number="8.5.5">
+<h3><span class="header-section-number">8.5.5</span> Parámetro de no centralidad<a href="#par%C3%A1metro-de-no-centralidad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cuando al menos una <span class="math inline">\(\beta_j \neq 0\)</span>, el estadístico <span class="math inline">\(F_0\)</span>
+tiene una distribución <span class="math inline">\(F\)</span> no central con parámetro de no centralidad:</p>
+<p><span class="math display">\[
+\begin{align}
+\lambda = \frac{\boldsymbol{\beta}^{*&#39;} \mathbf{X}_c&#39; \mathbf{X}_c \boldsymbol{\beta}^*}{\sigma^2}
+\end{align}
+\]</span></p>
+</div>
+<div id="regla-de-decisión-1" class="section level3 hasAnchor" number="8.5.6">
+<h3><span class="header-section-number">8.5.6</span> Regla de decisión<a href="#regla-de-decisi%C3%B3n-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se rechaza la hipótesis nula <span class="math inline">\(H_0\)</span> si:</p>
+<p><span class="math display">\[
+\begin{align}
+F_0 &gt; F_{\alpha,\,k,\,n-k-1}
+\end{align}
+\]</span></p>
+</div>
+<div id="tabla-anova-para-la-rlm" class="section level3 hasAnchor" number="8.5.7">
+<h3><span class="header-section-number">8.5.7</span> Tabla ANOVA para la RLM<a href="rlm.html#tabla-anova-para-la-rlm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="rlm.html#cb29-1" tabindex="-1"></a><span class="co"># --- Tabla ANOVA en R para RMarkdown ---</span></span>
+<span id="cb29-2"><a href="rlm.html#cb29-2" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb29-3"><a href="rlm.html#cb29-3" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="rlm.html#cb29-4" tabindex="-1"></a>anova_tab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb29-5"><a href="rlm.html#cb29-5" tabindex="-1"></a>  <span class="st">`</span><span class="at">Fuente de variación</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Regresión&quot;</span>, <span class="st">&quot;Residuales&quot;</span>, <span class="st">&quot;Total&quot;</span>),</span>
+<span id="cb29-6"><a href="rlm.html#cb29-6" tabindex="-1"></a>  <span class="st">`</span><span class="at">Suma de cuadrados</span><span class="st">`</span>   <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;SSR&quot;</span>, <span class="st">&quot;SSE&quot;</span>, <span class="st">&quot;SST&quot;</span>),</span>
+<span id="cb29-7"><a href="rlm.html#cb29-7" tabindex="-1"></a>  <span class="st">`</span><span class="at">Grados de libertad</span><span class="st">`</span>  <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;k&quot;</span>, <span class="st">&quot;n - k - 1&quot;</span>, <span class="st">&quot;n - 1&quot;</span>),</span>
+<span id="cb29-8"><a href="rlm.html#cb29-8" tabindex="-1"></a>  <span class="st">`</span><span class="at">Cuadrado medio</span><span class="st">`</span>      <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;MSR = SSR / k&quot;</span>, <span class="st">&quot;MSE = SSE / (n - k - 1)&quot;</span>, <span class="st">&quot;---&quot;</span>)</span>
+<span id="cb29-9"><a href="rlm.html#cb29-9" tabindex="-1"></a>)</span>
+<span id="cb29-10"><a href="rlm.html#cb29-10" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="rlm.html#cb29-11" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb29-12"><a href="rlm.html#cb29-12" tabindex="-1"></a>  anova_tab,</span>
+<span id="cb29-13"><a href="rlm.html#cb29-13" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Análisis de varianza para determinar la significancia del modelo&quot;</span>,</span>
+<span id="cb29-14"><a href="rlm.html#cb29-14" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">&quot;lccc&quot;</span></span>
+<span id="cb29-15"><a href="rlm.html#cb29-15" tabindex="-1"></a>)</span></code></pre></div>
+</details>
+<table>
+<caption><span id="tab:rlm-12">Tabla 8.2: </span>Análisis de varianza para determinar la significancia del modelo</caption>
+<colgroup>
+<col width="23%" />
+<col width="22%" />
+<col width="23%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Fuente.de.variación</th>
+<th align="center">Suma.de.cuadrados</th>
+<th align="center">Grados.de.libertad</th>
+<th align="center">Cuadrado.medio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Regresión</td>
+<td align="center">SSR</td>
+<td align="center">k</td>
+<td align="center">MSR = SSR / k</td>
+</tr>
+<tr class="even">
+<td align="left">Residuales</td>
+<td align="center">SSE</td>
+<td align="center">n - k - 1</td>
+<td align="center">MSE = SSE / (n - k - 1)</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">SST</td>
+<td align="center">n - 1</td>
+<td align="center">—</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="formulas-de-la-suma-de-cuadrados-en-la-rlm" class="section level3 hasAnchor" number="8.5.8">
+<h3><span class="header-section-number">8.5.8</span> Formulas de la suma de cuadrados en la RLM<a href="rlm.html#formulas-de-la-suma-de-cuadrados-en-la-rlm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Una fórmula de cálculo para la <strong>suma de cuadrados de los residuales</strong> se deduce partiendo de:</p>
+<p><span class="math display">\[
+SSE = \mathbf{y}&#39;\mathbf{y} - \hat{\boldsymbol{\beta}}&#39;\mathbf{X}&#39;\mathbf{y}
+\]</span></p>
+<p>y dado que la <strong>suma total de cuadrados</strong> es:</p>
+<p><span class="math display">\[
+SST = \sum_{i=1}^{n} y_i^2 - \frac{\left(\sum_{i=1}^{n} y_i \right)^2}{n}
+     = \mathbf{y}&#39;\mathbf{y} - \frac{\left(\sum_{i=1}^{n} y_i \right)^2}{n},
+\]</span></p>
+<p>se puede escribir la ecuación anterior como:</p>
+<p><span class="math display">\[
+SSR = \mathbf{y}&#39;\mathbf{y}
+- \frac{\left(\sum_{i=1}^{n} y_i \right)^2}{n}
+- \left[\hat{\boldsymbol{\beta}}&#39;\mathbf{X}&#39;\mathbf{y}
+- \frac{\left(\sum_{i=1}^{n} y_i \right)^2}{n}\right]
+\]</span></p>
+<p>o bien</p>
+<p><span class="math display">\[
+SSE = SST - SSR
+\]</span></p>
+<p>Por consiguiente, la <strong>suma de cuadrados de la regresión</strong> es:</p>
+<p><span class="math display">\[
+SSR = \hat{\boldsymbol{\beta}}&#39;\mathbf{X}&#39;\mathbf{y}
+- \frac{\left(\sum_{i=1}^{n} y_i \right)^2}{n}
+\tag{3.24}
+\]</span></p>
+<p>La <strong>suma de cuadrados de los residuales</strong>, o <strong>suma residual de cuadrados</strong>, es:</p>
+<p><span class="math display">\[
+SSE = \mathbf{y}&#39;\mathbf{y} - \hat{\boldsymbol{\beta}}&#39;\mathbf{X}&#39;\mathbf{y}
+\]</span></p>
+<p>Y la <strong>suma total de cuadrados</strong> es:</p>
+<p><span class="math display">\[
+SST = \mathbf{y}&#39;\mathbf{y} - \frac{\left(\sum_{i=1}^{n} y_i \right)^2}{n}
+\]</span></p>
+<p>Estas expresiones permiten establecer la relación:</p>
+<p><span class="math display">\[
+SST= SSR + SSE,
+\]</span></p>
+<p>que constituye la base del análisis de varianza (ANOVA) en la regresión lineal múltiple.</p>
+<hr />
+<ul>
+<li>Hagamos el ANOVA</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="rlm.html#cb30-1" tabindex="-1"></a><span class="co"># 1) Cálculo algebraico de SST </span></span>
+<span id="cb30-2"><a href="rlm.html#cb30-2" tabindex="-1"></a>SST <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">t</span>(y) <span class="sc">%*%</span> y <span class="sc">-</span> (<span class="fu">sum</span>(y)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>n)</span>
+<span id="cb30-3"><a href="rlm.html#cb30-3" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="rlm.html#cb30-4" tabindex="-1"></a><span class="co"># 2) Cálculo algebraico de SSR </span></span>
+<span id="cb30-5"><a href="rlm.html#cb30-5" tabindex="-1"></a>SSR <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">t</span>(beta_hat) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y <span class="sc">-</span> (<span class="fu">sum</span>(y)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>n)</span>
+<span id="cb30-6"><a href="rlm.html#cb30-6" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="rlm.html#cb30-7" tabindex="-1"></a><span class="co"># 3) Cálculo algebraico de SSE </span></span>
+<span id="cb30-8"><a href="rlm.html#cb30-8" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">t</span>(y) <span class="sc">%*%</span> y <span class="sc">-</span> <span class="fu">t</span>(beta_hat) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y)</span>
+<span id="cb30-9"><a href="rlm.html#cb30-9" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="rlm.html#cb30-10" tabindex="-1"></a><span class="co"># 4) ANOVA (df, MS, F0 y p-valor) ---</span></span>
+<span id="cb30-11"><a href="rlm.html#cb30-11" tabindex="-1"></a>k <span class="ot">&lt;-</span> p <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb30-12"><a href="rlm.html#cb30-12" tabindex="-1"></a>df_reg <span class="ot">&lt;-</span> k</span>
+<span id="cb30-13"><a href="rlm.html#cb30-13" tabindex="-1"></a>df_res <span class="ot">&lt;-</span> n <span class="sc">-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb30-14"><a href="rlm.html#cb30-14" tabindex="-1"></a>df_tot <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb30-15"><a href="rlm.html#cb30-15" tabindex="-1"></a></span>
+<span id="cb30-16"><a href="rlm.html#cb30-16" tabindex="-1"></a>MSR <span class="ot">&lt;-</span> SSR <span class="sc">/</span> df_reg</span>
+<span id="cb30-17"><a href="rlm.html#cb30-17" tabindex="-1"></a>MSE <span class="ot">&lt;-</span> SSE <span class="sc">/</span> df_res</span>
+<span id="cb30-18"><a href="rlm.html#cb30-18" tabindex="-1"></a>F0  <span class="ot">&lt;-</span> MSR <span class="sc">/</span> MSE</span>
+<span id="cb30-19"><a href="rlm.html#cb30-19" tabindex="-1"></a>p_val <span class="ot">&lt;-</span> <span class="fu">pf</span>(F0, df_reg, df_res, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb30-20"><a href="rlm.html#cb30-20" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="rlm.html#cb30-21" tabindex="-1"></a><span class="co"># 5) Mostrar resultados en tablas </span></span>
+<span id="cb30-22"><a href="rlm.html#cb30-22" tabindex="-1"></a></span>
+<span id="cb30-23"><a href="rlm.html#cb30-23" tabindex="-1"></a>tab_anova <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb30-24"><a href="rlm.html#cb30-24" tabindex="-1"></a>  <span class="st">`</span><span class="at">Fuente de variación</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Regresión&quot;</span>, <span class="st">&quot;Residuales&quot;</span>, <span class="st">&quot;Total&quot;</span>),</span>
+<span id="cb30-25"><a href="rlm.html#cb30-25" tabindex="-1"></a>  <span class="st">`</span><span class="at">Suma de cuadrados</span><span class="st">`</span>   <span class="ot">=</span> <span class="fu">c</span>(SSR, SSE, SST),</span>
+<span id="cb30-26"><a href="rlm.html#cb30-26" tabindex="-1"></a>  <span class="st">`</span><span class="at">Gl</span><span class="st">`</span>                  <span class="ot">=</span> <span class="fu">c</span>(df_reg, df_res, df_tot),</span>
+<span id="cb30-27"><a href="rlm.html#cb30-27" tabindex="-1"></a>  <span class="st">`</span><span class="at">Cuadrado medio</span><span class="st">`</span>      <span class="ot">=</span> <span class="fu">c</span>(MSR, MSE, <span class="cn">NA</span>),</span>
+<span id="cb30-28"><a href="rlm.html#cb30-28" tabindex="-1"></a>  <span class="st">`</span><span class="at">F0</span><span class="st">`</span>                  <span class="ot">=</span> <span class="fu">c</span>(F0, <span class="cn">NA</span>, <span class="cn">NA</span>),</span>
+<span id="cb30-29"><a href="rlm.html#cb30-29" tabindex="-1"></a>  <span class="st">`</span><span class="at">p-valor</span><span class="st">`</span>             <span class="ot">=</span> <span class="fu">c</span>(p_val, <span class="cn">NA</span>, <span class="cn">NA</span>)</span>
+<span id="cb30-30"><a href="rlm.html#cb30-30" tabindex="-1"></a>)</span>
+<span id="cb30-31"><a href="rlm.html#cb30-31" tabindex="-1"></a></span>
+<span id="cb30-32"><a href="rlm.html#cb30-32" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb30-33"><a href="rlm.html#cb30-33" tabindex="-1"></a>  tab_anova,</span>
+<span id="cb30-34"><a href="rlm.html#cb30-34" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">6</span>,</span>
+<span id="cb30-35"><a href="rlm.html#cb30-35" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">&quot;lrrrrr&quot;</span>,</span>
+<span id="cb30-36"><a href="rlm.html#cb30-36" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Tabla ANOVA (derivada algebraicamente)&quot;</span></span>
+<span id="cb30-37"><a href="rlm.html#cb30-37" tabindex="-1"></a>)</span></code></pre></div>
+</details>
+<table>
+<caption><span id="tab:rlm-13">Tabla 8.3: </span>Tabla ANOVA (derivada algebraicamente)</caption>
+<colgroup>
+<col width="27%" />
+<col width="25%" />
+<col width="4%" />
+<col width="20%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Fuente.de.variación</th>
+<th align="right">Suma.de.cuadrados</th>
+<th align="right">Gl</th>
+<th align="right">Cuadrado.medio</th>
+<th align="right">F0</th>
+<th align="right">p.valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Regresión</td>
+<td align="right">5038.3096</td>
+<td align="right">2</td>
+<td align="right">2519.15482</td>
+<td align="right">329.106</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Residuales</td>
+<td align="right">742.4904</td>
+<td align="right">97</td>
+<td align="right">7.65454</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="right">5780.8000</td>
+<td align="right">99</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Usando la función <code>lm</code>:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="rlm.html#cb31-1" tabindex="-1"></a><span class="fu">summary</span>(modelo)<span class="sc">$</span>fstatistic</span></code></pre></div>
+</details>
+<pre><code>##   value   numdf   dendf 
+## 329.106   2.000  97.000</code></pre>
+</div>
+</div>
+<div id="prueba-individual-de-significancia-para-los-coeficientes" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Prueba individual de significancia para los coeficientes<a href="rlm.html#prueba-individual-de-significancia-para-los-coeficientes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una vez se ha rechazado la prueba de significancia global, podemos analizar la significancia individual de cada coeficiente <span class="math inline">\(\beta_j\)</span>. El objetivo es determinar si, a nivel poblacional, el coeficiente asociado a una variable explicativa <span class="math inline">\(x_j\)</span> es diferente de cero.</p>
+<p>Esto equivale a plantear las hipótesis:</p>
+<p><span class="math display">\[
+\begin{align}
+H_0 &amp;: \beta_j = 0 \\[4pt]
+H_1 &amp;: \beta_j \neq 0
+\end{align}
+\]</span></p>
+<p>Para un valor fijo de <span class="math inline">\(j\)</span>, el estadístico de prueba es:</p>
+<p><span class="math display">\[
+t_j = \frac{\hat{\beta}_j - 0}{\text{s.e.}(\hat{\beta}_j)}
+     = \frac{\hat{\beta}_j}{\sqrt{\hat{\sigma}^2 \, ( \mathbf{X}&#39;\mathbf{X} )^{-1}_{jj}}}
+     \sim t_{n - p}
+\]</span></p>
+<p>donde</p>
+<ul>
+<li><span class="math inline">\(\hat{\beta}_j\)</span> es el estimador del coeficiente poblacional <span class="math inline">\(\beta_j\)</span>;</li>
+<li><span class="math inline">\(\hat{\sigma}^2 = MSE\)</span> es la varianza residual estimada;</li>
+<li><span class="math inline">\(( \mathbf{X}&#39;\mathbf{X} )^{-1}_{jj}\)</span> es el elemento diagonal <span class="math inline">\(j,j\)</span> de la matriz inversa de <span class="math inline">\(X&#39;X\)</span>.</li>
+</ul>
+<p>La regla de decisión es:</p>
+<blockquote>
+<p>Rechazamos <span class="math inline">\(H_0\)</span> con un nivel de significancia de <span class="math inline">\(100(1-\alpha)\%\)</span> si<br />
+<span class="math display">\[
+|t_j| &gt; t_{\alpha/2,\,n-p}.
+\]</span></p>
+</blockquote>
+<hr />
+<ul>
+<li>Seguimos con ejemplo del espesor de la pintura. Usando la función <code>lm</code> y s<code>summary</code> podemos obtener la inferencia para cada <span class="math inline">\(\beta\)</span></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="rlm.html#cb33-1" tabindex="-1"></a><span class="co"># ajuste del modelo de RLM</span></span>
+<span id="cb33-2"><a href="rlm.html#cb33-2" tabindex="-1"></a><span class="fu">summary</span>(modelo)<span class="sc">$</span>coefficients</span></code></pre></div>
+</details>
+<pre><code>##              Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 66.284831 1.10349995 60.067815 1.529216e-78
+## x1           1.482753 0.06144364 24.131927 8.750958e-43
+## x2          -1.055206 0.13659758 -7.724922 1.026117e-11</code></pre>
+<ul>
+<li>Hagamos el paso a paso:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="rlm.html#cb35-1" tabindex="-1"></a><span class="co"># Matrices</span></span>
+<span id="cb35-2"><a href="rlm.html#cb35-2" tabindex="-1"></a>y  <span class="ot">&lt;-</span> df<span class="sc">$</span>y</span>
+<span id="cb35-3"><a href="rlm.html#cb35-3" tabindex="-1"></a>X  <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Intercepto =</span> <span class="dv">1</span>, <span class="at">x1 =</span> df<span class="sc">$</span>x1, <span class="at">x2 =</span> df<span class="sc">$</span>x2)</span>
+<span id="cb35-4"><a href="rlm.html#cb35-4" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="rlm.html#cb35-5" tabindex="-1"></a><span class="co"># Dimensiones</span></span>
+<span id="cb35-6"><a href="rlm.html#cb35-6" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X)  </span>
+<span id="cb35-7"><a href="rlm.html#cb35-7" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ncol</span>(X) </span>
+<span id="cb35-8"><a href="rlm.html#cb35-8" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="rlm.html#cb35-9" tabindex="-1"></a><span class="co"># Estimacion de betas</span></span>
+<span id="cb35-10"><a href="rlm.html#cb35-10" tabindex="-1"></a>XtX      <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X</span>
+<span id="cb35-11"><a href="rlm.html#cb35-11" tabindex="-1"></a>XtX_inv  <span class="ot">&lt;-</span> <span class="fu">solve</span>(XtX)</span>
+<span id="cb35-12"><a href="rlm.html#cb35-12" tabindex="-1"></a>Xty      <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
+<span id="cb35-13"><a href="rlm.html#cb35-13" tabindex="-1"></a>beta_hat <span class="ot">&lt;-</span> XtX_inv <span class="sc">%*%</span> Xty</span>
+<span id="cb35-14"><a href="rlm.html#cb35-14" tabindex="-1"></a></span>
+<span id="cb35-15"><a href="rlm.html#cb35-15" tabindex="-1"></a><span class="co"># Residuos y varianza residual</span></span>
+<span id="cb35-16"><a href="rlm.html#cb35-16" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> X <span class="sc">%*%</span> beta_hat</span>
+<span id="cb35-17"><a href="rlm.html#cb35-17" tabindex="-1"></a>e     <span class="ot">&lt;-</span> y <span class="sc">-</span> y_hat</span>
+<span id="cb35-18"><a href="rlm.html#cb35-18" tabindex="-1"></a>SSE   <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">crossprod</span>(e))</span>
+<span id="cb35-19"><a href="rlm.html#cb35-19" tabindex="-1"></a>MSE   <span class="ot">&lt;-</span> SSE <span class="sc">/</span> (n <span class="sc">-</span> p)</span>
+<span id="cb35-20"><a href="rlm.html#cb35-20" tabindex="-1"></a></span>
+<span id="cb35-21"><a href="rlm.html#cb35-21" tabindex="-1"></a><span class="co"># Varianza-covarianza de betas</span></span>
+<span id="cb35-22"><a href="rlm.html#cb35-22" tabindex="-1"></a>Vb <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(MSE <span class="sc">*</span> XtX_inv)</span>
+<span id="cb35-23"><a href="rlm.html#cb35-23" tabindex="-1"></a></span>
+<span id="cb35-24"><a href="rlm.html#cb35-24" tabindex="-1"></a><span class="co"># Error estándar de cada beta_hat_j</span></span>
+<span id="cb35-25"><a href="rlm.html#cb35-25" tabindex="-1"></a>se_b <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(Vb))</span>
+<span id="cb35-26"><a href="rlm.html#cb35-26" tabindex="-1"></a></span>
+<span id="cb35-27"><a href="rlm.html#cb35-27" tabindex="-1"></a><span class="co"># Estadístico t calculado</span></span>
+<span id="cb35-28"><a href="rlm.html#cb35-28" tabindex="-1"></a>tval <span class="ot">&lt;-</span> beta_hat <span class="sc">/</span> se_b</span>
+<span id="cb35-29"><a href="rlm.html#cb35-29" tabindex="-1"></a>df_t <span class="ot">&lt;-</span> n <span class="sc">-</span> p</span>
+<span id="cb35-30"><a href="rlm.html#cb35-30" tabindex="-1"></a></span>
+<span id="cb35-31"><a href="rlm.html#cb35-31" tabindex="-1"></a><span class="co"># p-valores bilaterales: 2*P(T &gt; |t|)</span></span>
+<span id="cb35-32"><a href="rlm.html#cb35-32" tabindex="-1"></a>pval <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(tval), <span class="at">df =</span> df_t)</span></code></pre></div>
+</details>
+</div>
+<div id="coeficiente-de-determinación-r2-y-r2-ajustado-de-la-rlm" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Coeficiente de determinación <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado de la RLM<a href="#coeficiente-de-determinaci%C3%B3n-r2-y-r2-ajustado-de-la-rlm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recordemos que, adicional al MSE, a partir de la <strong>tabla ANOVA</strong> es posible calcular el porcentaje de variabilidad de la respuesta explicado por el modelo de regresión lineal múltiple (RLM), conocido como <strong>coeficiente de determinación</strong> o, simplemente, <span class="math inline">\(R^2\)</span>:</p>
+<p><span class="math display">\[
+R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
+\]</span></p>
+<p>El coeficiente <span class="math inline">\(R^2\)</span> mide qué proporción de la variabilidad total de <span class="math inline">\(y\)</span> es explicada por el modelo. Sin embargo, <span class="math inline">\(R^2\)</span> tiende a aumentar conforme se agregan más variables, incluso si no son relevantes. Por ello se recomienda utilizar el <strong><span class="math inline">\(R^2\)</span> ajustado</strong>, definido como:</p>
+<p><span class="math display">\[
+R^2_{\text{ajustado}} = 1 -
+\frac{SSE / (n - p)}{SST / (n - 1)}
+\]</span></p>
+<p>La interpretación de esta medida es similar a la del <span class="math inline">\(R^2\)</span>:<br />
+indica la proporción de la variabilidad explicada, pero <strong>corrigiendo</strong> el sesgo por el número de predictores en el modelo.</p>
+<hr />
+<ul>
+<li>Continuando con el ejemplo de espesor de la pintura. Hallemos el <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="rlm.html#cb36-1" tabindex="-1"></a>R2 <span class="ot">&lt;-</span> SSR<span class="sc">/</span>SST</span>
+<span id="cb36-2"><a href="rlm.html#cb36-2" tabindex="-1"></a>R2_ajusta <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span>(SSE<span class="sc">/</span>(n<span class="sc">-</span>p))<span class="sc">/</span>(SST<span class="sc">/</span>(n<span class="dv">-1</span>))</span></code></pre></div>
+</details>
+
 </div>
 </div>
 <h3>Referencias<a href="referencias-1.html#referencias-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
