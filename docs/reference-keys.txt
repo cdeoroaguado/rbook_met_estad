@@ -182,3 +182,4 @@ formulas-de-la-suma-de-cuadrados-en-la-rlm
 tab:rlm-13
 coeficiente-de-determinación-r2-y-r2-ajustado-de-la-rlm
 prueba-individual-de-significancia-para-los-coeficientes
+intervalos-de-confianza-para-beta_j
