@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2025-10-22" />
+<meta name="date" content="2025-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -360,6 +360,15 @@ div.csl-indent {
 <li class="chapter" data-level="8.6" data-path="rlm.html"><a href="rlm.html#prueba-individual-de-significancia-para-los-coeficientes"><i class="fa fa-check"></i><b>8.6</b> Prueba individual de significancia para los coeficientes</a></li>
 <li class="chapter" data-level="8.7" data-path="rlm.html"><a href="rlm.html#intervalos-de-confianza-para-beta_j"><i class="fa fa-check"></i><b>8.7</b> Intervalos de confianza para <span class="math inline">\(\beta_j\)</span></a></li>
 <li class="chapter" data-level="8.8" data-path="08-rlm.html"><a href="#coeficiente-de-determinaci%C3%B3n-r2-y-r2-ajustado-de-la-rlm"><i class="fa fa-check"></i><b>8.8</b> Coeficiente de determinación <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado de la RLM</a></li>
+<li class="chapter" data-level="8.9" data-path="rlm.html"><a href="rlm.html#inferencia-para-la-respuesta"><i class="fa fa-check"></i><b>8.9</b> Inferencia para la respuesta</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="rlm.html"><a href="rlm.html#intervalos-de-confianza-para-ey-mid-mathbfx_0"><i class="fa fa-check"></i><b>8.9.1</b> Intervalos de confianza para <span class="math inline">\(E[Y \mid \mathbf{x}_0]\)</span></a></li>
+<li class="chapter" data-level="8.9.2" data-path="08-rlm.html"><a href="#intervalos-de-predicci%C3%B3n-para-ey-mid-mathbfx_0"><i class="fa fa-check"></i><b>8.9.2</b> Intervalos de predicción para <span class="math inline">\(E[Y \mid \mathbf{x}_0]\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="08-rlm.html"><a href="#an%C3%A1lisis-de-residuales-1"><i class="fa fa-check"></i><b>8.10</b> Análisis de residuales</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="08-rlm.html"><a href="#identificaci%C3%B3n-de-outliers"><i class="fa fa-check"></i><b>8.10.1</b> Identificación de outliers</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -713,8 +722,8 @@ A medida que la presión del aire aumenta, también lo hace el espesor de la cap
 <span id="cb5-19"><a href="rlm.html#cb5-19" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Gráfico 3D interactivo: relación entre presión, velocidad y espesor&quot;</span></span>
 <span id="cb5-20"><a href="rlm.html#cb5-20" tabindex="-1"></a>  )</span></code></pre></div>
 </details>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-f8d1e22022a630c3cf4d" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-f8d1e22022a630c3cf4d">{"x":{"visdat":{"4c084b737693":["function () ","plotlyVisDat"]},"cur_data":"4c084b737693","attrs":{"4c084b737693":{"x":{},"y":{},"z":{},"mode":"markers","marker":{"size":5,"color":{},"colorscale":"Reds","showscale":true},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Presión del aire (psi)"},"yaxis":{"title":"Velocidad de la banda (m/s)"},"zaxis":{"title":"Espesor de la capa (micrones)"}},"title":"Gráfico 3D interactivo: relación entre presión, velocidad y espesor","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[18.722090652445299,19.056131199467899,9.2920930217951501,17.4567143910099,14.6261827833951,12.786439236952001,16.048824719618999,7.0199989585671601,14.854884356027499,15.5759717605542,11.8661266437266,15.7866837747861,19.020083707291601,8.8314323651138693,11.934392338153,19.1002178413328,19.673396425787399,6.7623104248195904,12.1249562234152,13.404991193674499,18.560470809461499,7.0806525158695903,19.833375933812899,19.200023488374399,6.2365633714944098,12.713176765246301,10.853052006568801,18.586071963654799,11.7045444215182,17.5400638999417,16.063934266567198,17.165827119024499,10.821624242235,15.2775459410623,5.0592250819317997,17.493741203797999,5.1100122032221398,8.1148845923598891,18.5990211169701,14.176679651718599,10.693388608051499,11.536573774647,5.5614654929377103,19.6030987065751,11.476268733386,19.3636489496566,18.316323582548598,14.5996815420222,19.564499155385398,14.2825731099583,10.001408169046,10.2012237231247,10.977281171362799,16.7703916353639,5.5840473668649802,16.231930792564501,15.159152452834,7.5689649558626098,8.9163194573484397,12.7161940198857,15.134109117789199,19.7422579687554,16.393164013279598,13.4973263612483,17.745345778530499,7.8421090310439503,9.0692992205731606,17.4223772785626,15.3980723058339,8.6081710946746206,5.6448319402989,7.1071864117402601,8.2457812258508092,12.1909784630407,7.9611551342532003,15.790337565122201,5.1182710810098797,10.632349469233301,12.7161156246439,5.0235583132598496,13.724060037638999,7.3685781226959097,10.385424587875599,14.6844781760592,16.6373504395597,13.4547026234213,8.50555097917095,6.3497077452484501,6.2841809738893097,9.5782755420077592,15.0113977200817,5.0035834487061903,8.1285493541508895,18.995511910179602,18.8846712291706,16.011414515087399,9.9960797512903792,12.725949947489401,16.159619694808502,14.287388600641901],"y":[6,3,3,4,9,9,6,6,5,0,5,7,6,5,5,5,0,4,5,7,4,4,5,5,6,4,8,9,3,6,8,5,6,9,7,5,7,2,7,6,3,2,5,7,6,7,3,9,4,3,6,4,7,4,6,7,3,1,3,6,9,5,5,3,5,3,5,4,2,3,6,4,4,5,4,3,7,5,7,7,8,7,4,3,6,6,8,7,3,4,3,7,3,3,2,2,5,2,6,6],"z":[91.883082003518595,94.375444022362004,74.630259638841096,93.663484571245505,76.849807226014406,76.051983065527907,82.888568896765605,69.856807877204204,83.902921447053501,89.718415772359904,78.800849426481605,83.096405437060298,87.283683452811005,72.832677129051305,73.994750521117993,88.529624056488402,92.916080983620304,80.791686944049104,75.176210947989802,79.389919627199305,85.229884176104093,68.734074356089394,91.145337427773697,86.835717663490897,69.009549439301793,79.988337427972994,71.846549627444006,79.480186298210299,77.326186528094894,86.994867920963898,83.951905783240605,85.309947828043093,76.089954857964599,83.321554208358293,70.002912784445897,83.9868143120529,65.412290758982394,80.966785210298397,85.843051897634496,81.109208247784807,79.333568436304404,79.2945815256316,68.1292159663018,88.763401602309401,75.858276108440705,91.810450846907599,88.767660225528303,77.505753752841301,93.250160010877494,81.422519102659194,74.702077379384406,72.9937313654262,78.612317553688101,86.306738025707901,66.604649113055899,79.7667087685967,85.789413265465697,75.617825154075405,75.515956014235101,82.876113109437497,79.183469125690706,87.419843994899793,86.124614519228601,82.409560374335001,89.423841891308001,79.917323663437202,71.722386202987295,89.432441305706703,87.398305282770394,79.373879081675398,67.412641267042403,75.693527197522997,69.591494724892598,84.429507609259801,77.010280794283105,86.239612261557994,61.430384441631197,78.963123857691301,79.330353781501998,65.607461513758807,78.8589983204281,67.609818038405194,79.020587878195201,86.035441118408997,84.225653608212895,76.143896183259599,71.932866714097997,69.401674305002899,70.9409443182236,71.965687121098497,86.221752765836797,64.559444499870295,76.776904360425604,87.274740694426598,88.948602127635098,91.224654254802104,77.295471782823697,85.314413389636201,89.771978527551397,81.823904896597497],"mode":"markers","marker":{"color":[91.883082003518595,94.375444022362004,74.630259638841096,93.663484571245505,76.849807226014406,76.051983065527907,82.888568896765605,69.856807877204204,83.902921447053501,89.718415772359904,78.800849426481605,83.096405437060298,87.283683452811005,72.832677129051305,73.994750521117993,88.529624056488402,92.916080983620304,80.791686944049104,75.176210947989802,79.389919627199305,85.229884176104093,68.734074356089394,91.145337427773697,86.835717663490897,69.009549439301793,79.988337427972994,71.846549627444006,79.480186298210299,77.326186528094894,86.994867920963898,83.951905783240605,85.309947828043093,76.089954857964599,83.321554208358293,70.002912784445897,83.9868143120529,65.412290758982394,80.966785210298397,85.843051897634496,81.109208247784807,79.333568436304404,79.2945815256316,68.1292159663018,88.763401602309401,75.858276108440705,91.810450846907599,88.767660225528303,77.505753752841301,93.250160010877494,81.422519102659194,74.702077379384406,72.9937313654262,78.612317553688101,86.306738025707901,66.604649113055899,79.7667087685967,85.789413265465697,75.617825154075405,75.515956014235101,82.876113109437497,79.183469125690706,87.419843994899793,86.124614519228601,82.409560374335001,89.423841891308001,79.917323663437202,71.722386202987295,89.432441305706703,87.398305282770394,79.373879081675398,67.412641267042403,75.693527197522997,69.591494724892598,84.429507609259801,77.010280794283105,86.239612261557994,61.430384441631197,78.963123857691301,79.330353781501998,65.607461513758807,78.8589983204281,67.609818038405194,79.020587878195201,86.035441118408997,84.225653608212895,76.143896183259599,71.932866714097997,69.401674305002899,70.9409443182236,71.965687121098497,86.221752765836797,64.559444499870295,76.776904360425604,87.274740694426598,88.948602127635098,91.224654254802104,77.295471782823697,85.314413389636201,89.771978527551397,81.823904896597497],"size":5,"colorscale":"Reds","showscale":true,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-1cc2e4302ce220c481fd" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1cc2e4302ce220c481fd">{"x":{"visdat":{"457c48391c4f":["function () ","plotlyVisDat"]},"cur_data":"457c48391c4f","attrs":{"457c48391c4f":{"x":{},"y":{},"z":{},"mode":"markers","marker":{"size":5,"color":{},"colorscale":"Reds","showscale":true},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Presión del aire (psi)"},"yaxis":{"title":"Velocidad de la banda (m/s)"},"zaxis":{"title":"Espesor de la capa (micrones)"}},"title":"Gráfico 3D interactivo: relación entre presión, velocidad y espesor","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[18.722090652445299,19.056131199467899,9.2920930217951501,17.4567143910099,14.6261827833951,12.786439236952001,16.048824719618999,7.0199989585671601,14.854884356027499,15.5759717605542,11.8661266437266,15.7866837747861,19.020083707291601,8.8314323651138693,11.934392338153,19.1002178413328,19.673396425787399,6.7623104248195904,12.1249562234152,13.404991193674499,18.560470809461499,7.0806525158695903,19.833375933812899,19.200023488374399,6.2365633714944098,12.713176765246301,10.853052006568801,18.586071963654799,11.7045444215182,17.5400638999417,16.063934266567198,17.165827119024499,10.821624242235,15.2775459410623,5.0592250819317997,17.493741203797999,5.1100122032221398,8.1148845923598891,18.5990211169701,14.176679651718599,10.693388608051499,11.536573774647,5.5614654929377103,19.6030987065751,11.476268733386,19.3636489496566,18.316323582548598,14.5996815420222,19.564499155385398,14.2825731099583,10.001408169046,10.2012237231247,10.977281171362799,16.7703916353639,5.5840473668649802,16.231930792564501,15.159152452834,7.5689649558626098,8.9163194573484397,12.7161940198857,15.134109117789199,19.7422579687554,16.393164013279598,13.4973263612483,17.745345778530499,7.8421090310439503,9.0692992205731606,17.4223772785626,15.3980723058339,8.6081710946746206,5.6448319402989,7.1071864117402601,8.2457812258508092,12.1909784630407,7.9611551342532003,15.790337565122201,5.1182710810098797,10.632349469233301,12.7161156246439,5.0235583132598496,13.724060037638999,7.3685781226959097,10.385424587875599,14.6844781760592,16.6373504395597,13.4547026234213,8.50555097917095,6.3497077452484501,6.2841809738893097,9.5782755420077592,15.0113977200817,5.0035834487061903,8.1285493541508895,18.995511910179602,18.8846712291706,16.011414515087399,9.9960797512903792,12.725949947489401,16.159619694808502,14.287388600641901],"y":[6,3,3,4,9,9,6,6,5,0,5,7,6,5,5,5,0,4,5,7,4,4,5,5,6,4,8,9,3,6,8,5,6,9,7,5,7,2,7,6,3,2,5,7,6,7,3,9,4,3,6,4,7,4,6,7,3,1,3,6,9,5,5,3,5,3,5,4,2,3,6,4,4,5,4,3,7,5,7,7,8,7,4,3,6,6,8,7,3,4,3,7,3,3,2,2,5,2,6,6],"z":[91.883082003518595,94.375444022362004,74.630259638841096,93.663484571245505,76.849807226014406,76.051983065527907,82.888568896765605,69.856807877204204,83.902921447053501,89.718415772359904,78.800849426481605,83.096405437060298,87.283683452811005,72.832677129051305,73.994750521117993,88.529624056488402,92.916080983620304,80.791686944049104,75.176210947989802,79.389919627199305,85.229884176104093,68.734074356089394,91.145337427773697,86.835717663490897,69.009549439301793,79.988337427972994,71.846549627444006,79.480186298210299,77.326186528094894,86.994867920963898,83.951905783240605,85.309947828043093,76.089954857964599,83.321554208358293,70.002912784445897,83.9868143120529,65.412290758982394,80.966785210298397,85.843051897634496,81.109208247784807,79.333568436304404,79.2945815256316,68.1292159663018,88.763401602309401,75.858276108440705,91.810450846907599,88.767660225528303,77.505753752841301,93.250160010877494,81.422519102659194,74.702077379384406,72.9937313654262,78.612317553688101,86.306738025707901,66.604649113055899,79.7667087685967,85.789413265465697,75.617825154075405,75.515956014235101,82.876113109437497,79.183469125690706,87.419843994899793,86.124614519228601,82.409560374335001,89.423841891308001,79.917323663437202,71.722386202987295,89.432441305706703,87.398305282770394,79.373879081675398,67.412641267042403,75.693527197522997,69.591494724892598,84.429507609259801,77.010280794283105,86.239612261557994,61.430384441631197,78.963123857691301,79.330353781501998,65.607461513758807,78.8589983204281,67.609818038405194,79.020587878195201,86.035441118408997,84.225653608212895,76.143896183259599,71.932866714097997,69.401674305002899,70.9409443182236,71.965687121098497,86.221752765836797,64.559444499870295,76.776904360425604,87.274740694426598,88.948602127635098,91.224654254802104,77.295471782823697,85.314413389636201,89.771978527551397,81.823904896597497],"mode":"markers","marker":{"color":[91.883082003518595,94.375444022362004,74.630259638841096,93.663484571245505,76.849807226014406,76.051983065527907,82.888568896765605,69.856807877204204,83.902921447053501,89.718415772359904,78.800849426481605,83.096405437060298,87.283683452811005,72.832677129051305,73.994750521117993,88.529624056488402,92.916080983620304,80.791686944049104,75.176210947989802,79.389919627199305,85.229884176104093,68.734074356089394,91.145337427773697,86.835717663490897,69.009549439301793,79.988337427972994,71.846549627444006,79.480186298210299,77.326186528094894,86.994867920963898,83.951905783240605,85.309947828043093,76.089954857964599,83.321554208358293,70.002912784445897,83.9868143120529,65.412290758982394,80.966785210298397,85.843051897634496,81.109208247784807,79.333568436304404,79.2945815256316,68.1292159663018,88.763401602309401,75.858276108440705,91.810450846907599,88.767660225528303,77.505753752841301,93.250160010877494,81.422519102659194,74.702077379384406,72.9937313654262,78.612317553688101,86.306738025707901,66.604649113055899,79.7667087685967,85.789413265465697,75.617825154075405,75.515956014235101,82.876113109437497,79.183469125690706,87.419843994899793,86.124614519228601,82.409560374335001,89.423841891308001,79.917323663437202,71.722386202987295,89.432441305706703,87.398305282770394,79.373879081675398,67.412641267042403,75.693527197522997,69.591494724892598,84.429507609259801,77.010280794283105,86.239612261557994,61.430384441631197,78.963123857691301,79.330353781501998,65.607461513758807,78.8589983204281,67.609818038405194,79.020587878195201,86.035441118408997,84.225653608212895,76.143896183259599,71.932866714097997,69.401674305002899,70.9409443182236,71.965687121098497,86.221752765836797,64.559444499870295,76.776904360425604,87.274740694426598,88.948602127635098,91.224654254802104,77.295471782823697,85.314413389636201,89.771978527551397,81.823904896597497],"size":5,"colorscale":"Reds","showscale":true,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>El gráfico 3D interactivo muestra que <strong>el espesor de la capa aumenta con la presión del aire</strong> y <strong>disminuye ligeramente al aumentar la velocidad de la banda</strong>, confirmando una <strong>tendencia lineal</strong> coherente con el modelo de regresión múltiple.</li>
 </ul>
@@ -769,7 +778,7 @@ A medida que la presión del aire aumenta, también lo hace el espesor de la cap
 <li>Para estimar el modelo de RLM, utilizamos la función <code>lm</code> como se muestra a continuación:</li>
 </ol>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="rlm.html#cb14-1" tabindex="-1"></a><span class="do">## ajuste del modelo de RLM</span></span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="rlm.html#cb14-1" tabindex="-1"></a><span class="co"># ajuste del modelo de RLM</span></span>
 <span id="cb14-2"><a href="rlm.html#cb14-2" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> df)</span>
 <span id="cb14-3"><a href="rlm.html#cb14-3" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
 </details>
@@ -1578,7 +1587,421 @@ indica la proporción de la variabilidad explicada, pero <strong>corrigiendo</st
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="rlm.html#cb40-1" tabindex="-1"></a>R2 <span class="ot">&lt;-</span> SSR<span class="sc">/</span>SST</span>
 <span id="cb40-2"><a href="rlm.html#cb40-2" tabindex="-1"></a>R2_ajusta <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span>(SSE<span class="sc">/</span>(n<span class="sc">-</span>p))<span class="sc">/</span>(SST<span class="sc">/</span>(n<span class="dv">-1</span>))</span></code></pre></div>
 </details>
+</div>
+<div id="inferencia-para-la-respuesta" class="section level2 hasAnchor" number="8.9">
+<h2><span class="header-section-number">8.9</span> Inferencia para la respuesta<a href="rlm.html#inferencia-para-la-respuesta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El modelo de ajustado puede utilizarse para predecir
+<span class="math inline">\(E[Y \mid \mathbf{x}_0]\)</span> si se validan .</p>
+<div id="intervalos-de-confianza-para-ey-mid-mathbfx_0" class="section level3 hasAnchor" number="8.9.1">
+<h3><span class="header-section-number">8.9.1</span> Intervalos de confianza para <span class="math inline">\(E[Y \mid \mathbf{x}_0]\)</span><a href="rlm.html#intervalos-de-confianza-para-ey-mid-mathbfx_0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sea <span class="math inline">\(\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}\)</span> con
+<span class="math inline">\(\operatorname{Var}(\boldsymbol{\varepsilon})=\sigma^2\mathbf{I}\)</span> y un punto fijo <span class="math inline">\(\mathbf{x}_0\)</span>.</p>
+<p><span class="math display">\[
+\hat{\mu}_{Y\mid \mathbf{x}_0}
+= E[\hat{Y}\mid \mathbf{x}_0]
+= \mathbf{x}_0^{\top}\hat{\boldsymbol{\beta}},\qquad
+\operatorname{Var}\!\left(\hat{\mu}_{Y\mid \mathbf{x}_0}\right)
+= \hat{\sigma}^2\,\mathbf{x}_0^{\top}(\mathbf{X}^{\top}\mathbf{X})^{-1}\mathbf{x}_0 .
+\]</span></p>
+<p>El intervalo de confianza al <span class="math inline">\(100(1-\alpha)\%\)</span> para <span class="math inline">\(E[Y\mid \mathbf{x}_0]\)</span> es</p>
+<p><span class="math display">\[
+\hat{\mu}_{Y\mid \mathbf{x}_0}
+\pm
+t_{\alpha/2,\,n-p}\,
+\sqrt{\hat{\sigma}^2\,\mathbf{x}_0^{\top}(\mathbf{X}^{\top}\mathbf{X})^{-1}\mathbf{x}_0}.
+\]</span></p>
+<hr />
+<ol style="list-style-type: decimal">
+<li>Supongamos que queremos determinar el espesor de la capa de pintura para las condiciones <span class="math inline">\(x_0=(10,8)\)</span>, es decir, cuando <span class="math inline">\(x_1=10\)</span> y <span class="math inline">\(x_2=8\)</span>. En <strong>R</strong> procedemos de la siguiente manera:</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="rlm.html#cb41-1" tabindex="-1"></a><span class="co"># cálculo de E[y|x_1 = 10, x_2 = 8]</span></span>
+<span id="cb41-2"><a href="rlm.html#cb41-2" tabindex="-1"></a>dato_nuevo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">10</span>, <span class="at">x2 =</span> <span class="dv">8</span>)</span>
+<span id="cb41-3"><a href="rlm.html#cb41-3" tabindex="-1"></a><span class="fu">predict</span>(modelo, <span class="at">newdata =</span> dato_nuevo)</span></code></pre></div>
+</details>
+<pre><code>##        1 
+## 72.67072</code></pre>
+<ul>
+<li>Si trabajamos bajo las condiciones <span class="math inline">\(x_0\)</span>, se espera que, en promedio, el espesor de la capa de pintura sea <span class="math inline">\(72.67\)</span> micrones.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Para otros argumentos y opciones, se sugiere al lector escribir <code>?predict.lm</code> en la consola de <strong>R</strong>. Ahora, si es de interés calcular un intervalo de confianza del <span class="math inline">\(95\%\)</span>, agregamos el argumento <code>interval = 'confidence'</code> a la instrucción anterior:</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="rlm.html#cb43-1" tabindex="-1"></a><span class="co"># cálculo de E[y|x_1 = 10, x_2 = 8]</span></span>
+<span id="cb43-2"><a href="rlm.html#cb43-2" tabindex="-1"></a><span class="fu">predict</span>(modelo, <span class="at">newdata =</span> dato_nuevo, <span class="at">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span></code></pre></div>
+</details>
+<pre><code>##        fit      lwr      upr
+## 1 72.67072 71.64637 73.69507</code></pre>
+<ul>
+<li>Por lo tanto, se espera que, si continuamos trabajando bajo las condiciones <span class="math inline">\(x_1=10\)</span> y <span class="math inline">\(x_2=8\)</span>, el espesor de capa promedio sea <span class="math inline">\(72.67\)</span> micrones. A nivel poblacional, dicho promedio se encontrará en el intervalo <span class="math inline">\((71.646,73.695)\)</span> con una confianza del <span class="math inline">\(95\%\)</span>.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Hagamos el proceso paso a paso:</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="rlm.html#cb45-1" tabindex="-1"></a><span class="co"># 1) modelo ajustado</span></span>
+<span id="cb45-2"><a href="rlm.html#cb45-2" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> df)</span>
+<span id="cb45-3"><a href="rlm.html#cb45-3" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+</details>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2, data = df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.0571 -1.6610 -0.1362  1.5409  8.7008 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 66.28483    1.10350  60.068  &lt; 2e-16 ***
+## x1           1.48275    0.06144  24.132  &lt; 2e-16 ***
+## x2          -1.05521    0.13660  -7.725 1.03e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.767 on 97 degrees of freedom
+## Multiple R-squared:  0.8716, Adjusted R-squared:  0.8689 
+## F-statistic: 329.1 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="rlm.html#cb47-1" tabindex="-1"></a><span class="co"># 2) dato_nuevo&#39;</span></span>
+<span id="cb47-2"><a href="rlm.html#cb47-2" tabindex="-1"></a>dato_nuevo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">10</span>, <span class="at">x2 =</span> <span class="dv">8</span>) </span>
+<span id="cb47-3"><a href="rlm.html#cb47-3" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="rlm.html#cb47-4" tabindex="-1"></a><span class="co"># 3) Extraer la matriz de diseño del modelo y dimensiones</span></span>
+<span id="cb47-5"><a href="rlm.html#cb47-5" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="rlm.html#cb47-6" tabindex="-1"></a>X  <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(modelo)      <span class="co"># matriz de diseño usada al ajustar</span></span>
+<span id="cb47-7"><a href="rlm.html#cb47-7" tabindex="-1"></a>n  <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X)                   <span class="co"># número de observaciones</span></span>
+<span id="cb47-8"><a href="rlm.html#cb47-8" tabindex="-1"></a>p  <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">coef</span>(modelo))      <span class="co"># número de parámetros (incluye intercepto)</span></span>
+<span id="cb47-9"><a href="rlm.html#cb47-9" tabindex="-1"></a>gl <span class="ot">&lt;-</span> n <span class="sc">-</span> p                     <span class="co"># grados de libertad residuales</span></span>
+<span id="cb47-10"><a href="rlm.html#cb47-10" tabindex="-1"></a></span>
+<span id="cb47-11"><a href="rlm.html#cb47-11" tabindex="-1"></a><span class="co"># 4) Construir la fila de diseño del punto nuevo x0</span></span>
+<span id="cb47-12"><a href="rlm.html#cb47-12" tabindex="-1"></a>TT  <span class="ot">&lt;-</span> <span class="fu">delete.response</span>(<span class="fu">terms</span>(modelo))</span>
+<span id="cb47-13"><a href="rlm.html#cb47-13" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(TT, dato_nuevo)             <span class="co"># matriz 1x(p)</span></span>
+<span id="cb47-14"><a href="rlm.html#cb47-14" tabindex="-1"></a></span>
+<span id="cb47-15"><a href="rlm.html#cb47-15" tabindex="-1"></a><span class="co"># 5) Estimaciones básicas del modelo</span></span>
+<span id="cb47-16"><a href="rlm.html#cb47-16" tabindex="-1"></a>beta_hat   <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)                     <span class="co"># betas</span></span>
+<span id="cb47-17"><a href="rlm.html#cb47-17" tabindex="-1"></a>yhat_mean  <span class="ot">&lt;-</span> <span class="fu">drop</span>(x0 <span class="sc">%*%</span> beta_hat)            <span class="co"># E[Y|x0] estimado</span></span>
+<span id="cb47-18"><a href="rlm.html#cb47-18" tabindex="-1"></a><span class="fu">print</span>(yhat_mean)</span></code></pre></div>
+</details>
+<pre><code>##        1 
+## 72.67072</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="rlm.html#cb49-1" tabindex="-1"></a><span class="co"># 6) Estimar sigma^2 = SSE/(n - p)</span></span>
+<span id="cb49-2"><a href="rlm.html#cb49-2" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo)<span class="sc">^</span><span class="dv">2</span>)         <span class="co"># suma de cuadrados de residuos</span></span>
+<span id="cb49-3"><a href="rlm.html#cb49-3" tabindex="-1"></a>sigma2_hat <span class="ot">&lt;-</span> SSE <span class="sc">/</span> gl</span>
+<span id="cb49-4"><a href="rlm.html#cb49-4" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="rlm.html#cb49-5" tabindex="-1"></a><span class="co"># 6) Calcular la inversa de X&#39;X</span></span>
+<span id="cb49-6"><a href="rlm.html#cb49-6" tabindex="-1"></a>XtX_inv <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span>
+<span id="cb49-7"><a href="rlm.html#cb49-7" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="rlm.html#cb49-8" tabindex="-1"></a><span class="co"># 7) se_mean= (sigma^2 * x0&#39;(X&#39;X)^{-1}x0)</span></span>
+<span id="cb49-9"><a href="rlm.html#cb49-9" tabindex="-1"></a>se_mean <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">drop</span>(x0 <span class="sc">%*%</span> XtX_inv <span class="sc">%*%</span> <span class="fu">t</span>(x0)) <span class="sc">*</span> sigma2_hat)</span>
+<span id="cb49-10"><a href="rlm.html#cb49-10" tabindex="-1"></a></span>
+<span id="cb49-11"><a href="rlm.html#cb49-11" tabindex="-1"></a><span class="co"># 8) Valor crítico t para nivel 1 - alpha</span></span>
+<span id="cb49-12"><a href="rlm.html#cb49-12" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb49-13"><a href="rlm.html#cb49-13" tabindex="-1"></a>tcrit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> gl)</span>
+<span id="cb49-14"><a href="rlm.html#cb49-14" tabindex="-1"></a></span>
+<span id="cb49-15"><a href="rlm.html#cb49-15" tabindex="-1"></a><span class="co"># Paso 8) Intervalo de confianza para E[Y|x0]</span></span>
+<span id="cb49-16"><a href="rlm.html#cb49-16" tabindex="-1"></a>ci_low  <span class="ot">&lt;-</span> yhat_mean <span class="sc">-</span> tcrit <span class="sc">*</span> se_mean</span>
+<span id="cb49-17"><a href="rlm.html#cb49-17" tabindex="-1"></a>ci_high <span class="ot">&lt;-</span> yhat_mean <span class="sc">+</span> tcrit <span class="sc">*</span> se_mean</span>
+<span id="cb49-18"><a href="rlm.html#cb49-18" tabindex="-1"></a></span>
+<span id="cb49-19"><a href="rlm.html#cb49-19" tabindex="-1"></a>resultado_media <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb49-20"><a href="rlm.html#cb49-20" tabindex="-1"></a>  <span class="at">.fitted   =</span> yhat_mean,</span>
+<span id="cb49-21"><a href="rlm.html#cb49-21" tabindex="-1"></a>  <span class="at">se_mean   =</span> se_mean,</span>
+<span id="cb49-22"><a href="rlm.html#cb49-22" tabindex="-1"></a>  <span class="at">conf_low  =</span> ci_low,</span>
+<span id="cb49-23"><a href="rlm.html#cb49-23" tabindex="-1"></a>  <span class="at">conf_high =</span> ci_high,</span>
+<span id="cb49-24"><a href="rlm.html#cb49-24" tabindex="-1"></a>  <span class="at">df        =</span> gl,</span>
+<span id="cb49-25"><a href="rlm.html#cb49-25" tabindex="-1"></a>  <span class="at">level     =</span> <span class="dv">1</span> <span class="sc">-</span> alpha</span>
+<span id="cb49-26"><a href="rlm.html#cb49-26" tabindex="-1"></a>)</span>
+<span id="cb49-27"><a href="rlm.html#cb49-27" tabindex="-1"></a>resultado_media</span></code></pre></div>
+</details>
+<pre><code>##    .fitted   se_mean conf_low conf_high df level
+## 1 72.67072 0.5161179 71.64637  73.69507 97  0.95</code></pre>
+</div>
+<div id="intervalos-de-predicción-para-ey-mid-mathbfx_0" class="section level3 hasAnchor" number="8.9.2">
+<h3><span class="header-section-number">8.9.2</span> Intervalos de predicción para <span class="math inline">\(E[Y \mid \mathbf{x}_0]\)</span><a href="#intervalos-de-predicci%C3%B3n-para-ey-mid-mathbfx_0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sea el modelo lineal <span class="math inline">\(\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}\)</span> con
+<span class="math inline">\(\operatorname{Var}(\boldsymbol{\varepsilon})=\sigma^2\mathbf{I}\)</span> y sea
+<span class="math inline">\(\mathbf{x}_0\)</span> el vector de covariables para una .</p>
+<p>El mejor predictor lineal insesgado es
+<span class="math display">\[
+\hat y_0 \;=\; \widehat{\mu}_{Y\mid \mathbf{x}_0} \;=\; \mathbf{x}_0^{\top}\hat{\boldsymbol{\beta}}.
+\]</span>
+La varianza del error de predicción es
+<span class="math display">\[
+\operatorname{Var}(Y_0-\hat y_0)\;=\;\sigma^2\!\left(1+\mathbf{x}_0^{\top}
+(\mathbf{X}^{\top}\mathbf{X})^{-1}\mathbf{x}_0\right),
+\]</span>
+que estimamos sustituyendo <span class="math inline">\(\sigma^2\)</span> por <span class="math inline">\(\hat\sigma^2=\mathrm{SSE}/(n-p)\)</span>. Por tanto, un intervalo de al <span class="math inline">\(100(1-\alpha)\%\)</span> para <span class="math inline">\(Y_0\)</span> es</p>
+<p><span class="math display">\[
+\hat y_0 \;\pm\; t_{\alpha/2,\,n-p}\;
+\sqrt{\,\hat\sigma^{2}\!\left(1+\mathbf{x}_0^{\top}
+(\mathbf{X}^{\top}\mathbf{X})^{-1}\mathbf{x}_0\right)}
+\]</span></p>
+<div class="admon-box observacion">
+<div class="admon-title">
+<span class="icon"></span> Observación
+</div>
+<p>
+A diferencia del intervalo de para <span class="math inline">\(E[Y\mid\mathbf{x}_0]\)</span> (no incluye el ``<span class="math inline">\(1+\)</span>’’), el intervalo de incorpora la incertidumbre adicional del nuevo error <span class="math inline">\(\varepsilon_0\)</span>.
+</p>
+</div>
+<div class="admon-box nota">
+<div class="admon-title">
+<span class="icon"></span> Nota
+</div>
+<p>
+Puede construirse un intervalo predictivo por <a href="https://es.wikipedia.org/wiki/Bootstrapping_(estad%C3%ADstica)">bootstrap</a> (p.,ej. por pares o por residuos): re-muestre <span class="math inline">\(B\)</span> veces, re-ajuste el modelo, calcule <span class="math inline">\(\hat y_0^{(b)}\)</span> y/o <span class="math inline">\(Y_0^{(b)}=\hat y_0^{(b)}+\varepsilon_0^{(b)}\)</span>, y use percentiles <span class="math inline">\((\alpha/2,1-\alpha/2)\)</span> de la distribución empírica resultante.
+</p>
+</div>
+<hr />
+<ol style="list-style-type: decimal">
+<li>Para calcular un intervalo de predicción del <span class="math inline">\(95\%\)</span>, agregamos el argumento <code>interval = 'prediction'</code> a la instrucción anterior:</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="rlm.html#cb51-1" tabindex="-1"></a><span class="co"># intervalo de predicción para E[y|x_1 = 10, x_2 = 8]</span></span>
+<span id="cb51-2"><a href="rlm.html#cb51-2" tabindex="-1"></a><span class="fu">predict</span>(modelo, <span class="at">newdata =</span> dato_nuevo, <span class="at">interval =</span> <span class="st">&#39;prediction&#39;</span>)</span></code></pre></div>
+</details>
+<pre><code>##        fit      lwr      upr
+## 1 72.67072 67.08489 78.25655</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Hagamoslo paso a paso:</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="rlm.html#cb53-1" tabindex="-1"></a><span class="co"># dato nuevo</span></span>
+<span id="cb53-2"><a href="rlm.html#cb53-2" tabindex="-1"></a>dato_nuevo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">10</span>, <span class="at">x2 =</span> <span class="dv">8</span>)</span>
+<span id="cb53-3"><a href="rlm.html#cb53-3" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="rlm.html#cb53-4" tabindex="-1"></a><span class="co"># 1) Construir la fila de diseño x0 coherente con el modelo</span></span>
+<span id="cb53-5"><a href="rlm.html#cb53-5" tabindex="-1"></a>TT  <span class="ot">&lt;-</span> <span class="fu">delete.response</span>(<span class="fu">terms</span>(modelo))      <span class="co"># quita la respuesta de la fórmula</span></span>
+<span id="cb53-6"><a href="rlm.html#cb53-6" tabindex="-1"></a>x0  <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(TT, <span class="at">data =</span> dato_nuevo) <span class="co"># matriz 1x(p)</span></span>
+<span id="cb53-7"><a href="rlm.html#cb53-7" tabindex="-1"></a></span>
+<span id="cb53-8"><a href="rlm.html#cb53-8" tabindex="-1"></a><span class="co"># 2) Extraer cantidades del ajuste</span></span>
+<span id="cb53-9"><a href="rlm.html#cb53-9" tabindex="-1"></a>X          <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(modelo)         <span class="co"># matriz de diseño del entrenamiento</span></span>
+<span id="cb53-10"><a href="rlm.html#cb53-10" tabindex="-1"></a>beta_hat   <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)                 <span class="co"># vector beta</span></span>
+<span id="cb53-11"><a href="rlm.html#cb53-11" tabindex="-1"></a>n          <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X)</span>
+<span id="cb53-12"><a href="rlm.html#cb53-12" tabindex="-1"></a>p          <span class="ot">&lt;-</span> <span class="fu">length</span>(beta_hat)</span>
+<span id="cb53-13"><a href="rlm.html#cb53-13" tabindex="-1"></a>gl         <span class="ot">&lt;-</span> n <span class="sc">-</span> p</span>
+<span id="cb53-14"><a href="rlm.html#cb53-14" tabindex="-1"></a></span>
+<span id="cb53-15"><a href="rlm.html#cb53-15" tabindex="-1"></a><span class="co"># 3) Predicción puntual en x0</span></span>
+<span id="cb53-16"><a href="rlm.html#cb53-16" tabindex="-1"></a>yhat_0 <span class="ot">&lt;-</span> <span class="fu">drop</span>(x0 <span class="sc">%*%</span> beta_hat)</span>
+<span id="cb53-17"><a href="rlm.html#cb53-17" tabindex="-1"></a></span>
+<span id="cb53-18"><a href="rlm.html#cb53-18" tabindex="-1"></a><span class="co"># 4) Estimar la varianza residual sigma2 = SSE/(n-p)</span></span>
+<span id="cb53-19"><a href="rlm.html#cb53-19" tabindex="-1"></a>SSE        <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb53-20"><a href="rlm.html#cb53-20" tabindex="-1"></a>sigma2_hat <span class="ot">&lt;-</span> SSE <span class="sc">/</span> gl</span>
+<span id="cb53-21"><a href="rlm.html#cb53-21" tabindex="-1"></a></span>
+<span id="cb53-22"><a href="rlm.html#cb53-22" tabindex="-1"></a><span class="co"># 5) Calcular el leverage de x0: h0 = x0&#39;(X&#39;X)^{-1}x0</span></span>
+<span id="cb53-23"><a href="rlm.html#cb53-23" tabindex="-1"></a>XtX_inv <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span>
+<span id="cb53-24"><a href="rlm.html#cb53-24" tabindex="-1"></a>h0      <span class="ot">&lt;-</span> <span class="fu">drop</span>(x0 <span class="sc">%*%</span> XtX_inv <span class="sc">%*%</span> <span class="fu">t</span>(x0))</span>
+<span id="cb53-25"><a href="rlm.html#cb53-25" tabindex="-1"></a></span>
+<span id="cb53-26"><a href="rlm.html#cb53-26" tabindex="-1"></a><span class="co"># 6) se_pred = sqrt(sigma2 * (1 + h0))</span></span>
+<span id="cb53-27"><a href="rlm.html#cb53-27" tabindex="-1"></a>se_pred <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sigma2_hat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> h0))</span>
+<span id="cb53-28"><a href="rlm.html#cb53-28" tabindex="-1"></a></span>
+<span id="cb53-29"><a href="rlm.html#cb53-29" tabindex="-1"></a><span class="co"># 7) Valor crítico t y extremos del intervalo</span></span>
+<span id="cb53-30"><a href="rlm.html#cb53-30" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb53-31"><a href="rlm.html#cb53-31" tabindex="-1"></a>tcrit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> gl)</span>
+<span id="cb53-32"><a href="rlm.html#cb53-32" tabindex="-1"></a></span>
+<span id="cb53-33"><a href="rlm.html#cb53-33" tabindex="-1"></a>pred_low  <span class="ot">&lt;-</span> yhat_0 <span class="sc">-</span> tcrit <span class="sc">*</span> se_pred</span>
+<span id="cb53-34"><a href="rlm.html#cb53-34" tabindex="-1"></a>pred_high <span class="ot">&lt;-</span> yhat_0 <span class="sc">+</span> tcrit <span class="sc">*</span> se_pred</span>
+<span id="cb53-35"><a href="rlm.html#cb53-35" tabindex="-1"></a></span>
+<span id="cb53-36"><a href="rlm.html#cb53-36" tabindex="-1"></a><span class="do">## Resultado</span></span>
+<span id="cb53-37"><a href="rlm.html#cb53-37" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb53-38"><a href="rlm.html#cb53-38" tabindex="-1"></a>  <span class="at">.fitted   =</span> yhat_0,</span>
+<span id="cb53-39"><a href="rlm.html#cb53-39" tabindex="-1"></a>  <span class="at">se_pred   =</span> se_pred,</span>
+<span id="cb53-40"><a href="rlm.html#cb53-40" tabindex="-1"></a>  <span class="at">pred_low  =</span> pred_low,</span>
+<span id="cb53-41"><a href="rlm.html#cb53-41" tabindex="-1"></a>  <span class="at">pred_high =</span> pred_high,</span>
+<span id="cb53-42"><a href="rlm.html#cb53-42" tabindex="-1"></a>  <span class="at">df        =</span> gl,</span>
+<span id="cb53-43"><a href="rlm.html#cb53-43" tabindex="-1"></a>  <span class="at">level     =</span> <span class="dv">1</span> <span class="sc">-</span> alpha</span>
+<span id="cb53-44"><a href="rlm.html#cb53-44" tabindex="-1"></a>)</span>
+<span id="cb53-45"><a href="rlm.html#cb53-45" tabindex="-1"></a></span>
+<span id="cb53-46"><a href="rlm.html#cb53-46" tabindex="-1"></a>resultado</span></code></pre></div>
+</details>
+<pre><code>##    .fitted  se_pred pred_low pred_high df level
+## 1 72.67072 2.814412 67.08489  78.25655 97  0.95</code></pre>
+<ul>
+<li>Este resultado indica que, bajo las condiciones <span class="math inline">\(x_1=10\)</span> y <span class="math inline">\(x_2=8\)</span>, el valor del espesor de la capa de pintura para la próxima unidad experimental será <span class="math inline">\(72.67\)</span> micrones. A nivel poblacional, dicho valor se encontrará en el intervalo <span class="math inline">\((67.085,78.257)\)</span> con una confianza del <span class="math inline">\(95\%\)</span>.</li>
+</ul>
+</div>
+</div>
+<div id="análisis-de-residuales-1" class="section level2 hasAnchor" number="8.10">
+<h2><span class="header-section-number">8.10</span> Análisis de residuales<a href="#an%C3%A1lisis-de-residuales-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El análisis de residuales en RLM es fundamental para:</p>
+<ul>
+<li>Validar los supuestos del error;</li>
+<li>identicar observaciones **o<em>utlier<strong> o </strong></em>atípicos*; e</li>
+<li>identificar observaciones <strong>influenciales</strong>.</li>
+</ul>
+<hr />
+<ul>
+<li>Validemos los supuestos del modelo</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Hagamos el modelo nuevamente</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="rlm.html#cb55-1" tabindex="-1"></a><span class="do">## lectura de datos</span></span>
+<span id="cb55-2"><a href="rlm.html#cb55-2" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&#39;data/data_pintura.txt&#39;</span></span>
+<span id="cb55-3"><a href="rlm.html#cb55-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(path, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb55-4"><a href="rlm.html#cb55-4" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="rlm.html#cb55-5" tabindex="-1"></a><span class="co"># ajuste del modelo de RLM</span></span>
+<span id="cb55-6"><a href="rlm.html#cb55-6" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> df)</span></code></pre></div>
+</details>
+<ol start="2" style="list-style-type: decimal">
+<li>Validemos los supuestos:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Independencia en los errores</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="rlm.html#cb56-1" tabindex="-1"></a><span class="co"># prueba de Durbin-Watson </span></span>
+<span id="cb56-2"><a href="rlm.html#cb56-2" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb56-3"><a href="rlm.html#cb56-3" tabindex="-1"></a>car<span class="sc">:::</span><span class="fu">durbinWatsonTest</span>(modelo)</span></code></pre></div>
+</details>
+<pre><code>##  lag Autocorrelation D-W Statistic p-value
+##    1      -0.1299283      2.235812   0.248
+##  Alternative hypothesis: rho != 0</code></pre>
+<ul>
+<li>Se cumple que los residuales del modelo ajustados son independientes.</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="rlm.html#cb58-1" tabindex="-1"></a><span class="co"># ACF de los residuales</span></span>
+<span id="cb58-2"><a href="rlm.html#cb58-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">residuals</span>(modelo)  <span class="co"># cálculo de los residuales</span></span>
+<span id="cb58-3"><a href="rlm.html#cb58-3" tabindex="-1"></a><span class="fu">acf</span>(r, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">main =</span> <span class="st">&quot;&quot;</span>,<span class="at">lag.max =</span> <span class="dv">80</span>)</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/rlm-27-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Normalidad en los errores</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="rlm.html#cb59-1" tabindex="-1"></a><span class="co"># prueba de Normalidad de Shapiro-Wilk</span></span>
+<span id="cb59-2"><a href="rlm.html#cb59-2" tabindex="-1"></a><span class="fu">shapiro.test</span>(r)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  r
+## W = 0.98129, p-value = 0.1674</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="rlm.html#cb61-1" tabindex="-1"></a><span class="co"># Q-Q plot usando el paquete car</span></span>
+<span id="cb61-2"><a href="rlm.html#cb61-2" tabindex="-1"></a><span class="fu">library</span>(car, <span class="at">quietly =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb61-3"><a href="rlm.html#cb61-3" tabindex="-1"></a>car<span class="sc">:::</span><span class="fu">qqPlot</span>(r, <span class="at">las =</span> <span class="dv">1</span>)</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/rlm-29-1.png" width="672" /></p>
+<pre><code>## [1] 18 99</code></pre>
+<ul>
+<li>Se cumple que los residuales del modelo ajustado siguen una distribución normal.</li>
+</ul>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Media de los errores</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="rlm.html#cb63-1" tabindex="-1"></a><span class="co"># validación media cero en RLM</span></span>
+<span id="cb63-2"><a href="rlm.html#cb63-2" tabindex="-1"></a><span class="fu">t.test</span>(r, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  r
+## t = -1.0976e-15, df = 99, p-value = 1
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  -0.5433967  0.5433967
+## sample estimates:
+##     mean of x 
+## -3.005793e-16</code></pre>
+<ul>
+<li>Concluimos que con una confianza del <span class="math inline">\(95\%\)</span>, que la media de los residuales es cero a nivel poblacional.</li>
+</ul>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Varianza constante en los errores</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="rlm.html#cb65-1" tabindex="-1"></a><span class="co"># prueba de Breusch-Pagan para varianza constante</span></span>
+<span id="cb65-2"><a href="rlm.html#cb65-2" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb65-3"><a href="rlm.html#cb65-3" tabindex="-1"></a>lmtest<span class="sc">:::</span><span class="fu">bptest</span>(modelo)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  modelo
+## BP = 1.2404, df = 2, p-value = 0.5378</code></pre>
+<ul>
+<li>Concluimos que la varianza del modelo es constante.</li>
+</ul>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Los gráficos de residuales explicados anteriormente se pueden obtener usando la función <code>plot</code> sobre el modelo ajustado <code>modelo</code>:</li>
+</ol>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="rlm.html#cb67-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb67-2"><a href="rlm.html#cb67-2" tabindex="-1"></a><span class="fu">plot</span>(modelo, <span class="at">las=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;darkseagreen&#39;</span>, <span class="at">which=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/rlm-32-1.png" width="672" /></p>
+<div id="identificación-de-outliers" class="section level3 hasAnchor" number="8.10.1">
+<h3><span class="header-section-number">8.10.1</span> Identificación de outliers<a href="#identificaci%C3%B3n-de-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Los <strong>outliers</strong> son también conocidos como observaciones <em>atípicas</em> en los datos. A partir del modelo ajustado, podemos calcular</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Residuales crudos</strong>
+<span class="math display">\[
+\hat{\varepsilon}_i = y_i - \hat{y}_i .
+\]</span></p></li>
+<li><p><strong>Residuales estandarizados</strong>
+<span class="math display">\[
+d_i
+= \frac{\hat{\varepsilon}_i}{\hat{\sigma}}=\frac{\hat{\varepsilon}_i}{RMSE}, \text{ donde } RMSE=\sqrt{MSE}
+\]</span></p></li>
+<li><p><strong>Residuales estudentizados</strong>
+<span class="math display">\[
+r_i
+= \frac{\hat{\varepsilon}_i}{\,\hat{\sigma}\sqrt{1-h_{ii}}\,},
+\]</span>
+donde <span class="math inline">\(h_{ii}=X(X&#39;X)^{-1}X&#39;_{ii}\)</span> denominado el <strong>leverage</strong> y <span class="math inline">\(H=X(X&#39;X)^{-1}X&#39;\)</span> denominada la <a href="https://en.wikipedia.org/wiki/Projection_matrix">matriz hat</a></p></li>
+</ol>
+<div class="admon-box observacion">
+<div class="admon-title">
+<span class="icon"></span> Observación
+</div>
+<p>
+La mejor manera de identificar es mediante los <strong>residuales estudentizados</strong>. Diremos que la <span class="math inline">\(i\)</span>-ésima observación es un outlier si <span class="math inline">\(r_i \notin (-3,\,3)\)</span>.
+</p>
+<p>
+Se usa el umbral <span class="math inline">\(\pm 3\)</span> porque los residuales estudentizados <span class="math inline">\(r_i\)</span> se distribuyen aproximadamente como <span class="math inline">\(t_\nu\)</span> (casi <span class="math inline">\(\mathcal{N}(0,1)\)</span>); por la “regla 3-sigma”, <span class="math inline">\(|r_i|&gt;3\)</span> es extremadamente raro (<span class="math inline">\(\approx 0.3\%\)</span>, dos colas), por eso señala posibles <em>outliers</em> (ajustalo si hay muchas observaciones).
+</p>
+</div>
+<p>En <strong>R</strong> las funciones clases son:</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="rlm.html#cb68-1" tabindex="-1"></a><span class="co"># residuales crudos</span></span>
+<span id="cb68-2"><a href="rlm.html#cb68-2" tabindex="-1"></a>r_crudo <span class="ot">&lt;-</span> <span class="fu">residuals</span>(modelo)</span>
+<span id="cb68-3"><a href="rlm.html#cb68-3" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="rlm.html#cb68-4" tabindex="-1"></a><span class="co"># residuales estudentizados</span></span>
+<span id="cb68-5"><a href="rlm.html#cb68-5" tabindex="-1"></a>r_est <span class="ot">&lt;-</span> <span class="fu">rstudent</span>(modelo)</span>
+<span id="cb68-6"><a href="rlm.html#cb68-6" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="rlm.html#cb68-7" tabindex="-1"></a><span class="co"># residuales estandarizados</span></span>
+<span id="cb68-8"><a href="rlm.html#cb68-8" tabindex="-1"></a>r_normal <span class="ot">&lt;-</span> <span class="fu">rstandard</span>(modelo)</span></code></pre></div>
+</details>
+<p>donde <code>modelo</code> es el objeto <strong>R</strong> que contiene en modelo de RLM estimado. Para más detalles, se sugiere consultar la ayuda de cada función: <code>?residuals</code>, <code>?rstudent</code> y <code>?rstandard</code>.</p>
+<hr />
+<ul>
+<li>En nuestro ejemplo</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="rlm.html#cb69-1" tabindex="-1"></a><span class="co"># residuales estudentizados</span></span>
+<span id="cb69-2"><a href="rlm.html#cb69-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">rstudent</span>(modelo)</span>
+<span id="cb69-3"><a href="rlm.html#cb69-3" tabindex="-1"></a><span class="fu">which</span>(r <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">3</span> <span class="sc">|</span> r <span class="sc">&gt;</span> <span class="dv">3</span>)</span></code></pre></div>
+</details>
+<pre><code>## 18 
+## 18</code></pre>
+<ul>
+<li>La observación <span class="math inline">\(18\)</span> podría considerarse un outlier. En la práctica, el siguiente paso es evaluar la trazabilidad de esa observación y determinar si existen o no causas asignables para que esta sea un outlier. En caso de que exista una causa asignable, dicha observación debería removerse de la base de datos y, con los datos reducidos, estimar nuevamente el modelo de RLM.</li>
+</ul>
+<p>Otra forma de detectar <em>outliers</em> es a través de la <strong>prueba de Bonferroni</strong>.</p>
+<p>La prueba de hipotesis es</p>
+<p><span class="math display">\[
+H_0:\text{ la observación } i\text{-esima NO es un outlier} \quad vs \quad
+H_1:\text{ la observación } i \text{-esima SI es un outlier}
+\]</span>
+Esta prueba está implementada en la función <code>outlierTest</code> del paquete <code>car</code>.</p>
+<hr />
+<p>En nuestro ejemplo, procedemos de la siguiente manera:</p>
 
+</div>
 </div>
 </div>
 <h3>Referencias<a href="referencias-1.html#referencias-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>

@@ -183,3 +183,8 @@ tab:rlm-13
 coeficiente-de-determinación-r2-y-r2-ajustado-de-la-rlm
 prueba-individual-de-significancia-para-los-coeficientes
 intervalos-de-confianza-para-beta_j
+inferencia-para-la-respuesta
+intervalos-de-confianza-para-ey-mid-mathbfx_0
+intervalos-de-predicción-para-ey-mid-mathbfx_0
+análisis-de-residuales-1
+identificación-de-outliers
