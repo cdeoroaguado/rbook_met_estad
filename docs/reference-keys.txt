@@ -184,3 +184,9 @@ fig:github-e-fig
 fig:tidy-fig
 tab:evaluacion
 tab:biblio
+contexto-de-los-datos-de-housing
+análisis-de-la-variable-median_house_value-target
+fig:r-fig
+tab:tipo
+tab:representacion
+fig:r-fig-2

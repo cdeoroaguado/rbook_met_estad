@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 3 Análisis exploratorio de datos (EDA) | Notas de métodos estadísticos</title>
+  <meta name="description" content="Notas de clase de métodos estadísticos." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 3 Análisis exploratorio de datos (EDA) | Notas de métodos estadísticos" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de clase de métodos estadísticos." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 3 Análisis exploratorio de datos (EDA) | Notas de métodos estadísticos" />
+  
+  <meta name="twitter:description" content="Notas de clase de métodos estadísticos." />
+  
+
+<meta name="author" content="Carlos de Oro Aguado" />
+
+
+<meta name="date" content="2026-07-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="reglas.html"/>
+<link rel="next" href="referencias-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Notas de métodos estadísticos</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Asignatura</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="03-eda.html"><a href="#introducci%C3%B3n-a-r-y-rstudio"><i class="fa fa-check"></i><b>1.1</b> Introducción a R y RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="03-eda.html"><a href="#qu%C3%A9-es-r"><i class="fa fa-check"></i><b>1.1.1</b> ¿Qué es R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="03-eda.html"><a href="#qu%C3%A9-es-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es RStudio?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="03-eda.html"><a href="#introducci%C3%B3n-a-git-y-github"><i class="fa fa-check"></i><b>1.2</b> Introducción a Git y GitHub</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="03-eda.html"><a href="#qu%C3%A9-es-git"><i class="fa fa-check"></i><b>1.2.1</b> ¿Qué es Git?</a></li>
+<li class="chapter" data-level="1.2.2" data-path="03-eda.html"><a href="#qu%C3%A9-es-github"><i class="fa fa-check"></i><b>1.2.2</b> ¿Qué es GitHub?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="03-eda.html"><a href="#introducci%C3%B3n-a-tidyverse"><i class="fa fa-check"></i><b>1.3</b> Introducción a Tidyverse</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="03-eda.html"><a href="#representaci%C3%B3n-visual-del-ecosistema-tidyverse"><i class="fa fa-check"></i><b>1.3.1</b> Representación visual del ecosistema Tidyverse</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#principales-paquetes-del-tidyverse"><i class="fa fa-check"></i><b>1.3.2</b> Principales paquetes del Tidyverse</a></li>
+<li class="chapter" data-level="1.3.3" data-path="03-eda.html"><a href="#instalaci%C3%B3n-del-tidyverse-en-r"><i class="fa fa-check"></i><b>1.3.3</b> Instalación del Tidyverse en R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#pasos-para-publicar-un-libro-bookdown-en-github-pages"><i class="fa fa-check"></i><b>1.4</b> Pasos para publicar un libro <code>bookdown</code> en GitHub Pages</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="03-eda.html"><a href="#video-paso-a-paso-de-la-publicaci%C3%B3n-del-libro-en-github-pages"><i class="fa fa-check"></i><b>1.4.1</b> Video paso a paso de la publicación del libro en GitHub Pages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="reglas.html"><a href="reglas.html"><i class="fa fa-check"></i><b>2</b> Reglas de curso y diagnostico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="reglas.html"><a href="reglas.html#reglas-de-las-clases"><i class="fa fa-check"></i><b>2.1</b> Reglas de las clases</a></li>
+<li class="chapter" data-level="2.2" data-path="03-eda.html"><a href="#pol%C3%ADtica-de-evaluaci%C3%B3n-y-normas-de-integridad-acad%C3%A9mica"><i class="fa fa-check"></i><b>2.2</b> Política de evaluación y normas de integridad académica</a></li>
+<li class="chapter" data-level="2.3" data-path="reglas.html"><a href="reglas.html#fechas-de-taller-y-examenes"><i class="fa fa-check"></i><b>2.3</b> Fechas de taller y examenes</a></li>
+<li class="chapter" data-level="2.4" data-path="03-eda.html"><a href="#programaci%C3%B3n-del-curso-por-unidad"><i class="fa fa-check"></i><b>2.4</b> Programación del curso por unidad</a></li>
+<li class="chapter" data-level="2.5" data-path="reglas.html"><a href="reglas.html#referencias"><i class="fa fa-check"></i><b>2.5</b> Referencias</a></li>
+<li class="chapter" data-level="2.6" data-path="03-eda.html"><a href="#terminos-b%C3%A1sicos-de-la-estad%C3%ADstica"><i class="fa fa-check"></i><b>2.6</b> Terminos básicos de la estadística</a></li>
+<li class="chapter" data-level="2.7" data-path="03-eda.html"><a href="#diagnostico-de-estad%C3%ADstica-b%C3%A1sica"><i class="fa fa-check"></i><b>2.7</b> Diagnostico de estadística básica</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>3</b> Análisis exploratorio de datos (EDA)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-eda.html"><a href="#cu%C3%A1ndo-debo-utilizarlo"><i class="fa fa-check"></i><b>3.1</b> ¿Cuándo debo utilizarlo?</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="03-eda.html"><a href="#tipos-de-an%C3%A1lisis-exploratorio"><i class="fa fa-check"></i><b>3.1.1</b> Tipos de análisis exploratorio:</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="03-eda.html"><a href="#representaci%C3%B3n-de-datos-seg%C3%BAn-su-naturaleza"><i class="fa fa-check"></i><b>3.2</b> Representación de datos según su naturaleza</a></li>
+<li class="chapter" data-level="3.3" data-path="03-eda.html"><a href="#presentaci%C3%B3n-y-an%C3%A1lisis-de-la-informaci%C3%B3n-en-estudios-descriptivos"><i class="fa fa-check"></i><b>3.3</b> Presentación y análisis de la información en estudios descriptivos</a></li>
+<li class="chapter" data-level="3.4" data-path="03-eda.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-num%C3%A9rica"><i class="fa fa-check"></i><b>3.4</b> Análisis explotario con variable respuesta numérica</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="eda.html"><a href="eda.html#contexto-de-los-datos-de-housing"><i class="fa fa-check"></i><b>3.4.1</b> Contexto de los datos de housing</a></li>
+<li class="chapter" data-level="3.4.2" data-path="03-eda.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl"><i class="fa fa-check"></i><b>3.4.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.4.3" data-path="03-eda.html"><a href="#an%C3%A1lisis-de-la-variable-median_house_value-target"><i class="fa fa-check"></i><b>3.4.3</b> Análisis de la variable <code>median_house_value</code> (Target)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="03-eda.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes"><i class="fa fa-check"></i><b>3.4.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="03-eda.html"><a href="#an%C3%A1lisis-exploratorio-bivariado"><i class="fa fa-check"></i><b>3.4.5</b> Análisis exploratorio bivariado</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="03-eda.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-categ%C3%B3rica"><i class="fa fa-check"></i><b>3.5</b> Análisis explotario con variable respuesta categórica</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="eda.html"><a href="eda.html#contexto-del-conjunto-de-datos-de-marketing-de-un-banco"><i class="fa fa-check"></i><b>3.5.1</b> Contexto del conjunto de datos de marketing de un banco</a></li>
+<li class="chapter" data-level="3.5.2" data-path="03-eda.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl-1"><i class="fa fa-check"></i><b>3.5.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.5.3" data-path="03-eda.html"><a href="#an%C3%A1lisis-de-la-variable-y-target"><i class="fa fa-check"></i><b>3.5.3</b> Análisis de la variable <code>y</code> (Target)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="03-eda.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes-1"><i class="fa fa-check"></i><b>3.5.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.5.5" data-path="03-eda.html"><a href="#an%C3%A1lisis-exploratorio-bivariado-1"><i class="fa fa-check"></i><b>3.5.5</b> Análisis exploratorio bivariado</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notas de métodos estadísticos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="eda" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Capítulo 3</span> Análisis exploratorio de datos (EDA)<a href="eda.html#eda" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:r-fig"></span>
+<img src="images/eda.png" alt="Análisis exploratorio de datos (EDA)" width="30%" />
+<p class="caption">
+Figura 3.1: Análisis exploratorio de datos (EDA)
+</p>
+</div>
+<p>El <strong>Análisis Exploratorio de Datos</strong> (<em>Exploratory Data Analysis</em>, EDA por sus siglas en inglés) es una etapa fundamental del proceso estadístico que consiste en utilizar <strong>gráficos, visualizaciones y resúmenes numéricos</strong> para examinar un conjunto de datos.</p>
+<p>Su propósito principal es <strong>explorar, descubrir patrones, identificar anomalías y formular posibles hipótesis</strong>, sin realizar inferencias estadísticas formales. El EDA busca <strong>comprender la estructura de los datos</strong> y generar ideas, más que confirmar hipótesis previamente establecidas.</p>
+<div id="cuándo-debo-utilizarlo" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> ¿Cuándo debo utilizarlo?<a href="#cu%C3%A1ndo-debo-utilizarlo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El <strong>Análisis Exploratorio de Datos (EDA)</strong> es una herramienta poderosa para examinar, comprender y preparar un conjunto de datos. Aunque el análisis esté orientado a hipótesis específicas, el EDA es útil en etapas previas como la limpieza de datos, la detección de errores, el análisis de subgrupos o simplemente para obtener una mejor comprensión de la estructura y comportamiento de los datos.</p>
+<p>Uno de los pasos iniciales más importantes del EDA es la <strong>representación gráfica de los datos</strong>, que permite identificar patrones, tendencias y valores atípicos con mayor claridad.</p>
+<div id="tipos-de-análisis-exploratorio" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Tipos de análisis exploratorio:<a href="#tipos-de-an%C3%A1lisis-exploratorio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>No gráfico:</strong> Utiliza estadísticas descriptivas para resumir las variables numéricamente.</li>
+<li><strong>Gráfico:</strong> Representa visualmente los datos mediante histogramas, diagramas de caja, gráficos de dispersión, entre otros.</li>
+<li><strong>Univariado:</strong> Analiza una sola variable a la vez, observando su distribución, tendencia central y dispersión.</li>
+<li><strong>Multivariado:</strong> Examina dos o más variables simultáneamente, identificando relaciones o asociaciones entre ellas.</li>
+</ul>
+<p>Cada una de estas divisiones puede, a su vez, clasificarse según el tipo de variable involucrada: <strong>categórica</strong> o <strong>numérica</strong>.</p>
+</div>
+</div>
+<div id="representación-de-datos-según-su-naturaleza" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Representación de datos según su naturaleza<a href="#representaci%C3%B3n-de-datos-seg%C3%BAn-su-naturaleza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La forma en que se representan los datos depende fundamentalmente de su <strong>naturaleza</strong>, es decir, del <strong>tipo de variable</strong> que se está analizando. Esta clasificación influye directamente en la selección de métodos gráficos y estadísticos adecuados para el análisis.</p>
+<table>
+<caption><span id="tab:tipo">Tabla 3.1: </span>Fechas de cortes y distribución de porcentajes</caption>
+<colgroup>
+<col width="14%" />
+<col width="9%" />
+<col width="6%" />
+<col width="13%" />
+<col width="12%" />
+<col width="13%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Naturaleza.de.la.variable</th>
+<th align="left">Escala.de.Medidas</th>
+<th align="left">Frecuencias</th>
+<th align="left">Medidas.de.Localización</th>
+<th align="left">Medidas.de.Dispersión</th>
+<th align="left">Medidas.de.Distribución</th>
+<th align="left">Gráficos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Cualitativa</td>
+<td align="left">Nominal</td>
+<td align="left">Sí</td>
+<td align="left">Moda</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">Sectores, Barras</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Ordinal</td>
+<td align="left">Sí</td>
+<td align="left">Moda</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">Sectores, Barras (sin orden)</td>
+</tr>
+<tr class="odd">
+<td align="left">Cuantitativa</td>
+<td align="left">Intervalo</td>
+<td align="left">Agrupadas</td>
+<td align="left">Media, Mediana y Moda</td>
+<td align="left">Sí</td>
+<td align="left">Sí</td>
+<td align="left">Histograma, Tallo y hojas, Cajas y Bigotes, Dispersión</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Razón</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Sí</td>
+<td align="left">Sí</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="presentación-y-análisis-de-la-información-en-estudios-descriptivos" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Presentación y análisis de la información en estudios descriptivos<a href="#presentaci%C3%B3n-y-an%C3%A1lisis-de-la-informaci%C3%B3n-en-estudios-descriptivos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En los estudios descriptivos, la presentación y análisis de la información constituyen fases clave para comprender las características fundamentales de los datos recolectados. El objetivo principal es <strong>resumir y organizar</strong> la información de forma clara y accesible, sin realizar inferencias ni establecer relaciones causales.</p>
+<table class="table table-striped table-hover table-condensed table-responsive" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:representacion">Tabla 3.2: </span>Relación entre tipo de tabla y tipo de gráfico
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(217, 226, 241, 255) !important;">
+Tipo de Tabla
+</th>
+<th style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(217, 226, 241, 255) !important;">
+Tipo de Gráfico
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;color: black !important;background-color: rgba(231, 231, 231, 255) !important;width: 4cm; ">
+De Frecuencia (Variable Cualitativa)
+</td>
+<td style="text-align:left;color: black !important;background-color: rgba(231, 231, 231, 255) !important;width: 6cm; ">
+<ul>
+<li>Barras simples</li>
+<li>Pastel
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: black !important;background-color: white !important;width: 4cm; ">
+De Frecuencia (Variable Cuantitativa)
+</td>
+<td style="text-align:left;color: black !important;background-color: white !important;width: 6cm; ">
+<ul>
+<li>Histograma
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: black !important;background-color: rgba(242, 242, 242, 255) !important;width: 4cm; ">
+De Asociacion (Dos Variables Cualitativas)
+</td>
+<td style="text-align:left;color: black !important;background-color: rgba(242, 242, 242, 255) !important;width: 6cm; ">
+<ul>
+<li>Barras compuestas</li>
+</ul></li>
+</ul></li>
+<li>Barras superpuestas
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: black !important;background-color: rgba(242, 242, 242, 255) !important;width: 4cm; ">
+De Asociacion (Una Variable Cualitativa y una Cuantitativa Discreta)
+</td>
+<td style="text-align:left;color: black !important;background-color: rgba(242, 242, 242, 255) !important;width: 6cm; ">
+<ul>
+<li>Barras:</li>
+<li>Compuestas</li>
+<li>Superpuestas
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: black !important;background-color: white !important;width: 4cm; ">
+De Asociacion (Una Variable Cualitativa y una Cuantitativa Continua)
+</td>
+<td style="text-align:left;color: black !important;background-color: white !important;width: 6cm; ">
+<ul>
+<li>Poligono de Frecuencia</li>
+</ul></li>
+</ul></li>
+<li>Box plot (diagrama de cajas y bigotes)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: black !important;background-color: rgba(231, 231, 231, 255) !important;width: 4cm; ">
+De Asociacion (Dos Variables Cuantitativas)
+</td>
+<td style="text-align:left;color: black !important;background-color: rgba(231, 231, 231, 255) !important;width: 6cm; ">
+<ul>
+<li>Diagrama de Puntos
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+</ul>
+</div>
+<div id="análisis-explotario-con-variable-respuesta-numérica" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Análisis explotario con variable respuesta numérica<a href="#an%C3%A1lisis-explotario-con-variable-respuesta-num%C3%A9rica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para el desarrollo de las visualizaciones trabajaremos con el conjunto de datos <code>California Housing</code>, un conjunto de datos ampliamente utilizado en ciencia de datos y aprendizaje automático para problemas de regresión. Este conjunto contiene información sobre características demográficas, geográficas y socioeconómicas de distintos sectores censales del estado de California, con el objetivo de analizar y predecir el valor medio de las viviendas a partir de variables como la ubicación, el ingreso medio de los hogares, el número de habitaciones y la densidad poblacional.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:r-fig-2"></span>
+<img src="images/housing.jpg" alt="Tienda Walmart" width="50%" />
+<p class="caption">
+Figura 3.2: Tienda Walmart
+</p>
+</div>
+<p>El conjunto de datos completo puede encontrarse en el repositorio oficial de <strong>Scikit-learn</strong> y en diversas plataformas de ciencia de datos como Kaggle. En este material trabajaremos con una versión del California Housing Dataset, que contiene información de diferentes sectores censales del estado de California. El objetivo principal es predecir el valor medio de las viviendas (<code>median_house_value</code>) a partir de variables geográficas, demográficas y socioeconómicas. Entre las variables incluidas se encuentran la longitud y latitud del sector censal, la antigüedad media de las viviendas, el número total de habitaciones y dormitorios, la población, el número de hogares, el ingreso medio de los hogares (<code>median_income</code>) y la proximidad al océano (<code>ocean_proximity</code>), permitiendo realizar análisis exploratorios y desarrollar modelos de aprendizaje automático para problemas de regresión.</p>
+<div id="contexto-de-los-datos-de-housing" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Contexto de los datos de housing<a href="eda.html#contexto-de-los-datos-de-housing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Aquí tienes una explicación de las variables en el conjunto de datos de housing proporcionado:</p>
+<p>Las variables del conjunto de datos son</p>
+<ul>
+<li><strong>longitude</strong>: Coordenada de longitud de la ubicación de la vivienda.</li>
+<li><strong>latitude</strong>: Coordenada de latitud de la ubicación de la vivienda.</li>
+<li><strong>housing_median_age</strong>: Edad media de las casas en la zona.</li>
+<li><strong>total_rooms</strong>: Número total de habitaciones en las casas de la zona.</li>
+<li><strong>total_bedrooms</strong>: Número total de dormitorios en las casas de la zona.</li>
+<li><strong>population</strong>: Población total de la zona.</li>
+<li><strong>households</strong>: Número total de hogares en la zona.</li>
+<li><strong>median_income</strong>: Ingreso medio de los hogares en la zona (en decenas de miles de dólares).</li>
+<li><strong>median_house_value</strong>: Valor medio de las casas en la zona (en dólares).</li>
+<li><strong>ocean_proximity</strong>: Proximidad del área al océano.</li>
+</ul>
+<p>El objetivo a resolver es predecir el valor medio de las viviendas (<code>median_house_value</code>). Sin embargo, antes de construir modelos de regresión multiple, iniciaremos con un análisis exploratorio de datos (EDA) del conjunto California Housing, con el propósito de comprender la estructura de los datos, identificar patrones, detectar valores atípicos y analizar las relaciones entre las variables que pueden influir en el precio de las viviendas.</p>
+</div>
+<div id="extracción-transformación-y-carga-etl" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Extracción, transformación y carga (ETL)<a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Carguemos el conjunto de datos:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="eda.html#cb1-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/cdeoroaguado/Datos/main/dataml/housing.csv&quot;</span></span>
+<span id="cb1-2"><a href="eda.html#cb1-2" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url)</span></code></pre></div>
+</details>
+<ul>
+<li>Verifiquemos que leímos bien los datos viendo el encabezado y la cola de los datos:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="eda.html#cb2-1" tabindex="-1"></a><span class="fu">head</span>(datos,<span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
+</details>
+<pre><code>##   longitude latitude housing_median_age total_rooms total_bedrooms population
+## 1   -122.23    37.88                 41         880            129        322
+## 2   -122.22    37.86                 21        7099           1106       2401
+## 3   -122.24    37.85                 52        1467            190        496
+## 4   -122.25    37.85                 52        1274            235        558
+## 5   -122.25    37.85                 52        1627            280        565
+##   households median_income median_house_value ocean_proximity
+## 1        126        8.3252             452600        NEAR BAY
+## 2       1138        8.3014             358500        NEAR BAY
+## 3        177        7.2574             352100        NEAR BAY
+## 4        219        5.6431             341300        NEAR BAY
+## 5        259        3.8462             342200        NEAR BAY</code></pre>
+<p>Las dimensiones, los nombres de las columnas y la estructura de la base de datos se obtienen con los códigos:</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="eda.html#cb4-1" tabindex="-1"></a><span class="fu">dim</span>(datos)</span></code></pre></div>
+</details>
+<pre><code>## [1] 20640    10</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="eda.html#cb6-1" tabindex="-1"></a><span class="fu">colnames</span>(datos)</span></code></pre></div>
+</details>
+<pre><code>##  [1] &quot;longitude&quot;          &quot;latitude&quot;           &quot;housing_median_age&quot;
+##  [4] &quot;total_rooms&quot;        &quot;total_bedrooms&quot;     &quot;population&quot;        
+##  [7] &quot;households&quot;         &quot;median_income&quot;      &quot;median_house_value&quot;
+## [10] &quot;ocean_proximity&quot;</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="eda.html#cb8-1" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+</details>
+<pre><code>## &#39;data.frame&#39;:    20640 obs. of  10 variables:
+##  $ longitude         : num  -122 -122 -122 -122 -122 ...
+##  $ latitude          : num  37.9 37.9 37.9 37.9 37.9 ...
+##  $ housing_median_age: num  41 21 52 52 52 52 52 52 42 52 ...
+##  $ total_rooms       : num  880 7099 1467 1274 1627 ...
+##  $ total_bedrooms    : num  129 1106 190 235 280 ...
+##  $ population        : num  322 2401 496 558 565 ...
+##  $ households        : num  126 1138 177 219 259 ...
+##  $ median_income     : num  8.33 8.3 7.26 5.64 3.85 ...
+##  $ median_house_value: num  452600 358500 352100 341300 342200 ...
+##  $ ocean_proximity   : chr  &quot;NEAR BAY&quot; &quot;NEAR BAY&quot; &quot;NEAR BAY&quot; &quot;NEAR BAY&quot; ...</code></pre>
+<ul>
+<li>Identifiquemos los valores <code>NA</code> por columna:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="eda.html#cb10-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> datos</span>
+<span id="cb10-2"><a href="eda.html#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="eda.html#cb10-3" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="eda.html#cb10-4" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.)), <span class="at">.names =</span> <span class="st">&quot;NA_{.col}&quot;</span>))</span></code></pre></div>
+</details>
+<pre><code>##   NA_longitude NA_latitude NA_housing_median_age NA_total_rooms
+## 1            0           0                     0              0
+##   NA_total_bedrooms NA_population NA_households NA_median_income
+## 1               207             0             0                0
+##   NA_median_house_value NA_ocean_proximity
+## 1                     0                  0</code></pre>
+<ul>
+<li>Otra forma de hacerlo es:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="eda.html#cb12-1" tabindex="-1"></a><span class="fu">library</span>(Amelia)</span></code></pre></div>
+</details>
+<pre><code>## Warning: package &#39;Amelia&#39; was built under R version 4.5.3</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="eda.html#cb14-1" tabindex="-1"></a><span class="fu">missmap</span>(df)</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/na-amelia-1.png" width="672" />
+Como tenemos valores ausentes lo vamos a llenar con el promedio</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="eda.html#cb15-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="eda.html#cb15-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-3"><a href="eda.html#cb15-3" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb15-4"><a href="eda.html#cb15-4" tabindex="-1"></a>      <span class="fu">where</span>(is.numeric),</span>
+<span id="cb15-5"><a href="eda.html#cb15-5" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(.), <span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>), .)</span>
+<span id="cb15-6"><a href="eda.html#cb15-6" tabindex="-1"></a>    )</span>
+<span id="cb15-7"><a href="eda.html#cb15-7" tabindex="-1"></a>  )</span></code></pre></div>
+</details>
+<p>Verifiquemos si fueron llenado son el promedio</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="eda.html#cb16-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="eda.html#cb16-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.)), <span class="at">.names =</span> <span class="st">&quot;NA_{.col}&quot;</span>))</span></code></pre></div>
+</details>
+<pre><code>##   NA_longitude NA_latitude NA_housing_median_age NA_total_rooms
+## 1            0           0                     0              0
+##   NA_total_bedrooms NA_population NA_households NA_median_income
+## 1                 0             0             0                0
+##   NA_median_house_value NA_ocean_proximity
+## 1                     0                  0</code></pre>
+</div>
+<div id="análisis-de-la-variable-median_house_value-target" class="section level3 hasAnchor" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Análisis de la variable <code>median_house_value</code> (Target)<a href="#an%C3%A1lisis-de-la-variable-median_house_value-target" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Consideremos el resumen estadístico de la variable objetivo <code>median_house_value</code>, la cual representa el valor medio de las viviendas en cada zona censal:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="eda.html#cb18-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="eda.html#cb18-2" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb18-3"><a href="eda.html#cb18-3" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(median_house_value),</span>
+<span id="cb18-4"><a href="eda.html#cb18-4" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(median_house_value),</span>
+<span id="cb18-5"><a href="eda.html#cb18-5" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(median_house_value),</span>
+<span id="cb18-6"><a href="eda.html#cb18-6" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(median_house_value),</span>
+<span id="cb18-7"><a href="eda.html#cb18-7" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(median_house_value),</span>
+<span id="cb18-8"><a href="eda.html#cb18-8" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(median_house_value),</span>
+<span id="cb18-9"><a href="eda.html#cb18-9" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(median_house_value, <span class="fl">0.25</span>),</span>
+<span id="cb18-10"><a href="eda.html#cb18-10" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(median_house_value, <span class="fl">0.75</span>),</span>
+<span id="cb18-11"><a href="eda.html#cb18-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(median_house_value)</span>
+<span id="cb18-12"><a href="eda.html#cb18-12" tabindex="-1"></a>  )</span></code></pre></div>
+</details>
+<pre><code>##       n    media       ds mediana minimo maximo     Q1     Q3    IQR
+## 1 20640 206855.8 115395.6  179700  14999 500001 119600 264725 145125</code></pre>
+<p>La variable <code>median_house_value</code> fue analizada a partir de 20.640 observaciones correspondientes a diferentes sectores censales del estado de California. Se obtuvo un valor promedio de las viviendas de aproximadamente <span class="math inline">\(\$206.855,80\)</span> USD (DS = <span class="math inline">\(\$115.395,60\)</span> USD), donde el <span class="math inline">\(50\%\)</span> de los valores registrados se encuentran por debajo de <span class="math inline">\(\$179.700\)</span> USD.</p>
+<p>El valor mínimo registrado fue de <span class="math inline">\(\$14.999\)</span> USD, mientras que el máximo alcanzó los <span class="math inline">\(\$500.001\)</span> USD, evidenciando una alta variabilidad en los precios de las viviendas entre las diferentes zonas analizadas. El rango intercuartílico indica que el <span class="math inline">\(50\%\)</span> central de los valores se encuentra entre <span class="math inline">\(\$119.600\)</span> USD y <span class="math inline">\(\$264.725\)</span> USD, con una amplitud de <span class="math inline">\(\$145.125\)</span> USD.</p>
+<p>La diferencia entre la media y la mediana sugiere una posible asimetría positiva en la distribución, asociada a la presencia de zonas con valores de vivienda considerablemente elevados. Además, el valor máximo observado coincide con un límite superior del conjunto de datos, por lo que será necesario evaluar posteriormente su posible influencia durante el análisis exploratorio y la construcción de los modelos predictivos.</p>
+<ul>
+<li>Veamos un histograma</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="eda.html#cb20-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="eda.html#cb20-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> median_house_value)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="eda.html#cb20-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), </span>
+<span id="cb20-4"><a href="eda.html#cb20-4" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="dv">25000</span>, </span>
+<span id="cb20-5"><a href="eda.html#cb20-5" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;#2c7fb8&quot;</span>, </span>
+<span id="cb20-6"><a href="eda.html#cb20-6" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, </span>
+<span id="cb20-7"><a href="eda.html#cb20-7" tabindex="-1"></a>                 <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="eda.html#cb20-8" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="eda.html#cb20-9" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb20-10"><a href="eda.html#cb20-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución del valor medio de las viviendas&quot;</span>,</span>
+<span id="cb20-11"><a href="eda.html#cb20-11" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Valor medio de la vivienda (USD)&quot;</span>,</span>
+<span id="cb20-12"><a href="eda.html#cb20-12" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Densidad&quot;</span></span>
+<span id="cb20-13"><a href="eda.html#cb20-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-14"><a href="eda.html#cb20-14" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/hist-median-house-value-1.png" width="672" /></p>
+<ul>
+<li>Veamos un diagrama de cajas y bigotes</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="eda.html#cb21-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="eda.html#cb21-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> median_house_value)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="eda.html#cb21-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#a6cee3&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#1f78b4&quot;</span>, <span class="at">outlier.color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="eda.html#cb21-4" tabindex="-1"></a>  <span class="fu">stat_summary</span>(</span>
+<span id="cb21-5"><a href="eda.html#cb21-5" tabindex="-1"></a>    <span class="at">fun =</span> mean,</span>
+<span id="cb21-6"><a href="eda.html#cb21-6" tabindex="-1"></a>    <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,</span>
+<span id="cb21-7"><a href="eda.html#cb21-7" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">20</span>,</span>
+<span id="cb21-8"><a href="eda.html#cb21-8" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb21-9"><a href="eda.html#cb21-9" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;black&quot;</span></span>
+<span id="cb21-10"><a href="eda.html#cb21-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-11"><a href="eda.html#cb21-11" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-12"><a href="eda.html#cb21-12" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Diagrama de cajas y bigotes del valor medio de las viviendas&quot;</span>,</span>
+<span id="cb21-13"><a href="eda.html#cb21-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb21-14"><a href="eda.html#cb21-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Valor medio de la vivienda (USD)&quot;</span></span>
+<span id="cb21-15"><a href="eda.html#cb21-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-16"><a href="eda.html#cb21-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/box-median-house-value-1.png" width="672" /></p>
+<p>La distribución de <code>median_house_value</code> presenta una asimetría positiva, con una mayor concentración de viviendas en rangos de precios bajos y medios, mientras que una menor proporción de observaciones corresponde a viviendas de alto valor. El histograma y el diagrama de cajas evidencian la presencia de valores atípicos en el extremo superior de la distribución, así como una acumulación de observaciones alrededor de los 500.000 USD, lo que sugiere la existencia de un límite superior impuesto en el conjunto de datos. Esta característica provoca que la media sea superior a la mediana y puede influir en el ajuste de algunos modelos de aprendizaje automático, por lo que será importante considerarla durante las etapas posteriores del análisis y modelamiento.</p>
+</div>
+<div id="análisis-de-las-variables-características-independientes" class="section level3 hasAnchor" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> Análisis de las variables características (independientes)<a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Analizaremos el iniciamente las variables numéricas</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="eda.html#cb22-1" tabindex="-1"></a>resumen_numericas <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="eda.html#cb22-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric), <span class="sc">-</span>median_house_value) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="eda.html#cb22-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb22-4"><a href="eda.html#cb22-4" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb22-5"><a href="eda.html#cb22-5" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;variable&quot;</span>,</span>
+<span id="cb22-6"><a href="eda.html#cb22-6" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;valor&quot;</span></span>
+<span id="cb22-7"><a href="eda.html#cb22-7" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-8"><a href="eda.html#cb22-8" tabindex="-1"></a>  <span class="fu">group_by</span>(variable) <span class="sc">%&gt;%</span></span>
+<span id="cb22-9"><a href="eda.html#cb22-9" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-10"><a href="eda.html#cb22-10" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(valor)),</span>
+<span id="cb22-11"><a href="eda.html#cb22-11" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-12"><a href="eda.html#cb22-12" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-13"><a href="eda.html#cb22-13" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-14"><a href="eda.html#cb22-14" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-15"><a href="eda.html#cb22-15" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-16"><a href="eda.html#cb22-16" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(valor, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-17"><a href="eda.html#cb22-17" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(valor, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-18"><a href="eda.html#cb22-18" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-19"><a href="eda.html#cb22-19" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb22-20"><a href="eda.html#cb22-20" tabindex="-1"></a>  )</span>
+<span id="cb22-21"><a href="eda.html#cb22-21" tabindex="-1"></a></span>
+<span id="cb22-22"><a href="eda.html#cb22-22" tabindex="-1"></a>resumen_numericas</span></code></pre></div>
+</details>
+<pre><code>## # A tibble: 8 × 10
+##   variable      n   media     ds mediana   minimo  maximo      Q1      Q3    IQR
+##   &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 househol… 20640  500.   3.82e2  409       1      6082    280     605    3.25e2
+## 2 housing_… 20640   28.6  1.26e1   29       1        52     18      37    1.9 e1
+## 3 latitude  20640   35.6  2.14e0   34.3    32.5      42.0   33.9    37.7  3.78e0
+## 4 longitude 20640 -120.   2.00e0 -118.   -124.     -114.  -122.   -118.   3.79e0
+## 5 median_i… 20640    3.87 1.90e0    3.53    0.500    15.0    2.56    4.74 2.18e0
+## 6 populati… 20640 1425.   1.13e3 1166       3     35682    787    1725    9.38e2
+## 7 total_be… 20640  538.   4.19e2  438       1      6445    297     643.   3.46e2
+## 8 total_ro… 20640 2636.   2.18e3 2127       2     39320   1448.   3148    1.70e3</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="eda.html#cb24-1" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb24-2"><a href="eda.html#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="eda.html#cb24-3" tabindex="-1"></a><span class="co"># Boxplot de housing_median_age</span></span>
+<span id="cb24-4"><a href="eda.html#cb24-4" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="eda.html#cb24-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> housing_median_age)) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="eda.html#cb24-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1f77b4&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb24-7"><a href="eda.html#cb24-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-8"><a href="eda.html#cb24-8" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Antigüedad media de las viviendas&quot;</span>,</span>
+<span id="cb24-9"><a href="eda.html#cb24-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Años&quot;</span>,</span>
+<span id="cb24-10"><a href="eda.html#cb24-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb24-11"><a href="eda.html#cb24-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-12"><a href="eda.html#cb24-12" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb24-13"><a href="eda.html#cb24-13" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="eda.html#cb24-14" tabindex="-1"></a><span class="co"># Boxplot de total_rooms</span></span>
+<span id="cb24-15"><a href="eda.html#cb24-15" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb24-16"><a href="eda.html#cb24-16" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> total_rooms)) <span class="sc">+</span></span>
+<span id="cb24-17"><a href="eda.html#cb24-17" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#2ca02c&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb24-18"><a href="eda.html#cb24-18" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-19"><a href="eda.html#cb24-19" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Número total de habitaciones&quot;</span>,</span>
+<span id="cb24-20"><a href="eda.html#cb24-20" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Habitaciones&quot;</span>,</span>
+<span id="cb24-21"><a href="eda.html#cb24-21" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb24-22"><a href="eda.html#cb24-22" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-23"><a href="eda.html#cb24-23" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb24-24"><a href="eda.html#cb24-24" tabindex="-1"></a></span>
+<span id="cb24-25"><a href="eda.html#cb24-25" tabindex="-1"></a><span class="co"># Boxplot de total_bedrooms</span></span>
+<span id="cb24-26"><a href="eda.html#cb24-26" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb24-27"><a href="eda.html#cb24-27" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> total_bedrooms)) <span class="sc">+</span></span>
+<span id="cb24-28"><a href="eda.html#cb24-28" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#d62728&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb24-29"><a href="eda.html#cb24-29" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-30"><a href="eda.html#cb24-30" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Número total de dormitorios&quot;</span>,</span>
+<span id="cb24-31"><a href="eda.html#cb24-31" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Dormitorios&quot;</span>,</span>
+<span id="cb24-32"><a href="eda.html#cb24-32" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb24-33"><a href="eda.html#cb24-33" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-34"><a href="eda.html#cb24-34" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb24-35"><a href="eda.html#cb24-35" tabindex="-1"></a></span>
+<span id="cb24-36"><a href="eda.html#cb24-36" tabindex="-1"></a><span class="co"># Primera fila</span></span>
+<span id="cb24-37"><a href="eda.html#cb24-37" tabindex="-1"></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3 </span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/dc-var-ind-1.png" width="672" /></p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="eda.html#cb25-1" tabindex="-1"></a><span class="co"># Boxplot de population</span></span>
+<span id="cb25-2"><a href="eda.html#cb25-2" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="eda.html#cb25-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> population)) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="eda.html#cb25-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#9467bd&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="eda.html#cb25-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-6"><a href="eda.html#cb25-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Población&quot;</span>,</span>
+<span id="cb25-7"><a href="eda.html#cb25-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Habitantes&quot;</span>,</span>
+<span id="cb25-8"><a href="eda.html#cb25-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb25-9"><a href="eda.html#cb25-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="eda.html#cb25-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb25-11"><a href="eda.html#cb25-11" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="eda.html#cb25-12" tabindex="-1"></a><span class="co"># Boxplot de households</span></span>
+<span id="cb25-13"><a href="eda.html#cb25-13" tabindex="-1"></a>p5 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb25-14"><a href="eda.html#cb25-14" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> households)) <span class="sc">+</span></span>
+<span id="cb25-15"><a href="eda.html#cb25-15" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#ff7f0e&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb25-16"><a href="eda.html#cb25-16" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-17"><a href="eda.html#cb25-17" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Número de hogares&quot;</span>,</span>
+<span id="cb25-18"><a href="eda.html#cb25-18" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Hogares&quot;</span>,</span>
+<span id="cb25-19"><a href="eda.html#cb25-19" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb25-20"><a href="eda.html#cb25-20" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-21"><a href="eda.html#cb25-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb25-22"><a href="eda.html#cb25-22" tabindex="-1"></a></span>
+<span id="cb25-23"><a href="eda.html#cb25-23" tabindex="-1"></a><span class="co"># Boxplot de median_income</span></span>
+<span id="cb25-24"><a href="eda.html#cb25-24" tabindex="-1"></a>p6 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb25-25"><a href="eda.html#cb25-25" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> median_income)) <span class="sc">+</span></span>
+<span id="cb25-26"><a href="eda.html#cb25-26" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#8c564b&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb25-27"><a href="eda.html#cb25-27" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-28"><a href="eda.html#cb25-28" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Ingreso medio&quot;</span>,</span>
+<span id="cb25-29"><a href="eda.html#cb25-29" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Ingreso (decenas de miles de USD)&quot;</span>,</span>
+<span id="cb25-30"><a href="eda.html#cb25-30" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb25-31"><a href="eda.html#cb25-31" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-32"><a href="eda.html#cb25-32" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb25-33"><a href="eda.html#cb25-33" tabindex="-1"></a></span>
+<span id="cb25-34"><a href="eda.html#cb25-34" tabindex="-1"></a><span class="co"># Segunda fila</span></span>
+<span id="cb25-35"><a href="eda.html#cb25-35" tabindex="-1"></a>p4 <span class="sc">+</span> p5 <span class="sc">+</span> p6</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/dc-var-ind-2-1.png" width="672" /></p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Realizar las gráficas de las otras variables, además la interpretación de la tabla y el gráfico quedan como ejercicio
+</p>
+</div>
+<p>Ahora analizaremos las variables categóricas</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="eda.html#cb26-1" tabindex="-1"></a><span class="co"># Tabla de frecuencias para ocean_proximity</span></span>
+<span id="cb26-2"><a href="eda.html#cb26-2" tabindex="-1"></a>tabla_ocean <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="eda.html#cb26-3" tabindex="-1"></a>  <span class="fu">count</span>(ocean_proximity, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="eda.html#cb26-4" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb26-5"><a href="eda.html#cb26-5" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb26-6"><a href="eda.html#cb26-6" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;ocean_proximity&quot;</span>,</span>
+<span id="cb26-7"><a href="eda.html#cb26-7" tabindex="-1"></a>    <span class="at">Categoria =</span> <span class="fu">as.character</span>(ocean_proximity)</span>
+<span id="cb26-8"><a href="eda.html#cb26-8" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb26-9"><a href="eda.html#cb26-9" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb26-10"><a href="eda.html#cb26-10" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="eda.html#cb26-11" tabindex="-1"></a>tabla_ocean</span></code></pre></div>
+</details>
+<pre><code>##          Variable  Categoria Frecuencia Porcentaje
+## 1 ocean_proximity  &lt;1H OCEAN       9136      44.26
+## 2 ocean_proximity     INLAND       6551      31.74
+## 3 ocean_proximity     ISLAND          5       0.02
+## 4 ocean_proximity   NEAR BAY       2290      11.09
+## 5 ocean_proximity NEAR OCEAN       2658      12.88</code></pre>
+<p>La variable <code>ocean_proximity</code> presenta una distribución desigual entre sus categorías. La categoría <code>&lt;1H OCEAN</code> concentra el <span class="math inline">\(44.26\%\)</span> de los registros, seguida de <code>INLAND</code> con el <span class="math inline">\(31.74\%\)</span>, por lo que en conjunto ambas representan el <span class="math inline">\(76.00\%\)</span> de las observaciones. Las categorías <code>NEAR OCEAN</code> y <code>NEAR BAY</code> corresponden al <span class="math inline">\(12.88\%\)</span> y <span class="math inline">\(11.09\%\)</span>, respectivamente, mientras que <code>ISLAND</code> representa únicamente el <span class="math inline">\(0.02\%\)</span> de los datos, con tan solo 5 observaciones.</p>
+<p>Esta distribución evidencia un desbalance entre las categorías, especialmente en el caso de <code>ISLAND</code>, cuya baja frecuencia puede dificultar la estimación confiable de modelos estadísticos. En consecuencia, durante el proceso de modelamiento será necesario considerar este desbalance, ya sea mediante técnicas de codificación adecuadas, agrupación de categorías poco representadas o evaluando el impacto de esta categoría en el desempeño de los modelos.</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="eda.html#cb28-1" tabindex="-1"></a>tabla_ocean_b <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="eda.html#cb28-2" tabindex="-1"></a>  <span class="fu">count</span>(ocean_proximity, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="eda.html#cb28-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb28-4"><a href="eda.html#cb28-4" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb28-5"><a href="eda.html#cb28-5" tabindex="-1"></a>    <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>)</span>
+<span id="cb28-6"><a href="eda.html#cb28-6" tabindex="-1"></a>  )</span>
+<span id="cb28-7"><a href="eda.html#cb28-7" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="eda.html#cb28-8" tabindex="-1"></a><span class="fu">ggplot</span>(tabla_ocean_b, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(ocean_proximity, <span class="sc">-</span>Frecuencia), <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
+<span id="cb28-9"><a href="eda.html#cb28-9" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb28-10"><a href="eda.html#cb28-10" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb28-11"><a href="eda.html#cb28-11" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;Distribución de la variable ocean_proximity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb28-12"><a href="eda.html#cb28-12" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb28-13"><a href="eda.html#cb28-13" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb28-14"><a href="eda.html#cb28-14" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Proximidad al océano&quot;</span>,</span>
+<span id="cb28-15"><a href="eda.html#cb28-15" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span></span>
+<span id="cb28-16"><a href="eda.html#cb28-16" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb28-17"><a href="eda.html#cb28-17" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb28-18"><a href="eda.html#cb28-18" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb28-19"><a href="eda.html#cb28-19" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb28-20"><a href="eda.html#cb28-20" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb28-21"><a href="eda.html#cb28-21" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb28-22"><a href="eda.html#cb28-22" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb28-23"><a href="eda.html#cb28-23" tabindex="-1"></a>  )</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/db-cat-type-1.png" width="672" /></p>
+<p>La categoría <code>&lt;1H OCEAN</code> concentra la mayor proporción de observaciones, con <span class="math inline">\(9.136\)</span> registros (<span class="math inline">\(44.3\%\)</span>), seguida por <code>INLAND</code>, con <span class="math inline">\(6.551\)</span> registros (<span class="math inline">\(31.7\%\)</span>). En conjunto, estas dos categorías representan aproximadamente el <span class="math inline">\(76.0\%\)</span> del conjunto de datos. Por otra parte, las categorías <code>NEAR OCEAN</code> y <code>NEAR BAY</code> corresponden al <span class="math inline">\(12.9\%\)</span> y <span class="math inline">\(11.1\%\)</span> de las observaciones, respectivamente, mientras que <code>ISLAND</code> está representada por únicamente 5 registros (<span class="math inline">\(0.02\%\)</span>), lo que evidencia un marcado desbalance entre las categorías de la variable <code>ocean_proximity</code>.</p>
+</div>
+<div id="análisis-exploratorio-bivariado" class="section level3 hasAnchor" number="3.4.5">
+<h3><span class="header-section-number">3.4.5</span> Análisis exploratorio bivariado<a href="#an%C3%A1lisis-exploratorio-bivariado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>A continuación, analizaremos la relación entre la variable objetivo <code>median_house_value</code> y las variables numéricas independientes, con el fin de identificar posibles patrones, tendencias y asociaciones que puedan ser útiles para la construcción de modelos.</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="eda.html#cb29-1" tabindex="-1"></a><span class="co"># Diagrama de dispersión: median_house_value vs median_income</span></span>
+<span id="cb29-2"><a href="eda.html#cb29-2" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="eda.html#cb29-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> median_income, <span class="at">y =</span> median_house_value)) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="eda.html#cb29-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">&quot;#1E90FF&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="eda.html#cb29-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-6"><a href="eda.html#cb29-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb29-7"><a href="eda.html#cb29-7" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Ingreso medio&quot;</span>,</span>
+<span id="cb29-8"><a href="eda.html#cb29-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Valor medio de la vivienda (USD)&quot;</span></span>
+<span id="cb29-9"><a href="eda.html#cb29-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-10"><a href="eda.html#cb29-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb29-11"><a href="eda.html#cb29-11" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> <span class="st">&quot;Dispersión entre el ingreso medio y el valor de las viviendas&quot;</span>)</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/disp-1.png" width="672" /></p>
+<p>Los puntos presentan una tendencia ascendente claramente definida, indicando que, a medida que aumenta el ingreso medio (<code>median_income</code>) de una zona censal, también tiende a incrementarse el valor medio de las viviendas (<code>median_house_value</code>). La mayor concentración de observaciones se encuentra en ingresos medios entre 2 y 6 y valores de vivienda inferiores a <span class="math inline">\(400000\)</span> USD, aunque existe una dispersión considerable para un mismo nivel de ingreso.</p>
+<p>Se observa que la variabilidad del precio de las viviendas aumenta conforme crece el ingreso medio, lo que sugiere que en las zonas con mayores ingresos existen viviendas con un rango de precios más amplio. Asimismo, se aprecia una acumulación de observaciones alrededor de los <span class="math inline">\(500000\)</span> USD, correspondiente al límite superior del conjunto de datos, lo que indica un posible efecto de censura en la variable objetivo.</p>
+<p>En general, la relación entre <code>median_income</code> y <code>median_house_value</code> es positiva y aproximadamente lineal, siendo una de las asociaciones más fuertes del conjunto de datos. Esto sugiere que el ingreso medio constituye una variable con un alto poder explicativo para predecir el valor de las viviendas y, por tanto, será un predictor fundamental en la construcción de los modelos de regresión.</p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Realiza los diagramas de dispersión de la variable <code>median_house_value</code> con respecto a las variables independientes que hacen falta. Analiza e interpreta la relación observada entre estas variables, indicando si existe una tendencia lineal, la presencia de valores atípicos y el grado de asociación con la variable objetivo.
+</p>
+</div>
+<ul>
+<li>Realizaremos la comparación de la variable objetivo median_house_value con respecto a la variable categórica ocean_proximity, con el fin de evaluar si existen diferencias en el valor medio de las viviendas según la proximidad al océano.</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="eda.html#cb30-1" tabindex="-1"></a><span class="co"># Resumen de median_house_value por ocean_proximity</span></span>
+<span id="cb30-2"><a href="eda.html#cb30-2" tabindex="-1"></a>ocean_house <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="eda.html#cb30-3" tabindex="-1"></a>  <span class="fu">group_by</span>(ocean_proximity) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="eda.html#cb30-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb30-5"><a href="eda.html#cb30-5" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(median_house_value),</span>
+<span id="cb30-6"><a href="eda.html#cb30-6" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(median_house_value),</span>
+<span id="cb30-7"><a href="eda.html#cb30-7" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(median_house_value),</span>
+<span id="cb30-8"><a href="eda.html#cb30-8" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(median_house_value),</span>
+<span id="cb30-9"><a href="eda.html#cb30-9" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(median_house_value),</span>
+<span id="cb30-10"><a href="eda.html#cb30-10" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(median_house_value),</span>
+<span id="cb30-11"><a href="eda.html#cb30-11" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(median_house_value, <span class="fl">0.25</span>),</span>
+<span id="cb30-12"><a href="eda.html#cb30-12" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(median_house_value, <span class="fl">0.75</span>),</span>
+<span id="cb30-13"><a href="eda.html#cb30-13" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(median_house_value),</span>
+<span id="cb30-14"><a href="eda.html#cb30-14" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb30-15"><a href="eda.html#cb30-15" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb30-16"><a href="eda.html#cb30-16" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb30-17"><a href="eda.html#cb30-17" tabindex="-1"></a>    <span class="at">variable =</span> <span class="st">&quot;ocean_proximity&quot;</span>,</span>
+<span id="cb30-18"><a href="eda.html#cb30-18" tabindex="-1"></a>    <span class="at">niveles =</span> <span class="fu">as.character</span>(ocean_proximity)</span>
+<span id="cb30-19"><a href="eda.html#cb30-19" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb30-20"><a href="eda.html#cb30-20" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>ocean_proximity)</span>
+<span id="cb30-21"><a href="eda.html#cb30-21" tabindex="-1"></a></span>
+<span id="cb30-22"><a href="eda.html#cb30-22" tabindex="-1"></a>ocean_house</span></code></pre></div>
+</details>
+<pre><code>## # A tibble: 5 × 11
+##   variable       niveles     n  media     ds mediana minimo maximo     Q1     Q3
+##   &lt;chr&gt;          &lt;chr&gt;   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 ocean_proximi… &lt;1H OC…  9136 2.40e5 1.06e5  214850  17500 500001 164100 289100
+## 2 ocean_proximi… INLAND   6551 1.25e5 7.00e4  108500  14999 500001  77500 148950
+## 3 ocean_proximi… ISLAND      5 3.80e5 8.06e4  414700 287500 450000 300000 450000
+## 4 ocean_proximi… NEAR B…  2290 2.59e5 1.23e5  233800  22500 500001 162500 345700
+## 5 ocean_proximi… NEAR O…  2658 2.49e5 1.22e5  229450  22500 500001 150000 322750
+## # ℹ 1 more variable: IQR &lt;dbl&gt;</code></pre>
+<p>La variable <code>ocean_proximity</code> clasifica los sectores censales según su proximidad al océano y presenta cinco categorías. La categoría <code>&lt;1H OCEAN</code> concentra el mayor número de observaciones (<span class="math inline">\(44.3%\)</span>, <span class="math inline">\(n = 9136\)</span>), seguida de <code>INLAND</code> (<span class="math inline">\(31.7\%\)</span>, <span class="math inline">\(n = 6551\)</span>), mientras que <code>NEAR OCEAN</code> (<span class="math inline">\(12.9\%\)</span>, <span class="math inline">\(n = 2658\)</span>) y <code>NEAR BAY</code> (<span class="math inline">\(11.1%\)</span>, <span class="math inline">\(n = 2290\)</span>) representan proporciones menores. La categoría <code>ISLAND</code> es prácticamente inexistente en el conjunto de datos, con únicamente 5 observaciones (<span class="math inline">\(0.02\%\)</span>), por lo que cualquier conclusión sobre este grupo debe interpretarse con cautela.</p>
+<p>Se observan diferencias importantes en el valor medio de las viviendas entre las distintas categorías. Los sectores <code>ISLAND</code> presentan el mayor valor promedio de las viviendas <span class="math inline">\(380440\)</span> USD, (<span class="math inline">\(DS = 80559,56\)</span> USD); sin embargo, debido a su reducido tamaño muestral, este resultado no es representativo de la población. Entre las categorías con un número considerable de observaciones, <code>NEAR BAY</code> registra el mayor valor medio con <span class="math inline">\(259212,30\)</span> USD, (<span class="math inline">\(DS = 122818,54\)</span> USD), seguida de <code>NEAR OCEAN</code> con <span class="math inline">\(249434,00\)</span> USD, (<span class="math inline">\(DS = 122.477,15\)</span> USD) y <code>&lt;1H OCEAN</code> con <span class="math inline">\(240084,30\)</span> USD, (<span class="math inline">\(DS = 106124,29\)</span> USD). En contraste, la categoría <code>INLAND</code> presenta el menor valor promedio con <span class="math inline">\(124805,40\)</span> USD, (<span class="math inline">\(DS = 70007,91\)</span> USD), lo que sugiere que las viviendas ubicadas en zonas alejadas de la costa tienden a tener precios considerablemente inferiores.</p>
+<p>La mediana del valor de las viviendas sigue el mismo comportamiento observado en la media, siendo más elevada en las categorías cercanas al océano y menor en las zonas del interior. Asimismo, las categorías <code>NEAR BAY</code> y <code>NEAR OCEAN</code> presentan los mayores rangos intercuartílicos (<span class="math inline">\(183200\)</span> USD y <span class="math inline">\(172750\)</span> USD, respectivamente), lo que evidencia una mayor heterogeneidad en los precios de las viviendas. Por otra parte, todas las categorías, excepto <code>ISLAND</code>, alcanzan el valor máximo de <span class="math inline">\(500001\)</span> USD, lo que confirma la existencia del límite superior impuesto en la variable median_house_value. En conjunto, estos resultados indican que la proximidad al océano constituye un factor asociado con el valor de las viviendas y, por tanto, esta variable podría aportar información relevante en la construcción de modelos predictivos.</p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Realiza el gráfico de dispersión de las variables independientes numéricas y su interpretación.
+</p>
+</div>
+<div class="admon-box nota">
+<div class="admon-title">
+<span class="icon"></span> Paquete <code>GGally</code>
+</div>
+<p>
+<p>El paquete <code>GGally</code> es una extensión de <code>ggplot2</code> que facilita la creación de gráficos multivariados para análisis exploratorio de datos. Una de sus funciones más utilizadas es <code>ggpairs()</code>, que permite visualizar simultáneamente relaciones entre varias variables, tanto numéricas como categóricas, mediante:</p>
+<ul>
+<li>Diagramas de dispersión (scatterplots),</li>
+<li>Histogramas o densidades en la diagonal,</li>
+<li>Correlaciones entre pares de variables numéricas.</li>
+</ul>
+<p>Esto es especialmente útil para detectar patrones, asociaciones o valores atípicos en conjuntos de datos con múltiples variables.</p>
+<p>Su instalación y carga del paquete</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="eda.html#cb32-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;GGally&quot;</span>)</span>
+<span id="cb32-2"><a href="eda.html#cb32-2" tabindex="-1"></a><span class="fu">library</span>(GGally)</span></code></pre></div>
+</details>
+</p>
+</div>
+<p>Modo de uso del paquete <code>GGally</code>:</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="eda.html#cb33-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span></code></pre></div>
+</details>
+<pre><code>## Warning: package &#39;GGally&#39; was built under R version 4.5.3</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="eda.html#cb35-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="eda.html#cb35-2" tabindex="-1"></a>  <span class="fu">ggpairs</span>()</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/ggally-1.png" width="672" /></p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Menciona los errores que puedes encontrar en el gráfico
+</p>
+</div>
+</div>
+</div>
+<div id="análisis-explotario-con-variable-respuesta-categórica" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Análisis explotario con variable respuesta categórica<a href="#an%C3%A1lisis-explotario-con-variable-respuesta-categ%C3%B3rica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="contexto-del-conjunto-de-datos-de-marketing-de-un-banco" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Contexto del conjunto de datos de marketing de un banco<a href="eda.html#contexto-del-conjunto-de-datos-de-marketing-de-un-banco" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Este conjunto de datos corresponde a <strong>campañas de marketing directo</strong> realizadas por una institución bancaria portuguesa, cuyo objetivo era promover la contratación de <strong>depósitos a plazo fijo</strong> por parte de sus clientes. Las campañas se llevaron a cabo principalmente mediante llamadas telefónicas, y los datos recolectados reflejan tanto características socioeconómicas del cliente como información específica de la interacción comercial.</p>
+<p>El conjunto contiene <strong>4521 observaciones</strong> y <strong>17 variables</strong>, entre las cuales se incluyen datos demográficos, financieros y relacionados con el historial de contacto de cada cliente. A continuación se describen las variables:</p>
+<p>Estas son las variables</p>
+<ul>
+<li><strong>age</strong>: Edad del cliente.<br />
+</li>
+<li><strong>job</strong>: Profesión del cliente (por ejemplo: desempleado, servicios, gestión).<br />
+</li>
+<li><strong>marital</strong>: Estado civil del cliente (soltero, casado, divorciado).<br />
+</li>
+<li><strong>education</strong>: Nivel educativo (primaria, secundaria, terciaria).<br />
+</li>
+<li><strong>default</strong>: Indica si el cliente tiene crédito en incumplimiento (sí/no).<br />
+</li>
+<li><strong>balance</strong>: Saldo promedio anual de la cuenta bancaria.<br />
+</li>
+<li><strong>housing</strong>: Indica si posee préstamo hipotecario (sí/no).<br />
+</li>
+<li><strong>loan</strong>: Indica si tiene préstamo personal (sí/no).<br />
+</li>
+<li><strong>contact</strong>: Tipo de comunicación utilizada (celular o fijo).<br />
+</li>
+<li><strong>day</strong>: Día del mes en que se realizó el último contacto.<br />
+</li>
+<li><strong>month</strong>: Mes del último contacto.<br />
+</li>
+<li><strong>duration</strong>: Duración de la última llamada (en segundos).<br />
+</li>
+<li><strong>campaign</strong>: Número de contactos realizados durante la campaña actual.<br />
+</li>
+<li><strong>pdays</strong>: Número de días transcurridos desde el último contacto previo (valor -1 indica que no hubo contacto anterior).<br />
+</li>
+<li><strong>previous</strong>: Número de contactos previos al actual.<br />
+</li>
+<li><strong>poutcome</strong>: Resultado de una campaña anterior (éxito, fracaso, desconocido).<br />
+</li>
+<li><strong>y</strong>: Variable objetivo que indica si el cliente <strong>aceptó (yes)</strong> o <strong>no aceptó (no)</strong> contratar un depósito a plazo fijo.</li>
+</ul>
+<p>El objetivo principal es <strong>predecir si un cliente aceptará o no un depósito a plazo fijo</strong> (<code>y</code>), a partir de sus características personales, financieras y del historial de contactos anteriores. Este análisis permitirá a la entidad financiera <strong>optimizar sus estrategias de marketing</strong>, enfocándose en los perfiles con mayor probabilidad de conversión, reduciendo costos y mejorando la eficiencia de las campañas.</p>
+<p>Inicialmente, haremos un análisis exploratorio de los datos.</p>
+</div>
+<div id="extracción-transformación-y-carga-etl-1" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Extracción, transformación y carga (ETL)<a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Carguemos el conjunto de datos:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="eda.html#cb36-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/cdeoroaguado/Datos/refs/heads/main/datamanip/bank.csv&quot;</span></span>
+<span id="cb36-2"><a href="eda.html#cb36-2" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</details>
+<ul>
+<li>Verifiquemos que leímos bien los datos viendo el encabezado y la cola de los datos:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="eda.html#cb37-1" tabindex="-1"></a><span class="fu">head</span>(datos,<span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
+</details>
+<pre><code>##   age         job marital education default balance housing loan  contact day
+## 1  30  unemployed married   primary      no    1787      no   no cellular  19
+## 2  33    services married secondary      no    4789     yes  yes cellular  11
+## 3  35  management  single  tertiary      no    1350     yes   no cellular  16
+## 4  30  management married  tertiary      no    1476     yes  yes  unknown   3
+## 5  59 blue-collar married secondary      no       0     yes   no  unknown   5
+##   month duration campaign pdays previous poutcome  y
+## 1   oct       79        1    -1        0  unknown no
+## 2   may      220        1   339        4  failure no
+## 3   apr      185        1   330        1  failure no
+## 4   jun      199        4    -1        0  unknown no
+## 5   may      226        1    -1        0  unknown no</code></pre>
+<p>Las dimensiones, los nombres de las columnas y la estructura de la base de datos se obtienen con los códigos:</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="eda.html#cb39-1" tabindex="-1"></a><span class="fu">dim</span>(datos)</span></code></pre></div>
+</details>
+<pre><code>## [1] 4521   17</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="eda.html#cb41-1" tabindex="-1"></a><span class="fu">colnames</span>(datos)</span></code></pre></div>
+</details>
+<pre><code>##  [1] &quot;age&quot;       &quot;job&quot;       &quot;marital&quot;   &quot;education&quot; &quot;default&quot;   &quot;balance&quot;  
+##  [7] &quot;housing&quot;   &quot;loan&quot;      &quot;contact&quot;   &quot;day&quot;       &quot;month&quot;     &quot;duration&quot; 
+## [13] &quot;campaign&quot;  &quot;pdays&quot;     &quot;previous&quot;  &quot;poutcome&quot;  &quot;y&quot;</code></pre>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="eda.html#cb43-1" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+</details>
+<pre><code>## &#39;data.frame&#39;:    4521 obs. of  17 variables:
+##  $ age      : int  30 33 35 30 59 35 36 39 41 43 ...
+##  $ job      : Factor w/ 12 levels &quot;admin.&quot;,&quot;blue-collar&quot;,..: 11 8 5 5 2 5 7 10 3 8 ...
+##  $ marital  : Factor w/ 3 levels &quot;divorced&quot;,&quot;married&quot;,..: 2 2 3 2 2 3 2 2 2 2 ...
+##  $ education: Factor w/ 4 levels &quot;primary&quot;,&quot;secondary&quot;,..: 1 2 3 3 2 3 3 2 3 1 ...
+##  $ default  : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ balance  : int  1787 4789 1350 1476 0 747 307 147 221 -88 ...
+##  $ housing  : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 1 2 2 2 2 1 2 2 2 2 ...
+##  $ loan     : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 1 2 1 2 1 1 1 1 1 2 ...
+##  $ contact  : Factor w/ 3 levels &quot;cellular&quot;,&quot;telephone&quot;,..: 1 1 1 3 3 1 1 1 3 1 ...
+##  $ day      : int  19 11 16 3 5 23 14 6 14 17 ...
+##  $ month    : Factor w/ 12 levels &quot;apr&quot;,&quot;aug&quot;,&quot;dec&quot;,..: 11 9 1 7 9 4 9 9 9 1 ...
+##  $ duration : int  79 220 185 199 226 141 341 151 57 313 ...
+##  $ campaign : int  1 1 1 4 1 2 1 2 2 1 ...
+##  $ pdays    : int  -1 339 330 -1 -1 176 330 -1 -1 147 ...
+##  $ previous : int  0 4 1 0 0 3 2 0 0 2 ...
+##  $ poutcome : Factor w/ 4 levels &quot;failure&quot;,&quot;other&quot;,..: 4 1 1 4 4 1 2 4 4 1 ...
+##  $ y        : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<ul>
+<li>Para facilitar el análisis exploratorio y evitar redundancias o ruido en el modelo, se eliminarán las variables <code>day</code>, <code>month</code> y <code>previous</code>.</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="eda.html#cb45-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb45-2"><a href="eda.html#cb45-2" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="eda.html#cb45-3" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb45-4"><a href="eda.html#cb45-4" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>day, <span class="sc">-</span>month, <span class="sc">-</span>previous) <span class="ot">-&gt;</span> df</span></code></pre></div>
+</details>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="eda.html#cb46-1" tabindex="-1"></a><span class="fu">head</span>(df, <span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
+</details>
+<pre><code>##   age         job marital education default balance housing loan  contact
+## 1  30  unemployed married   primary      no    1787      no   no cellular
+## 2  33    services married secondary      no    4789     yes  yes cellular
+## 3  35  management  single  tertiary      no    1350     yes   no cellular
+## 4  30  management married  tertiary      no    1476     yes  yes  unknown
+## 5  59 blue-collar married secondary      no       0     yes   no  unknown
+##   duration campaign pdays poutcome  y
+## 1       79        1    -1  unknown no
+## 2      220        1   339  failure no
+## 3      185        1   330  failure no
+## 4      199        4    -1  unknown no
+## 5      226        1    -1  unknown no</code></pre>
+<ul>
+<li>Identifiquemos los valores <code>NA</code> por columna:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="eda.html#cb48-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="eda.html#cb48-2" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.)), <span class="at">.names =</span> <span class="st">&quot;NA_{.col}&quot;</span>))</span></code></pre></div>
+</details>
+<pre><code>##   NA_age NA_job NA_marital NA_education NA_default NA_balance NA_housing
+## 1      0      0          0            0          0          0          0
+##   NA_loan NA_contact NA_duration NA_campaign NA_pdays NA_poutcome NA_y
+## 1       0          0           0           0        0           0    0</code></pre>
+<ul>
+<li>Otra forma de hacerlo es:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="eda.html#cb50-1" tabindex="-1"></a><span class="fu">library</span>(Amelia)</span>
+<span id="cb50-2"><a href="eda.html#cb50-2" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="eda.html#cb50-3" tabindex="-1"></a><span class="fu">missmap</span>(df)</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/na_amelia_resp_cat-1.png" width="672" /></p>
+</div>
+<div id="análisis-de-la-variable-y-target" class="section level3 hasAnchor" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> Análisis de la variable <code>y</code> (Target)<a href="#an%C3%A1lisis-de-la-variable-y-target" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Consideremos el resumen de la <code>y</code>:</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="eda.html#cb51-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb51-2"><a href="eda.html#cb51-2" tabindex="-1"></a>  <span class="fu">count</span>(y) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-3"><a href="eda.html#cb51-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">porcentaje =</span> (n<span class="sc">/</span><span class="fu">sum</span>(n))<span class="sc">*</span><span class="dv">100</span>)</span></code></pre></div>
+</details>
+<pre><code>##     y    n porcentaje
+## 1  no 4000     88.476
+## 2 yes  521     11.524</code></pre>
+<p>La variable <code>y</code> representa el resultado de la campaña de marketing, indicando si el cliente aceptó (<code>yes</code>) o no aceptó (<code>no</code>) contratar un depósito a plazo fijo. De un total de <span class="math inline">\(4521\)</span> observaciones, el <span class="math inline">\(88.48\%\)</span> de los clientes (<span class="math inline">\(n = 4000\)</span>) no aceptaron la oferta, mientras que solo el <span class="math inline">\(11.52\%\)</span> (<span class="math inline">\(n = 521\)</span>) sí lo hicieron. Esta distribución refleja un fuerte desequilibrio en los clientes, lo que sugiere que la mayoría de los clientes no están interesados en este producto financiero, y dicho desequilibrio debe considerarse cuidadosamente al construir modelos de predicción.</p>
+<ul>
+<li>Veamos un diagrama de barras</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="eda.html#cb53-1" tabindex="-1"></a><span class="co"># Crear tabla de frecuencias para department</span></span>
+<span id="cb53-2"><a href="eda.html#cb53-2" tabindex="-1"></a>tabla_y <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb53-3"><a href="eda.html#cb53-3" tabindex="-1"></a>  <span class="fu">count</span>(y, <span class="at">name =</span> <span class="st">&quot;Clientes&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb53-4"><a href="eda.html#cb53-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Clientes <span class="sc">/</span> <span class="fu">sum</span>(Clientes) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb53-5"><a href="eda.html#cb53-5" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Clientes, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb53-6"><a href="eda.html#cb53-6" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="eda.html#cb53-7" tabindex="-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb53-8"><a href="eda.html#cb53-8" tabindex="-1"></a>tabla_y <span class="sc">%&gt;%</span> </span>
+<span id="cb53-9"><a href="eda.html#cb53-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(y), <span class="at">y =</span> Clientes)) <span class="sc">+</span></span>
+<span id="cb53-10"><a href="eda.html#cb53-10" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb53-11"><a href="eda.html#cb53-11" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb53-12"><a href="eda.html#cb53-12" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span> <span class="st">&quot;Distribución de la campaña de marketing (no/yes)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb53-13"><a href="eda.html#cb53-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb53-14"><a href="eda.html#cb53-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Campaña de marketing&quot;</span>, <span class="at">y =</span> <span class="st">&quot;número de clientes (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb53-15"><a href="eda.html#cb53-15" tabindex="-1"></a>  <span class="co">#coord_flip() +</span></span>
+<span id="cb53-16"><a href="eda.html#cb53-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb53-17"><a href="eda.html#cb53-17" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb53-18"><a href="eda.html#cb53-18" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb53-19"><a href="eda.html#cb53-19" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb53-20"><a href="eda.html#cb53-20" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb53-21"><a href="eda.html#cb53-21" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb53-22"><a href="eda.html#cb53-22" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)  </span>
+<span id="cb53-23"><a href="eda.html#cb53-23" tabindex="-1"></a>  )</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/barras_y-1.png" width="672" /></p>
+<p>El gráfico de barras muestra claramente la distribución de respuestas en la campaña de marketing, evidenciando que la gran mayoría de los clientes no aceptaron la oferta del depósito a plazo fijo. Específicamente, el <span class="math inline">\(88.5\%\)</span> de los clientes (<span class="math inline">\(4000\)</span> personas) rechazaron la campaña (<code>no</code>), mientras que solo el <span class="math inline">\(11.5&#39;%\)</span> (<span class="math inline">\(521\)</span> personas) decidieron aceptarla (<code>yes</code>). Esta marcada diferencia indica un fuerte desbalance en las clases de la variable objetivo, lo cual es relevante al momento de construir modelos predictivos, ya que se requiere considerar técnicas que manejen adecuadamente este desequilibrio para no sesgar el modelo hacia la clase mayoritaria.</p>
+</div>
+<div id="análisis-de-las-variables-características-independientes-1" class="section level3 hasAnchor" number="3.5.4">
+<h3><span class="header-section-number">3.5.4</span> Análisis de las variables características (independientes)<a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Analizaremos el iniciamente las variables numéricas</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="eda.html#cb54-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb54-2"><a href="eda.html#cb54-2" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb54-3"><a href="eda.html#cb54-3" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(age),</span>
+<span id="cb54-4"><a href="eda.html#cb54-4" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(age),</span>
+<span id="cb54-5"><a href="eda.html#cb54-5" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(age),</span>
+<span id="cb54-6"><a href="eda.html#cb54-6" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(age),</span>
+<span id="cb54-7"><a href="eda.html#cb54-7" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(age),</span>
+<span id="cb54-8"><a href="eda.html#cb54-8" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(age),</span>
+<span id="cb54-9"><a href="eda.html#cb54-9" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(age, <span class="fl">0.25</span>),</span>
+<span id="cb54-10"><a href="eda.html#cb54-10" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(age, <span class="fl">0.75</span>),</span>
+<span id="cb54-11"><a href="eda.html#cb54-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(age)) <span class="sc">%&gt;%</span></span>
+<span id="cb54-12"><a href="eda.html#cb54-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;age&quot;</span>) <span class="ot">-&gt;</span> var_num_age</span>
+<span id="cb54-13"><a href="eda.html#cb54-13" tabindex="-1"></a></span>
+<span id="cb54-14"><a href="eda.html#cb54-14" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb54-15"><a href="eda.html#cb54-15" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb54-16"><a href="eda.html#cb54-16" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(balance),</span>
+<span id="cb54-17"><a href="eda.html#cb54-17" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(balance),</span>
+<span id="cb54-18"><a href="eda.html#cb54-18" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(balance),</span>
+<span id="cb54-19"><a href="eda.html#cb54-19" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(balance),</span>
+<span id="cb54-20"><a href="eda.html#cb54-20" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(balance),</span>
+<span id="cb54-21"><a href="eda.html#cb54-21" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(balance),</span>
+<span id="cb54-22"><a href="eda.html#cb54-22" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(balance, <span class="fl">0.25</span>),</span>
+<span id="cb54-23"><a href="eda.html#cb54-23" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(balance, <span class="fl">0.75</span>),</span>
+<span id="cb54-24"><a href="eda.html#cb54-24" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(balance)) <span class="sc">%&gt;%</span> </span>
+<span id="cb54-25"><a href="eda.html#cb54-25" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;balance&quot;</span>) <span class="ot">-&gt;</span> var_num_bal</span>
+<span id="cb54-26"><a href="eda.html#cb54-26" tabindex="-1"></a></span>
+<span id="cb54-27"><a href="eda.html#cb54-27" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb54-28"><a href="eda.html#cb54-28" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb54-29"><a href="eda.html#cb54-29" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(duration),</span>
+<span id="cb54-30"><a href="eda.html#cb54-30" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(duration),</span>
+<span id="cb54-31"><a href="eda.html#cb54-31" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(duration),</span>
+<span id="cb54-32"><a href="eda.html#cb54-32" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(duration),</span>
+<span id="cb54-33"><a href="eda.html#cb54-33" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(duration),</span>
+<span id="cb54-34"><a href="eda.html#cb54-34" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(duration),</span>
+<span id="cb54-35"><a href="eda.html#cb54-35" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(duration, <span class="fl">0.25</span>),</span>
+<span id="cb54-36"><a href="eda.html#cb54-36" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(duration, <span class="fl">0.75</span>),</span>
+<span id="cb54-37"><a href="eda.html#cb54-37" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(duration)) <span class="sc">%&gt;%</span> </span>
+<span id="cb54-38"><a href="eda.html#cb54-38" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;duration&quot;</span>)<span class="ot">-&gt;</span> var_num_dur</span>
+<span id="cb54-39"><a href="eda.html#cb54-39" tabindex="-1"></a></span>
+<span id="cb54-40"><a href="eda.html#cb54-40" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb54-41"><a href="eda.html#cb54-41" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb54-42"><a href="eda.html#cb54-42" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(campaign),</span>
+<span id="cb54-43"><a href="eda.html#cb54-43" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(campaign),</span>
+<span id="cb54-44"><a href="eda.html#cb54-44" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(campaign),</span>
+<span id="cb54-45"><a href="eda.html#cb54-45" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(campaign),</span>
+<span id="cb54-46"><a href="eda.html#cb54-46" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(campaign),</span>
+<span id="cb54-47"><a href="eda.html#cb54-47" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(campaign),</span>
+<span id="cb54-48"><a href="eda.html#cb54-48" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(campaign, <span class="fl">0.25</span>),</span>
+<span id="cb54-49"><a href="eda.html#cb54-49" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(campaign, <span class="fl">0.75</span>),</span>
+<span id="cb54-50"><a href="eda.html#cb54-50" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(campaign)) <span class="sc">%&gt;%</span> </span>
+<span id="cb54-51"><a href="eda.html#cb54-51" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;campaign&quot;</span>)<span class="ot">-&gt;</span> var_num_camp</span>
+<span id="cb54-52"><a href="eda.html#cb54-52" tabindex="-1"></a></span>
+<span id="cb54-53"><a href="eda.html#cb54-53" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb54-54"><a href="eda.html#cb54-54" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb54-55"><a href="eda.html#cb54-55" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(pdays),</span>
+<span id="cb54-56"><a href="eda.html#cb54-56" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(pdays),</span>
+<span id="cb54-57"><a href="eda.html#cb54-57" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(pdays),</span>
+<span id="cb54-58"><a href="eda.html#cb54-58" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(pdays),</span>
+<span id="cb54-59"><a href="eda.html#cb54-59" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(pdays),</span>
+<span id="cb54-60"><a href="eda.html#cb54-60" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(pdays),</span>
+<span id="cb54-61"><a href="eda.html#cb54-61" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(pdays, <span class="fl">0.25</span>),</span>
+<span id="cb54-62"><a href="eda.html#cb54-62" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(pdays, <span class="fl">0.75</span>),</span>
+<span id="cb54-63"><a href="eda.html#cb54-63" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(pdays)) <span class="sc">%&gt;%</span> </span>
+<span id="cb54-64"><a href="eda.html#cb54-64" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;pdays&quot;</span>)<span class="ot">-&gt;</span> var_num_pdays</span>
+<span id="cb54-65"><a href="eda.html#cb54-65" tabindex="-1"></a></span>
+<span id="cb54-66"><a href="eda.html#cb54-66" tabindex="-1"></a><span class="fu">bind_rows</span>(var_num_age, var_num_bal, var_num_dur,var_num_camp,var_num_pdays) <span class="sc">%&gt;%</span></span>
+<span id="cb54-67"><a href="eda.html#cb54-67" tabindex="-1"></a>  <span class="fu">select</span>(variable, <span class="fu">everything</span>())</span></code></pre></div>
+</details>
+<pre><code>##   variable    n      media          ds mediana minimo maximo  Q1   Q3  IQR
+## 1      age 4521   41.17010   10.576211      39     19     87  33   49   16
+## 2  balance 4521 1422.65782 3009.638142     444  -3313  71188  69 1480 1411
+## 3 duration 4521  263.96129  259.856633     185      4   3025 104  329  225
+## 4 campaign 4521    2.79363    3.109807       2      1     50   1    3    2
+## 5    pdays 4521   39.76664  100.121124      -1     -1    871  -1   -1    0</code></pre>
+<p>El análisis estadístico de las variables numéricas revela características clave de los clientes contactados durante la campaña de marketing. La edad promedio es de <span class="math inline">\(41.17\)</span> años (DS = <span class="math inline">\(10.58\)</span> años), con un rango de <span class="math inline">\(19\)</span> a <span class="math inline">\(87\)</span> años, lo que indica una población adulta diversa. El saldo promedio anual en la cuenta bancaria (<code>balance</code>) es de <span class="math inline">\(1422.66\)</span> USD (DS = <span class="math inline">\(3009.64\)</span> USD), evidenciando una alta dispersión y la presencia de valores extremos, desde <span class="math inline">\(-3313\)</span> hasta <span class="math inline">\(71188\)</span> USD. La duración de las llamadas telefónicas presenta un promedio de <span class="math inline">\(263.96\)</span> segundos (DS = <span class="math inline">\(259.86\)</span> segundos), con el <span class="math inline">\(50\%\)</span> de las observaciones por debajo de <span class="math inline">\(185\)</span> segundos y un rango que va desde <span class="math inline">\(4\)</span> hasta <span class="math inline">\(3025\)</span> segundos, lo que sugiere una distribución muy dispersa y posiblemente sesgada. En cuanto al número de contactos durante la campaña (<code>campaign</code>), se observa un promedio de <span class="math inline">\(2.79\)</span> contactos (DS = <span class="math inline">\(3.11\)</span>), con el <span class="math inline">\(50\%\)</span> de los registros por debajo de <span class="math inline">\(2\)</span> y valores extremos que alcanzan hasta <span class="math inline">\(50\)</span>, aunque la mayoría de los clientes fue contactado pocas veces (rango intercuartílico de <span class="math inline">\(P75% = 3\)</span> y <span class="math inline">\(P25% = 1\)</span>). Por último, la variable <code>pdays</code>, que indica los días transcurridos desde el último contacto en campañas anteriores, tiene una media de <span class="math inline">\(39.77\)</span> días (DS = <span class="math inline">\(100.12\)</span> días), pero con el <span class="math inline">\(50\%\)</span> de los registros y los percentiles <span class="math inline">\(25\%\)</span> y <span class="math inline">\(75\%\)</span> en <span class="math inline">\(-1\)</span>, lo que indica que la mayoría de los clientes no había sido contactada previamente, a pesar de que algunos registros superan los <span class="math inline">\(800\)</span> días. Estos datos permiten identificar comportamientos heterogéneos y posibles segmentos dentro de la base de clientes.</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="eda.html#cb56-1" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb56-2"><a href="eda.html#cb56-2" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb56-3"><a href="eda.html#cb56-3" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="eda.html#cb56-4" tabindex="-1"></a><span class="co"># Boxplot de age</span></span>
+<span id="cb56-5"><a href="eda.html#cb56-5" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb56-6"><a href="eda.html#cb56-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> age)) <span class="sc">+</span></span>
+<span id="cb56-7"><a href="eda.html#cb56-7" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1f77b4&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb56-8"><a href="eda.html#cb56-8" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb56-9"><a href="eda.html#cb56-9" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb56-10"><a href="eda.html#cb56-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la edad&quot;</span>,</span>
+<span id="cb56-11"><a href="eda.html#cb56-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Años&quot;</span>,</span>
+<span id="cb56-12"><a href="eda.html#cb56-12" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb56-13"><a href="eda.html#cb56-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb56-14"><a href="eda.html#cb56-14" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb56-15"><a href="eda.html#cb56-15" tabindex="-1"></a></span>
+<span id="cb56-16"><a href="eda.html#cb56-16" tabindex="-1"></a><span class="co"># Boxplot de balance</span></span>
+<span id="cb56-17"><a href="eda.html#cb56-17" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb56-18"><a href="eda.html#cb56-18" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> balance)) <span class="sc">+</span></span>
+<span id="cb56-19"><a href="eda.html#cb56-19" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#2f43b1&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb56-20"><a href="eda.html#cb56-20" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb56-21"><a href="eda.html#cb56-21" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb56-22"><a href="eda.html#cb56-22" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución del balance de la cuenta&quot;</span>,</span>
+<span id="cb56-23"><a href="eda.html#cb56-23" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Usd&quot;</span>,</span>
+<span id="cb56-24"><a href="eda.html#cb56-24" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb56-25"><a href="eda.html#cb56-25" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb56-26"><a href="eda.html#cb56-26" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb56-27"><a href="eda.html#cb56-27" tabindex="-1"></a></span>
+<span id="cb56-28"><a href="eda.html#cb56-28" tabindex="-1"></a><span class="co"># Diagrama de boxplot para duration</span></span>
+<span id="cb56-29"><a href="eda.html#cb56-29" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb56-30"><a href="eda.html#cb56-30" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> duration)) <span class="sc">+</span></span>
+<span id="cb56-31"><a href="eda.html#cb56-31" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#2ca02c&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb56-32"><a href="eda.html#cb56-32" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb56-33"><a href="eda.html#cb56-33" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb56-34"><a href="eda.html#cb56-34" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la duración de llamada (duration)&quot;</span>,</span>
+<span id="cb56-35"><a href="eda.html#cb56-35" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Segundos&quot;</span>,</span>
+<span id="cb56-36"><a href="eda.html#cb56-36" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb56-37"><a href="eda.html#cb56-37" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb56-38"><a href="eda.html#cb56-38" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb56-39"><a href="eda.html#cb56-39" tabindex="-1"></a></span>
+<span id="cb56-40"><a href="eda.html#cb56-40" tabindex="-1"></a><span class="co"># Diagrama de boxplot para campaign</span></span>
+<span id="cb56-41"><a href="eda.html#cb56-41" tabindex="-1"></a>p4 <span class="ot">&lt;-</span>df <span class="sc">%&gt;%</span></span>
+<span id="cb56-42"><a href="eda.html#cb56-42" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> campaign)) <span class="sc">+</span></span>
+<span id="cb56-43"><a href="eda.html#cb56-43" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#ff7f0e&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb56-44"><a href="eda.html#cb56-44" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb56-45"><a href="eda.html#cb56-45" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb56-46"><a href="eda.html#cb56-46" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución del número de contactos (campaign)&quot;</span>,</span>
+<span id="cb56-47"><a href="eda.html#cb56-47" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Número de contactos&quot;</span>,</span>
+<span id="cb56-48"><a href="eda.html#cb56-48" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb56-49"><a href="eda.html#cb56-49" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb56-50"><a href="eda.html#cb56-50" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb56-51"><a href="eda.html#cb56-51" tabindex="-1"></a></span>
+<span id="cb56-52"><a href="eda.html#cb56-52" tabindex="-1"></a><span class="co"># Diagrama de boxplot para pdays</span></span>
+<span id="cb56-53"><a href="eda.html#cb56-53" tabindex="-1"></a>p5 <span class="ot">&lt;-</span>df <span class="sc">%&gt;%</span></span>
+<span id="cb56-54"><a href="eda.html#cb56-54" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> pdays)) <span class="sc">+</span></span>
+<span id="cb56-55"><a href="eda.html#cb56-55" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#9467bd&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb56-56"><a href="eda.html#cb56-56" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb56-57"><a href="eda.html#cb56-57" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb56-58"><a href="eda.html#cb56-58" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Días desde último contacto en campaña anterior (pdays)&quot;</span>,</span>
+<span id="cb56-59"><a href="eda.html#cb56-59" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Días&quot;</span>,</span>
+<span id="cb56-60"><a href="eda.html#cb56-60" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb56-61"><a href="eda.html#cb56-61" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb56-62"><a href="eda.html#cb56-62" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb56-63"><a href="eda.html#cb56-63" tabindex="-1"></a></span>
+<span id="cb56-64"><a href="eda.html#cb56-64" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2,p3,p4,p5, <span class="at">ncol =</span> <span class="dv">2</span>,<span class="at">newpage =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/dc_var_ind_resp_cat-1.png" width="672" /></p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+La interpretación de los gráficos quedan como ejercicio
+</p>
+</div>
+<p>Ahora analizaremos las variables categóricas</p>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="eda.html#cb57-1" tabindex="-1"></a><span class="co"># Para job</span></span>
+<span id="cb57-2"><a href="eda.html#cb57-2" tabindex="-1"></a>tabla_job <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb57-3"><a href="eda.html#cb57-3" tabindex="-1"></a>  <span class="fu">count</span>(job, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-4"><a href="eda.html#cb57-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb57-5"><a href="eda.html#cb57-5" tabindex="-1"></a>         <span class="at">Variable =</span> <span class="st">&quot;job&quot;</span>,</span>
+<span id="cb57-6"><a href="eda.html#cb57-6" tabindex="-1"></a>         <span class="at">Categoria =</span> job) <span class="sc">%&gt;%</span></span>
+<span id="cb57-7"><a href="eda.html#cb57-7" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb57-8"><a href="eda.html#cb57-8" tabindex="-1"></a></span>
+<span id="cb57-9"><a href="eda.html#cb57-9" tabindex="-1"></a><span class="co"># Para marital</span></span>
+<span id="cb57-10"><a href="eda.html#cb57-10" tabindex="-1"></a>tabla_marital <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb57-11"><a href="eda.html#cb57-11" tabindex="-1"></a>  <span class="fu">count</span>(marital, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-12"><a href="eda.html#cb57-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb57-13"><a href="eda.html#cb57-13" tabindex="-1"></a>         <span class="at">Variable =</span> <span class="st">&quot;marital&quot;</span>,</span>
+<span id="cb57-14"><a href="eda.html#cb57-14" tabindex="-1"></a>         <span class="at">Categoria =</span> marital) <span class="sc">%&gt;%</span></span>
+<span id="cb57-15"><a href="eda.html#cb57-15" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb57-16"><a href="eda.html#cb57-16" tabindex="-1"></a></span>
+<span id="cb57-17"><a href="eda.html#cb57-17" tabindex="-1"></a><span class="co"># Para education</span></span>
+<span id="cb57-18"><a href="eda.html#cb57-18" tabindex="-1"></a>tabla_education <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb57-19"><a href="eda.html#cb57-19" tabindex="-1"></a>  <span class="fu">count</span>(education, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-20"><a href="eda.html#cb57-20" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb57-21"><a href="eda.html#cb57-21" tabindex="-1"></a>         <span class="at">Variable =</span> <span class="st">&quot;education&quot;</span>,</span>
+<span id="cb57-22"><a href="eda.html#cb57-22" tabindex="-1"></a>         <span class="at">Categoria =</span> education) <span class="sc">%&gt;%</span></span>
+<span id="cb57-23"><a href="eda.html#cb57-23" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb57-24"><a href="eda.html#cb57-24" tabindex="-1"></a></span>
+<span id="cb57-25"><a href="eda.html#cb57-25" tabindex="-1"></a><span class="co"># Para default</span></span>
+<span id="cb57-26"><a href="eda.html#cb57-26" tabindex="-1"></a>tabla_default <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb57-27"><a href="eda.html#cb57-27" tabindex="-1"></a>  <span class="fu">count</span>(default, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-28"><a href="eda.html#cb57-28" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb57-29"><a href="eda.html#cb57-29" tabindex="-1"></a>         <span class="at">Variable =</span> <span class="st">&quot;default&quot;</span>,</span>
+<span id="cb57-30"><a href="eda.html#cb57-30" tabindex="-1"></a>         <span class="at">Categoria =</span> default) <span class="sc">%&gt;%</span></span>
+<span id="cb57-31"><a href="eda.html#cb57-31" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb57-32"><a href="eda.html#cb57-32" tabindex="-1"></a></span>
+<span id="cb57-33"><a href="eda.html#cb57-33" tabindex="-1"></a><span class="co"># Para housing</span></span>
+<span id="cb57-34"><a href="eda.html#cb57-34" tabindex="-1"></a>tabla_housing <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb57-35"><a href="eda.html#cb57-35" tabindex="-1"></a>  <span class="fu">count</span>(housing, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-36"><a href="eda.html#cb57-36" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb57-37"><a href="eda.html#cb57-37" tabindex="-1"></a>         <span class="at">Variable =</span> <span class="st">&quot;housing&quot;</span>,</span>
+<span id="cb57-38"><a href="eda.html#cb57-38" tabindex="-1"></a>         <span class="at">Categoria =</span> housing) <span class="sc">%&gt;%</span></span>
+<span id="cb57-39"><a href="eda.html#cb57-39" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb57-40"><a href="eda.html#cb57-40" tabindex="-1"></a></span>
+<span id="cb57-41"><a href="eda.html#cb57-41" tabindex="-1"></a><span class="co"># Para loan</span></span>
+<span id="cb57-42"><a href="eda.html#cb57-42" tabindex="-1"></a>tabla_loan <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb57-43"><a href="eda.html#cb57-43" tabindex="-1"></a>  <span class="fu">count</span>(loan, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-44"><a href="eda.html#cb57-44" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb57-45"><a href="eda.html#cb57-45" tabindex="-1"></a>         <span class="at">Variable =</span> <span class="st">&quot;loan&quot;</span>,</span>
+<span id="cb57-46"><a href="eda.html#cb57-46" tabindex="-1"></a>         <span class="at">Categoria =</span> loan) <span class="sc">%&gt;%</span></span>
+<span id="cb57-47"><a href="eda.html#cb57-47" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb57-48"><a href="eda.html#cb57-48" tabindex="-1"></a></span>
+<span id="cb57-49"><a href="eda.html#cb57-49" tabindex="-1"></a><span class="co"># Para contact</span></span>
+<span id="cb57-50"><a href="eda.html#cb57-50" tabindex="-1"></a>tabla_contact <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb57-51"><a href="eda.html#cb57-51" tabindex="-1"></a>  <span class="fu">count</span>(contact, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-52"><a href="eda.html#cb57-52" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb57-53"><a href="eda.html#cb57-53" tabindex="-1"></a>         <span class="at">Variable =</span> <span class="st">&quot;contact&quot;</span>,</span>
+<span id="cb57-54"><a href="eda.html#cb57-54" tabindex="-1"></a>         <span class="at">Categoria =</span> contact) <span class="sc">%&gt;%</span></span>
+<span id="cb57-55"><a href="eda.html#cb57-55" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb57-56"><a href="eda.html#cb57-56" tabindex="-1"></a></span>
+<span id="cb57-57"><a href="eda.html#cb57-57" tabindex="-1"></a><span class="co"># Para poutcome</span></span>
+<span id="cb57-58"><a href="eda.html#cb57-58" tabindex="-1"></a>tabla_poutcome <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb57-59"><a href="eda.html#cb57-59" tabindex="-1"></a>  <span class="fu">count</span>(poutcome, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-60"><a href="eda.html#cb57-60" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb57-61"><a href="eda.html#cb57-61" tabindex="-1"></a>         <span class="at">Variable =</span> <span class="st">&quot;poutcome&quot;</span>,</span>
+<span id="cb57-62"><a href="eda.html#cb57-62" tabindex="-1"></a>         <span class="at">Categoria =</span> poutcome) <span class="sc">%&gt;%</span></span>
+<span id="cb57-63"><a href="eda.html#cb57-63" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb57-64"><a href="eda.html#cb57-64" tabindex="-1"></a></span>
+<span id="cb57-65"><a href="eda.html#cb57-65" tabindex="-1"></a><span class="co"># Unir todas las tablas</span></span>
+<span id="cb57-66"><a href="eda.html#cb57-66" tabindex="-1"></a><span class="fu">bind_rows</span>(tabla_job, tabla_marital, tabla_education,tabla_default,</span>
+<span id="cb57-67"><a href="eda.html#cb57-67" tabindex="-1"></a>          tabla_housing, tabla_loan,tabla_contact, tabla_poutcome)</span></code></pre></div>
+</details>
+<pre><code>##     Variable     Categoria Frecuencia Porcentaje
+## 1        job        admin.        478      10.57
+## 2        job   blue-collar        946      20.92
+## 3        job  entrepreneur        168       3.72
+## 4        job     housemaid        112       2.48
+## 5        job    management        969      21.43
+## 6        job       retired        230       5.09
+## 7        job self-employed        183       4.05
+## 8        job      services        417       9.22
+## 9        job       student         84       1.86
+## 10       job    technician        768      16.99
+## 11       job    unemployed        128       2.83
+## 12       job       unknown         38       0.84
+## 13   marital      divorced        528      11.68
+## 14   marital       married       2797      61.87
+## 15   marital        single       1196      26.45
+## 16 education       primary        678      15.00
+## 17 education     secondary       2306      51.01
+## 18 education      tertiary       1350      29.86
+## 19 education       unknown        187       4.14
+## 20   default            no       4445      98.32
+## 21   default           yes         76       1.68
+## 22   housing            no       1962      43.40
+## 23   housing           yes       2559      56.60
+## 24      loan            no       3830      84.72
+## 25      loan           yes        691      15.28
+## 26   contact      cellular       2896      64.06
+## 27   contact     telephone        301       6.66
+## 28   contact       unknown       1324      29.29
+## 29  poutcome       failure        490      10.84
+## 30  poutcome         other        197       4.36
+## 31  poutcome       success        129       2.85
+## 32  poutcome       unknown       3705      81.95</code></pre>
+<p>En cuanto al estado civil (<code>marital</code>), la mayoría de los clientes están casados (<span class="math inline">\(61.87\%\)</span>), seguidos por solteros (<span class="math inline">\(26.45\%\)</span>) y divorciados (<span class="math inline">\(11.68\%\)</span>), lo que sugiere una base de datos predominantemente compuesta por personas con vínculos conyugales estables. Respecto al nivel educativo (<code>education</code>), más de la mitad de los clientes tiene educación secundaria (<span class="math inline">\(51.01\%\)</span>), mientras que el <span class="math inline">\(29.86\%\)</span> alcanzó estudios terciarios y el <span class="math inline">\(15.00\%\)</span> solo nivel primario. Un pequeño porcentaje (<span class="math inline">\(4.14\%\)</span>) no reporta su nivel educativo. Estos datos permiten identificar patrones demográficos que podrían ser relevantes para el diseño de estrategias de marketing más efectivas según el perfil del cliente.</p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Continua interpretando las demas variables.
+</p>
+</div>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="eda.html#cb59-1" tabindex="-1"></a>tabla_default_b <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb59-2"><a href="eda.html#cb59-2" tabindex="-1"></a>  <span class="fu">count</span>(default, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb59-3"><a href="eda.html#cb59-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb59-4"><a href="eda.html#cb59-4" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb59-5"><a href="eda.html#cb59-5" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="eda.html#cb59-6" tabindex="-1"></a>tabla_default_b <span class="sc">%&gt;%</span> </span>
+<span id="cb59-7"><a href="eda.html#cb59-7" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> default, <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
+<span id="cb59-8"><a href="eda.html#cb59-8" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb59-9"><a href="eda.html#cb59-9" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb59-10"><a href="eda.html#cb59-10" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;Distribución de la variable default&quot;</span>) <span class="sc">+</span></span>
+<span id="cb59-11"><a href="eda.html#cb59-11" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb59-12"><a href="eda.html#cb59-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;¿Tiene crédito en incumplimiento?&quot;</span>, </span>
+<span id="cb59-13"><a href="eda.html#cb59-13" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb59-14"><a href="eda.html#cb59-14" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb59-15"><a href="eda.html#cb59-15" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb59-16"><a href="eda.html#cb59-16" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb59-17"><a href="eda.html#cb59-17" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb59-18"><a href="eda.html#cb59-18" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb59-19"><a href="eda.html#cb59-19" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb59-20"><a href="eda.html#cb59-20" tabindex="-1"></a>  )</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/db_cat_job_resp_cat-1.png" width="672" /></p>
+<p>La gráfica muestra la distribución de la variable <code>default</code>, que indica si un cliente tiene o no un crédito en incumplimiento de pago. Se observa que el <span class="math inline">\(98.3\%\)</span> de los clientes (<span class="math inline">\(4445\)</span> personas) no tienen incumplimientos, mientras que solo el <span class="math inline">\(1.7\%\)</span> (<span class="math inline">\(76\)</span> personas) sí presentan incumplimientos. Esta marcada desproporción sugiere que la mayoría de los clientes se encuentran al día con sus compromisos financieros, y que el incumplimiento es un evento poco frecuente en la base de datos.</p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Realiza los gráficos de las variables independientes categóricas faltantes e interprelas.
+</p>
+</div>
+</div>
+<div id="análisis-exploratorio-bivariado-1" class="section level3 hasAnchor" number="3.5.5">
+<h3><span class="header-section-number">3.5.5</span> Análisis exploratorio bivariado<a href="#an%C3%A1lisis-exploratorio-bivariado-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Realizaremos la comparacion de la variable <code>y</code> con respecto a las variables numéricas independientes.</li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="eda.html#cb60-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: y vs age</span></span>
+<span id="cb60-2"><a href="eda.html#cb60-2" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb60-3"><a href="eda.html#cb60-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">y =</span> age)) <span class="sc">+</span></span>
+<span id="cb60-4"><a href="eda.html#cb60-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb60-5"><a href="eda.html#cb60-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb60-6"><a href="eda.html#cb60-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb60-7"><a href="eda.html#cb60-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la edad según la respuesta del cliente&quot;</span>,</span>
+<span id="cb60-8"><a href="eda.html#cb60-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Aceptó el depósito a plazo fijo? (y)&quot;</span>,</span>
+<span id="cb60-9"><a href="eda.html#cb60-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Edad del cliente&quot;</span></span>
+<span id="cb60-10"><a href="eda.html#cb60-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb60-11"><a href="eda.html#cb60-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb60-12"><a href="eda.html#cb60-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb60-13"><a href="eda.html#cb60-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb60-14"><a href="eda.html#cb60-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb60-15"><a href="eda.html#cb60-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb60-16"><a href="eda.html#cb60-16" tabindex="-1"></a>  )</span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/disp_resp_cat-1.png" width="672" /></p>
+<p>El grafico muestra la distribución de la edad de los clientes según su respuesta a la campaña de marketing, diferenciando entre quienes no aceptaron (<code>no</code>) y quienes sí aceptaron (<code>yes</code>) contratar un depósito a plazo fijo. Ambas gráficos muestran un comportamiento similar, donde el <span class="math inline">\(50\%\)</span> de los clientes alrededor de los 40 años o menos en ambos casos. Tambien, se observa que los clientes que aceptaron la oferta tienden a tener un promedio ligeramente superior en comparación con quienes no aceptaron. Esto podría indicar que los clientes de mayor edad muestran una leve mayor disposición a aceptar el producto. En resumen, aunque hay una leve diferencia por edad, esta variable por sí sola no parece explicar completamente la decisión de aceptar el producto.</p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Realiza el gráfico boxplot para las variables <code>balance</code>, <code>duration</code>, <code>campaing</code>, <code>pdays</code> segun la respuesta de campaña de marketing del banco (<code>y</code>) e interprétalos.
+</p>
+</div>
+<ul>
+<li>Realizaremos la comparacion de las variables numéricas independientes con respecto a la variable <code>y</code></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="eda.html#cb61-1" tabindex="-1"></a><span class="co"># Agrupación por &#39;y&#39;</span></span>
+<span id="cb61-2"><a href="eda.html#cb61-2" tabindex="-1"></a>age_y <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb61-3"><a href="eda.html#cb61-3" tabindex="-1"></a>  <span class="fu">group_by</span>(y) <span class="sc">%&gt;%</span></span>
+<span id="cb61-4"><a href="eda.html#cb61-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(age),</span>
+<span id="cb61-5"><a href="eda.html#cb61-5" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(age),</span>
+<span id="cb61-6"><a href="eda.html#cb61-6" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(age),</span>
+<span id="cb61-7"><a href="eda.html#cb61-7" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(age),</span>
+<span id="cb61-8"><a href="eda.html#cb61-8" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(age),</span>
+<span id="cb61-9"><a href="eda.html#cb61-9" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(age),</span>
+<span id="cb61-10"><a href="eda.html#cb61-10" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(age, <span class="fl">0.25</span>),</span>
+<span id="cb61-11"><a href="eda.html#cb61-11" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(age, <span class="fl">0.75</span>),</span>
+<span id="cb61-12"><a href="eda.html#cb61-12" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(age)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-13"><a href="eda.html#cb61-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;age&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(y)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-14"><a href="eda.html#cb61-14" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>y)</span>
+<span id="cb61-15"><a href="eda.html#cb61-15" tabindex="-1"></a></span>
+<span id="cb61-16"><a href="eda.html#cb61-16" tabindex="-1"></a>balance_y <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb61-17"><a href="eda.html#cb61-17" tabindex="-1"></a>  <span class="fu">group_by</span>(y) <span class="sc">%&gt;%</span></span>
+<span id="cb61-18"><a href="eda.html#cb61-18" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(balance),</span>
+<span id="cb61-19"><a href="eda.html#cb61-19" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(balance),</span>
+<span id="cb61-20"><a href="eda.html#cb61-20" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(balance),</span>
+<span id="cb61-21"><a href="eda.html#cb61-21" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(balance),</span>
+<span id="cb61-22"><a href="eda.html#cb61-22" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(balance),</span>
+<span id="cb61-23"><a href="eda.html#cb61-23" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(balance),</span>
+<span id="cb61-24"><a href="eda.html#cb61-24" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(balance, <span class="fl">0.25</span>),</span>
+<span id="cb61-25"><a href="eda.html#cb61-25" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(balance, <span class="fl">0.75</span>),</span>
+<span id="cb61-26"><a href="eda.html#cb61-26" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(balance)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-27"><a href="eda.html#cb61-27" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;balance&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(y)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-28"><a href="eda.html#cb61-28" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>y)</span>
+<span id="cb61-29"><a href="eda.html#cb61-29" tabindex="-1"></a></span>
+<span id="cb61-30"><a href="eda.html#cb61-30" tabindex="-1"></a>duration_y <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb61-31"><a href="eda.html#cb61-31" tabindex="-1"></a>  <span class="fu">group_by</span>(y) <span class="sc">%&gt;%</span></span>
+<span id="cb61-32"><a href="eda.html#cb61-32" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(duration),</span>
+<span id="cb61-33"><a href="eda.html#cb61-33" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(duration),</span>
+<span id="cb61-34"><a href="eda.html#cb61-34" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(duration),</span>
+<span id="cb61-35"><a href="eda.html#cb61-35" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(duration),</span>
+<span id="cb61-36"><a href="eda.html#cb61-36" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(duration),</span>
+<span id="cb61-37"><a href="eda.html#cb61-37" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(duration),</span>
+<span id="cb61-38"><a href="eda.html#cb61-38" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(duration, <span class="fl">0.25</span>),</span>
+<span id="cb61-39"><a href="eda.html#cb61-39" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(duration, <span class="fl">0.75</span>),</span>
+<span id="cb61-40"><a href="eda.html#cb61-40" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(duration)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-41"><a href="eda.html#cb61-41" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;duration&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(y)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-42"><a href="eda.html#cb61-42" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>y)</span>
+<span id="cb61-43"><a href="eda.html#cb61-43" tabindex="-1"></a></span>
+<span id="cb61-44"><a href="eda.html#cb61-44" tabindex="-1"></a>campaign_y <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb61-45"><a href="eda.html#cb61-45" tabindex="-1"></a>  <span class="fu">group_by</span>(y) <span class="sc">%&gt;%</span></span>
+<span id="cb61-46"><a href="eda.html#cb61-46" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(campaign),</span>
+<span id="cb61-47"><a href="eda.html#cb61-47" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(campaign),</span>
+<span id="cb61-48"><a href="eda.html#cb61-48" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(campaign),</span>
+<span id="cb61-49"><a href="eda.html#cb61-49" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(campaign),</span>
+<span id="cb61-50"><a href="eda.html#cb61-50" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(campaign),</span>
+<span id="cb61-51"><a href="eda.html#cb61-51" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(campaign),</span>
+<span id="cb61-52"><a href="eda.html#cb61-52" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(campaign, <span class="fl">0.25</span>),</span>
+<span id="cb61-53"><a href="eda.html#cb61-53" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(campaign, <span class="fl">0.75</span>),</span>
+<span id="cb61-54"><a href="eda.html#cb61-54" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(campaign)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-55"><a href="eda.html#cb61-55" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;campaign&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(y)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-56"><a href="eda.html#cb61-56" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>y)</span>
+<span id="cb61-57"><a href="eda.html#cb61-57" tabindex="-1"></a></span>
+<span id="cb61-58"><a href="eda.html#cb61-58" tabindex="-1"></a>pdays_y <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb61-59"><a href="eda.html#cb61-59" tabindex="-1"></a>  <span class="fu">group_by</span>(y) <span class="sc">%&gt;%</span></span>
+<span id="cb61-60"><a href="eda.html#cb61-60" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(pdays),</span>
+<span id="cb61-61"><a href="eda.html#cb61-61" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(pdays),</span>
+<span id="cb61-62"><a href="eda.html#cb61-62" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(pdays),</span>
+<span id="cb61-63"><a href="eda.html#cb61-63" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(pdays),</span>
+<span id="cb61-64"><a href="eda.html#cb61-64" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(pdays),</span>
+<span id="cb61-65"><a href="eda.html#cb61-65" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(pdays),</span>
+<span id="cb61-66"><a href="eda.html#cb61-66" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(pdays, <span class="fl">0.25</span>),</span>
+<span id="cb61-67"><a href="eda.html#cb61-67" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(pdays, <span class="fl">0.75</span>),</span>
+<span id="cb61-68"><a href="eda.html#cb61-68" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(pdays)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-69"><a href="eda.html#cb61-69" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;pdays&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(y)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-70"><a href="eda.html#cb61-70" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>y)</span>
+<span id="cb61-71"><a href="eda.html#cb61-71" tabindex="-1"></a></span>
+<span id="cb61-72"><a href="eda.html#cb61-72" tabindex="-1"></a><span class="co"># Unión de todas las tablas</span></span>
+<span id="cb61-73"><a href="eda.html#cb61-73" tabindex="-1"></a><span class="fu">bind_rows</span>(age_y,balance_y,duration_y,campaign_y,pdays_y)</span></code></pre></div>
+</details>
+<pre><code>## # A tibble: 10 × 11
+##    variable niveles     n   media     ds mediana minimo maximo    Q1    Q3   IQR
+##    &lt;chr&gt;    &lt;chr&gt;   &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 age      no       4000   41.0  1.02e1     39      19     86    33    48    15
+##  2 age      yes       521   42.5  1.31e1     40      19     87    32    50    18
+##  3 balance  no       4000 1403.   3.08e3    420.  -3313  71188    61  1407  1346
+##  4 balance  yes       521 1572.   2.44e3    710   -1206  26965   171  2160  1989
+##  5 duration no       4000  226.   2.10e2    167       4   3025    96   283   187
+##  6 duration yes       521  553.   3.90e2    442      30   2769   260   755   495
+##  7 campaign no       4000    2.86 3.21e0      2       1     50     1     3     2
+##  8 campaign yes       521    2.27 2.09e0      2       1     24     1     3     2
+##  9 pdays    no       4000   36.0  9.63e1     -1      -1    871    -1    -1     0
+## 10 pdays    yes       521   68.6  1.22e2     -1      -1    804    -1    98    99</code></pre>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Realiza la interpretación para las variables independientes según <code>y</code>.
+</p>
+</div>
+<ul>
+<li>Realizaremos la comparacion de las variables categóricas independientes con respecto a la variable <code>y</code></li>
+</ul>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="eda.html#cb63-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb63-2"><a href="eda.html#cb63-2" tabindex="-1"></a>  <span class="fu">group_by</span>(y) <span class="sc">%&gt;%</span></span>
+<span id="cb63-3"><a href="eda.html#cb63-3" tabindex="-1"></a>  <span class="fu">count</span>(marital, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb63-4"><a href="eda.html#cb63-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> marital,</span>
+<span id="cb63-5"><a href="eda.html#cb63-5" tabindex="-1"></a>    <span class="at">variable =</span> <span class="st">&quot;marital&quot;</span>,</span>
+<span id="cb63-6"><a href="eda.html#cb63-6" tabindex="-1"></a>    <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb63-7"><a href="eda.html#cb63-7" tabindex="-1"></a>  <span class="fu">select</span>(y, variable, categoria, n, porcentaje)</span></code></pre></div>
+</details>
+<pre><code>## # A tibble: 6 × 5
+## # Groups:   y [2]
+##   y     variable categoria     n porcentaje
+##   &lt;fct&gt; &lt;chr&gt;    &lt;fct&gt;     &lt;int&gt;      &lt;dbl&gt;
+## 1 no    marital  divorced    451       11.3
+## 2 no    marital  married    2520       63  
+## 3 no    marital  single     1029       25.7
+## 4 yes   marital  divorced     77       14.8
+## 5 yes   marital  married     277       53.2
+## 6 yes   marital  single      167       32.1</code></pre>
+<p>La distribución del estado civil según la respuesta del marketing muestra diferencias relevantes en los patrones de respuesta. Entre quienes respondieron afirmativamente (<code>yes</code>), el <span class="math inline">\(53.17\%\)</span> están casados, el <span class="math inline">\(32.05\%\)</span> solteros y el <span class="math inline">\(14.78\%\)</span> divorciados. En contraste, en el grupo que respondió negativamente (<code>no</code>), la mayoría (<span class="math inline">\(63\%\)</span>) también está casada, pero la proporción de solteros (<span class="math inline">\(25.73%\)</span>) y divorciados (<span class="math inline">\(11.28\%\)</span>) es menor. Esta diferencia sugiere que las personas solteras y divorciadas presentan una mayor disposición o probabilidad de responder afirmativamente frente a la acción evaluada por la variable y, mientras que los casados tienden más a rechazarla, lo que podría ser clave para estrategias de segmentación o análisis de comportamiento.</p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<p>
+Realiza las tablas de las variables independientes segun variable respuesta <code>y</code>. Interpreta las tablas.
+</p>
+</div>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="eda.html#cb65-1" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb65-2"><a href="eda.html#cb65-2" tabindex="-1"></a>  <span class="fu">group_by</span>(y) <span class="sc">%&gt;%</span></span>
+<span id="cb65-3"><a href="eda.html#cb65-3" tabindex="-1"></a>  <span class="fu">count</span>(default, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb65-4"><a href="eda.html#cb65-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> default,</span>
+<span id="cb65-5"><a href="eda.html#cb65-5" tabindex="-1"></a>    <span class="at">variable =</span> <span class="st">&quot;default&quot;</span>,</span>
+<span id="cb65-6"><a href="eda.html#cb65-6" tabindex="-1"></a>    <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb65-7"><a href="eda.html#cb65-7" tabindex="-1"></a>  <span class="fu">select</span>(y, categoria, n, porcentaje)</span>
+<span id="cb65-8"><a href="eda.html#cb65-8" tabindex="-1"></a></span>
+<span id="cb65-9"><a href="eda.html#cb65-9" tabindex="-1"></a><span class="co"># Gráfica de barras agrupadas con etiquetas</span></span>
+<span id="cb65-10"><a href="eda.html#cb65-10" tabindex="-1"></a>df_plot <span class="sc">%&gt;%</span> </span>
+<span id="cb65-11"><a href="eda.html#cb65-11" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> n, <span class="at">fill =</span> y)) <span class="sc">+</span></span>
+<span id="cb65-12"><a href="eda.html#cb65-12" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb65-13"><a href="eda.html#cb65-13" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(porcentaje, <span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>)),</span>
+<span id="cb65-14"><a href="eda.html#cb65-14" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),</span>
+<span id="cb65-15"><a href="eda.html#cb65-15" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>,</span>
+<span id="cb65-16"><a href="eda.html#cb65-16" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb65-17"><a href="eda.html#cb65-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Historial de impago (default)&quot;</span>,</span>
+<span id="cb65-18"><a href="eda.html#cb65-18" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Historial de impago (default)&quot;</span>,</span>
+<span id="cb65-19"><a href="eda.html#cb65-19" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Cantidad de clientes&quot;</span></span>
+<span id="cb65-20"><a href="eda.html#cb65-20" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb65-21"><a href="eda.html#cb65-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb65-22"><a href="eda.html#cb65-22" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
+</details>
+<p><img src="bookdown-demo_files/figure-html/graf_agrup-1.png" width="672" /></p>
+<div class="admon-box ejercicio">
+<div class="admon-title">
+<span class="icon"></span> Ejercicio
+</div>
+<ol>
+<li>
+Interpreta la gráfica.
+</li>
+<li>
+Realiza las demas gráficas con sus respectivas interpretaciones
+</li>
+</ol>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="reglas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referencias-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/03-eda.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
