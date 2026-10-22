@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="es" xml:lang="es">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 2 Reglas de curso y diagnostico | Notas de métodos estadísticos</title>
   <meta name="description" content="Notas de clase de métodos estadísticos." />
-  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 2 Reglas de curso y diagnostico | Notas de métodos estadísticos" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Notas de clase de métodos estadísticos." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta name="github-repo" content="cdeoroaguado/rbook_met_estad" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Capítulo 2 Reglas de curso y diagnostico | Notas de métodos estadísticos" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2026-09-04" />
+<meta name="date" content="2026-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,12 +53,109 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.12.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 
 
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -80,104 +177,104 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Asignatura</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="02-reglas.html"><a href="#introducci%C3%B3n-a-r-y-rstudio"><i class="fa fa-check"></i><b>1.1</b> Introducción a R y RStudio</a>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#introducci%C3%B3n-a-r-y-rstudio"><i class="fa fa-check"></i><b>1.1</b> Introducción a R y RStudio</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="02-reglas.html"><a href="#qu%C3%A9-es-r"><i class="fa fa-check"></i><b>1.1.1</b> ¿Qué es R?</a></li>
-<li class="chapter" data-level="1.1.2" data-path="02-reglas.html"><a href="#qu%C3%A9-es-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es RStudio?</a></li>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#qu%C3%A9-es-r"><i class="fa fa-check"></i><b>1.1.1</b> ¿Qué es R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#qu%C3%A9-es-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es RStudio?</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="02-reglas.html"><a href="#introducci%C3%B3n-a-git-y-github"><i class="fa fa-check"></i><b>1.2</b> Introducción a Git y GitHub</a>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#introducci%C3%B3n-a-git-y-github"><i class="fa fa-check"></i><b>1.2</b> Introducción a Git y GitHub</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="02-reglas.html"><a href="#qu%C3%A9-es-git"><i class="fa fa-check"></i><b>1.2.1</b> ¿Qué es Git?</a></li>
-<li class="chapter" data-level="1.2.2" data-path="02-reglas.html"><a href="#qu%C3%A9-es-github"><i class="fa fa-check"></i><b>1.2.2</b> ¿Qué es GitHub?</a></li>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#qu%C3%A9-es-git"><i class="fa fa-check"></i><b>1.2.1</b> ¿Qué es Git?</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#qu%C3%A9-es-github"><i class="fa fa-check"></i><b>1.2.2</b> ¿Qué es GitHub?</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="02-reglas.html"><a href="#introducci%C3%B3n-a-tidyverse"><i class="fa fa-check"></i><b>1.3</b> Introducción a Tidyverse</a>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#introducci%C3%B3n-a-tidyverse"><i class="fa fa-check"></i><b>1.3</b> Introducción a Tidyverse</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="02-reglas.html"><a href="#representaci%C3%B3n-visual-del-ecosistema-tidyverse"><i class="fa fa-check"></i><b>1.3.1</b> Representación visual del ecosistema Tidyverse</a></li>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#representaci%C3%B3n-visual-del-ecosistema-tidyverse"><i class="fa fa-check"></i><b>1.3.1</b> Representación visual del ecosistema Tidyverse</a></li>
 <li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#principales-paquetes-del-tidyverse"><i class="fa fa-check"></i><b>1.3.2</b> Principales paquetes del Tidyverse</a></li>
-<li class="chapter" data-level="1.3.3" data-path="02-reglas.html"><a href="#instalaci%C3%B3n-del-tidyverse-en-r"><i class="fa fa-check"></i><b>1.3.3</b> Instalación del Tidyverse en R</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#instalaci%C3%B3n-del-tidyverse-en-r"><i class="fa fa-check"></i><b>1.3.3</b> Instalación del Tidyverse en R</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#pasos-para-publicar-un-libro-bookdown-en-github-pages"><i class="fa fa-check"></i><b>1.4</b> Pasos para publicar un libro <code>bookdown</code> en GitHub Pages</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="02-reglas.html"><a href="#video-paso-a-paso-de-la-publicaci%C3%B3n-del-libro-en-github-pages"><i class="fa fa-check"></i><b>1.4.1</b> Video paso a paso de la publicación del libro en GitHub Pages</a></li>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#video-paso-a-paso-de-la-publicaci%C3%B3n-del-libro-en-github-pages"><i class="fa fa-check"></i><b>1.4.1</b> Video paso a paso de la publicación del libro en GitHub Pages</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="reglas.html"><a href="reglas.html"><i class="fa fa-check"></i><b>2</b> Reglas de curso y diagnostico</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="reglas.html"><a href="reglas.html#reglas-de-las-clases"><i class="fa fa-check"></i><b>2.1</b> Reglas de las clases</a></li>
-<li class="chapter" data-level="2.2" data-path="02-reglas.html"><a href="#pol%C3%ADtica-de-evaluaci%C3%B3n-y-normas-de-integridad-acad%C3%A9mica"><i class="fa fa-check"></i><b>2.2</b> Política de evaluación y normas de integridad académica</a></li>
+<li class="chapter" data-level="2.2" data-path="reglas.html"><a href="reglas.html#pol%C3%ADtica-de-evaluaci%C3%B3n-y-normas-de-integridad-acad%C3%A9mica"><i class="fa fa-check"></i><b>2.2</b> Política de evaluación y normas de integridad académica</a></li>
 <li class="chapter" data-level="2.3" data-path="reglas.html"><a href="reglas.html#fechas-de-taller-y-examenes"><i class="fa fa-check"></i><b>2.3</b> Fechas de taller y examenes</a></li>
-<li class="chapter" data-level="2.4" data-path="02-reglas.html"><a href="#programaci%C3%B3n-del-curso-por-unidad"><i class="fa fa-check"></i><b>2.4</b> Programación del curso por unidad</a></li>
+<li class="chapter" data-level="2.4" data-path="reglas.html"><a href="reglas.html#programaci%C3%B3n-del-curso-por-unidad"><i class="fa fa-check"></i><b>2.4</b> Programación del curso por unidad</a></li>
 <li class="chapter" data-level="2.5" data-path="reglas.html"><a href="reglas.html#referencias"><i class="fa fa-check"></i><b>2.5</b> Referencias</a></li>
-<li class="chapter" data-level="2.6" data-path="02-reglas.html"><a href="#terminos-b%C3%A1sicos-de-la-estad%C3%ADstica"><i class="fa fa-check"></i><b>2.6</b> Terminos básicos de la estadística</a></li>
-<li class="chapter" data-level="2.7" data-path="02-reglas.html"><a href="#diagnostico-de-estad%C3%ADstica-b%C3%A1sica"><i class="fa fa-check"></i><b>2.7</b> Diagnostico de estadística básica</a></li>
+<li class="chapter" data-level="2.6" data-path="reglas.html"><a href="reglas.html#terminos-b%C3%A1sicos-de-la-estad%C3%ADstica"><i class="fa fa-check"></i><b>2.6</b> Terminos básicos de la estadística</a></li>
+<li class="chapter" data-level="2.7" data-path="reglas.html"><a href="reglas.html#diagnostico-de-estad%C3%ADstica-b%C3%A1sica"><i class="fa fa-check"></i><b>2.7</b> Diagnostico de estadística básica</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>3</b> Análisis exploratorio de datos (EDA)</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="02-reglas.html"><a href="#cu%C3%A1ndo-debo-utilizarlo"><i class="fa fa-check"></i><b>3.1</b> ¿Cuándo debo utilizarlo?</a>
+<li class="chapter" data-level="3.1" data-path="eda.html"><a href="eda.html#cu%C3%A1ndo-debo-utilizarlo"><i class="fa fa-check"></i><b>3.1</b> ¿Cuándo debo utilizarlo?</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="02-reglas.html"><a href="#tipos-de-an%C3%A1lisis-exploratorio"><i class="fa fa-check"></i><b>3.1.1</b> Tipos de análisis exploratorio:</a></li>
+<li class="chapter" data-level="3.1.1" data-path="eda.html"><a href="eda.html#tipos-de-an%C3%A1lisis-exploratorio"><i class="fa fa-check"></i><b>3.1.1</b> Tipos de análisis exploratorio:</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="02-reglas.html"><a href="#representaci%C3%B3n-de-datos-seg%C3%BAn-su-naturaleza"><i class="fa fa-check"></i><b>3.2</b> Representación de datos según su naturaleza</a></li>
-<li class="chapter" data-level="3.3" data-path="02-reglas.html"><a href="#presentaci%C3%B3n-y-an%C3%A1lisis-de-la-informaci%C3%B3n-en-estudios-descriptivos"><i class="fa fa-check"></i><b>3.3</b> Presentación y análisis de la información en estudios descriptivos</a></li>
-<li class="chapter" data-level="3.4" data-path="02-reglas.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-num%C3%A9rica"><i class="fa fa-check"></i><b>3.4</b> Análisis explotario con variable respuesta numérica</a>
+<li class="chapter" data-level="3.2" data-path="eda.html"><a href="eda.html#representaci%C3%B3n-de-datos-seg%C3%BAn-su-naturaleza"><i class="fa fa-check"></i><b>3.2</b> Representación de datos según su naturaleza</a></li>
+<li class="chapter" data-level="3.3" data-path="eda.html"><a href="eda.html#presentaci%C3%B3n-y-an%C3%A1lisis-de-la-informaci%C3%B3n-en-estudios-descriptivos"><i class="fa fa-check"></i><b>3.3</b> Presentación y análisis de la información en estudios descriptivos</a></li>
+<li class="chapter" data-level="3.4" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-explotario-con-variable-respuesta-num%C3%A9rica"><i class="fa fa-check"></i><b>3.4</b> Análisis explotario con variable respuesta numérica</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="eda.html"><a href="eda.html#contexto-de-los-datos-de-housing"><i class="fa fa-check"></i><b>3.4.1</b> Contexto de los datos de housing</a></li>
-<li class="chapter" data-level="3.4.2" data-path="02-reglas.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl"><i class="fa fa-check"></i><b>3.4.2</b> Extracción, transformación y carga (ETL)</a></li>
-<li class="chapter" data-level="3.4.3" data-path="02-reglas.html"><a href="#an%C3%A1lisis-de-la-variable-median_house_value-target"><i class="fa fa-check"></i><b>3.4.3</b> Análisis de la variable <code>median_house_value</code> (Target)</a></li>
-<li class="chapter" data-level="3.4.4" data-path="02-reglas.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes"><i class="fa fa-check"></i><b>3.4.4</b> Análisis de las variables características (independientes)</a></li>
-<li class="chapter" data-level="3.4.5" data-path="02-reglas.html"><a href="#an%C3%A1lisis-exploratorio-bivariado"><i class="fa fa-check"></i><b>3.4.5</b> Análisis exploratorio bivariado</a></li>
+<li class="chapter" data-level="3.4.2" data-path="eda.html"><a href="eda.html#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl"><i class="fa fa-check"></i><b>3.4.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.4.3" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-de-la-variable-median_house_value-target"><i class="fa fa-check"></i><b>3.4.3</b> Análisis de la variable <code>median_house_value</code> (Target)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes"><i class="fa fa-check"></i><b>3.4.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-exploratorio-bivariado"><i class="fa fa-check"></i><b>3.4.5</b> Análisis exploratorio bivariado</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="02-reglas.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-categ%C3%B3rica"><i class="fa fa-check"></i><b>3.5</b> Análisis explotario con variable respuesta categórica</a>
+<li class="chapter" data-level="3.5" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-explotario-con-variable-respuesta-categ%C3%B3rica"><i class="fa fa-check"></i><b>3.5</b> Análisis explotario con variable respuesta categórica</a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="eda.html"><a href="eda.html#contexto-del-conjunto-de-datos-de-marketing-de-un-banco"><i class="fa fa-check"></i><b>3.5.1</b> Contexto del conjunto de datos de marketing de un banco</a></li>
-<li class="chapter" data-level="3.5.2" data-path="02-reglas.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl-1"><i class="fa fa-check"></i><b>3.5.2</b> Extracción, transformación y carga (ETL)</a></li>
-<li class="chapter" data-level="3.5.3" data-path="02-reglas.html"><a href="#an%C3%A1lisis-de-la-variable-y-target"><i class="fa fa-check"></i><b>3.5.3</b> Análisis de la variable <code>y</code> (Target)</a></li>
-<li class="chapter" data-level="3.5.4" data-path="02-reglas.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes-1"><i class="fa fa-check"></i><b>3.5.4</b> Análisis de las variables características (independientes)</a></li>
-<li class="chapter" data-level="3.5.5" data-path="02-reglas.html"><a href="#an%C3%A1lisis-exploratorio-bivariado-1"><i class="fa fa-check"></i><b>3.5.5</b> Análisis exploratorio bivariado</a></li>
+<li class="chapter" data-level="3.5.2" data-path="eda.html"><a href="eda.html#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl-1"><i class="fa fa-check"></i><b>3.5.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.5.3" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-de-la-variable-y-target"><i class="fa fa-check"></i><b>3.5.3</b> Análisis de la variable <code>y</code> (Target)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes-1"><i class="fa fa-check"></i><b>3.5.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.5.5" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-exploratorio-bivariado-1"><i class="fa fa-check"></i><b>3.5.5</b> Análisis exploratorio bivariado</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="estparynopar.html"><a href="estparynopar.html"><i class="fa fa-check"></i><b>4</b> Análisis de estadística paramétrica y no paramétrica</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="02-reglas.html"><a href="#comparaci%C3%B3n-de-medias-entre-dos-grupos-independientes-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.1</b> Comparación de medias entre dos grupos independientes con estadística paramétrica</a>
+<li class="chapter" data-level="4.1" data-path="estparynopar.html"><a href="estparynopar.html#comparaci%C3%B3n-de-medias-entre-dos-grupos-independientes-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.1</b> Comparación de medias entre dos grupos independientes con estadística paramétrica</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="estparynopar.html"><a href="estparynopar.html#condiciones-del-t-test-para-muestras-independientes"><i class="fa fa-check"></i><b>4.1.1</b> Condiciones del t-test para muestras independientes</a></li>
 <li class="chapter" data-level="4.1.2" data-path="estparynopar.html"><a href="estparynopar.html#grados-de-libertad"><i class="fa fa-check"></i><b>4.1.2</b> Grados de libertad</a></li>
-<li class="chapter" data-level="4.1.3" data-path="02-reglas.html"><a href="#error-est%C3%A1ndar-de-la-diferencia-de-medias"><i class="fa fa-check"></i><b>4.1.3</b> Error estándar de la diferencia de medias</a></li>
-<li class="chapter" data-level="4.1.4" data-path="02-reglas.html"><a href="#tama%C3%B1o-del-efecto-effect-size-en-comparaciones-de-medias"><i class="fa fa-check"></i><b>4.1.4</b> Tamaño del Efecto (Effect Size) en comparaciones de medias</a></li>
+<li class="chapter" data-level="4.1.3" data-path="estparynopar.html"><a href="estparynopar.html#error-est%C3%A1ndar-de-la-diferencia-de-medias"><i class="fa fa-check"></i><b>4.1.3</b> Error estándar de la diferencia de medias</a></li>
+<li class="chapter" data-level="4.1.4" data-path="estparynopar.html"><a href="estparynopar.html#tama%C3%B1o-del-efecto-effect-size-en-comparaciones-de-medias"><i class="fa fa-check"></i><b>4.1.4</b> Tamaño del Efecto (Effect Size) en comparaciones de medias</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="02-reglas.html"><a href="#comparaci%C3%B3n-de-medias-entre-dos-grupos-pareados-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.2</b> Comparación de medias entre dos grupos pareados con estadística paramétrica</a>
+<li class="chapter" data-level="4.2" data-path="estparynopar.html"><a href="estparynopar.html#comparaci%C3%B3n-de-medias-entre-dos-grupos-pareados-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.2</b> Comparación de medias entre dos grupos pareados con estadística paramétrica</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="estparynopar.html"><a href="estparynopar.html#supuestos-del-t-test-para-muestras-dependientes"><i class="fa fa-check"></i><b>4.2.1</b> Supuestos del t-test para muestras dependientes</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="02-reglas.html"><a href="#comparaci%C3%B3n-de-dos-grupos-independientes-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.3</b> Comparación de dos grupos independientes con estadística no paramétrica</a>
+<li class="chapter" data-level="4.3" data-path="estparynopar.html"><a href="estparynopar.html#comparaci%C3%B3n-de-dos-grupos-independientes-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.3</b> Comparación de dos grupos independientes con estadística no paramétrica</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="estparynopar.html"><a href="estparynopar.html#fundamento-conceptual"><i class="fa fa-check"></i><b>4.3.1</b> Fundamento conceptual</a></li>
-<li class="chapter" data-level="4.3.2" data-path="02-reglas.html"><a href="#comparaci%C3%B3n-con-el-test-t"><i class="fa fa-check"></i><b>4.3.2</b> Comparación con el test t</a></li>
-<li class="chapter" data-level="4.3.3" data-path="02-reglas.html"><a href="#supuestos-y-condiciones-de-aplicaci%C3%B3n"><i class="fa fa-check"></i><b>4.3.3</b> Supuestos y condiciones de aplicación</a></li>
+<li class="chapter" data-level="4.3.2" data-path="estparynopar.html"><a href="estparynopar.html#comparaci%C3%B3n-con-el-test-t"><i class="fa fa-check"></i><b>4.3.2</b> Comparación con el test t</a></li>
+<li class="chapter" data-level="4.3.3" data-path="estparynopar.html"><a href="estparynopar.html#supuestos-y-condiciones-de-aplicaci%C3%B3n"><i class="fa fa-check"></i><b>4.3.3</b> Supuestos y condiciones de aplicación</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="02-reglas.html"><a href="#comparaci%C3%B3n-de-dos-grupos-pareados-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.4</b> Comparación de dos grupos pareados con estadística no paramétrica</a>
+<li class="chapter" data-level="4.4" data-path="estparynopar.html"><a href="estparynopar.html#comparaci%C3%B3n-de-dos-grupos-pareados-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.4</b> Comparación de dos grupos pareados con estadística no paramétrica</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="02-reglas.html"><a href="#cu%C3%A1ndo-se-recomienda-utilizar-esta-prueba"><i class="fa fa-check"></i><b>4.4.1</b> ¿Cuándo se recomienda utilizar esta prueba?</a></li>
+<li class="chapter" data-level="4.4.1" data-path="estparynopar.html"><a href="estparynopar.html#cu%C3%A1ndo-se-recomienda-utilizar-esta-prueba"><i class="fa fa-check"></i><b>4.4.1</b> ¿Cuándo se recomienda utilizar esta prueba?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="02-reglas.html"><a href="#anova-an%C3%A1lisis-de-varianza-para-comparar-m%C3%BAltiples-medias"><i class="fa fa-check"></i><b>4.5</b> ANOVA (análisis de varianza para comparar múltiples medias)</a>
+<li class="chapter" data-level="4.5" data-path="estparynopar.html"><a href="estparynopar.html#anova-an%C3%A1lisis-de-varianza-para-comparar-m%C3%BAltiples-medias"><i class="fa fa-check"></i><b>4.5</b> ANOVA (análisis de varianza para comparar múltiples medias)</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="02-reglas.html"><a href="#supuestos-y-formulaci%C3%B3n-de-las-hip%C3%B3tesis"><i class="fa fa-check"></i><b>4.5.1</b> Supuestos y formulación de las hipótesis</a></li>
-<li class="chapter" data-level="4.5.2" data-path="02-reglas.html"><a href="#sumas-de-cuadrados-y-teorema-de-descomposici%C3%B3n"><i class="fa fa-check"></i><b>4.5.2</b> Sumas de cuadrados y teorema de descomposición</a></li>
+<li class="chapter" data-level="4.5.1" data-path="estparynopar.html"><a href="estparynopar.html#supuestos-y-formulaci%C3%B3n-de-las-hip%C3%B3tesis"><i class="fa fa-check"></i><b>4.5.1</b> Supuestos y formulación de las hipótesis</a></li>
+<li class="chapter" data-level="4.5.2" data-path="estparynopar.html"><a href="estparynopar.html#sumas-de-cuadrados-y-teorema-de-descomposici%C3%B3n"><i class="fa fa-check"></i><b>4.5.2</b> Sumas de cuadrados y teorema de descomposición</a></li>
 <li class="chapter" data-level="4.5.3" data-path="estparynopar.html"><a href="estparynopar.html#estimaciones-insesgadas-de-la-varianza-poblacional"><i class="fa fa-check"></i><b>4.5.3</b> Estimaciones insesgadas de la varianza poblacional</a></li>
-<li class="chapter" data-level="4.5.4" data-path="02-reglas.html"><a href="#teorema-de-contraste-para-el-an%C3%A1lisis-de-varianza"><i class="fa fa-check"></i><b>4.5.4</b> Teorema de contraste para el análisis de varianza</a></li>
-<li class="chapter" data-level="4.5.5" data-path="02-reglas.html"><a href="#comparaciones-m%C3%BAltiples"><i class="fa fa-check"></i><b>4.5.5</b> Comparaciones múltiples</a></li>
+<li class="chapter" data-level="4.5.4" data-path="estparynopar.html"><a href="estparynopar.html#teorema-de-contraste-para-el-an%C3%A1lisis-de-varianza"><i class="fa fa-check"></i><b>4.5.4</b> Teorema de contraste para el análisis de varianza</a></li>
+<li class="chapter" data-level="4.5.5" data-path="estparynopar.html"><a href="estparynopar.html#comparaciones-m%C3%BAltiples"><i class="fa fa-check"></i><b>4.5.5</b> Comparaciones múltiples</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="estparynopar.html"><a href="estparynopar.html#kruskalwallis"><i class="fa fa-check"></i><b>4.6</b> Kruskal–Wallis</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="02-reglas.html"><a href="#hip%C3%B3tesis-del-test"><i class="fa fa-check"></i><b>4.6.1</b> Hipótesis del test</a></li>
-<li class="chapter" data-level="4.6.2" data-path="02-reglas.html"><a href="#estad%C3%ADstico-de-prueba"><i class="fa fa-check"></i><b>4.6.2</b> Estadístico de prueba</a></li>
+<li class="chapter" data-level="4.6.1" data-path="estparynopar.html"><a href="estparynopar.html#hip%C3%B3tesis-del-test"><i class="fa fa-check"></i><b>4.6.1</b> Hipótesis del test</a></li>
+<li class="chapter" data-level="4.6.2" data-path="estparynopar.html"><a href="estparynopar.html#estad%C3%ADstico-de-prueba"><i class="fa fa-check"></i><b>4.6.2</b> Estadístico de prueba</a></li>
 <li class="chapter" data-level="4.6.3" data-path="estparynopar.html"><a href="estparynopar.html#condiciones-del-test-de-kruskalwallis"><i class="fa fa-check"></i><b>4.6.3</b> Condiciones del test de Kruskal–Wallis</a></li>
 <li class="chapter" data-level="4.6.4" data-path="estparynopar.html"><a href="estparynopar.html#comparaciones-post-hoc"><i class="fa fa-check"></i><b>4.6.4</b> Comparaciones Post-Hoc</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tabcontingencia.html"><a href="tabcontingencia.html"><i class="fa fa-check"></i><b>5</b> Tabla de contingencia</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="02-reglas.html"><a href="#tablas-de-contingencia-con-dos-criterios-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia con dos criterios de clasificación</a>
+<li class="chapter" data-level="5.1" data-path="tabcontingencia.html"><a href="tabcontingencia.html#tablas-de-contingencia-con-dos-criterios-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia con dos criterios de clasificación</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="tabcontingencia.html"><a href="tabcontingencia.html#prueba-de-homogeneidad"><i class="fa fa-check"></i><b>5.1.1</b> Prueba de homogeneidad</a></li>
 <li class="chapter" data-level="5.1.2" data-path="tabcontingencia.html"><a href="tabcontingencia.html#prueba-de-independencia"><i class="fa fa-check"></i><b>5.1.2</b> Prueba de independencia</a></li>
@@ -185,54 +282,116 @@
 </ul></li>
 <li class="chapter" data-level="6" data-path="correglin.html"><a href="correglin.html"><i class="fa fa-check"></i><b>6</b> Correlación lineal</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="02-reglas.html"><a href="#definiciones-y-teorema-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Definiciones y teorema de correlación</a></li>
-<li class="chapter" data-level="6.2" data-path="02-reglas.html"><a href="#an%C3%A1lisis-de-correlaci%C3%B3n-simple-dos-variables"><i class="fa fa-check"></i><b>6.2</b> Análisis de correlación simple (dos variables)</a>
+<li class="chapter" data-level="6.1" data-path="correglin.html"><a href="correglin.html#definiciones-y-teorema-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Definiciones y teorema de correlación</a></li>
+<li class="chapter" data-level="6.2" data-path="correglin.html"><a href="correglin.html#an%C3%A1lisis-de-correlaci%C3%B3n-simple-dos-variables"><i class="fa fa-check"></i><b>6.2</b> Análisis de correlación simple (dos variables)</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="02-reglas.html"><a href="#tipos-de-coeficientes-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.1</b> Tipos de coeficientes de correlación</a></li>
-<li class="chapter" data-level="6.2.2" data-path="02-reglas.html"><a href="#interpretaci%C3%B3n-del-coeficiente-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.2</b> Interpretación del coeficiente de correlación</a></li>
-<li class="chapter" data-level="6.2.3" data-path="02-reglas.html"><a href="#correlaci%C3%B3n-de-pearson"><i class="fa fa-check"></i><b>6.2.3</b> Correlación de Pearson</a></li>
-<li class="chapter" data-level="6.2.4" data-path="02-reglas.html"><a href="#correlaci%C3%B3n-de-spearman"><i class="fa fa-check"></i><b>6.2.4</b> Correlación de Spearman</a></li>
-<li class="chapter" data-level="6.2.5" data-path="02-reglas.html"><a href="#correlaci%C3%B3n-de-kendall"><i class="fa fa-check"></i><b>6.2.5</b> Correlación de Kendall</a></li>
+<li class="chapter" data-level="6.2.1" data-path="correglin.html"><a href="correglin.html#tipos-de-coeficientes-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.1</b> Tipos de coeficientes de correlación</a></li>
+<li class="chapter" data-level="6.2.2" data-path="correglin.html"><a href="correglin.html#interpretaci%C3%B3n-del-coeficiente-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.2</b> Interpretación del coeficiente de correlación</a></li>
+<li class="chapter" data-level="6.2.3" data-path="correglin.html"><a href="correglin.html#correlaci%C3%B3n-de-pearson"><i class="fa fa-check"></i><b>6.2.3</b> Correlación de Pearson</a></li>
+<li class="chapter" data-level="6.2.4" data-path="correglin.html"><a href="correglin.html#correlaci%C3%B3n-de-spearman"><i class="fa fa-check"></i><b>6.2.4</b> Correlación de Spearman</a></li>
+<li class="chapter" data-level="6.2.5" data-path="correglin.html"><a href="correglin.html#correlaci%C3%B3n-de-kendall"><i class="fa fa-check"></i><b>6.2.5</b> Correlación de Kendall</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="rls.html"><a href="rls.html"><i class="fa fa-check"></i><b>7</b> Regresión lineal simple</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="02-reglas.html"><a href="#el-modelo-de-regresi%C3%B3n-lineal-simple-rls"><i class="fa fa-check"></i><b>7.1</b> El modelo de regresión lineal simple (RLS)</a>
+<li class="chapter" data-level="7.1" data-path="rls.html"><a href="rls.html#el-modelo-de-regresi%C3%B3n-lineal-simple-rls"><i class="fa fa-check"></i><b>7.1</b> El modelo de regresión lineal simple (RLS)</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="02-reglas.html"><a href="#modelo-determinista-y-modelo-probabil%C3%ADstico"><i class="fa fa-check"></i><b>7.1.1</b> Modelo determinista y modelo probabilístico</a></li>
-<li class="chapter" data-level="7.1.2" data-path="02-reglas.html"><a href="#supuestos-b%C3%A1sicos-para-el-modelo-de-regresi%C3%B3n-lineal."><i class="fa fa-check"></i><b>7.1.2</b> Supuestos básicos para el modelo de regresión lineal.</a></li>
+<li class="chapter" data-level="7.1.1" data-path="rls.html"><a href="rls.html#modelo-determinista-y-modelo-probabil%C3%ADstico"><i class="fa fa-check"></i><b>7.1.1</b> Modelo determinista y modelo probabilístico</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rls.html"><a href="rls.html#supuestos-b%C3%A1sicos-para-el-modelo-de-regresi%C3%B3n-lineal."><i class="fa fa-check"></i><b>7.1.2</b> Supuestos básicos para el modelo de regresión lineal.</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="02-reglas.html"><a href="#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1"><i class="fa fa-check"></i><b>7.2</b> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span></a></li>
-<li class="chapter" data-level="7.3" data-path="02-reglas.html"><a href="#estimaci%C3%B3n-de-sigma2"><i class="fa fa-check"></i><b>7.3</b> Estimación de <span class="math inline">\(\sigma^2\)</span></a></li>
-<li class="chapter" data-level="7.4" data-path="02-reglas.html"><a href="#coeficiente-de-determinaci%C3%B3n"><i class="fa fa-check"></i><b>7.4</b> Coeficiente de determinación</a></li>
-<li class="chapter" data-level="7.5" data-path="02-reglas.html"><a href="#propiedades-de-estimadores-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>7.5</b> Propiedades de estimadores de mínimos cuadrados</a></li>
-<li class="chapter" data-level="7.6" data-path="02-reglas.html"><a href="#estimaci%C3%B3n-de-invervalos-de-confianza-y-prueba-de-hip%C3%B3tesis-para-beta_1-beta_0-y-sigma2"><i class="fa fa-check"></i><b>7.6</b> Estimación de invervalos de confianza y prueba de hipótesis para <span class="math inline">\(\beta_1, \beta_0\)</span> y <span class="math inline">\(\sigma^2\)</span></a>
+<li class="chapter" data-level="7.2" data-path="rls.html"><a href="rls.html#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1"><i class="fa fa-check"></i><b>7.2</b> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span></a></li>
+<li class="chapter" data-level="7.3" data-path="rls.html"><a href="rls.html#estimaci%C3%B3n-de-sigma2"><i class="fa fa-check"></i><b>7.3</b> Estimación de <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.4" data-path="rls.html"><a href="rls.html#coeficiente-de-determinaci%C3%B3n"><i class="fa fa-check"></i><b>7.4</b> Coeficiente de determinación</a></li>
+<li class="chapter" data-level="7.5" data-path="rls.html"><a href="rls.html#propiedades-de-estimadores-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>7.5</b> Propiedades de estimadores de mínimos cuadrados</a></li>
+<li class="chapter" data-level="7.6" data-path="rls.html"><a href="rls.html#estimaci%C3%B3n-de-invervalos-de-confianza-y-prueba-de-hip%C3%B3tesis-para-beta_1-beta_0-y-sigma2"><i class="fa fa-check"></i><b>7.6</b> Estimación de invervalos de confianza y prueba de hipótesis para <span class="math inline">\(\beta_1, \beta_0\)</span> y <span class="math inline">\(\sigma^2\)</span></a>
 <ul>
 <li class="chapter" data-level="7.6.1" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-beta_1"><i class="fa fa-check"></i><b>7.6.1</b> Intervalo de confianza para <span class="math inline">\(\beta_1\)</span></a></li>
-<li class="chapter" data-level="7.6.2" data-path="02-reglas.html"><a href="#prueba-de-hip%C3%B3tesis-para-beta_1"><i class="fa fa-check"></i><b>7.6.2</b> Prueba de hipótesis para <span class="math inline">\(\beta_1\)</span></a></li>
+<li class="chapter" data-level="7.6.2" data-path="rls.html"><a href="rls.html#prueba-de-hip%C3%B3tesis-para-beta_1"><i class="fa fa-check"></i><b>7.6.2</b> Prueba de hipótesis para <span class="math inline">\(\beta_1\)</span></a></li>
 <li class="chapter" data-level="7.6.3" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-beta_0"><i class="fa fa-check"></i><b>7.6.3</b> Intervalo de confianza para <span class="math inline">\(\beta_0\)</span></a></li>
-<li class="chapter" data-level="7.6.4" data-path="02-reglas.html"><a href="#prueba-de-hip%C3%B3tesis-para-beta_0"><i class="fa fa-check"></i><b>7.6.4</b> Prueba de hipótesis para <span class="math inline">\(\beta_0\)</span></a></li>
+<li class="chapter" data-level="7.6.4" data-path="rls.html"><a href="rls.html#prueba-de-hip%C3%B3tesis-para-beta_0"><i class="fa fa-check"></i><b>7.6.4</b> Prueba de hipótesis para <span class="math inline">\(\beta_0\)</span></a></li>
 <li class="chapter" data-level="7.6.5" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-sigma2"><i class="fa fa-check"></i><b>7.6.5</b> Intervalo de confianza para <span class="math inline">\(\sigma^2\)</span></a></li>
-<li class="chapter" data-level="7.6.6" data-path="02-reglas.html"><a href="#prueba-de-hip%C3%B3tesis-para-sigma2"><i class="fa fa-check"></i><b>7.6.6</b> Prueba de hipótesis para <span class="math inline">\(\sigma^2\)</span></a></li>
-<li class="chapter" data-level="7.6.7" data-path="02-reglas.html"><a href="#anova-en-regresi%C3%B3n-lineal"><i class="fa fa-check"></i><b>7.6.7</b> ANOVA en regresión lineal</a></li>
-<li class="chapter" data-level="7.6.8" data-path="02-reglas.html"><a href="#hip%C3%B3tesis-global"><i class="fa fa-check"></i><b>7.6.8</b> Hipótesis global</a></li>
+<li class="chapter" data-level="7.6.6" data-path="rls.html"><a href="rls.html#prueba-de-hip%C3%B3tesis-para-sigma2"><i class="fa fa-check"></i><b>7.6.6</b> Prueba de hipótesis para <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.6.7" data-path="rls.html"><a href="rls.html#anova-en-regresi%C3%B3n-lineal"><i class="fa fa-check"></i><b>7.6.7</b> ANOVA en regresión lineal</a></li>
+<li class="chapter" data-level="7.6.8" data-path="rls.html"><a href="rls.html#hip%C3%B3tesis-global"><i class="fa fa-check"></i><b>7.6.8</b> Hipótesis global</a></li>
 </ul></li>
 <li class="chapter" data-level="7.7" data-path="rls.html"><a href="rls.html#transformaciones-para-mejorar-el-ajuste-del-modelo"><i class="fa fa-check"></i><b>7.7</b> Transformaciones para mejorar el ajuste del modelo</a>
 <ul>
-<li class="chapter" data-level="7.7.1" data-path="02-reglas.html"><a href="#por-qu%C3%A9-transformar-variables"><i class="fa fa-check"></i><b>7.7.1</b> ¿Por qué transformar variables?</a></li>
+<li class="chapter" data-level="7.7.1" data-path="rls.html"><a href="rls.html#por-qu%C3%A9-transformar-variables"><i class="fa fa-check"></i><b>7.7.1</b> ¿Por qué transformar variables?</a></li>
 <li class="chapter" data-level="7.7.2" data-path="rls.html"><a href="rls.html#tipos-comunes-de-transformaciones"><i class="fa fa-check"></i><b>7.7.2</b> Tipos comunes de transformaciones</a></li>
-<li class="chapter" data-level="7.7.3" data-path="02-reglas.html"><a href="#evaluaci%C3%B3n-posterior-a-la-transformaci%C3%B3n"><i class="fa fa-check"></i><b>7.7.3</b> Evaluación posterior a la transformación</a></li>
+<li class="chapter" data-level="7.7.3" data-path="rls.html"><a href="rls.html#evaluaci%C3%B3n-posterior-a-la-transformaci%C3%B3n"><i class="fa fa-check"></i><b>7.7.3</b> Evaluación posterior a la transformación</a></li>
 </ul></li>
-<li class="chapter" data-level="7.8" data-path="02-reglas.html"><a href="#an%C3%A1lisis-de-residuales"><i class="fa fa-check"></i><b>7.8</b> Análisis de residuales</a>
+<li class="chapter" data-level="7.8" data-path="rls.html"><a href="rls.html#an%C3%A1lisis-de-residuales"><i class="fa fa-check"></i><b>7.8</b> Análisis de residuales</a>
 <ul>
-<li class="chapter" data-level="7.8.1" data-path="02-reglas.html"><a href="#validaci%C3%B3n-de-supuestos"><i class="fa fa-check"></i><b>7.8.1</b> Validación de supuestos</a></li>
+<li class="chapter" data-level="7.8.1" data-path="rls.html"><a href="rls.html#validaci%C3%B3n-de-supuestos"><i class="fa fa-check"></i><b>7.8.1</b> Validación de supuestos</a></li>
 <li class="chapter" data-level="7.8.2" data-path="rls.html"><a href="rls.html#independencia-de-los-errores"><i class="fa fa-check"></i><b>7.8.2</b> Independencia de los errores</a></li>
 <li class="chapter" data-level="7.8.3" data-path="rls.html"><a href="rls.html#normalidad-de-los-errores"><i class="fa fa-check"></i><b>7.8.3</b> Normalidad de los errores</a></li>
 <li class="chapter" data-level="7.8.4" data-path="rls.html"><a href="rls.html#media-cero-de-los-errores"><i class="fa fa-check"></i><b>7.8.4</b> Media cero de los errores</a></li>
 <li class="chapter" data-level="7.8.5" data-path="rls.html"><a href="rls.html#varianza-constante-de-los-errores"><i class="fa fa-check"></i><b>7.8.5</b> Varianza constante de los errores</a></li>
 </ul></li>
-<li class="chapter" data-level="7.9" data-path="02-reglas.html"><a href="#estimaci%C3%B3n-e-inferencia-para-la-widehatmathbbeymid-x_0-en-rls"><i class="fa fa-check"></i><b>7.9</b> Estimación e inferencia para la <span class="math inline">\(\widehat{\mathbb{E}}(y\mid x_0)\)</span> en RLS</a></li>
-<li class="chapter" data-level="7.10" data-path="02-reglas.html"><a href="#intervalo-de-predicci%C3%B3n-para-una-nueva-y_0-en-x_0"><i class="fa fa-check"></i><b>7.10</b> Intervalo de predicción para una nueva <span class="math inline">\(y_0\)</span> en <span class="math inline">\(x_0\)</span></a></li>
+<li class="chapter" data-level="7.9" data-path="rls.html"><a href="rls.html#estimaci%C3%B3n-e-inferencia-para-la-widehatmathbbeymid-x_0-en-rls"><i class="fa fa-check"></i><b>7.9</b> Estimación e inferencia para la <span class="math inline">\(\widehat{\mathbb{E}}(y\mid x_0)\)</span> en RLS</a>
+<ul>
+<li class="chapter" data-level="7.9.1" data-path="rls.html"><a href="rls.html#ejemplo-con-los-datos-de-soldadura"><i class="fa fa-check"></i><b>7.9.1</b> Ejemplo con los datos de soldadura</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="rls.html"><a href="rls.html#intervalo-de-predicci%C3%B3n-para-una-nueva-y_0-en-x_0"><i class="fa fa-check"></i><b>7.10</b> Intervalo de predicción para una nueva <span class="math inline">\(y_0\)</span> en <span class="math inline">\(x_0\)</span></a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="rls.html"><a href="rls.html#ejemplo-con-los-datos-de-soldadura-1"><i class="fa fa-check"></i><b>7.10.1</b> Ejemplo con los datos de soldadura</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rlm.html"><a href="rlm.html"><i class="fa fa-check"></i><b>8</b> Regresión lineal multiple</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rlm.html"><a href="rlm.html#formulaci%C3%B3n-matem%C3%A1tica-del-modelo-de-rlm"><i class="fa fa-check"></i><b>8.1</b> Formulación matemática del modelo de RLM</a></li>
+<li class="chapter" data-level="8.2" data-path="rlm.html"><a href="rlm.html#estimaci%C3%B3n-de-los-coeficientes-del-modelo-de-rlm"><i class="fa fa-check"></i><b>8.2</b> Estimación de los coeficientes del modelo de RLM</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="rlm.html"><a href="rlm.html#modelo-ajustado-de-regresi%C3%B3n"><i class="fa fa-check"></i><b>8.2.1</b> Modelo ajustado de regresión</a></li>
+<li class="chapter" data-level="8.2.2" data-path="rlm.html"><a href="rlm.html#vector-de-residuales"><i class="fa fa-check"></i><b>8.2.2</b> Vector de residuales</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="rlm.html"><a href="rlm.html#propiedades-de-los-estimadores-de-beta"><i class="fa fa-check"></i><b>8.3</b> Propiedades de los estimadores de <span class="math inline">\(\beta\)</span></a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="rlm.html"><a href="rlm.html#esperanza-del-estimador-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>8.3.1</b> Esperanza del estimador de mínimos cuadrados</a></li>
+<li class="chapter" data-level="8.3.2" data-path="rlm.html"><a href="rlm.html#varianza-del-estimador-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>8.3.2</b> Varianza del estimador de mínimos cuadrados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="rlm.html"><a href="rlm.html#estimaci%C3%B3n-de-la-varianza-del-modelo-sigma2"><i class="fa fa-check"></i><b>8.4</b> Estimación de la varianza del modelo <span class="math inline">\(\sigma^2\)</span></a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="rlm.html"><a href="rlm.html#estimador-insesgado-de-sigma2"><i class="fa fa-check"></i><b>8.4.1</b> Estimador insesgado de <span class="math inline">\(\sigma^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="rlm.html"><a href="rlm.html#prueba-de-significancia-global-de-la-rlm"><i class="fa fa-check"></i><b>8.5</b> Prueba de significancia global de la RLM</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="rlm.html"><a href="rlm.html#hip%C3%B3tesis"><i class="fa fa-check"></i><b>8.5.1</b> Hipótesis</a></li>
+<li class="chapter" data-level="8.5.2" data-path="rlm.html"><a href="rlm.html#descomposici%C3%B3n-de-la-suma-de-cuadrados"><i class="fa fa-check"></i><b>8.5.2</b> Descomposición de la suma de cuadrados</a></li>
+<li class="chapter" data-level="8.5.3" data-path="rlm.html"><a href="rlm.html#estad%C3%ADstico-de-prueba-2"><i class="fa fa-check"></i><b>8.5.3</b> Estadístico de prueba</a></li>
+<li class="chapter" data-level="8.5.4" data-path="rlm.html"><a href="rlm.html#cuadrados-medios-esperados"><i class="fa fa-check"></i><b>8.5.4</b> Cuadrados medios esperados</a></li>
+<li class="chapter" data-level="8.5.5" data-path="rlm.html"><a href="rlm.html#par%C3%A1metro-de-no-centralidad"><i class="fa fa-check"></i><b>8.5.5</b> Parámetro de no centralidad</a></li>
+<li class="chapter" data-level="8.5.6" data-path="rlm.html"><a href="rlm.html#regla-de-decisi%C3%B3n-1"><i class="fa fa-check"></i><b>8.5.6</b> Regla de decisión</a></li>
+<li class="chapter" data-level="8.5.7" data-path="rlm.html"><a href="rlm.html#tabla-anova-para-la-rlm"><i class="fa fa-check"></i><b>8.5.7</b> Tabla ANOVA para la RLM</a></li>
+<li class="chapter" data-level="8.5.8" data-path="rlm.html"><a href="rlm.html#formulas-de-la-suma-de-cuadrados-en-la-rlm"><i class="fa fa-check"></i><b>8.5.8</b> Formulas de la suma de cuadrados en la RLM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="rlm.html"><a href="rlm.html#prueba-individual-de-significancia-para-los-coeficientes"><i class="fa fa-check"></i><b>8.6</b> Prueba individual de significancia para los coeficientes</a></li>
+<li class="chapter" data-level="8.7" data-path="rlm.html"><a href="rlm.html#intervalos-de-confianza-para-beta_j"><i class="fa fa-check"></i><b>8.7</b> Intervalos de confianza para <span class="math inline">\(\beta_j\)</span></a></li>
+<li class="chapter" data-level="8.8" data-path="rlm.html"><a href="rlm.html#coeficiente-de-determinaci%C3%B3n-r2-y-r2-ajustado-de-la-rlm"><i class="fa fa-check"></i><b>8.8</b> Coeficiente de determinación <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado de la RLM</a></li>
+<li class="chapter" data-level="8.9" data-path="rlm.html"><a href="rlm.html#inferencia-para-la-respuesta"><i class="fa fa-check"></i><b>8.9</b> Inferencia para la respuesta</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="rlm.html"><a href="rlm.html#intervalos-de-confianza-para-ey-mid-mathbfx_0"><i class="fa fa-check"></i><b>8.9.1</b> Intervalos de confianza para <span class="math inline">\(E[Y \mid \mathbf{x}_0]\)</span></a></li>
+<li class="chapter" data-level="8.9.2" data-path="rlm.html"><a href="rlm.html#intervalos-de-predicci%C3%B3n-para-ey-mid-mathbfx_0"><i class="fa fa-check"></i><b>8.9.2</b> Intervalos de predicción para <span class="math inline">\(E[Y \mid \mathbf{x}_0]\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="rlm.html"><a href="rlm.html#an%C3%A1lisis-de-residuales-1"><i class="fa fa-check"></i><b>8.10</b> Análisis de residuales</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="rlm.html"><a href="rlm.html#identificaci%C3%B3n-de-outliers"><i class="fa fa-check"></i><b>8.10.1</b> Identificación de outliers</a></li>
+<li class="chapter" data-level="8.10.2" data-path="rlm.html"><a href="rlm.html#identificaci%C3%B3n-de-observaciones-influenciales"><i class="fa fa-check"></i><b>8.10.2</b> Identificación de observaciones influenciales</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="rlm.html"><a href="rlm.html#an%C3%A1lisis-de-multicolinealidad"><i class="fa fa-check"></i><b>8.11</b> Análisis de multicolinealidad</a>
+<ul>
+<li class="chapter" data-level="8.11.1" data-path="rlm.html"><a href="rlm.html#c%C3%B3mo-detectar-la-multicolinealidad"><i class="fa fa-check"></i><b>8.11.1</b> Cómo detectar la multicolinealidad?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.12" data-path="rlm.html"><a href="rlm.html#modelos-con-variables-cualitativas"><i class="fa fa-check"></i><b>8.12</b> Modelos con variables cualitativas</a>
+<ul>
+<li class="chapter" data-level="8.12.1" data-path="rlm.html"><a href="rlm.html#variables-dummy"><i class="fa fa-check"></i><b>8.12.1</b> Variables dummy</a></li>
+<li class="chapter" data-level="8.12.2" data-path="rlm.html"><a href="rlm.html#transformaci%C3%B3n-de-la-variable-house_age_years-en-variables-dummy"><i class="fa fa-check"></i><b>8.12.2</b> Transformación de la variable <code>house_age_years</code> en variables dummy</a></li>
+</ul></li>
+<li class="chapter" data-level="8.13" data-path="rlm.html"><a href="rlm.html#selecci%C3%B3n-de-variables"><i class="fa fa-check"></i><b>8.13</b> Selección de variables</a>
+<ul>
+<li class="chapter" data-level="8.13.1" data-path="rlm.html"><a href="rlm.html#m%C3%A9todo-de-todas-las-regresiones-posibles"><i class="fa fa-check"></i><b>8.13.1</b> Método de todas las regresiones posibles</a></li>
+<li class="chapter" data-level="8.13.2" data-path="rlm.html"><a href="rlm.html#selecci%C3%B3n-secuencial"><i class="fa fa-check"></i><b>8.13.2</b> Selección secuencial</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -262,72 +421,52 @@
 <h2><span class="header-section-number">2.1</span> Reglas de las clases<a href="reglas.html#reglas-de-las-clases" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="admon-box advertencia">
 <div class="admon-title">
-<span class="icon"></span> <strong>Durante la clase</strong>
+<p><span class="icon"></span> <strong>Durante la clase</strong></p>
 </div>
-<ol>
-<li>
-Respeto durante explicaciones. <strong>Evitar el uso de celulares cuando no sea requerido.</strong>
-</li>
-<li>
-Evite conversaciones que puedan irrumpir con el desarrollo de las clases.
-</li>
-<li>
-Si tiene alguna duda, pregunte todo lo que necesite.
-</li>
+<ol style="list-style-type: decimal">
+<li>Respeto durante explicaciones. <strong>Evitar el uso de celulares cuando no sea requerido.</strong></li>
+<li>Evite conversaciones que puedan irrumpir con el desarrollo de las clases.</li>
+<li>Si tiene alguna duda, pregunte todo lo que necesite.</li>
 </ol>
 </div>
 <div class="admon-box advertencia">
 <div class="admon-title">
-<span class="icon"></span> <strong>Durante los exámenes o evaluaciones</strong>
+<p><span class="icon"></span> <strong>Durante los exámenes o evaluaciones</strong></p>
 </div>
-<ol>
-<li>
-<strong>No se admite ningún tipo de pregunta</strong> relacionada con las temáticas vistas.
-</li>
-<li>
-Solo se responderán preguntas para aclaraciones relacionadas con <strong>redacción o instrucciones.</strong>
-</li>
-<li>
-No se permiten dispositivos electrónicos.
-</li>
+<ol style="list-style-type: decimal">
+<li><strong>No se admite ningún tipo de pregunta</strong> relacionada con las temáticas vistas.</li>
+<li>Solo se responderán preguntas para aclaraciones relacionadas con <strong>redacción o instrucciones.</strong></li>
+<li>No se permiten dispositivos electrónicos.</li>
 </ol>
 </div>
 </div>
 <div id="política-de-evaluación-y-normas-de-integridad-académica" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Política de evaluación y normas de integridad académica<a href="#pol%C3%ADtica-de-evaluaci%C3%B3n-y-normas-de-integridad-acad%C3%A9mica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">2.2</span> Política de evaluación y normas de integridad académica<a href="reglas.html#pol%C3%ADtica-de-evaluaci%C3%B3n-y-normas-de-integridad-acad%C3%A9mica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="admon-box advertencia">
 <div class="admon-title">
-<span class="icon"></span> <strong>Normas de evaluación y sanciones</strong>
+<p><span class="icon"></span> <strong>Normas de evaluación y sanciones</strong></p>
 </div>
 <p><strong>Todo fraude o intento de fraude, en cualquier tipo de evaluación, acarreará al estudiante una calificación de 0.0, sin perjuicio de las acciones disciplinarias a que hubiere lugar</strong></p>
-<ol>
-<li>
-Se entiende por <strong>FRAUDE ACADÉMICO</strong>, cualquier comportamiento o práctica ilícita, empleada para obtener una nota o alcanzar un objetivo en el desarrollo de una actividad académica, que vaya en contra de las normas, reglamentos y procesos pedagógicos que la Institución establece y que atenta contra la integridad intelectual y moral del estudiante.
-</li>
-<li>
-<strong>Las evaluaciones parciales o finales no presentadas serán calificadas con cero (0.0).</strong> Esta calificación solo podrá ser modificada por la calificación obtenida en una evaluación supletoria.
-</li>
+<ol style="list-style-type: decimal">
+<li>Se entiende por <strong>FRAUDE ACADÉMICO</strong>, cualquier comportamiento o práctica ilícita, empleada para obtener una nota o alcanzar un objetivo en el desarrollo de una actividad académica, que vaya en contra de las normas, reglamentos y procesos pedagógicos que la Institución establece y que atenta contra la integridad intelectual y moral del estudiante.</li>
+<li><strong>Las evaluaciones parciales o finales no presentadas serán calificadas con cero (0.0).</strong> Esta calificación solo podrá ser modificada por la calificación obtenida en una evaluación supletoria.</li>
 </ol>
 <p>Fuente: <a href="https://www.uninorte.edu.co/reglamento_estudiantil">Reglamento Estudiantil - Universidad del Norte</a></p>
 </div>
 <div class="admon-box advertencia">
 <div class="admon-title">
-<span class="icon"></span> <strong>Inasistencia</strong>
+<p><span class="icon"></span> <strong>Inasistencia</strong></p>
 </div>
-<p>
 <p>En toda clase se tomará asistencia. Si las faltas exceden el 25% del total de las clases, el estudiante perderá el derecho del examen final, el cual será calificado en 0,0.</p>
 <p>Fuente: <a href="https://www.uninorte.edu.co/reglamento_estudiantil">Reglamento Estudiantil - Universidad del Norte</a></p>
-</p>
 </div>
 <div class="admon-box advertencia">
 <div class="admon-title">
-<span class="icon"></span> Inasistencias
+<p><span class="icon"></span> Inasistencias</p>
 </div>
-<p>
 <p>Cuando un estudiante no pueda presentar exámenes o compromisos académicos en la fecha programada por motivos de fuerza mayor, podrá solicitar una <strong>evaluación supletoria</strong> al profesor de la asignatura, quien tendrá la facultad de autorizar la realización de la misma.</p>
 <p><strong>La evaluación supletoria se realizará dentro de los diez (10) días hábiles siguientes a la fecha inicialmente programada</strong> y es <strong>indispensable que el estudiante realice el trámite correspondiente en el sistema de información académico</strong> donde será aprobado y fijada la fecha de su realización.</p>
 <p>Fuente: <a href="https://www.uninorte.edu.co/reglamento_estudiantil">Reglamento Estudiantil - Universidad del Norte</a></p>
-</p>
 </div>
 </div>
 <div id="fechas-de-taller-y-examenes" class="section level2 hasAnchor" number="2.3">
@@ -335,10 +474,10 @@ Se entiende por <strong>FRAUDE ACADÉMICO</strong>, cualquier comportamiento o p
 <p>Estas son las fecha de los taller y los examenes:</p>
 <div class="admon-box observacion">
 <div class="admon-title">
-<span class="icon"></span> Fechas importantes
+<p><span class="icon"></span> Fechas importantes</p>
 </div>
 <table>
-<caption><span id="tab:evaluacion">Tabla 2.1: </span>Fechas de cortes y distribución de porcentajes</caption>
+<caption><span id="tab:evaluacion">Tabla 2.1: </span> Fechas de cortes y distribución de porcentajes</caption>
 <thead>
 <tr class="header">
 <th align="left">Corte</th>
@@ -406,54 +545,32 @@ Se entiende por <strong>FRAUDE ACADÉMICO</strong>, cualquier comportamiento o p
 </ul>
 </div>
 <div id="programación-del-curso-por-unidad" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Programación del curso por unidad<a href="#programaci%C3%B3n-del-curso-por-unidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">2.4</span> Programación del curso por unidad<a href="reglas.html#programaci%C3%B3n-del-curso-por-unidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Este el contenido del curso de métodos estadísticos:</p>
 <div class="admon-box observacion">
 <div class="admon-title">
-<span class="icon"></span> <strong>Contenido por corte</strong>
+<p><span class="icon"></span> <strong>Contenido por corte</strong></p>
 </div>
-<ol>
-<li>
-<strong>I corte. Diagnósticos Inferencial</strong>
+<ol style="list-style-type: decimal">
+<li><strong>I corte. Diagnósticos Inferencial</strong>
 <ul>
-<li>
-Análisis de correlación y RLS: introducción
-</li>
-<li>
-Términos básicos
-</li>
-</ul>
-</li>
-<li>
-<strong>II corte. Análisis de correlación y RLS</strong>
+<li>Análisis de correlación y RLS: introducción</li>
+<li>Términos básicos</li>
+</ul></li>
+<li><strong>II corte. Análisis de correlación y RLS</strong>
 <ul>
-<li>
-Modelación y aplicaciones
-</li>
-<li>
-Supuestos e inferencia sobre los parámetros
-</li>
-</ul>
-</li>
-<li>
-<strong>III corte. RLM: Matemáticas y aplicaciones</strong>
+<li>Modelación y aplicaciones</li>
+<li>Supuestos e inferencia sobre los parámetros</li>
+</ul></li>
+<li><strong>III corte. RLM: Matemáticas y aplicaciones</strong>
 <ul>
-<li>
-Supuestos e inferencia sobre los parámetros
-</li>
-</ul>
-</li>
-<li>
-<strong>Temas adicionales</strong>
+<li>Supuestos e inferencia sobre los parámetros</li>
+</ul></li>
+<li><strong>Temas adicionales</strong>
 <ul>
-<li>
-Otros modelos de regresión
-</li>
-<li>
-Introducción al análisis multivariado
-</li>
-</ul>
-</li>
+<li>Otros modelos de regresión</li>
+<li>Introducción al análisis multivariado</li>
+</ul></li>
 </ol>
 </div>
 </div>
@@ -462,18 +579,17 @@ Introducción al análisis multivariado
 <p>Estas son algunas referencias para la clase de métodos</p>
 <div class="admon-box observacion">
 <div class="admon-title">
-<span class="icon"></span> Referencias bibliográficas
+<p><span class="icon"></span> Referencias bibliográficas</p>
 </div>
-<p>
-<table style="width:100%;">
-<caption><span id="tab:biblio">Tabla 2.2: </span>Referencias bibliográficas del curso</caption>
+<table>
+<caption><span id="tab:biblio">Tabla 2.2: </span> Referencias bibliográficas del curso</caption>
 <colgroup>
-<col width="64%" />
+<col width="58%" />
 <col width="10%" />
-<col width="2%" />
-<col width="7%" />
 <col width="4%" />
-<col width="11%" />
+<col width="8%" />
+<col width="5%" />
+<col width="12%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -552,371 +668,194 @@ Introducción al análisis multivariado
 </tr>
 </tbody>
 </table>
-</p>
 </div>
 </div>
 <div id="terminos-básicos-de-la-estadística" class="section level2 hasAnchor" number="2.6">
-<h2><span class="header-section-number">2.6</span> Terminos básicos de la estadística<a href="#terminos-b%C3%A1sicos-de-la-estad%C3%ADstica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">2.6</span> Terminos básicos de la estadística<a href="reglas.html#terminos-b%C3%A1sicos-de-la-estad%C3%ADstica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="admon-box definicion">
 <div class="admon-title">
-<span class="icon"></span> <strong> Definición: Unidad experimental.</strong>
+<p><span class="icon"></span> <strong>Definición: Unidad experimental.</strong></p>
 </div>
-<p>
-Es el objeto o entidad sobre la cual se realiza una observación o medición dentro de un estudio estadístico.
+<p>Es el objeto o entidad sobre la cual se realiza una observación o medición dentro de un estudio estadístico.</p>
 <div class="admon-box ejemplo">
 <div class="admon-title">
-<span class="icon"></span> <strong>Ejemplo</strong>
+<p><span class="icon"></span> <strong>Ejemplo</strong></p>
 </div>
-<p>
-En un estudio clínico, cada paciente corresponde a una unidad experimental.
-</p>
+<p>En un estudio clínico, cada paciente corresponde a una unidad experimental.</p>
 </div>
-</p>
 </div>
 <div class="admon-box definicion">
 <div class="admon-title">
-<span class="icon"></span> <strong> Definición: Población, muestra, censo.</strong>
+<p><span class="icon"></span> <strong>Definición: Población, muestra, censo.</strong></p>
 </div>
 <ul>
-<li>
-La <strong>población</strong> es el conjunto completo de unidades experimentales de interés
-</li>
-<li>
-La <strong>muestra</strong> es un subconjunto de unidades experimentales o de una población. Debe ser representativa y aleatoria.
-</li>
-<li>
-El <strong>censo</strong> es la enumeración completa de las unidades experimentales de una población.
-</li>
+<li>La <strong>población</strong> es el conjunto completo de unidades experimentales de interés</li>
+<li>La <strong>muestra</strong> es un subconjunto de unidades experimentales o de una población. Debe ser representativa y aleatoria.</li>
+<li>El <strong>censo</strong> es la enumeración completa de las unidades experimentales de una población.</li>
 </ul>
 <div class="admon-box ejemplo">
 <div class="admon-title">
-<span class="icon"></span> <strong>Ejemplo</strong>
+<p><span class="icon"></span> <strong>Ejemplo</strong></p>
 </div>
-<p>
-La colección de promedios por carreras de la Universidad del Norte (PPCUN) puede
-servir como una población estadística, y cualquier subcolección, digamos los PPCUN
-de la carrera de medicina, puede servir como una muestra de esa población.
-</p>
+<p>La colección de promedios por carreras de la Universidad del Norte (PPCUN) puede servir como una población estadística, y cualquier subcolección, digamos los PPCUN de la carrera de medicina, puede servir como una muestra de esa población.</p>
 </div>
 </div>
 <div class="admon-box definicion">
 <div class="admon-title">
-<span class="icon"></span> <strong> Definición: Variable aleatoria, dato y observación </strong>
+<p><span class="icon"></span> <strong>Definición: Variable aleatoria, dato y observación</strong></p>
 </div>
 <ul>
-<li>
-La <strong>variable</strong> es la característica que se desea medir u observar.
-</li>
-<li>
-El <strong>dato:</strong> es el valor específico que toma una variable para una unidad experimental.
-</li>
-<li>
-La <strong>observación</strong> es el conjunto de datos registrados para una unidad experimental.
-</li>
+<li>La <strong>variable</strong> es la característica que se desea medir u observar.</li>
+<li>El <strong>dato:</strong> es el valor específico que toma una variable para una unidad experimental.</li>
+<li>La <strong>observación</strong> es el conjunto de datos registrados para una unidad experimental.</li>
 </ul>
 </div>
 <div class="admon-box ejemplo">
 <div class="admon-title">
-<span class="icon"></span> <strong>Ejemplo</strong>
+<p><span class="icon"></span> <strong>Ejemplo</strong></p>
 </div>
-<p>
 <p>Una universidad está realizando un estudio para conocer el perfil de sus estudiantes de primer semestre. Para ello, se recolecta información de cada estudiante, como su edad, programa académico y puntaje obtenido en las pruebas de admisión.</p>
-Para el estudiante Laura Torres, se registraron los siguientes valores:
+<p>Para el estudiante Laura Torres, se registraron los siguientes valores:</p>
 <ul>
-<li>
-Edad: 18 años
-</li>
-<li>
-Programa académico: Psicología
-</li>
-<li>
-Puntaje de admisión: 92
-</li>
+<li>Edad: 18 años</li>
+<li>Programa académico: Psicología</li>
+<li>Puntaje de admisión: 92</li>
 </ul>
-<p style="text-align: center;">
-<strong>Solución</strong>
-</p>
+<p><strong>Solución</strong></p>
 <ul>
 <li><p><strong>Variable:</strong> Edad, programa académico, puntaje de admisión.</p></li>
 <li><p><strong>Dato:</strong> <em>18 años</em> es el dato para la variable edad, <em>Psicología</em> para programa académico”, <em>92</em> para “Puntaje de admisión”.</p></li>
 <li><p><strong>Observación:</strong> Edad = 18, Programa = Psicología, Puntaje = 92</p></li>
 </ul>
-</p>
 </div>
 <div class="admon-box definicion">
 <div class="admon-title">
-<span class="icon"></span> <strong> Definición: Parametro, estadístico.</strong>
+<p><span class="icon"></span> <strong>Definición: Parametro, estadístico.</strong></p>
 </div>
 <ul>
-<li>
-Un <strong>parámetro</strong> es cualquier caractéristica numérica de una población.
-</li>
-<li>
-Un <strong>estadístico</strong> es cualquier caractéristica numérica de una muestra.
-</li>
+<li>Un <strong>parámetro</strong> es cualquier caractéristica numérica de una población.</li>
+<li>Un <strong>estadístico</strong> es cualquier caractéristica numérica de una muestra.</li>
 </ul>
 </div>
 <div class="admon-box ejemplo">
 <div class="admon-title">
-<span class="icon"></span> <strong>Ejemplo</strong>
+<p><span class="icon"></span> <strong>Ejemplo</strong></p>
 </div>
-<p>
 <p>Una universidad quiere conocer el promedio de edad de todos sus estudiantes de primer semestre. Como sería costoso y demorado consultar a toda la población, se toma una muestra aleatoria de 100 estudiantes y se calcula su promedio de edad. Identifique el paramétro y el estadístico.</p>
-<p style="text-align: center;">
-<strong>Solución</strong>
-</p>
+<p><strong>Solución</strong></p>
 <ul>
 <li><strong>Parametro:</strong> El promedio real de edad de <strong>todos</strong> los estudiantes de primer semestre de la universidad.</li>
 <li><strong>Estadístico:</strong> El promedio de edad calculado con los <strong>100 estudiantes</strong> seleccionados en la muestra.</li>
 </ul>
-</p>
 </div>
 <div class="admon-box definicion">
 <div class="admon-title">
-<span class="icon"></span> <strong> Definición: Estadística descriptiva e inferencial.</strong>
+<p><span class="icon"></span> <strong>Definición: Estadística descriptiva e inferencial.</strong></p>
 </div>
 <ul>
-<li>
-<strong>Estadística descriptiva</strong>: Parte de la estadística que organiza, resume y presenta los datos de forma útil.
-</li>
-<li>
-<strong>Estadística inferencial</strong>: Parte de la estadística que permite <strong>inferir propiedades poblacionales</strong> a partir de una muestra, sin necesidad de censar toda la población.
-</li>
+<li><strong>Estadística descriptiva</strong>: Parte de la estadística que organiza, resume y presenta los datos de forma útil.</li>
+<li><strong>Estadística inferencial</strong>: Parte de la estadística que permite <strong>inferir propiedades poblacionales</strong> a partir de una muestra, sin necesidad de censar toda la población.</li>
 </ul>
 </div>
 </div>
 <div id="diagnostico-de-estadística-básica" class="section level2 hasAnchor" number="2.7">
-<h2><span class="header-section-number">2.7</span> Diagnostico de estadística básica<a href="#diagnostico-de-estad%C3%ADstica-b%C3%A1sica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">2.7</span> Diagnostico de estadística básica<a href="reglas.html#diagnostico-de-estad%C3%ADstica-b%C3%A1sica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Se realizará un diagnoticos de conceptos básicos</p>
 <div class="admon-box ejercicio">
 <div class="admon-title">
-<span class="icon"></span> Ejercicio
+<p><span class="icon"></span> Ejercicio</p>
 </div>
-<ol>
-<li>
-En una muestra de pacientes, el número de varones dividido entre el total de pacientes es la:
-</li>
-<li>
-¿Cuál de las siguientes medidas define mejor la tendencia central de los datos:<br />
-5, 4, 42, 4, 6?
-</li>
-<li>
-<strong>Estadística inferencial</strong> es la rama de la estadística que se encarga de:
-<ol>
-<li>
-Describir la información obtenida del estudio de una muestra para hacer inferencias sobre la población
-</li>
-<li>
-Describir un conjunto de datos recopilados en una muestra
-</li>
-<li>
-Diseñar científicamente un estudio con el objetivo de tomar decisiones respecto a un problema
-</li>
-<li>
-Estudiar el conjunto de individuos que poseen la característica sujeta a estudio
-</li>
-</ol>
-</li>
-<li>
-<strong>La distribución normal:</strong>:
-<ol>
-<li>
-Es simétrica
-</li>
-<li>
-Es una distribución de probabilidad de variable discreta
-</li>
-<li>
-Es asimétrica
-</li>
-<li>
-La mediana no coincide con la moda
-</li>
-<li>
-Es bimodal
-</li>
-</ol>
-</li>
-<li>
-<strong>El intervalo [media muestral ± 1,96 EEM (error estándar de la media)]:</strong>:
-<ol>
-<li>
-No dice gran cosa
-</li>
-<li>
-Comprende un 95% de las veces a la media poblacional
-</li>
-<li>
-Comprende un 99% de las veces a la media poblacional
-</li>
-<li>
-Da una seguridad del 68%
-</li>
-<li>
-Da una seguridad del 5%
-</li>
-</ol>
-</li>
-<li>
-<strong>El intervalo [media muestral ± 1,96 EEM (error estándar de la media)]:</strong>:
-<ol>
-<li>
-No dice gran cosa
-</li>
-<li>
-Comprende un 95% de las veces a la media poblacional
-</li>
-<li>
-Comprende un 99% de las veces a la media poblacional
-</li>
-<li>
-Da una seguridad del 68%
-</li>
-<li>
-Da una seguridad del 5%
-</li>
-</ol>
-</li>
-<li>
-<strong>Un estimador es:</strong>
-<ol>
-<li>
-Un parámetro que se utiliza para estimar los estadísticos
-</li>
-<li>
-Un estadístico que se utiliza para estimar los parámetros de la muestra
-</li>
-<li>
-Un estadístico que se utiliza para estimar parámetros poblacionales
-</li>
-<li>
-Un parámetro que se utiliza para estimar algunos estadísticos
-</li>
-<li>
-Son todas falsas
-</li>
-</ol>
-</li>
-<li>
-<strong>Los grados de libertad de una tabla de contingencia (independencia) <span class="math inline">\(2\times 2\)</span> son:</strong>
-<ol>
-<li>
-1
-</li>
-<li>
-2
-</li>
-<li>
-3
-</li>
-<li>
-4
-</li>
-<li>
-5
-</li>
-</ol>
-</li>
-<li>
-<strong>La estimación de medias se hace con:</strong>
-<ol>
-<li>
-La distribución normal
-</li>
-<li>
-El error estándar
-</li>
-<li>
-La distribución <span class="math inline">\(t\)</span> de Student
-</li>
-<li>
-La distribución binomial
-</li>
-<li>
-Ciertas i, ii y iii
-</li>
-</ol>
-</li>
-<li>
-<strong>La estimación de porcentajes se hace con (Señalar lo falso):</strong>
-<ol>
-<li>
-La distribución normal
-</li>
-<li>
-La distribución t de Student
-</li>
-<li>
-La distribución binomial
-</li>
-<li>
-El porcentaje muestral
-</li>
-<li>
-El error estándar del porcentaje
-</li>
-</ol>
-</li>
-<li>
-<strong>Se desea comparar la talla media entre hombres y mujeres. ¿Cuál será la prueba estadística más apropiada?</strong>
-<ol>
-<li>
-F de Snedecor
-</li>
-<li>
-Chi-cuadrado
-</li>
-<li>
-t de Student
-</li>
-<li>
-Coeficiente de correlación de Pearson
-</li>
-<li>
-Ninguna de las anteriores
-</li>
-</ol>
-</li>
-<li>
-<strong>Si el contraste <span class="math inline">\(H_0: \mu = 50\)</span> , <span class="math inline">\(H_1: \mu &lt; 50\)</span> no se rechaza con un <span class="math inline">\(p-valor = 0,12\)</span>, el contraste <span class="math inline">\(H_0: \mu \geq 30\)</span> , <span class="math inline">\(H_1: \mu &lt; 30\)</span>:</strong>
-<ol>
-<li>
-Se rechaza <span class="math inline">\(H_0\)</span>
-</li>
-<li>
-Contraste unilateral cola a la izquierda
-</li>
-<li>
-<span class="math inline">\(p-valor = 0.12\)</span>
-</li>
-<li>
-<span class="math inline">\(p-valor = 0.88\)</span>
-</li>
-<li>
-Ciertas 2 y 4
-</li>
-</ol>
-</li>
-<li>
-<p><strong>Si el contraste <span class="math inline">\(H_0: \mu = 100\)</span> , <span class="math inline">\(H_1: μ &gt; 100\)</span> se acepta con un <span class="math inline">\(p-valor = 0,10\)</span>, el contraste <span class="math inline">\(H_0: \mu \leq 100\)</span> , <span class="math inline">\(H_1: \mu &gt; 100\)</span> tiene:</strong></p>
-<ol>
-<li>
-<span class="math inline">\(p-valor = 0.10\)</span>
-</li>
-<li>
-Contraste unilateral cola a la derecha
-</li>
-<li>
-<span class="math inline">\(p-valor = 0.05\)</span>
-</li>
-<li>
-<span class="math inline">\(p-valor = 0.90\)</span>
-</li>
-<li>
-Ciertas 2 y 3
-</li>
-</ol>
-</li>
+<ol style="list-style-type: decimal">
+<li><p>En una muestra de pacientes, el número de varones dividido entre el total de pacientes es la:</p></li>
+<li><p>¿Cuál de las siguientes medidas define mejor la tendencia central de los datos:<br />
+5, 4, 42, 4, 6?</p></li>
+<li><p><strong>Estadística inferencial</strong> es la rama de la estadística que se encarga de:</p>
+<ol style="list-style-type: decimal">
+<li>Describir la información obtenida del estudio de una muestra para hacer inferencias sobre la población</li>
+<li>Describir un conjunto de datos recopilados en una muestra</li>
+<li>Diseñar científicamente un estudio con el objetivo de tomar decisiones respecto a un problema</li>
+<li>Estudiar el conjunto de individuos que poseen la característica sujeta a estudio</li>
+</ol></li>
+<li><p><strong>La distribución normal:</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>Es simétrica</li>
+<li>Es una distribución de probabilidad de variable discreta</li>
+<li>Es asimétrica</li>
+<li>La mediana no coincide con la moda</li>
+<li>Es bimodal</li>
+</ol></li>
+<li><p><strong>El intervalo [media muestral ± 1,96 EEM (error estándar de la media)]:</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>No dice gran cosa</li>
+<li>Comprende un 95% de las veces a la media poblacional</li>
+<li>Comprende un 99% de las veces a la media poblacional</li>
+<li>Da una seguridad del 68%</li>
+<li>Da una seguridad del 5%</li>
+</ol></li>
+<li><p><strong>El intervalo [media muestral ± 1,96 EEM (error estándar de la media)]:</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>No dice gran cosa</li>
+<li>Comprende un 95% de las veces a la media poblacional</li>
+<li>Comprende un 99% de las veces a la media poblacional</li>
+<li>Da una seguridad del 68%</li>
+<li>Da una seguridad del 5%</li>
+</ol></li>
+<li><p><strong>Un estimador es:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Un parámetro que se utiliza para estimar los estadísticos</li>
+<li>Un estadístico que se utiliza para estimar los parámetros de la muestra</li>
+<li>Un estadístico que se utiliza para estimar parámetros poblacionales</li>
+<li>Un parámetro que se utiliza para estimar algunos estadísticos</li>
+<li>Son todas falsas</li>
+</ol></li>
+<li><p><strong>Los grados de libertad de una tabla de contingencia (independencia) <span class="math inline">\(2\times 2\)</span> son:</strong></p>
+<ol style="list-style-type: decimal">
+<li>1</li>
+<li>2</li>
+<li>3</li>
+<li>4</li>
+<li>5</li>
+</ol></li>
+<li><p><strong>La estimación de medias se hace con:</strong></p>
+<ol style="list-style-type: decimal">
+<li>La distribución normal</li>
+<li>El error estándar</li>
+<li>La distribución <span class="math inline">\(t\)</span> de Student</li>
+<li>La distribución binomial</li>
+<li>Ciertas i, ii y iii</li>
+</ol></li>
+<li><p><strong>La estimación de porcentajes se hace con (Señalar lo falso):</strong></p>
+<ol style="list-style-type: decimal">
+<li>La distribución normal</li>
+<li>La distribución t de Student</li>
+<li>La distribución binomial</li>
+<li>El porcentaje muestral</li>
+<li>El error estándar del porcentaje</li>
+</ol></li>
+<li><p><strong>Se desea comparar la talla media entre hombres y mujeres. ¿Cuál será la prueba estadística más apropiada?</strong></p>
+<ol style="list-style-type: decimal">
+<li>F de Snedecor</li>
+<li>Chi-cuadrado</li>
+<li>t de Student</li>
+<li>Coeficiente de correlación de Pearson</li>
+<li>Ninguna de las anteriores</li>
+</ol></li>
+<li><p><strong>Si el contraste <span class="math inline">\(H_0: \mu = 50\)</span> , <span class="math inline">\(H_1: \mu &lt; 50\)</span> no se rechaza con un <span class="math inline">\(p-valor = 0,12\)</span>, el contraste <span class="math inline">\(H_0: \mu \geq 30\)</span> , <span class="math inline">\(H_1: \mu &lt; 30\)</span>:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Se rechaza <span class="math inline">\(H_0\)</span></li>
+<li>Contraste unilateral cola a la izquierda</li>
+<li><span class="math inline">\(p-valor = 0.12\)</span></li>
+<li><span class="math inline">\(p-valor = 0.88\)</span></li>
+<li>Ciertas 2 y 4</li>
+</ol></li>
+<li><p><strong>Si el contraste <span class="math inline">\(H_0: \mu = 100\)</span> , <span class="math inline">\(H_1: μ &gt; 100\)</span> se acepta con un <span class="math inline">\(p-valor = 0,10\)</span>, el contraste <span class="math inline">\(H_0: \mu \leq 100\)</span> , <span class="math inline">\(H_1: \mu &gt; 100\)</span> tiene:</strong></p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(p-valor = 0.10\)</span></li>
+<li>Contraste unilateral cola a la derecha</li>
+<li><span class="math inline">\(p-valor = 0.05\)</span></li>
+<li><span class="math inline">\(p-valor = 0.90\)</span></li>
+<li>Ciertas 2 y 3</li>
+</ol></li>
 </ol>
 </div>
 
@@ -959,8 +898,8 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/rstudio/bookdown-demo/edit/master/02-reglas.Rmd",
-    "text": "Edit"
+    "link": "https://github.com/cdeoroaguado/rbook_met_estad/edit/main/02-reglas.Rmd",
+    "text": "Editar"
   },
   "history": {
     "link": null,

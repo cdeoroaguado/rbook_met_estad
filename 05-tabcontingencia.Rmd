@@ -1,0 +1,585 @@
+# Tabla de contingencia {#tabcontingencia}
+
+Las tablas de contingencia permiten analizar la relación entre dos variables cualitativas mediante la organización de los datos en una matriz de frecuencias. Cuando se utilizan dos criterios de clasificación, este tipo de tabla facilita la evaluación estadística a través de pruebas como la de independencia y la de homogeneidad, ambas basadas en la distribución ji-cuadrado ($\chi^2$). La prueba de independencia se aplica para determinar si existe una asociación significativa entre dos variables categóricas en una sola población, bajo la hipótesis nula de que son independientes. En cambio, la prueba de homogeneidad se utiliza para comparar si la distribución de una misma variable categórica es similar en diferentes poblaciones o grupos independientes. Estas herramientas son esenciales para el análisis inferencial en estudios con datos categóricos. [@llinas2019]
+
+## Tablas de contingencia con dos criterios de clasificación
+
+Una tabla de contingencia (tabla \@ref(tab:tabla-contingencia)) de $I \times J$ permite estudiar la relación entre dos atributos cualitativos, denominados aquí como A y B. Supongamos que el atributo A tiene $I$ categorías (que se ubicarán en las filas de la tabla), y el atributo B tiene $J$ categorías (ubicadas en las columnas). La tabla resultante tendrá $I \times J$ celdas, donde cada celda $(i,j)$ contendrá el número de individuos que presentan simultáneamente la categoría $i$ del atributo A y la categoría $j$ del atributo B. Denotamos estos conteos como $O_{ij}$, y la estructura general se representa de la siguiente forma:
+
+|              |              |              |              |              |              |
+|:-------------|:-------------|:-------------|:-------------|:-------------|:-------------|
+|              |              |              | Atributo B   |              |              |
+| Atributo A   | $1$ | $2$ | $\cdots$ | $J$ | Totales      |
+| $1$ | $O_{11}$ | $O_{12}$ | $\cdots$ | $O_{1J}$ | $R_1$ |
+| $2$ | $O_{21}$ | $O_{22}$ | $\cdots$ | $O_{2J}$ | $R_2$ |
+| $\vdots$ | $\vdots$ | $\vdots$ | $\ddots$ | $\vdots$ | $\vdots$ |
+| $I$ | $O_{I1}$ | $O_{I2}$ | $\cdots$ | $O_{IJ}$ | $R_I$ |
+| Totales      | $C_1$ | $C_2$ | $\cdots$ | $C_J$ | $n$ |
+
+: (\#tab:tabla-contingencia) Tabla de contingencia de $I \times J$ con dos criterios de clasificación
+
+Las tablas de contingencia pueden analizarse mediante dos enfoques fundamentales según el diseño del estudio:
+
+-   **Prueba de homogeneidad:** Se utiliza cuando se tienen varias poblaciones (o muestras independientes) y se desea comparar la distribución de una variable categórica común entre ellas. En este caso, cada fila representa una población diferente, y las columnas representan las categorías de la variable común. La hipótesis nula plantea que las proporciones son iguales en todas las poblaciones, es decir, que son homogéneas.
+
+-   **Prueba de independencia:** Se emplea cuando se tiene una sola población y cada individuo es clasificado según dos atributos diferentes. Aquí, la tabla muestra cómo se distribuyen conjuntamente ambos atributos. La hipótesis nula establece que no existe relación entre las variables, es decir, que son independientes entre sí.
+
+Ambos enfoques hacen uso del mismo estadístico de prueba, el $\chi^2$, aunque sus interpretaciones y supuestos de aplicación difieren según el diseño muestral.
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo
+:::
+
+La siguiente tabla de contingencia corresponde a una situación de tipo 1 (homogeneidad), en la que se estudian tres poblaciones distintas (por ejemplo, tres regiones del país), y para cada una se registra el número de hombres y mujeres:
+
+| Sexo    | Región.A | Región.B | Región.C | Totales |
+|:--------|---------:|---------:|---------:|--------:|
+| Hombres |       25 |       40 |       35 |     100 |
+| Mujeres |       30 |       20 |       25 |      75 |
+| Totales |       55 |       60 |       60 |     175 |
+
+: (\#tab:ejemplo-1) Tabla de contingencia 3×2: Sexo por región
+
+En esta tabla \@ref(tab:ejemplo-1), cada fila representa una categoría del atributo *Sexo* y cada columna representa una población distinta (*Región A, B y C*). La prueba de homogeneidad permitiría evaluar si la proporción de hombres y mujeres es similar en las tres regiones.
+
+Alternativamente, si se considerara como una única muestra clasificada por sexo y región, se podría aplicar una prueba de independencia para examinar si existe asociación entre sexo y región de procedencia.
+:::
+
+### Prueba de homogeneidad
+
+Supongamos que cada individuo de las $I$ poblaciones pertenece a exactamente una de las $J$ categorías. Utilizando las notaciones presentadas en la tabla \@ref(tab:tabla-contingencia), se tiene:
+
+-   $R_i$: tamaño de la muestra tomada de la población $i$,
+-   $n = R_1 + \cdots + R_I$: tamaño total de todas las muestras,
+-   $O_{ij}$: número de individuos de la muestra $i$ que cae en la categoría $j$,
+-   $C_j$: número total de individuos que caen en la categoría $j$ entre los $n$ individuos.
+
+Sea además:
+
+$$
+p_{ij} = \text{proporción de los individuos de la población } i \text{ que cae en la categoría } j.
+$$
+
+Por ejemplo, las $J$ proporciones para la población 1 son $p_{11}, p_{12}, \ldots, p_{1J}$, las cuales deben sumar 1. La hipótesis nula que se evalúa en este contexto se presenta a continuación.
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} Definición. Hipótesis nula de homogeneidad
+:::
+
+La **hipótesis nula de homogeneidad** establece que la proporción de individuos de la categoría $j$ es la misma en cada población. Es decir:
+
+$$
+H_0: p_{1j} = p_{2j} = \cdots = p_{Ij}, \quad \text{para cada } j = 1, \ldots, J.
+$$
+:::
+
+::: {.admon-box .teorema}
+::: admon-title
+[]{.icon} Teorema. Valor estimado bajo la homogeneidad
+:::
+
+*Bajo la hipótesis nula de homogeneidad, el valor esperado estimado en la celda $(i, j)$ es:*
+
+$$
+\hat{E}_{ij} = \frac{R_i C_j}{n} =
+\frac{\text{(Total fila } i) \cdot \text{(Total columna } j)}{\text{Tamaño total de la muestra}},
+\quad \text{para cada } i = 1, \ldots, I \text{ y } j = 1, \ldots, J.
+$$
+:::
+
+**Demostración del teorema**
+
+Bajo la hipótesis nula de homogeneidad, se asume que las proporciones de individuos en cada categoría $j$ son iguales para todas las poblaciones. Sea:
+
+-   $R_i$: tamaño de la muestra de la población $i$,
+-   $C_j$: número total de individuos que caen en la categoría $j$,
+-   $n$: tamaño total de la muestra, es decir, $n = \sum_{i=1}^I R_i = \sum_{j=1}^J C_j$,
+-   $p_j$: proporción común de individuos que pertenecen a la categoría $j$, bajo $H_0$.
+
+Cuando $H_0$ es verdadera, las proporciones $p_1, p_2, \ldots, p_J$ son comunes a todas las poblaciones. Por tanto, el número esperado de individuos en la celda $(i, j)$ es:
+
+$$
+E_{ij} = n_i p_j, \quad \text{para cada } i = 1, \ldots, I \text{ y } j = 1, \ldots, J.
+$$
+
+Dado que $C_j$ individuos de los $n$ totales caen en la categoría $j$, se estima la proporción poblacional como:
+
+$$
+\hat{p}_j = \frac{C_j}{n}.
+$$
+
+Reemplazando en la expresión de $E_{ij}$, se obtiene la siguiente fórmula para el valor esperado bajo $H_0$:
+
+$$
+\hat{E}_{ij} = n_i \cdot \hat{p}_j = R_i \cdot \frac{C_j}{n} = \frac{R_i C_j}{n}.
+$$
+
+Este valor representa el número esperado de individuos en la celda $(i, j)$ bajo la suposición de homogeneidad entre las poblaciones. $\quad \square$
+
+A continuación, se resume el procedimiento general para llevar a cabo esta prueba:
+
+::: {.admon-box .teorema}
+::: admon-title
+[]{.icon} Teorema. Prueba de hipótesis de homogeneidad
+:::
+
+*Supóngase que se toma una muestra aleatoria de tamaño $n$ en la que cada individuo pertenece a exactamente una de las $I$ poblaciones y a una de las $J$ categorías. La información se organiza en una tabla de contingencia $I \times J$.*
+
+$$
+p_{ij} = \text{proporción de individuos de la población } i \text{ en la categoría } j.
+$$
+
+Si se cumple la hipótesis:
+
+$$
+H_0: p_{1j} = p_{2j} = \cdots = p_{Ij}, \quad \text{para cada } j = 1, \ldots, J,
+$$
+
+entonces, el número esperado en cada celda es:
+
+$$
+\hat{E}_{ij} = \frac{R_i C_j}{n},
+$$
+
+donde $R_i$ y $C_j$ son los totales de la fila $i$ y la columna $j$, respectivamente.
+
+Si todos los valores esperados $\hat{E}_{ij} \geq 5$, se puede aplicar un contraste de hipótesis utilizando el estadístico $\chi^2$. La regla de decisión es:
+
+$$
+\text{Rechazar } H_0 \text{ si } \chi^2 > \chi^2_\alpha,
+$$
+
+donde $\chi^2 = \sum_{i=1}^{I} \sum_{j=1}^{J} \frac{(O_{ij} - \hat{E}_{ij})^2}{\hat{E}_{ij}}$ es el estadístico de prueba y $\chi^2_\alpha$ es el valor crítico de la distribución chi-cuadrado con $(I - 1)(J - 1)$ grados de libertad, que deja un área $\alpha$ a la derecha.
+:::
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo
+:::
+
+Supóngase que se selecciona a 200 barranquilleros, a 150 samarios y a 150 cartageneros y se les clasifica según estén a favor, en contra o no hayan decidido respecto a una nueva ley. Las respuestas observadas aparecen en la siguiente tabla de contingencia de $3 \times 3$.
+
+```{r}
+# Crear la tabla de contingencia
+observados <- matrix(c(82, 93, 25,
+                       70, 62, 18,
+                       62, 67, 21),
+                     nrow = 3, byrow = FALSE,
+                     dimnames = list(
+                       Opinion = c("A favor", "En contra", "Sin decisión"),
+                       Ciudad = c("Barranquilleros", "Samarios", "Cartageneros")
+                     ))
+```
+:::
+
+**Solución**
+
+-   Calculemos de totales por fila, columna y total general
+
+```{r}
+# Totales por fila, columna y total general
+fila_totales <- rowSums(observados)
+col_totales <- colSums(observados)
+total_general <- sum(observados)
+
+fila_totales
+```
+
+```{r}
+col_totales
+```
+
+```{r}
+total_general
+```
+
+Ahora, hallemos las frecuencias esperadas bajo $H_0$
+
+```{r}
+esperados <- outer(fila_totales, col_totales, FUN = function(f, c) f * c / total_general)
+dimnames(esperados) <- dimnames(observados)
+esperados
+```
+
+-   Seguido calculemos del estadístico $\chi^2$
+
+```{r}
+chi_cuadrado <- sum((observados - esperados)^2 / esperados)
+chi_cuadrado
+```
+
+-   Determinemos los grados de libertad
+
+```{r}
+df <- (nrow(observados) - 1) * (ncol(observados) - 1)
+df
+```
+
+-   Ahora, el valor crítico y decisión al $5\%$
+
+```{r}
+alfa <- 0.05
+valor_critico <- qchisq(1 - alfa, df)
+valor_critico
+```
+
+```{r}
+# Comparación
+rechaza_H0 <- chi_cuadrado > valor_critico
+rechaza_H0
+```
+
+-   Concluimos que
+
+```{r}
+if (rechaza_H0) {
+  conclusion <- "Se rechaza H0: existen diferencias significativas en las proporciones de opinión entre las ciudades."
+} else {
+  conclusion <- "No se rechaza H0: no hay evidencia suficiente para afirmar que las proporciones de opinión son distintas entre ciudades."
+}
+conclusion
+```
+
+-   Si calculamos el p-valor
+
+```{r}
+valor_p <- pchisq(chi_cuadrado, df, lower.tail = FALSE)
+valor_p
+```
+
+-   Si usamos la función `chisq.test` del paquete `stat` nos queda
+
+```{r}
+chisq.test(observados)
+```
+
+### Prueba de independencia
+
+Ahora nos enfocaremos en la relación entre dos atributos $A$ y $B$, diferentes de una sola población.\
+Sea $I$ el número de categorías del atributo $A$ y $J$ el número de categorías del atributo $B$.\
+Suponemos que cada individuo pertenece exactamente a una categoría de $A$ y a una de $B$.
+
+Representemos con $O_{ij}$ el número de individuos que caen en la categoría $i$ de $A$ y en la categoría $j$ de $B$.\
+Estos datos se organizan en una tabla de contingencia $I \times J$.
+
+Sea
+
+$$
+p_{ij} = \text{P(el individuo pertenece a la categoría \( i \) de \( A \) y a la categoría \( j \) de \( B \))}.
+$$
+
+Para cada individuo seleccionado al azar
+
+$$
+p_{i\cdot} = \sum_{j} p_{ij} \quad\text{y}\quad p_{\cdot j} = \sum_{i} p_{ij}.
+$$
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} Definición. Hipótesis nula de independencia
+:::
+
+La **hipótesis nula de independencia** establece que la categoría de un individuo con respecto al atributo $A$ es independiente de la categoría con respecto al atributo $B$. En símbolos:
+
+$$
+p_{ij} = p_{i\cdot} \, p_{\cdot j}, \quad \text{para todo } i = 1,\ldots,I \text{ y todo } j = 1,\ldots,J.
+$$
+:::
+
+::: {.admon-box .teorema}
+::: admon-title
+[]{.icon} Teorema. Independencia
+:::
+
+*Bajo la hipótesis nula de independencia, el valor esperado estimado en la celda $(i, j)$ viene dado por:*
+
+$$
+\hat{E}_{ij} = \frac{R_i \, C_j}{n}
+= \frac{(\text{Total de la fila } i)(\text{Total de la columna } j)}{\text{Tamaño total de la muestra}},
+$$
+
+para cada $i = 1,\ldots,I$ y cada $j = 1,\ldots,J$.
+:::
+
+**Demostración del teorema**
+
+Cuando $H_0$ es verdadera, el valor esperado $E_{ij}$ de la celda $(i, j)$ es:
+
+$$
+E_{ij} = n \, p_{i\cdot} \, p_{\cdot j}.
+$$
+
+Estimamos $p_{i\cdot}$ y $p_{\cdot j}$ usando sus estimadores de máxima verosimilitud:
+
+$$
+\hat{p}_{i\cdot} = \frac{R_i}{n} \quad\text{(proporción muestral para la categoría \( i \) del atributo \( A \))},
+$$ $$
+\hat{p}_{\cdot j} = \frac{C_j}{n} \quad\text{(proporción muestral para la categoría \( j \) del atributo \( B \))}.
+$$
+
+Sustituyendo en la fórmula de $E_{ij}$:
+
+$$
+\hat{E}_{ij} = n \, \hat{p}_{i\cdot} \, \hat{p}_{\cdot j}
+= n \cdot \frac{R_i}{n} \cdot \frac{C_j}{n}
+= \frac{R_i \, C_j}{n}.
+$$
+
+$$
+\boxed{\hat{E}_{ij} = \frac{(\text{Total fila } i)(\text{Total columna } j)}{\text{Tamaño total de la muestra}}}
+$$ $$
+\square
+$$
+
+::: {.admon-box .teorema}
+::: admon-title
+[]{.icon} Teorema 5.2.9
+:::
+
+Cuando realizamos una tabulación cruzada, según dos atributos, de las observaciones de una muestra aleatoria de tamaño $n$ en una tabla de contingencia de $I \times J$, si la hipótesis nula es:
+
+$$
+H_0: \text{los dos atributos en la población son independientes},
+$$
+
+entonces, bajo $H_0$, el número esperado de observaciones en cada celda de la tabla es:
+
+$$
+\hat{E}_{ij} = \frac{R_i C_j}{n}.
+$$
+
+Donde $R_i$ y $C_j$ son los totales correspondientes, respectivamente, a las filas y a las columnas. Además, si todos los $\hat{E}_{ij}$ son mayores o iguales que 5, entonces, un contraste al nivel de significancia $\alpha$ de $H_0$ frente a la alternativa de que los dos atributos en la población no son independientes, estará basado en la siguiente regla de decisión:
+
+$$
+\text{Rechazar } H_0 \ \text{si} \ \chi^2 > \chi^2_{\alpha}.
+$$
+
+Aquí, $\chi^2 = \sum_{i=1}^{I} \sum_{j=1}^{J} \frac{(O_{ij} - \hat{E}_{ij})^2}{\hat{E}_{ij}}$ y $\chi^2_{\alpha}$ es el valor de una variable aleatoria que deja un área de $\alpha$ a la derecha de la distribución chi–cuadrada con $(I-1)(J-1)$ grados de libertad.
+:::
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo 5.2.10
+:::
+
+Una muestra aleatoria de 1.000 votantes registrados de un estado se clasifica, de acuerdo con sus ingresos, como bajo, medio y alto con el fin de establecer si están a favor o en contra de una nueva reforma constitucional. Las frecuencias observadas se presentan en la siguiente tabla de contingencia de $2 \times 3$.
+
+```{r}
+# Crear la tabla de contingencia
+observados <- matrix(c(182, 213, 203,
+                       154, 138, 110),
+                     nrow = 2, byrow = TRUE,
+                     dimnames = list(
+                       Opinion = c("A favor", "En contra"),
+                       Ingreso = c("Bajo", "Medio", "Alto")
+                     ))
+```
+:::
+
+**Solución**
+
+-   Hallemos los totales y valores esperados
+
+```{r}
+# Totales por fila y columna
+fila_totales <- rowSums(observados)
+col_totales  <- colSums(observados)
+n <- sum(observados)
+
+# Cálculo de valores esperados
+esperados <- outer(fila_totales, col_totales) / n
+esperados
+```
+
+-   Calculoemos el estadístico Chi-cuadrado
+
+```{r}
+chi_cuadrado <- sum((observados - esperados)^2 / esperados)
+chi_cuadrado
+```
+
+-   Determinemos los grados de libertad
+
+```{r}
+df <- (nrow(observados) - 1) * (ncol(observados) - 1)
+df
+```
+
+-   Ahora, el valor crítico y decisión al $5\%$
+
+```{r}
+alfa <- 0.05
+valor_critico <- qchisq(1 - alfa, df)
+valor_critico
+```
+
+```{r}
+# Comparación
+rechaza_H0 <- chi_cuadrado > valor_critico
+rechaza_H0
+```
+
+-   Si calculamos el p-valor
+
+```{r}
+valor_p <- pchisq(chi_cuadrado, df, lower.tail = FALSE)
+valor_p
+```
+
+-   Si usamos la función `chisq.test` del paquete `stat` nos queda
+
+```{r}
+chisq.test(observados)
+```
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo
+:::
+
+La siguiente tabla de contingencia se obtiene a partir del conjunto de datos `Titanic` en R, considerando las variables **Clase** (Class) y **Supervivencia** (Survived), agregando sobre las variables Sexo y Edad.
+
+Con un nivel de significancia de 0,05, determine si la variable `Clase` y la variable `supervivencia` son independientes en los datos del `Titanic`.
+
+```{r titanic-datos, echo=FALSE}
+df <- as.data.frame(Titanic)
+head(df)
+```
+:::
+
+**Solución**
+
+```{r}
+# Tabla de contingencia entre Clase y Supervivencia
+tabla <- xtabs(Freq ~ Class + Survived, data = df)
+
+# Prueba de independencia Chi-cuadrado
+chisq.test(tabla)
+```
+
+La prueba chi cuadrado nos indica que la clase en la que viajaba el pasajero está asociada con su probabilidad de supervivencia ($\chi^2_{(3)}=190.4$, p-valor $< 0.001$).
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 1
+:::
+
+De acuerdo con un estudio de cierta universidad con relación a cierto tipo de especie animal, los machos sobreviven más que las hembras en invierno. Considere los siguientes datos sobre la sobrevivencia en el invierno de 100 machos y 100 hembras de esa especie animal:
+
+```{r}
+# Tabla de contingencia
+observados <- matrix(c(42, 33, 25,
+                       40, 21, 39),
+                     nrow = 3, byrow = FALSE,
+                     dimnames = list(
+                       Tiempo = c("Menos de 10 días", "De 10 a 20 días", "Más de 20 días"),
+                       Sexo = c("Macho", "Hembra")
+                     ))
+```
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 2
+:::
+
+Se calificó una muestra de universidades según el número de doctores investigadores que tenían y según si éstos tenían o no un proyecto de trabajo social.\
+La siguiente tabla contiene los números en cada categoría. Contraste, basándose en las universidades y el hecho de tener o no proyecto de trabajo social.
+
+```{r}
+# Tabla de contingencia
+observados <- matrix(c(13, 18, 32,
+                       10, 12, 6),
+                     nrow = 3, byrow = FALSE,
+                     dimnames = list(
+                       Doctores = c("Menos de 5", "Entre 5 y 8", "Más de 8"),
+                       Proyecto = c("Con proyecto", "Sin proyecto")
+                     ))
+```
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 3
+:::
+
+Como parte de un determinado cuestionario, se preguntó a muestras aleatorias de estudiantes universitarios lo siguiente:\
+*¿Se acuesta antes de las 10:00 p.m.?*\
+Los resultados aparecen en la siguiente tabla.
+
+```{r}
+# Tabla de contingencia
+observados <- matrix(c(5, 70, 121,
+                       4, 45, 169),
+                     nrow = 3, byrow = FALSE,
+                     dimnames = list(
+                       Respuesta = c("Siempre", "A veces", "Nunca"),
+                       Sexo = c("Hombres", "Mujeres")
+                     ))
+```
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 4
+:::
+
+En un experimento para estudiar la dependencia entre los problemas de la vista y los hábitos de trabajar en el computador, se tomaron los siguientes datos de 180 personas.\
+Pruebe la hipótesis de que los problemas visuales son independientes de los hábitos de trabajar en el computador. Utilice un nivel de significancia de 0,05.
+
+```{r}
+# Tabla de contingencia
+observados <- matrix(c(19, 26, 48,
+                       30, 36, 21),
+                     nrow = 2, byrow = TRUE,
+                     dimnames = list(
+                       Vista = c("Con problemas", "Sin problemas"),
+                       Computador = c("Nunca", "A veces", "Siempre")
+                     ))
+```
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 5
+:::
+
+Una muestra de 200 estudiantes universitarios se clasifica de acuerdo con el estrato y el número de hermanos (hembras y varones) que tienen.\
+Pruebe la hipótesis, con un nivel de significancia de 0,05, de que el número de hermanos es independiente del estrato.
+
+```{r}
+# Tabla de contingencia
+observados <- matrix(c(12, 17, 10,
+                       14, 37, 32,
+                       19, 42, 17),
+                     nrow = 3, byrow = TRUE,
+                     dimnames = list(
+                       Estrato = c("Bajo", "Medio", "Alto"),
+                       Hermanos = c("0-1", "2-3", "Más de 3")
+                     ))
+```
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 6
+:::
+
+El departamento de medicina de una universidad realiza un experimento para determinar el grado de alivio que proporcionan tres remedios para la fiebre.\
+Cada remedio es tratado en 50 estudiantes y se registran los datos.\
+Pruebe la hipótesis, con un nivel de significancia de 0,05, de que los tres remedios para la fiebre son igualmente efectivos.
+
+```{r}
+# Tabla de contingencia
+observados <- matrix(c(7, 9, 14,
+                       11, 13, 9,
+                       32, 28, 27),
+                     nrow = 3, byrow = TRUE,
+                     dimnames = list(
+                       Alivio = c("Sin alivio", "Cierto alivio", "Alivio completo"),
+                       Remedio = c("Remedio 1", "Remedio 2", "Remedio 3")
+                     ))
+```
+:::

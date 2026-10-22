@@ -1,0 +1,23 @@
+book_filename: "bookdown-demo"
+output_dir: "docs"
+delete_merged_file: true
+new_session: false
+rmd_files:
+  - index.Rmd
+  - 01-intro.Rmd
+  - 02-reglas.Rmd
+  - 03-eda.Rmd
+  - 04-estparynopa.Rmd
+  - 05-tabcontingencia.Rmd
+  - 06-correglineal.Rmd
+  - 07-rls.Rmd
+  - 08-rlm.Rmd        # capítulo recuperado del historial de git (estaba despublicado)
+  - 99-referencias.Rmd
+language:
+  label:
+    fig: "Figura "
+    tab: "Tabla "
+    eq: "Ecuación "
+  ui:
+    edit: "Editar"
+    chapter_name: "Capítulo "

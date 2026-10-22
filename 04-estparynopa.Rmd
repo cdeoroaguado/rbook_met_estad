@@ -1,0 +1,2219 @@
+# Análisis de estadística paramétrica y no paramétrica {#estparynopar}
+
+El análisis de estadística paramétrica y no paramétrica comprende un conjunto de técnicas inferenciales utilizadas para contrastar hipótesis y evaluar relaciones entre variables.
+
+La estadística paramétrica se basa en supuestos específicos sobre la distribución de los datos, como la normalidad y la homogeneidad de varianzas, lo que permite aplicar pruebas como la t de Student, ANOVA y pruebas de proporciones.
+
+Por su parte, la estadística no paramétrica ofrece métodos alternativos que no requieren dichos supuestos estrictos, siendo útiles cuando los datos no cumplen condiciones de normalidad o se trata de escalas ordinales. Este enfoque incluye pruebas como la de Wilcoxon, Mann-Whitney, Kruskal-Wallis y Chi-cuadrado. Ambos enfoques permiten tomar decisiones estadísticas robustas y fundamentadas, adaptándose a la naturaleza de los datos analizados.
+
+## Comparación de medias entre dos grupos independientes con estadística paramétrica
+
+Una de las estrategias más empleadas al comparar una variable cuantitativa entre dos grupos independientes es el contraste de medias. No obstante, observar diferencias en los promedios muestrales no implica automáticamente que exista una diferencia estadísticamente significativa a nivel poblacional. Esto se debe a que cada grupo presenta su propia variabilidad (varianza intrínseca), lo cual puede generar diferencias aparentes por el simple azar muestral.
+
+Para evaluar si la diferencia observada es estadísticamente significativa, se recurre a pruebas paramétricas como el **test $Z$** (cuando se conoce la desviación estándar poblacional y los tamaños muestrales son grandes) o, más comúnmente, al **t-test de Student**, que es aplicable cuando las desviaciones estándar poblacionales son desconocidas.
+
+Este tipo de pruebas permite:
+
+-   **Realizar pruebas de hipótesis**, bajo la formulación:
+
+    $$
+    H_0: \mu_1 = \mu_2 \quad \text{vs} \quad H_a: \mu_1 \ne \mu_2
+    $$
+
+-   **Construir intervalos de confianza** para estimar la diferencia real entre las medias poblacionales con un nivel de confianza específico (por ejemplo, 95%).
+
+### Condiciones del t-test para muestras independientes
+
+Para que los resultados del t-test sean válidos, deben cumplirse las siguientes condiciones:
+
+1.  **Independencia**: Las observaciones dentro y entre los grupos deben ser independientes. Esto se garantiza si el muestreo es aleatorio y si el tamaño muestral no supera el 10% de la población (cuando no se hace con reemplazo).
+
+2.  **Normalidad**: Las poblaciones deben seguir una distribución normal. Si bien esta condición se formula sobre las poblaciones, en la práctica se evalúa con las muestras. La prueba es robusta frente a desviaciones moderadas de normalidad si cada grupo tiene al menos 30 observaciones, gracias al **Teorema del Límite Central**.
+
+3.  **Homogeneidad de varianzas (homocedasticidad)**: Se asume que ambas poblaciones tienen varianzas iguales. Esta condición puede ser verificada con pruebas como **Levene** o **F de Fisher** o **Bartless**. Si no se cumple, se utiliza una versión alternativa del t-test: el **Welch Two Sample t-test**, que ajusta los grados de libertad para corregir esta desigualdad, aunque con una ligera pérdida de precisión.
+
+### Grados de libertad
+
+-   En el t-test clásico (varianzas iguales):
+
+    $$
+    df = n_1 + n_2 - 2
+    $$
+
+-   En el t-test de Welch (varianzas desiguales), los grados de libertad se aproximan con:
+
+    $$
+    df \approx \frac{ \left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2 }{ \frac{ \left( \frac{s_1^2}{n_1} \right)^2 }{n_1 - 1} + \frac{ \left( \frac{s_2^2}{n_2} \right)^2 }{n_2 - 1} }
+    $$
+
+### Error estándar de la diferencia de medias
+
+El **error estándar (SE)** para comparar dos medias es:
+
+$$
+SE = \sqrt{ \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} }
+$$
+
+Este valor se utiliza tanto para construir intervalos de confianza como para calcular el estadístico de prueba:
+
+$$
+t = \frac{\bar{x}_1 - \bar{x}_2}{SE}
+$$
+
+Cuando se cumplen las condiciones mencionadas, se puede considerar que la diferencia de medias muestrales sigue una distribución **t de Student** con los grados de libertad apropiados. En consecuencia, los **t-scores** reemplazan a los **z-scores** en los cálculos, ajustando así los valores críticos a la incertidumbre inherente al tamaño muestral.
+
+Este enfoque proporciona una herramienta poderosa para evaluar efectos de tratamientos, diferencias entre grupos y pruebas de efectividad, en una amplia gama de contextos experimentales y observacionales.
+
+### Tamaño del Efecto (Effect Size) en comparaciones de medias
+
+El **tamaño del efecto** es una medida que cuantifica la magnitud de la diferencia observada entre grupos, sin depender del tamaño muestral ni de la inferencia estadística. A diferencia de los *p-values*, que únicamente indican si la diferencia es estadísticamente significativa bajo una hipótesis nula, el tamaño del efecto ofrece una medida de **relevancia práctica** o **importancia clínica** de los resultados.
+
+En contextos de comparación de medias mediante **t-tests para muestras independientes**, dos de las métricas más utilizadas para estimar el tamaño del efecto son:
+
+1.  La **d de Cohen** representa la diferencia estandarizada entre medias, es decir, cuántas desviaciones estándar separan en promedio los grupos comparados:
+
+$$
+d = \frac{|\overline{X}_1 - \overline{X}_2|}{s_p},
+$$
+
+donde $s_p$ es la desviación estándar combinada. Existen dos formas comunes de calcularla:
+
+La primera es **desviación estándar ponderada**:
+
+$$
+s_p = \sqrt{ \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2} }
+$$ y se usa cuando asumes que las varianzas de los dos grupos son iguales.
+
+La segunda es el **promedio cuadrático simple**:
+
+$$
+s_p = \sqrt{ \frac{s_1^2 + s_2^2}{2} }
+$$ y esta medida puede ser útil como estandarización descriptiva cuando las varianzas o los tamaños muestrales difieren; no obstante, debe especificarse claramente el denominador empleado y, para muestras pequeñas, puede preferirse reportar $g$ de **Hedges**.
+
+Además, la interpretacion de valores de $d$ es:
+
+-   \$\|d\| \< 0.2\$0: trivial o muy pequeño.
+-   $0.20 \leq |d| < 0.50$: pequeño.
+-   \$0.50 \|d\|\<0.8\$0: mediano.
+-   $|d| \geq 0.80$: grande
+
+2.  Tamaño de efecto $r$ (derivado de la $t$)
+
+Este coeficiente mide la fuerza de asociación entre una variable categórica binaria (grupo) y una variable continua:
+
+$$
+r = \sqrt{ \frac{t^2}{t^2 + gl} }
+$$
+
+donde:
+
+-   $t$ es el estadístico del t-test.
+-   $gl$ son los grados de libertad.
+
+La interpretación de valores de $r$:
+
+-   $| r |<0.10$: efecto trivial o muy pequeño.
+-   $0.10\leq| r |<0.30$: efecto pequeño.
+-   $0.30\leq| r |<0.50$: efecto mediano.
+-   $| r |\geq 0.50$: efecto grande.
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo de presión arterial
+:::
+
+Se ha recolectado una muestra aleatoria de pacientes para evaluar sus niveles de presión arterial. En el archivo [`datos_medicos.xlsx`](https://github.com/cdeoroaguado/Datos/blob/main/datadescrip/datos_medicos.xlsx) se encuentran registradas dos variables continuas: `PresionSistolica` y `PresionDiastolica`, correspondientes a la presión sistólica y diastólica de cada individuo, respectivamente.
+
+Con base en esta información, verifique si existe o no una diferencia significativa entre la presión sistólica y la diastólica en la muestra analizada, y si esta diferencia es relevante desde el punto de vista práctico.
+:::
+
+**Solución**
+
+-   Carguemos los datos
+
+```{r}
+library(readxl)
+
+# Lectura de los datos
+df <- read_excel("data/datos_medicos.xlsx")
+
+# Ver las 5 primeras obeservaciones
+head(df)
+```
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+Realiza el análisis exploratorio del conjunto de datos
+:::
+
+-   Verifiquemos si los datos tiene comportamiento normal
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+# dataframe de presion sistolica
+dfps <- df %>% 
+  filter(Presion == "PresionSistolica")
+
+# dataframe de presion diastolica
+dfpd <- df %>% 
+  filter(Presion == "PresionDiastolica")
+```
+
+```{r}
+# kolmogorov-smirnov
+ks.test(scale(dfps$Valores),pnorm)
+```
+
+```{r}
+ks.test(scale(dfpd$Valores),pnorm)
+```
+
+Con una confianza del $95\%$, vemos que las distribuciones de la presión sistolica ($D = 0.058097, p-valor = 0.8884$) y presión diastolica ($D = 0.057927, p-valor = 0.8905$) proviene de una distribución normal
+
+-   Verifiquemos igualdad de varianzas (homocedasticidad):
+
+```{r}
+var.test(dfps$Valores, dfpd$Valores)
+```
+
+Con una confianza del $95\%$, vemos que no diferencias estadísticamente significativa en las varianzas de la presión sistolica y diastolica ($F_{(99,99)}=0.92784, p-valor=0.7102$).
+
+::: {.admon-box .teorema}
+::: admon-title
+[]{.icon} Teorema de razón de varianzas
+:::
+
+Si $s_1^2$ y $s_2^2$ son las varianzas de muestras aleatorias independientes de tamaño $n_1$ y $n_2$, tomadas de poblaciones normales con varianzas $\sigma_1^2$ y $\sigma_2^2$, respectivamente, entonces, una prueba de hipótesis con nivel de significancia $\alpha$ para la razón de varianzas $\sigma_1^2 / \sigma_2^2$ se basa en el siguiente estadístico de prueba:
+
+$$
+F = \frac{s_1^2}{s_2^2}
+$$
+
+donde $F$ se distribuye como una variable aleatoria con distribución $F$ de Fisher-Snedecor con $v_1 = n_1 - 1$ y $v_2 = n_2 - 1$ grados de libertad.
+
+Además, un **intervalo de confianza bilateral al nivel $1 - \alpha$** para la razón de varianzas $\sigma_1^2 / \sigma_2^2$ está dado por:
+
+$$
+\left( \frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{1 - \alpha/2}(v_1, v_2)},\ \frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{\alpha/2}(v_1, v_2)} \right)
+$$
+
+donde $F_{\alpha/2}(v_1, v_2)$ y $F_{1 - \alpha/2}(v_1, v_2)$ son los cuantiles de la distribución F que dejan un área de $\alpha/2$ en las colas derecha e izquierda, respectivamente.
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+Usando el teorema de razón de varianzas verifica la salida de la función `var.test` con los datos de presión arterial.
+:::
+
+#### Paso a paso igualdad de varianzas
+
+En el video pueden ver la homocedasticidad usando la función `var.test` y haciendo paso a paso con el teorema de razón de varianzas.
+
+-   Veamos si hay diferencia significativas o no en el promedio de la presión sistolica y diastolica.
+
+```{r}
+t.test(dfps$Valores,
+       dfpd$Valores,
+       paired=FALSE,           # muestras independientes
+       var.equal = TRUE        # homocedasticidad
+       )
+```
+
+La prueba $t$ para muestras independientes nos indica que con una confianza del 95%, se concluye que existe una diferencia estadísticamente significativa entre las medias de la presión sistólica y la presión diastólica ($t_{(198)} = 31.888, p-valor < 0.001$).
+
+-   Veamos el calculo del tamaño del efecto
+
+```{r}
+library(effsize)
+
+cohen.d(dfps$Valores,
+        dfpd$Valores,
+        paired = FALSE)
+```
+
+Con base en el resultado del **índice de Cohen’s d**, se obtiene un valor estimado de $4.51$ ($IC_{95\%}=(3.98,5.03)$), lo que indica un tamaño del efecto **extremadamente grande**. Esto indica que dicha diferencia no solo es estadísticamente significativa, sino también altamente relevante desde el punto de vista práctico o clínico.
+
+::: {.admon-box .teorema}
+::: admon-title
+[]{.icon} Teorema de la diferencia de medias (muestras independientes con varianzas iguales)
+:::
+
+Sea $\overline{X}_1$ y $\overline{X}_2$ las medias muestrales de dos poblaciones independientes, con tamaños $n_1$ y $n_2$, y varianzas poblacionales iguales $\sigma_1^2 = \sigma_2^2 = \sigma^2$. Si ambas poblaciones siguen una distribución normal, o si los tamaños muestrales son suficientemente grandes (por el teorema central del límite), entonces la estadística de prueba para contrastar la hipótesis nula:
+
+$$
+H_0 : \mu_1 = \mu_2
+\quad \text{vs} \quad
+H_1 : \mu_1 \neq \mu_2
+$$
+
+está dada por:
+
+$$
+t = \frac{\overline{X}_1 - \overline{X}_2}{\sqrt{S_p^2 \left( \frac{1}{n_1} + \frac{1}{n_2} \right)}}
+$$
+
+donde $S_p^2$ es la **varianza combinada (pooled variance)**, definida como:
+
+$$
+S_p^2 = \frac{(n_1 - 1)S_1^2 + (n_2 - 1)S_2^2}{n_1 + n_2 - 2}
+$$
+
+y $S_1^2$ y $S_2^2$ son las varianzas muestrales.
+
+Esta estadística sigue una **distribución t de Student** con $n_1 + n_2 - 2$ grados de libertad.
+
+Además, un **intervalo de confianza al nivel $1 - \alpha$** para la diferencia de medias $\mu_1 - \mu_2$ está dado por:
+
+$$
+\left(
+(\overline{X}_1 - \overline{X}_2) \pm t_{(1 - \alpha/2,\; n_1 + n_2 - 2)} \cdot \sqrt{S_p^2 \left( \frac{1}{n_1} + \frac{1}{n_2} \right)}
+\right)
+$$
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+1.  Usando el teorema de la diferencia de medias verifica la salida de la función `t.test` con los datos de presión arterial.
+2.  Aplica el teorema de diferencia de medias con la distribución normal.
+:::
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo de comparación de precios por tipo de cuenta
+:::
+
+Se ha recolectado una muestra aleatoria de cuentas clasificadas en dos tipos: `Inversión` y `Ganancia`, con el fin de evaluar si existe una diferencia significativa en el valor promedio de los precios registrados. En la variable `Precio` se encuentra el valor económico asociado a cada cuenta. En el archivo [`datos_economia.xlsx`](https://github.com/cdeoroaguado/Datos/blob/main/datadescrip/datos_economia.xlsx)
+
+Con base en esta información, se propone realizar una prueba estadística para determinar si hay diferencia significativa entre los promedios de precio según el tipo de cuenta, y evaluar si dicha diferencia es relevante desde el punto de vista práctico.
+
+Este análisis permitirá tomar decisiones fundamentadas sobre las políticas financieras relacionadas con los tipos de cuenta manejados por la institución.
+:::
+
+**Solución**
+
+-   Carguemos los datos
+
+```{r}
+library(readxl)
+
+# Lectura de los datos
+df <- read_excel("data/datos_economia.xlsx")
+
+# Ver las 5 primeras observaciones
+head(df)
+```
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+Realiza el análisis exploratorio del conjunto de datos
+:::
+
+-   Verifiquemos si los datos tiene comportamiento normal
+
+```{r}
+# dataframe de inversion
+inversion <- df %>% 
+  filter(`Tipo de cuenta` == "Inversion") %>% 
+  pull(Precio)
+
+# dataframe de ganancia
+ganancia <- df %>% 
+  filter(`Tipo de cuenta` ==  "Ganancia")%>% 
+  pull(Precio)
+```
+
+```{r}
+# kolmogorov-smirnov
+ks.test(scale(inversion),pnorm)
+```
+
+```{r}
+ks.test(scale(ganancia),pnorm)
+```
+
+Con una confianza del $95\%$, vemos que las distribuciones de la inversión ($D = 0.058097, p-valor = 0.8884$) y la ganancia ($D = 0.057927, p-valor = 0.8905$) proviene de una distribución normal
+
+-   Verifiquemos igualdad de varianzas (homocedasticidad):
+
+```{r}
+var.test(Precio ~ `Tipo de cuenta`,data = df)
+```
+
+Con una confianza del $95\%$, vemos que hay diferencias estadísticamente significativa en las varianzas ($F_{(99,99)}=0.044, p-valor < 0.001$).
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+Aplica las pruebas de Bartlett, Levene y Fligner-Killeen, explica detalladamente cada prueba y cual distribución usa y despues interpreta el resultado.
+:::
+
+-   Veamos si hay diferencia significativas o no en el promedio de la presión sistolica y diastolica.
+
+```{r}
+t.test(inversion,
+       ganancia, 
+       var.equal = FALSE,
+       paired=FALSE)
+```
+
+La prueba de Welch para muestras independientes nos indica que con una confianza del 95%, se concluye que existe una diferencia estadísticamente significativa entre las medias de la presión sistólica y la presión diastólica ($t_{(107.87)} = 46.212, p-valor < 0.001$).
+
+-   Veamos el calculo del tamaño del efecto
+
+```{r}
+library(effsize)
+
+cohen.d(inversion,
+        ganancia,
+        paired = FALSE)
+```
+
+Con base en el resultado del **índice de Cohen’s d**, se obtiene un valor estimado de $6.53$ ($IC_{95\%}=(5.83,7.23)$), lo que indica un tamaño del efecto **extremadamente grande**. Esto indica que dicha diferencia no solo es estadísticamente significativa, sino también altamente relevante en el tipo de cuenta.
+
+## Comparación de medias entre dos grupos pareados con estadística paramétrica
+
+Dos medias se consideran **dependientes** o **pareadas** cuando provienen de muestras relacionadas, es decir, cuando existe una correspondencia directa entre las observaciones de ambos grupos. Este tipo de diseño es común cuando las mediciones se realizan sobre los **mismos individuos** bajo dos condiciones diferentes.
+
+#### Ejemplos comunes
+
+-   Comparar el rendimiento de estudiantes en dos pruebas distintas (por ejemplo, lectura y escritura).
+-   Evaluar el efecto de un tratamiento médico comparando una variable antes y después del tratamiento en los mismos pacientes.
+
+En este contexto, para determinar si hay una diferencia significativa entre las condiciones $X$ e $Y$, se calcula para cada individuo la diferencia:
+
+$$
+d_i = x_i - y_i
+$$
+
+Aunque la hipótesis nula plantee que no existe diferencia (es decir, que $\mu_X = \mu_Y$), debido a la variabilidad natural entre observaciones, las diferencias individuales $d_i$ no serán exactamente cero. No obstante, si no hay efecto sistemático, el promedio de estas diferencias tenderá a cero por compensación aleatoria:
+
+$$
+\overline{d} = \frac{1}{n} \sum_{i=1}^{n} (x_i - y_i)
+$$
+
+El análisis se centra en evaluar si este promedio de diferencias es **significativamente distinto de cero**, utilizando una prueba t de muestras pareadas.
+
+### Supuestos del t-test para muestras dependientes
+
+-   **Normalidad**: Se asume que las diferencias $d_i$ provienen de una distribución normal. Este supuesto puede evaluarse a partir de la muestra si no se tiene información poblacional.
+-   **Igualdad de varianzas**: **No es necesario** que las varianzas de los grupos originales sean iguales (no se requiere homocedasticidad).
+
+Si los supuestos se cumplen, se puede considerar que:
+
+$$
+d_i \sim \mathcal{N}(\mu_d, \sigma_d^2)
+$$
+
+Como en la mayoría de situaciones de inferencia estadística, los parámetros poblacionales son desconocidos, por lo que se estiman a partir de la muestra. Bajo estos supuestos, se tiene:
+
+$$
+\bar{d} \sim \mathcal{N}(\mu_d, \hat{\sigma}_d^2)
+$$
+
+donde $\bar{d}$ es el promedio muestral de las diferencias y $\hat{\sigma}_d^2$ es la varianza muestral de dichas diferencias.
+
+El test $t$ pareado se utiliza para verificar la hipótesis:
+
+$$
+H_0: \mu_d = 0 \quad \text{vs} \quad H_1: \mu_d \neq 0
+$$
+
+La estadística de prueba está dada por:
+
+$$
+t = \frac{\bar{d}}{s_d / \sqrt{n}} \sim t_{n-1}
+$$
+
+donde
+
+-   $\bar{d}$: media de las diferencias
+-   $s_d$: desviación estándar de las diferencias
+-   $n$: número de pares
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo: Evaluación del desempeño en una intervención educativa
+:::
+
+Una institución educativa implementa una nueva estrategia de enseñanza con el objetivo de mejorar el desempeño de los estudiantes en una prueba estandarizada. Para evaluar su efectividad, se selecciona aleatoriamente una muestra de 10 estudiantes y se registra su tiempo (en segundos) para completar una tarea cognitiva específica al inicio del periodo académico. Al finalizar el año, se repite la misma medición con los mismos estudiantes.
+
+Este diseño corresponde a un esquema de **medidas pareadas**, ya que las observaciones antes y después de la intervención se realizan sobre los **mismos individuos**. Por tanto, el análisis estadístico adecuado consiste en aplicar una *prueba t para muestras dependientes*, que permita evaluar si la estrategia implementada produjo un cambio significativo en el desempeño de los estudiantes.
+
+```{r}
+# Datos de tiempos antes y después de la intervención educativa
+datos <- data.frame(
+  estudiante = c(1:10),
+  antes = c(12.9, 13.5, 12.8, 15.6, 17.2, 19.2, 12.6, 15.3, 14.4, 11.3),
+  despues = c(12.7, 13.6, 12.0, 15.2, 16.8, 20.0, 12.0, 15.9, 16.0, 11.1)
+)
+```
+
+Con base en estas mediciones, se procederá a aplicar la prueba estadística para determinar si existe evidencia significativa de mejora en los tiempos registrados tras la implementación de la nueva metodología.
+:::
+
+**Solución**
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+Realiza el análisis exploratorio del conjunto de datos
+:::
+
+-   Veamos si los datos tiene comportamiento normal:
+
+```{r}
+# prueba de normalidad
+shapiro.test(datos$antes)
+```
+
+```{r}
+shapiro.test(datos$despues)
+```
+
+La prueba de Shapiro_Will, nos muestra que la intervención de antes ($W = 0.9444, p-valor = 0.6033$) y despues ($W = 0.93638, p-valor = 0.5135$) tienen comportamiento normal.
+
+-   Veamos si hay diferencia significativas en los promedios de las intervenciones de antes y despues
+
+```{r}
+t.test(x = datos$despues,
+       y = datos$antes,
+       paired = TRUE)
+```
+
+La prueba $t$ nos indica que no hay diferencias estadísticamente significativa en los promedios de las intervenciones de antes y despues ($t_{(9)}=0.2133, p-valor = 0.8358$)
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+Usando el teorema de la diferencia de medias para datos pareados verifica la salida de la función `t.test` con los datos de la intervención educativa
+:::
+
+-   Calculemos el tamaño del efecto
+
+```{r}
+cohen.d(d = datos$antes, 
+        f = datos$despues, 
+        paired = TRUE)
+```
+
+El resultado del tamaño del efecto calculado mediante Cohen’s d para muestras pareadas fue de $-0.017$ ($IC_{95\%}=(-0.184,0.150)$), lo cual es prácticamente inexistente desde el punto de vista práctico. El intervalo de confianza nos confirma que no hay evidencia de un cambio significativo ni relevante en los tiempos registrados antes y después de la intervención.
+
+## Comparación de dos grupos independientes con estadística no paramétrica
+
+El test de Mann–Whitney–Wilcoxon (WMW), también conocido como **Wilcoxon rank-sum test** o **U-test de Mann–Whitney**, es una prueba estadística no paramétrica utilizada para comparar dos muestras independientes. Su objetivo es determinar si ambas proceden de poblaciones con distribuciones similares, sin asumir normalidad ni trabajar directamente con las medias, como ocurre en los test t.
+
+### Fundamento conceptual
+
+La idea central del test es la siguiente: si dos muestras provienen de poblaciones con la misma distribución, al combinar todas las observaciones y ordenarlas de menor a mayor, se esperaría que los valores de ambas muestras estén **aleatoriamente intercalados**. En cambio, si una de las muestras tiende a tener valores sistemáticamente mayores o menores, sus observaciones tenderán a **agruparse hacia un extremo del ordenamiento**.
+
+Desde una perspectiva probabilística, el test contrasta si la probabilidad de que una observación de una población sea mayor que una de la otra es igual a 0.5:
+
+$$
+H_0: P(X > Y) = 0.5 \quad \text{(no hay diferencia entre grupos)}
+$$ $$
+H_1: P(X > Y) \neq 0.5 \quad \text{(hay diferencia entre grupos)}
+$$
+
+Este planteamiento no presupone normalidad ni igualdad de medias, sino que se basa en la **equidistribución** de las poblaciones.
+
+#### Interpretación y alcance
+
+Aunque es frecuente leer que el test de Mann–Whitney–Wilcoxon compara medianas, esta interpretación **solo es válida si ambas poblaciones tienen la misma forma de distribución** (es decir, misma asimetría y varianza). En general, lo que el test evalúa es una diferencia en **tendencias centrales** sin especificar la medida exacta (media o mediana).
+
+::: {.admon-box .advertencia}
+::: admon-title
+[]{.icon} Nota técnica: ¿El test WMW compara medianas?
+:::
+
+Si bien se suele afirmar que el test de Mann–Whitney–Wilcoxon compara medianas, esto es estrictamente cierto **solo cuando ambas poblaciones tienen la misma forma de distribución**. Es decir, se requiere que presenten igual dispersión, simetría y curtosis.
+
+En ese caso, una diferencia en la ubicación central puede interpretarse como una diferencia de medianas. Sin embargo, si las distribuciones difieren en forma, el test detecta diferencias en la *distribución global*, y no exclusivamente en la mediana.
+
+Por tanto, el test WMW evalúa diferencias en localización general, y su interpretación como comparación de medianas debe hacerse con cautela, y solo bajo condiciones que aseguren homogeneidad de forma entre grupos.
+:::
+
+### Comparación con el test t
+
+El test WMW suele ser **menos potente** que el t-test cuando los supuestos del análisis paramétrico se cumplen (la pérdida de potencia se estima en torno al 5%). Esto se debe a que el WMW **trabaja con rangos y no con valores reales**, lo que reduce su sensibilidad frente a diferencias pequeñas. Sin embargo, esta misma característica le confiere mayor **robustez ante valores atípicos** y violaciones de normalidad, convirtiéndolo en una alternativa preferible en contextos donde los datos no cumplen los supuestos clásicos.
+
+### Supuestos y condiciones de aplicación
+
+Para aplicar correctamente el test de Mann–Whitney–Wilcoxon se deben cumplir las siguientes condiciones:
+
+-   **Independencia de las observaciones** entre los dos grupos.
+-   Los datos deben ser al menos **ordinales**, es decir, deben poder ordenarse de menor a mayor.
+-   **No se requiere normalidad** ni homocedasticidad estricta.
+-   Para interpretar el test como una comparación de medianas, se requiere que ambas poblaciones tengan **distribuciones con forma similar** (igual dispersión y simetría).
+-   Es preferible que las muestras tengan **tamaños comparables**, aunque no es obligatorio.
+
+El test de Mann–Whitney–Wilcoxon es una herramienta flexible y robusta para comparar dos muestras independientes cuando no se puede asumir normalidad o cuando existen valores extremos. A cambio de una ligera pérdida de potencia frente al test t, ofrece mayor fiabilidad en contextos no paramétricos y mantiene una base sólida para contrastar diferencias de ubicación entre grupos.
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo de peso al nacer y hábito de fumar
+:::
+
+Se ha recolectado una muestra representativa de nacimientos contenida en el conjunto de datos `births`, disponible en el paquete `openintro` de R. Dentro de este conjunto, se encuentran registradas variables como el `peso al nacer` (en onzas) y si la madre `fumó o no` durante el embarazo (variable categórica `smoke`: “yes” o “no”).
+
+Con base en esta información, verifique si existe o no una diferencia significativa en el peso al nacer entre los recién nacidos cuyas madres fumaron durante el embarazo y aquellos cuyas madres no lo hicieron. Además, evalúe si esta diferencia es relevante desde el punto de vista práctico.
+:::
+
+**Solución**
+
+-   Carguemos los datos
+
+```{r}
+library(openintro)
+
+# Cargar los datos
+data("births")
+
+# Asignar a un data frame
+df <- births
+
+# Ver las 5 primeras observaciones
+head(df)
+```
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+Realiza el análisis exploratorio del conjunto de datos
+:::
+
+-   Veamos si tienen comportamiento normal
+
+```{r}
+library(nortest)
+
+df %>%
+  group_by(smoke) %>%
+  summarise(n = length(weight),
+            est_ks = ks.test(scale(weight),'pnorm')$statistic,
+            p_ks = ks.test(scale(weight),'pnorm')$p.value,
+            estsw = shapiro.test(weight)$statistic,
+            p_sw = shapiro.test(weight)$p.value,
+            est_lt = lillie.test(weight)$statistic,
+            p_lt = lillie.test(weight)$p.value)
+```
+
+El test de `Lilliefors` evidencia que el peso de los recién nacidos no presenta un comportamiento normal en ninguno de los grupos analizados. En el caso de los hijos de madres que no fuman($Lilliefors = 0.132, p-valor < 0.001$); mientras que para los hijos de madres que fuman ($Lilliefors = 0.125, p-valor = 0.048$).
+
+Dado que no se cumple con el supuesto de normalidad en los grupos analizados, la comparación de varianzas debe realizarse mediante pruebas robustas a esta condición. En este contexto, se recomienda emplear el test de `Levene` o el test no paramétrico de `Fligner-Killeen`, ambos diseñados para evaluar la homogeneidad de varianzas y que utilizan la mediana como medida de tendencia central, lo que los hace adecuados en presencia de datos no normales.
+
+-   Veamos la igualdad de varianza
+
+```{r}
+library(car)
+
+leveneTest(weight ~ smoke, data = df, center = "median")
+```
+
+La prueba de `Levene` nos indica no se encuentran diferencias significativas en la varianza del peso entre los recién nacidos de madres fumadoras y no fumadoras ($F_{(1)}=0.4442, p-valor=0.5062$).
+
+-   Veamos si hay diferencia en los grupos de madres:
+
+```{r}
+library(rstatix)
+
+df %>%
+  wilcox_test(weight ~ smoke, 
+              paired = FALSE)
+```
+
+La prueba de U de Mann-Whitney, nos muestra que no hay evidencia estadísticamente significativa de una diferencia en el peso de los recien nacidos entre madres fumadoras y no fumadoras ($U = 2879, p-valor = 0.131$).
+
+```{r}
+library(rstatix)
+
+df %>%
+  wilcox_effsize(weight ~ smoke, paired = FALSE)
+```
+
+Es claro que si no hay diferencia estadísticamente en los grupos, el efecto es pequeño o no existe.
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+¿Puedes usar una prueba paramétrica?. En caso afirmativo, ejecutela
+:::
+
+## Comparación de dos grupos pareados con estadística no paramétrica
+
+La **prueba de los rangos con signo de Wilcoxon** (Wilcoxon signed-rank test) es una herramienta estadística no paramétrica utilizada para comparar dos muestras relacionadas. Su uso es especialmente recomendable cuando los datos no cumplen con los supuestos de normalidad requeridos por pruebas paramétricas como el t-test para muestras pareadas.
+
+Esta prueba resulta útil cuando la distribución de las diferencias entre pares de observaciones muestra asimetría, colas pesadas o cuando el tamaño muestral es demasiado reducido como para validar la normalidad mediante métodos gráficos o contrastes de hipótesis.
+
+#### Condiciones para aplicar la prueba de Wilcoxon signed-rank
+
+Antes de aplicar esta prueba, deben cumplirse las siguientes condiciones:
+
+-   **Dependencia entre las muestras**: los datos deben provenir de **observaciones emparejadas** o relacionadas (por ejemplo, mediciones antes y después sobre los mismos individuos).
+
+-   **Datos ordenables**: los valores deben ser **ordinales o continuos**, de manera que puedan ordenarse de menor a mayor (o viceversa).
+
+-   **No se requiere normalidad**, pero sí **simetría en las diferencias**: no es necesario que las diferencias entre pares sigan una distribución normal, pero sí se espera que tengan una distribución **simétrica alrededor de un valor central** (típicamente cero).
+
+-   **Opera sobre medianas**: a diferencia del t-test, que se basa en la media, el Wilcoxon signed-rank test evalúa la **simetría de las diferencias**, lo cual suele interpretarse como un contraste sobre la **mediana de las diferencias**.
+
+-   Es preferible al t-test cuando:
+
+    -   Hay **valores atípicos** en los datos
+    -   No se cumple el **criterio de normalidad**
+    -   El **tamaño de muestra es pequeño**
+
+### ¿Cuándo se recomienda utilizar esta prueba?
+
+Existen dos situaciones clave en las que es más apropiado usar el Wilcoxon signed-rank test en lugar del t-test pareado:
+
+1.  **Cuando se detecta no normalidad**:\
+    Si los datos permiten identificar que las diferencias no se distribuyen normalmente (mediante gráficos o contrastes), el t-test deja de ser adecuado. En estos casos, el test de Wilcoxon constituye una alternativa robusta. Otras opciones también válidas son el bootstrapping, la regresión cuantílica o los tests de permutación.
+
+2.  **Cuando no se puede verificar la distribución**:\
+    Si el tamaño de muestra es tan pequeño que no permite evaluar con certeza la forma de la distribución, y no se dispone de evidencia previa sobre su comportamiento, es más prudente aplicar el Wilcoxon signed-rank test, ya que no requiere asumir normalidad.
+
+::: {.admon-box .nota}
+::: admon-title
+[]{.icon} Características principales
+:::
+
+1.  Evalúa si las **diferencias entre pares** siguen una distribución **simétrica** alrededor de cero.
+2.  Se basa en los **rangos** de las diferencias absolutas, por lo que no utiliza los valores originales sino su orden.
+3.  Es aplicable a variables que se puedan ordenar (ordinales o continuas).
+4.  Posee **menor poder estadístico** que el t-test en datos normales, ya que ignora la magnitud exacta de los valores extremos. Sin embargo, esto lo hace **más robusto frente a valores atípicos** y distribuciones no normales.
+:::
+
+::: {.admon-box .advertencia}
+::: admon-title
+[]{.icon} Consideraciones finales
+:::
+
+El **Wilcoxon signed-rank test** es una opción sólida para el análisis de muestras emparejadas cuando los supuestos del t-test no se cumplen. No obstante, debe tenerse presente que un tamaño muestral pequeño limita la inferencia estadística, independientemente de la prueba empleada. Por ello, el análisis debe acompañarse de juicio experto y de otras fuentes de información cuando estén disponibles.
+:::
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo
+:::
+
+Un grupo de participantes fue evaluado antes y después de una intervención formativa mediante un cuestionario estructurado. El ítem Q1 del cuestionario mide una dimensión específica del desempeño o conocimiento relacionado con la temática abordada en la intervención. A cada participante se le asignó una puntuación en dos momentos temporales: durante la fase de Pretest (antes de la intervención) y durante la fase de Posttest (después de la intervención).
+
+El propósito de este análisis es determinar si la intervención generó un cambio significativo en las respuestas al ítem Q1. Para ello, se aplicará una prueba estadística que permita comparar las puntuaciones obtenidas en el pretest y el posttest para cada participante, evaluando si dichas diferencias son estadísticamente significativas.
+:::
+
+**Solución**
+
+-   Carguemos el conjunto de datos
+
+```{r}
+ #url_dat <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vQaVafuOSuEnOIiJJoB_OLF6GHib4EGqtAPnFBkNXFj29iB8yex4wYXYAAyIW16eA/pub?gid=1616716040&single=true&output=tsv"
+datos <- read_delim("data/dataQ.tsv", delim = "\t",escape_double = FALSE, trim_ws = TRUE)
+
+datos <- datos %>%
+  mutate(across(c(Experimento, Genero,`Nivel educativo`), as.factor)) 
+```
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+Realiza el análisis exploratorio del conjunto de datos
+:::
+
+-   Veamos si tienen comportamiento normal
+
+```{r}
+datos %>%
+  group_by(Experimento) %>%
+  summarise(n = length(Q1),
+            est_ks = ks.test(scale(Q1),'pnorm')$statistic,
+            p_ks = ks.test(scale(Q1),'pnorm')$p.value,
+            estsw = shapiro.test(Q1)$statistic,
+            p_sw = shapiro.test(Q1)$p.value,
+            est_lt = lillie.test(Q1)$statistic,
+            p_lt = lillie.test(Q1)$p.value)
+```
+
+La prueba de `Shapiro-Will` nos muestra que los experimentos del pretest ($W = 0.7905, p-valor < 0.001$) y postest ($W = .6447, p-valor < 0.001$) no tienen comportamiento normal.
+
+-   Veamos si hay diferencia de la pregunta 1 segun el experimento:
+
+```{r}
+datos %>%
+  rstatix::wilcox_test(Q1 ~ Experimento, paired = TRUE)
+```
+
+La prueba de los rangos con signo de Wilcoxon para muestras pareadas nos indica que la intervención produjo un cambio estadísticamente significativo en las respuestas al ítem Q1 ($W=1128, p-valor < 0.001$). La dirección de este cambio sugiere una mejora en el desempeño de los participantes, **dado que las puntuaciones en el post-test son consistentemente mayores que en el pretest**.
+
+```{r}
+datos %>%
+  rstatix::wilcox_effsize(Q1 ~ Experimento, paired = TRUE)
+```
+
+Además del resultado estadísticamente significativo, el tamaño del efecto obtenido para la comparación entre las puntuaciones de Q1 en el pretest y el post-test fue de $r = 0.8794$, lo cual representa un efecto grande. Esto indica que el cambio observado no solo es significativo, sino que también tiene relevancia práctica considerable sobre el desempeño de los participantes tras la intervención.
+
+## ANOVA (análisis de varianza para comparar múltiples medias)
+
+La **técnica de análisis de varianza (ANOVA)**, también conocida como **análisis factorial**, fue desarrollada por **Ronald Fisher** en la década de 1930 y constituye una herramienta estadística fundamental para evaluar el efecto de uno o más factores (cada uno con dos o más niveles) sobre la **media de una variable continua**.
+
+ANOVA se utiliza cuando se desea comparar simultáneamente las medias de **dos o más grupos**, evaluando si las diferencias observadas son estadísticamente significativas. Además, esta técnica puede extenderse para analizar no solo los efectos principales de los factores, sino también sus posibles **interacciones** y, en ciertos casos, el efecto de los factores sobre la **variabilidad (varianza)** de la variable dependiente.
+
+### Supuestos y formulación de las hipótesis
+
+Se consideran $k$ grupos o poblaciones, correspondientes a los $k$ tratamientos o categorías de un factor. Se asume que las observaciones de cada grupo están normalmente distribuidas, con medias poblacionales $\mu_1, \mu_2, \dots, \mu_k$, y comparten una misma varianza común $\sigma^2$. Para representarlas, se extraen **muestras aleatorias independientes** de tamaños $n_1, n_2, \dots, n_k$, respectivamente. Es decir
+
+$$
+Y_{ij} \sim \mathcal{N}(\mu_{j},\sigma^2),\quad i =1, \dots,n_{j},\, j=1,\dots,k.
+$$
+
+A lo largo del análisis se utiliza la notación $y_{ij}$ para denotar la **i-ésima observación** dentro del **j-ésimo grupo o tratamiento**, facilitando así el estudio comparativo entre medias categorizadas.
+
+Bajo este esquema, los datos pueden organizarse como se muestra en la Tabla \@ref(tab:tabla-anova), lo cual permite aplicar la técnica de análisis de varianza de un factor para contrastar la hipótesis de igualdad entre medias poblacionales [@llinas2019].
+
+| Tratamiento 1 | Tratamiento 2 | Tratamiento 3 | …   | Tratamiento $k$ |
+|:--------------|:--------------|:--------------|:----|:-------------------------|
+| $y_{11}$  | $y_{12}$  | $y_{13}$  | …   | $y_{1k}$             |
+| $y_{21}$  | $y_{22}$  | $y_{23}$  | …   | $y_{2k}$             |
+| $\vdots$  | $\vdots$  | $\vdots$  | …   | $\vdots$             |
+| $y_{n_{1},1}$  | $y_{n_{2},2}$  | $y_{n_{3},3}$  | …   | $y_{n_{k},k}$             |
+
+: (\#tab:tabla-anova) Observaciones muestrales de muestras aleatorias independientes de $k$ tratamiento
+
+Entonces, el procedimiento para contrastar la hipótesis de igualdad de medias en este contexto se denomina *análisis de varianza de un factor*, una terminología que se hará más clara cuando tratemos otros modelos de análisis de varianza.
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} Definición (Hipótesis en el análisis de varianza de un factor)
+:::
+
+*Supongamos que tenemos muestras aleatorias independientes con tamaños $n_1, n_2, \ldots, n_k$. Si representamos las medias poblacionales por $\mu_1, \mu_2, \ldots, \mu_k$, el **análisis de varianza de un factor** está diseñado para contrastar la hipótesis nula de que todas las medias poblacionales son iguales, es decir:*
+
+$$
+H_0: \mu_1 = \mu_2 = \cdots = \mu_k \quad \text{vs} \quad H_1: \text{No todas las medias poblacionales son iguales}.
+$$
+:::
+
+A partir de la definición anterior, en este apartado desarrollaremos el contraste de la hipótesis nula de igualdad de medias entre $k$ poblaciones, considerando que se dispone de muestras aleatorias independientes para cada una de ellas.
+
+Con el fin de facilitar los cálculos y el análisis posterior, los datos serán organizados en una tabla estructurada por categorías, como se muestra a continuación.
+
+|               | Tratamiento 1 | Tratamiento 2 | Tratamiento 3 | …            | Tratamiento $k$ | Total        |
+|:--------------|:--------------|:--------------|:--------------|:-------------|:-------------------------|:-------------|
+| Observaciones | $y_{11}$  | $y_{12}$  | $y_{13}$  | $\cdots$ | $y_{1k}$             |              |
+|               | $y_{21}$  | $y_{22}$  | $y_{23}$  | $\cdots$ | $y_{2k}$             |              |
+|               | $\vdots$  | $\vdots$  | $\vdots$  | $\cdots$ | $\vdots$             |              |
+|               | $y_{n_{1},1}$  | $y_{n_{2},2}$  | $y_{n_{3},3}$  | $\cdots$ | $y_{n_{k},k}$             |              |
+| Tamaño        | $n_1$  | $n_2$  | $n_3$  | $\cdots$ | $n_k$             | $N$ |
+| Sumas         | $T_1$  | $T_2$  | $T_3$  | $\cdots$ | $T_k$             | $T$ |
+| Medias        | $\bar{y}_1$  | $\bar{y}_2$  | $\bar{y}_3$  | $\cdots$ | $\bar{y}_k$             | $\bar{y}$ |
+
+: (\#tab:tabla-anova-2) Observaciones muestrales de muestras aleatorias independientes de $k$ tratamiento
+
+donde
+
+-   $y_{ij}$ es la *i*-ésima observación del tratamiento $j$.
+-   $n_j$ es el tamaño de la *j*-ésima muestra.
+-   $N = n_1 + n_2 + \cdots + n_k$ es la suma de todos los tamaños de muestra.
+-   $T_j = y_{1j} + y_{2j} + \cdots + y_{n_j,j}$ es la suma de las observaciones de la muestra *j*-ésima.
+-   $T = T_1 + T_2 + \cdots + T_k$ es la suma de todas las observaciones.
+-   $\bar{y}_j = \frac{T_j}{n_j}$ es la media de las observaciones de la muestra *j*-ésima.
+-   $\bar{y} = \frac{T}{N}$ es la media total de todas las observaciones.
+
+### Sumas de cuadrados y teorema de descomposición
+
+El contraste de igualdad de medias se fundamenta en la comparación entre dos fuentes de variabilidad en los datos muestrales:
+
+1.  La primera es la variabilidad en torno a las medias muestrales individuales de los $k$ grupos de observaciones. Esta se denomina **variabilidad dentro de los grupos**.
+
+2.  La segunda es la variabilidad entre las medias de los $k$ grupos. Esta se denomina **variabilidad entre grupos**.
+
+A continuación, definiremos medidas cuantitativas para ambos tipos de variabilidad.
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} Definición. Variabilidad dentro de los grupos
+:::
+
+Es la variación de las observaciones individuales respecto a su propia media muestral dentro de cada grupo. Para el grupo $j = 1, \ldots, k$ , se define como:
+
+$$
+(SE)_j = \sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j)^2
+$$
+:::
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} Definición. Suma de cuadrados del error (SSE)
+:::
+
+Es la suma total de la variabilidad dentro de todos los grupos. También se conoce como **suma de cuadrados dentro de los grupos** y se define como:
+
+$$
+SSE = \sum_{j=1}^{k} \sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j)^2
+$$
+:::
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} Definición. Suma de cuadrados entre grupos (SSA)
+:::
+
+En relación con la variabilidad entre grupos, que simbolizaremos como **SSA**, una medida natural consiste en calcular las diferencias entre las medias muestrales de cada grupo y la media muestral global.
+
+Estas diferencias se elevan al cuadrado para representar la desviación de cada grupo respecto a la media global. Como cada grupo $j$ tiene un tamaño $n_j$, se pondera cada diferencia por dicho tamaño.
+
+Así, la **suma de cuadrados entre grupos** (también llamada *suma de cuadrados de tratamientos*) se define como:
+
+$$
+SSA = \sum_{j=1}^{k} n_j (\bar{y}_j - \bar{y})^2
+$$
+
+donde
+
+-   $\bar{y}_j$ es la media muestral del grupo $j$,
+-   $\bar{y}$ es la media muestral global,
+-   $n_j$ es el tamaño de la muestra del grupo $j$,
+-   $k$ es el número total de grupos.
+:::
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} Definición. Suma de cuadrados total (SST)
+:::
+
+Es la variabilidad total de todas las observaciones con respecto a la media global. Se define como:
+
+$$
+SST = \sum_{j=1}^{k} \sum_{i=1}^{n_j} (y_{ij} - \bar{y})^2
+$$
+:::
+
+::: {.admon-box .teorema}
+::: admon-title
+[]{.icon} Teorema. Descomposición de la suma de cuadrados
+:::
+
+Supongamos que tenemos muestras aleatorias independientes de tamaños $n_1, n_2, \ldots, n_k$, correspondientes a $k$ poblaciones. Sean $y_{ij}$ la i-ésima observación muestral en el grupo $j$, $\bar{y}_1, \bar{y}_2, \ldots, \bar{y}_k$ las medias muestrales por grupo, y $\bar{y}$ la media muestral global. Definimos las siguientes sumas de cuadrados:
+
+-   **Suma de cuadrados total (SST):**
+
+    $$
+    SST = \sum_{j=1}^{k} \sum_{i=1}^{n_j} (y_{ij} - \bar{y})^2 = \sum_{j=1}^{k} \sum_{i=1}^{n_j} y_{ij}^2 - \frac{T^2}{N}
+    $$
+
+-   **Suma de cuadrados entre grupos (SSA):**
+
+    $$
+    SSA = \sum_{j=1}^{k} (\bar{y}_j - \bar{y})^2 n_j = \sum_{j=1}^{k} \frac{T_j^2}{n_j} - \frac{T^2}{N}
+    $$
+
+-   **Suma de cuadrados dentro de los grupos (SSE):**
+
+    $$
+    SSE = \sum_{j=1}^{k} \sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j)^2
+    $$
+
+Entonces, se cumple que:
+
+$$
+SST = SSA + SSE
+$$
+:::
+
+**Demostración del teorema**
+
+Recordemos que la **suma total de cuadrados** se define como:
+
+$$
+SST = \sum_{j=1}^{k} \sum_{i=1}^{n_j} (y_{ij} - \bar{y})^2
+$$
+
+Descomponemos la diferencia $y_{ij} - \bar{y}$
+
+$$
+y_{ij} - \bar{y} = (y_{ij} - \bar{y}_j) + (\bar{y}_j - \bar{y})
+$$
+
+Elevamos al cuadrado y aplicamos la identidad
+
+$$
+(y_{ij} - \bar{y})^2 = (y_{ij} - \bar{y}_j)^2 + 2(y_{ij} - \bar{y}_j)(\bar{y}_j - \bar{y}) + (\bar{y}_j - \bar{y})^2
+$$
+
+Sumamos sobre $i$ y $j$
+
+$$
+SST = \sum_{j=1}^{k} \sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j)^2 + 2 \sum_{j=1}^{k} \sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j)(\bar{y}_j - \bar{y}) + \sum_{j=1}^{k} \sum_{i=1}^{n_j} (\bar{y}_j - \bar{y})^2
+$$
+
+Notemos que
+
+-   $\sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j) = 0$, por lo tanto la **segunda suma es cero**.
+-   En la tercera suma, $(\bar{y}_j - \bar{y})^2$ no depende de $i$, así que:
+
+$$
+\sum_{i=1}^{n_j} (\bar{y}_j - \bar{y})^2 = n_j (\bar{y}_j - \bar{y})^2
+$$
+
+Entonces
+
+$$
+SST = \underbrace{\sum_{j=1}^{k} \sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j)^2}_{SSE} + \underbrace{\sum_{j=1}^{k} n_j (\bar{y}_j - \bar{y})^2}_{SSA}
+$$
+
+Por tanto, se cumple la relación de descomposición
+
+$$
+SST = SSE + SSA. \quad \square
+$$
+
+<details class="admon-box observacion">
+<summary class="admon-title">
+<span class="icon"></span> ¿Por qué <span class="math inline">\(\sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j) = 0\)</span>?
+</summary>
+
+Vamos a analizar el término interno $$
+\sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j)
+$$ Este representa la suma de las **desviaciones de cada valor respecto a su propia media grupal**. Es decir, por definición tenemos que $$
+\bar{y}_j = \frac{1}{n_j} \sum_{i=1}^{n_j} y_{ij}
+\quad \Rightarrow \quad
+\sum_{i=1}^{n_j} y_{ij} = n_j \bar{y}_j.
+$$ Entonces $$
+\sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j)
+= \sum_{i=1}^{n_j} y_{ij} - \sum_{i=1}^{n_j} \bar{y}_j
+= \sum_{i=1}^{n_j} y_{ij} - n_j \bar{y}_j
+= n_j \bar{y}_j - n_j \bar{y}_j = 0
+$$ Esto se cumple **para cada grupo** $j$. Luego $$
+\sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j)(\bar{y}_j - \bar{y})
+= (\bar{y}_j - \bar{y}) \cdot \sum_{i=1}^{n_j} (y_{ij} - \bar{y}_j) = (\bar{y}_j - \bar{y}) \cdot 0 = 0.
+$$
+
+</details>
+
+### Estimaciones insesgadas de la varianza poblacional
+
+El contraste de igualdad de medias en el análisis de varianza se fundamenta en el supuesto de que las $k$ poblaciones involucradas comparten una varianza poblacional común. Si la hipótesis nula de igualdad de medias es verdadera, entonces tanto la suma de cuadrados entre grupos (SSA) como la suma de cuadrados dentro de los grupos (SSE) pueden considerarse como bases válidas para estimar dicha varianza común.
+
+No obstante, para obtener estimaciones adecuadas, es necesario dividir cada suma de cuadrados entre sus respectivos grados de libertad, conforme se establece en el siguiente teorema.
+
+Antes de iniciar con los teoremas debemos recordar algunos conceptos de teoricos
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} Definición. Esperanza de una variable aleatoria
+:::
+
+Sea $(\Omega, \mathcal{F}, P)$ un espacio de probabilidad y $X$ una variable aleatoria real.
+
+**a)** Si $X$ es una variable aleatoria discreta con valores $x_1, x_2, \ldots$, se dice que la **esperanza** de $X$ existe si:
+
+$$
+\sum_{k=1}^{\infty} |x_k| P(X = k) < \infty
+$$
+
+En este caso, se define la esperanza o valor esperado de $X$ como:
+
+$$
+\mathbb{E}(X) = \sum_{k=1}^{\infty} x_k P(X = k)
+$$
+
+**b)** Si $X$ es una variable aleatoria continua con función de densidad $f_X$, se dice que la esperanza de $X$ existe si:
+
+$$
+\int_{-\infty}^{\infty} |x| f_X(x) \, dx < \infty
+$$
+
+En este caso, se define la esperanza o valor esperado de $X$ como:
+
+$$
+\mathbb{E}(X) = \int_{-\infty}^{\infty} x f_X(x) \, dx
+$$
+:::
+
+::: {.admon-box .teorema}
+::: admon-title
+[]{.icon} Teorema. Propiedades de la esperanza
+:::
+
+Sean $(\Omega, \mathcal{F}, P)$ un espacio de probabilidad y $X$ sean variables aleatorias reales. Entonces:
+
+1.  $\mathbb{E}(a) = a$; para cada constante $a \in \mathbb{R}$.
+2.  Si $a$ y $b$ son constantes y si $g$ y $h$ son funciones, tales que $g(X)$ y $h(X)$ son variables aleatorias cuyos valores esperados existen, entonces el valor esperado de $(a g(X) + b h(X))$ existe y: $$
+    \mathbb{E}(a g(X) + b h(X)) = a \mathbb{E}(g(X)) + b \mathbb{E}(h(X))
+    $$
+3.  Si $g$ y $h$ son funciones tales que $g(X)$ y $h(X)$ son variables aleatorias cuyos valores esperados existen y si $g(x) \leq h(x)$ para todo $x$, entonces: $$
+    \mathbb{E}(g(X)) \leq \mathbb{E}(h(X)).
+    $$ En particular, $|\mathbb{E}(X)| \leq \mathbb{E}(|X|)$.
+:::
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} Definición. Estimador insesgado
+:::
+
+Sea $\theta$ un parámetro poblacional y $\hat{\theta}$ un estimador de $\theta$. Se dice que $\hat{\theta}$ es **insesgado** si su valor esperado coincide con el valor verdadero del parámetro, es decir,
+
+$$
+\mathbb{E}(\hat{\theta}) = \theta
+$$
+
+En otras palabras, un estimador es insesgado cuando, en promedio, no sobrestima ni subestima el valor del parámetro que pretende estimar.
+:::
+
+::: {.admon-box .teorema}
+::: admon-title
+[]{.icon} Teorema. $\,MSA\,$ y $\,MSE\,$ son estimadores insesgados de $\,\sigma^2$
+:::
+
+Supongamos que se tienen $k$ muestras aleatorias independientes, de tamaños $n_1, n_2, \ldots, n_k$, procedentes de poblaciones con una varianza común $\sigma^2$. Sea $N$ el tamaño muestral total, de manera que:
+
+$$
+N = n_1 + n_2 + \cdots + n_k.
+$$
+
+Bajo la hipótesis nula de igualdad de medias,
+
+$$
+H_0:\mu_1 = \mu_2 = \cdots = \mu_k,
+$$
+
+sean $SSA$ y $SSE$ las sumas de cuadrados entre los grupos y dentro de los grupos, respectivamente. Entonces, los cuadrados medios se definen como:
+
+-   **Cuadrado medio entre los grupos (o del tratamiento):**
+
+$$
+MSA = \frac{SSA}{k - 1}.
+$$
+
+-   **Cuadrado medio dentro de los grupos (o del error):**
+
+$$
+MSE = \frac{SSE}{N - k}.
+$$
+
+Bajo $H_0$, ambos son estimadores insesgados de la varianza común $\sigma^2$; es decir:
+
+$$
+\mathbb{E}[MSA] = \mathbb{E}[MSE] = \sigma^2.
+$$
+:::
+
+**Demostración del teorema**
+
+Primero, demostremos que $\mathbb{E}[MSE]=\sigma^2$. Sabemos que:
+
+$$
+SSE
+=
+\sum_{j=1}^{k}\sum_{i=1}^{n_j}(Y_{ij}-\overline{Y}_j)^2
+=
+\sum_{j=1}^{k}(n_j-1)S_j^2,
+$$
+
+donde $S_j^2$ es la varianza muestral del grupo $j$, definida por:
+
+$$
+S_j^2
+=
+\frac{\sum_{i=1}^{n_j}(Y_{ij}-\overline{Y}_j)^2}{n_j-1}.
+$$
+
+Cada $S_j^2$ es un estimador insesgado de la varianza común $\sigma^2$, por lo que:
+
+$$
+\mathbb{E}[S_j^2]=\sigma^2
+\quad\Rightarrow\quad
+\mathbb{E}[(n_j-1)S_j^2]=(n_j-1)\sigma^2.
+$$
+
+Por tanto:
+
+$$
+\mathbb{E}[SSE]
+=
+\sum_{j=1}^{k}\mathbb{E}[(n_j-1)S_j^2]
+=
+\sum_{j=1}^{k}(n_j-1)\sigma^2
+=
+(N-k)\sigma^2.
+$$
+
+En consecuencia:
+
+$$
+\mathbb{E}[MSE]
+=
+\mathbb{E}\left[\frac{SSE}{N-k}\right]
+=
+\frac{\mathbb{E}[SSE]}{N-k}
+=
+\frac{(N-k)\sigma^2}{N-k}
+=
+\sigma^2.
+$$
+
+Esto prueba que **$MSE$ es un estimador insesgado de $\sigma^2$.**
+
+De otro lado, demostremos el comportamiento de $MSA$. Supongamos que se tienen $k$ grupos independientes, donde el grupo $j$ tiene $n_j$ observaciones, y que:
+
+$$
+Y_{ij}=\mu_j+\varepsilon_{ij},
+\qquad i=1,\ldots,n_j,\quad j=1,\ldots,k,
+$$
+
+donde los errores $\varepsilon_{ij}$ son independientes y satisfacen:
+
+$$
+\mathbb{E}[\varepsilon_{ij}]=0,
+\qquad
+\operatorname{Var}(\varepsilon_{ij})=\sigma^2.
+$$
+
+Definamos:
+
+$$
+\overline{Y}_j=\frac{1}{n_j}\sum_{i=1}^{n_j}Y_{ij},
+\qquad
+\overline{Y}=\frac{1}{N}\sum_{j=1}^{k}n_j\overline{Y}_j,
+\qquad
+N=\sum_{j=1}^{k}n_j.
+$$
+
+La suma de cuadrados entre los grupos es:
+
+$$
+SSA=\sum_{j=1}^{k}n_j(\overline{Y}_j-\overline{Y})^2.
+$$
+
+expandiendo el cuadrado
+
+$$
+(\overline{Y}_j - \overline{Y})^2 = \overline{Y}_j^2 - 2\overline{Y}_j\overline{Y} + \overline{Y}^2
+$$
+
+luego
+
+$$
+SSA = \sum_{j=1}^k n_j \left(\overline{Y}_j^2 - 2\overline{Y}_j\overline{Y} + \overline{Y}^2\right) = \sum_{j=1}^k n_j \overline{Y}_j^2 - 2\overline{Y} \sum_{j=1}^k n_j \overline{Y}_j + N \overline{Y}^2
+$$
+
+Sabemos que
+
+$$
+\sum_{j=1}^k n_j \overline{Y}_j = N \overline{Y}
+$$
+
+y por lo tanto
+
+$$
+SSA=\sum_{j=1}^{k}n_j\overline{Y}_j^2-N\overline{Y}^2.
+$$
+
+Para cada grupo $j$, definimos la media muestral como:
+
+$$
+\overline{Y}_j=\frac{1}{n_j}\sum_{i=1}^{n_j}Y_{ij}.
+$$
+
+De otro lado
+
+$$
+\begin{aligned}
+\mathbb{E}[\bar{Y}_j]&=
+\mathbb{E}\left[
+\frac{1}{n_j}
+\sum_{i=1}^{n_j}Y_{ij}
+\right]=
+\frac{1}{n_j}
+\sum_{i=1}^{n_j}\mathbb{E}[Y_{ij}] \\[6pt]
+&=
+\frac{1}{n_j}
+\sum_{i=1}^{n_j}\mathbb{E}[\mu_{j}+\varepsilon_{ij}]=
+\frac{1}{n_j}
+\sum_{i=1}^{n_j}(\mathbb{E}[\mu_{j}]+\mathbb{E}[\varepsilon_{ij}])\\[6pt]
+&=
+\frac{1}{n_j}
+\sum_{i=1}^{n_j}\mu_j=
+\mu_j.
+\end{aligned}
+$$
+
+y
+
+$$
+\begin{aligned}
+\operatorname{Var}(\overline{Y}_j)
+&=
+\operatorname{Var}\left(
+\frac{1}{n_j}\sum_{i=1}^{n_j}Y_{ij}
+\right)=
+\frac{1}{n_j^2}
+\operatorname{Var}\left(
+\sum_{i=1}^{n_j}Y_{ij}
+\right) \\[6pt]
+&=
+\frac{1}{n_j^2}
+\sum_{i=1}^{n_j}
+\operatorname{Var}(Y_{ij})=
+\frac{1}{n_j^2}
+\sum_{i=1}^{n_j}
+\operatorname{Var}(\mu_{j}+\varepsilon_{ij})\\[6pt]
+&=\frac{1}{n_j^2}
+\sum_{i=1}^{n_j}
+\left(\operatorname{Var}(\mu_{j})+\operatorname{Var}(\varepsilon_{ij})\right)=\frac{1}{n_j^2}
+\sum_{i=1}^{n_j}
+\sigma^2\\[6pt]
+&=
+\frac{1}{n_j^2}
+\left(n_j\sigma^2\right)=
+\frac{\sigma^2}{n_j}.
+\end{aligned}
+$$
+
+entonces
+
+$$
+\mathbb{E}[\overline{Y}_j^2]
+=
+\left(\mathbb{E}[\overline{Y}_j]\right)^2
++
+\operatorname{Var}(\overline{Y}_j)
+=
+\mu_j^2+\frac{\sigma^2}{n_j}.
+$$
+
+Además, definimos la media muestral global como sigue
+
+$$
+\overline{Y}=\frac{1}{N}\sum_{j=1}^{k}n_j\overline{Y}_j,
+$$
+
+y la media poblacional global ponderada de la siguiente manera
+
+$$
+\mu=\frac{1}{N}\sum_{j=1}^{k}n_j\mu_j
+$$
+
+de mode que
+
+$$
+\begin{aligned}
+\mathbb{E}[\overline{Y}]&=
+\mathbb{E}\left[
+\frac{1}{N}
+\sum_{j=1}^{k}\sum_{i=1}^{n_j}Y_{ij}
+\right] =
+\frac{1}{N}
+\sum_{j=1}^{k}\sum_{i=1}^{n_j}
+\mathbb{E}[Y_{ij}] =
+\frac{1}{N}
+\sum_{j=1}^{k}\sum_{i=1}^{n_j}\mu_j \\
+&=
+\frac{1}{N}
+\sum_{j=1}^{k}n_j\mu_j=
+\mu.
+\end{aligned}
+$$ y
+
+$$
+\begin{aligned}
+\operatorname{Var}(\overline{Y})
+&=
+\operatorname{Var}\left[
+\frac{1}{N}
+\sum_{j=1}^{k}\sum_{i=1}^{n_j}Y_{ij}
+\right] =
+\frac{1}{N^2}
+\operatorname{Var}\left[
+\sum_{j=1}^{k}\sum_{i=1}^{n_j}Y_{ij}
+\right] \\[6pt]
+&=
+\frac{1}{N^2}
+\sum_{j=1}^{k}
+\sum_{i=1}^{n_j}
+\operatorname{Var}(Y_{ij})
+=
+\frac{1}{N^2}
+\sum_{j=1}^{k}
+\sum_{i=1}^{n_j}
+\operatorname{Var}(\mu_{j}+\varepsilon_{ij})
+\\[6pt]
+&=
+\frac{1}{N^2}
+\sum_{j=1}^{k}
+\sum_{i=1}^{n_j}
+\sigma^2 =
+\frac{1}{N^2}
+\sum_{j=1}^{k}
+n_j\sigma^2 =
+\frac{1}{N^2}
+\left(
+\sum_{j=1}^{k}n_j
+\right)\sigma^2 \\[6pt]
+&=
+\frac{1}{N^2}(N)\sigma^2 =
+\frac{\sigma^2}{N}.
+\end{aligned}
+$$
+
+Luego
+
+$$
+\mathbb{E}[\bar{Y}^2]
+=
+\left(\mathbb{E}[\bar{Y}]\right)^2
++
+\operatorname{Var}(\bar{Y})
+=
+\mu^2+\frac{\sigma^2}{N}.
+$$
+
+En consecuencia
+
+\$\$ $$
+\begin{aligned}
+\mathbb{E}[SSA]
+&=
+\sum_{j=1}^{k}n_j\mathbb{E}[\overline{Y}_j^2]
+-
+N\mathbb{E}[\overline{Y}^2] \\
+&=
+\sum_{j=1}^{k}n_j
+\left(
+\mu_j^2+\frac{\sigma^2}{n_j}
+\right)
+-
+N\left(
+\mu^2+\frac{\sigma^2}{N}
+\right) \\
+&=
+\sum_{j=1}^{k}n_j
+
+\mu_j^2+\sum_{j=1}^{k}n_j\frac{\sigma^2}{n_j}
+
+-
+N
+\mu^2-N\frac{\sigma^2}{N} \\
+&=
+\sum_{j=1}^{k}n_j
+
+\mu_j^2+k\sigma^2-
+N
+\mu^2-\sigma^2 \\
+&=
+\sum_{j=1}^{k}n_j\mu_j^2-N\mu^2+(k-1)\sigma^2.
+\end{aligned}
+$$
+
+\$\$
+
+Como
+
+$$
+\sum_{j=1}^{k}n_j\mu_j^2-N\mu^2
+=
+\sum_{j=1}^{k}n_j(\mu_j-\mu)^2,
+$$
+
+se concluye que
+
+$$
+\mathbb{E}[SSA]
+=
+\sum_{j=1}^{k}n_j(\mu_j-\mu)^2
++
+(k-1)\sigma^2.
+$$
+
+y en consecuencia
+
+$$
+\mathbb{E}[MSA]
+=
+\mathbb{E}\left[\frac{SSA}{k-1}\right]
+=
+\sigma^2+
+\frac{\displaystyle \sum_{j=1}^{k}n_j(\mu_j-\mu)^2}{k-1}.
+$$
+
+Bajo la hipótesis nula
+
+$$
+H_0:\mu_1=\mu_2=\cdots=\mu_k,
+$$
+
+se cumple que
+
+$$
+\sum_{j=1}^{k}n_j(\mu_j-\mu)^2=0.
+$$
+
+Por lo tanto
+
+$$
+\mathbb{E}[MSA]=\sigma^2.
+$$
+
+Esto prueba que, bajo $H_0$, $MSA$ es un estimador insesgado de $\sigma^2$. $\square$
+
+### Teorema de contraste para el análisis de varianza
+
+Si la **hipótesis nula** fuera cierta, contaríamos con dos estimaciones insesgadas de una misma cantidad: la **varianza poblacional común**. Sería razonable esperar que ambas estimaciones fueran numéricamente similares. Sin embargo, a mayor discrepancia entre ellas, suponiendo que todo lo demás permanece constante, mayor será la sospecha de que la hipótesis nula no se cumple.
+
+Por tanto, el contraste de la hipótesis nula de igualdad de medias se basa en la **razón entre los cuadrados medios**:
+
+$$
+F = \frac{MSA}{MSE}
+$$
+
+donde:
+
+-   $MSA$ es el **cuadrado medio entre grupos** (Mean Square for the Factor),
+-   $MSE$ es el **cuadrado medio dentro de los grupos** (Mean Square Error).
+
+Si el cociente $F$ se aproxima a 1, no hay evidencia para rechazar la hipótesis nula, lo que indicaría que las medias poblacionales son estadísticamente similares. Sin embargo, si la **variabilidad entre grupos** es considerablemente mayor en comparación con la **variabilidad interna**, entonces $F$ será sustancialmente mayor que 1, y se interpretará como evidencia contra la hipótesis nula.
+
+Este razonamiento se formaliza mediante un contraste estadístico: si la hipótesis nula es verdadera y se cumplen los supuestos de normalidad y homogeneidad de varianzas, entonces el estadístico $F$ sigue una **distribución F de Snedecor**, con:
+
+-   $k - 1$ grados de libertad en el numerador, y\
+-   $n - k$ grados de libertad en el denominador,
+
+donde $k$ es el número de grupos y $n$ es el tamaño total de la muestra.
+
+Este resultado se resume en el siguiente teorema:
+
+::: {.admon-box .teorema}
+::: admon-title
+[]{.icon} Teorema. Contraste de hipótesis para el análisis de varianza de un factor.
+:::
+
+Supongamos que se tienen muestras aleatorias independientes de tamaños $n_1, n_2, \dots, n_k$, correspondientes a $k$ poblaciones. Sea $N$ el tamaño muestral total, de modo que:
+
+$$
+N = n_1 + n_2 + \cdots + n_k
+$$
+
+Si las medias poblacionales se denotan por $\mu_1, \mu_2, \dots, \mu_k$, entonces la hipótesis nula que se desea contrastar es:
+
+$$
+H_0 : \mu_1 = \mu_2 = \cdots = \mu_k \quad \text{versus} \quad H_1 : \text{al menos una } \mu_j \text{ difiere.}
+$$
+
+Bajo el supuesto de normalidad y homogeneidad de varianzas, el estadístico de prueba es:
+
+$$
+F = \frac{MSA}{MSE}
+$$
+
+Este estadístico sigue una distribución $F$ con $\nu_1 = k - 1$ grados de libertad en el numerador y $\nu_2 = N - k$ grados de libertad en el denominador. La hipótesis nula se rechaza al nivel de significancia $\alpha$ si:
+
+$$
+F > F_{\alpha, \nu_1, \nu_2}
+$$
+
+donde $F_{\alpha, \nu_1, \nu_2}$ representa el valor crítico de la distribución F correspondiente al nivel de significancia $\alpha$.
+:::
+
+**Demostración del teorema**
+
+Basta con usar el teorema de descomposición de la suma de cuadrados y el teorema de MSA y MSE insesgado de $\sigma^2$. $\quad \square$
+
+Los cálculos necesarios para llevar a cabo este contraste se pueden resumir en una tabla de análisis de varianza de un factor (\@ref(tab:tabla-anova-3)), como se muestra a continuación:
+
+| Fuente.de.variación         | Suma.de.cuadrados | Grados.de.libertad |   Cuadrado.medio    |    Razón.F    |
+|:------------------|:-----------:|:------------:|:-------------:|:---------:|
+| Tratamientos (entre grupos) |        SSA        |       k - 1        | MSA = SSA / (k - 1) | F = MSA / MSE |
+| Error (dentro de grupos)    |        SSE        |       N - k        | MSE = SSE / (N - k) |               |
+| Total                       |        SST        |       N - 1        |                     |               |
+
+: (\#tab:tabla-anova-3) Formato general de la tabla de ANOVA de un factor
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo
+:::
+
+La siguiente tabla presenta los porcentajes (en microgramos) de concentración plasmática de una sustancia química en tres grupos poblacionales:
+
+-   **Empleados expuestos**: trabajadores que manipulan o están en contacto directo con la sustancia en entornos industriales.
+-   **Agricultores expuestos**: población rural en contacto con agroquímicos que contienen el compuesto.
+-   **No expuestos**: personas que no presentan exposición conocida al agente químico (grupo control).
+
+Se desea determinar si existen diferencias estadísticamente significativas en los niveles medios del compuesto entre los tres grupos. Para ello, se aplicará un análisis de varianza de un factor (ANOVA) bajo las siguientes condiciones:
+
+-   Las poblaciones son normales.
+-   Las varianzas son iguales.
+-   El nivel de significancia es $\alpha = 0{.}05$.
+
+```{r}
+df <- data.frame(Empleados = c(0.66, 0.63, 0.65, 0.69, 0.44, 0.63, 0.61, 0.42, 0.59, 0.46),
+                 Agricultores = c(0.65, 0.60, 0.69, 0.73, 0.52, 0.85, 0.81, NA, NA, NA),
+                 NoExpuestos = c(0.93, 0.99, 0.96, 0.74, 0.81, 0.93, 0.63, 0.68, 0.99, NA))
+```
+:::
+
+**Solución**
+
+Sea $\mu_i$ el valor promedio poblacional de concentración plasmática de la sustancia química para el grupo $i$, donde:
+
+-   $i = 1$: Empleados expuestos\
+-   $i = 2$: Agricultores expuestos\
+-   $i = 3$: No expuestos
+
+El objetivo del análisis es determinar si los valores medios de concentración difieren significativamente entre los tres grupos.
+
+Bajo este contexto, se plantean las siguientes hipótesis estadísticas:
+
+$$
+\begin{aligned}
+H_0: &\quad \mu_1 = \mu_2 = \mu_3 \quad \text{(todas las medias son iguales)} \ vs \\\\
+H_1: &\quad \text{Al menos una media difiere de las demás}
+\end{aligned}
+$$
+
+Bajo la hipótesis nula, se considera que todos los grupos provienen de poblaciones con igual valor medio. Rechazarla implica que existe evidencia estadística de diferencias significativas en al menos uno de los grupos.
+
+-   Quitemos los `NA`s
+
+```{r}
+empleados <- na.omit(df$Empleados)              
+agricultores <- na.omit(df$Agricultores)
+no_expuestos <- na.omit(df$NoExpuestos)
+```
+
+-   Hallamos los tamaños de cada muestra
+
+```{r}
+n1 <- length(empleados)     # tamaño de muestra n_1
+n2 <- length(agricultores)  # tamaño de muestra n_2
+n3 <- length(no_expuestos)  # tamaño de muestra n_3
+N <- n1 + n2 + n3           # tamaño de muestral total 
+k <- ncol(df)               # número de poblaciones
+```
+
+-   Hallemos los promedios de cada muestra
+
+```{r}
+xbar_1 <- mean(empleados)
+xbar_2 <- mean(agricultores)
+xbar_3 <- mean(no_expuestos)
+
+xbar_total <- (sum(empleados)+sum(agricultores)+sum(no_expuestos))/N
+```
+
+-   Hallemos la suma de cuadrados total (SST)
+
+```{r}
+SST <- sum((empleados - xbar_total)^2) +
+       sum((agricultores - xbar_total)^2) +
+       sum((no_expuestos - xbar_total)^2)
+```
+
+-   Hallemos la suma de cuadrados entre grupos (SSA)
+
+```{r}
+SSA <- n1 * (xbar_1 - xbar_total)^2 +
+       n2 * (xbar_2 - xbar_total)^2 +
+       n3 * (xbar_3 - xbar_total)^2
+```
+
+-   Ahora, hallemos la suma de cuadrados dentro de grupos (SSE)
+
+```{r}
+SSE <- SST - SSA
+```
+
+-   Calculemos los cuadrados medios y el estadístico de Fisher
+
+```{r}
+MSA <- SSA / (k - 1)
+MSE <- SSE / (N - k)
+
+F <- MSA / MSE
+```
+
+-   Hallemos el $F$ critico y veamos si rechazo o no la hipotesis nula
+
+```{r}
+alpha <- 0.05
+v1 <- k-1
+v2 <- N-k
+
+F_critico <- qf(p = 1-alpha, df1 = v1, df2 = v2)
+
+decision <- ifelse(F > F_critico, "Se rechaza H_0", "No se rechaza H_0")
+
+print(decision)
+```
+
+-   Otra forma de realizarlo es:
+
+```{r}
+alpha <- 0.05
+v1 <- k-1
+v2 <- N-k
+
+pvalor <- 1 - pf(F, v1, v2)
+decision <- ifelse(pvalor < alpha, "Se rechaza H_0", "No se rechaza H_0")
+
+print(decision)
+```
+
+Esto indica que **existen diferencias estadísticamente significativas en los niveles medios de concentración plasmática** del compuesto químico entre al menos dos de los grupos: empleados expuestos, agricultores expuestos y personas no expuestas. Este resultado sugiere que el grado de exposición al compuesto químico podría estar influyendo en los niveles plasmáticos observados, por lo cual se recomienda realizar un análisis post hoc (como la prueba de Tukey) para identificar con mayor precisión cuáles pares de grupos difieren significativamente entre sí.
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo
+:::
+
+Una institución educativa implementó tres estrategias diferentes de enseñanza para evaluar su impacto en el rendimiento académico de los estudiantes. Cada estrategia fue aplicada a un grupo distinto de alumnos, identificados como **Grupo A**, **Grupo B** y **Grupo C**.
+
+Al finalizar el periodo académico, se aplicó una prueba estandarizada común a todos los estudiantes, y se registraron las calificaciones obtenidas sobre una escala de 0 a 100 puntos. Los datos de las calificaciones por grupo se presentan a continuación.
+
+El objetivo del análisis es determinar, mediante un **análisis de varianza de un factor (ANOVA)**, si existen **diferencias estadísticamente significativas en los promedios de calificaciones** entre los tres grupos de estudiantes, lo que permitiría identificar si alguna estrategia resulta más efectiva que las otras.
+
+```{r}
+# Datos de calificaciones por grupo de enseñanza
+datos <- data.frame(
+  Grupo = rep(c("A", "B", "C"), each = 10),
+  Calificaciones = c(75, 78, 80, 82, 85, 88, 90, 92, 95, 98,   # Grupo A
+                     68, 70, 72, 74, 76, 78, 80, 82, 84, 86,   # Grupo B
+                     60, 63, 66, 69, 72, 75, 78, 81, 84, 87)   # Grupo C
+)
+```
+:::
+
+**Solución**
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+Realiza el análisis exploratorio del conjunto de datos
+:::
+
+-   Verifiquemos la prueba de normalidad
+
+```{r}
+datos %>%
+  group_by(Grupo) %>%
+  summarise(estadistico = shapiro.test(Calificaciones)$statistic,
+    p_valor = shapiro.test(Calificaciones)$p.value)
+```
+
+La prueba de Shapiro-Will muestra que hay no hay diferencias estadísticamente significativas con respecto a la normalidad de cada grupo.
+
+-   Probemos homogeneidad de varianzas
+
+```{r}
+bartlett.test(Calificaciones ~ factor(Grupo), data = datos)
+```
+
+La prueba de homogeneidad de varianzas de Bartlett nos indica que no diferencias significativas en la igualdad de varianzas entre los grupos.
+
+-   Ahora, apliquemos el ANOVA
+
+```{r}
+modelo <- aov(Calificaciones ~ Grupo, data = datos)
+summary(modelo)
+```
+
+La prueba de ANOVA nos muestra que strong\>existen diferencias significativas entre los promedios de calificaciones de al menos uno de los tres grupos.
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 1
+:::
+
+La siguiente es una parte de la tabla de análisis de varianza (ANOVA):
+
+| Fuente de variación | Suma de cuadrados | Grados de libertad | Cuadrado medio | Razón F       |
+|---------------------|-------------------|--------------------|----------------|---------------|
+| Tratamientos        | SSA               | k − 1 = 2          | MSA            | F = MSA / MSE |
+| Error               | SSE               | N − k              | MSE = 20       |               |
+| Total               | SST = 500         | N − 1 = 11         |                |               |
+
+Complete el cuadro y responda:
+
+a.  ¿Cuántos tratamientos hay?
+b.  ¿Cuál es el tamaño total de la muestra?
+c.  ¿Cuáles son las hipótesis nula y alternativa?
+d.  ¿Cuál es su conclusión con respecto a la hipótesis nula?
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 2
+:::
+
+De cada una de cuatro poblaciones se tomó una muestra aleatoria de 16 observaciones. Parte de la tabla ANOVA es:
+
+| Fuente de variación | Suma de cuadrados | Grados de libertad | Cuadrado medio | Razón F       |
+|---------------------|-------------------|--------------------|----------------|---------------|
+| Tratamientos        | SSA               | k − 1              | MSA = 400      | F = MSA / MSE |
+| Error               | SSE               | N − k              | MSE            |               |
+| Total               | SST = 1500        | N − 1              |                |               |
+
+Suponga que las poblaciones en cuestión son normales con varianzas iguales. Al nivel de significancia $\alpha = 0.05$, ¿se puede rechazar la hipótesis nula de que las medias de las cuatro poblaciones son iguales?
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 3
+:::
+
+En un experimento para investigar el funcionamiento de cuatro marcas diferentes de procesadores para computador, se probaron cinco procesadores de cada marca y se observó el tiempo de funcionamiento hasta presentarse una falla. Parte de la tabla ANOVA es:
+
+| Fuente de variación | Suma de cuadrados | Grados de libertad | Cuadrado medio | Razón F |
+|---------------------|-------------------|--------------------|----------------|---------|
+| Marca               | ?                 | ?                  | ?              | ?       |
+| Error               | ?                 | ?                  | 14713.69       |         |
+| Total               | 310500.76         | ?                  |                |         |
+
+Complete la tabla, formule las hipótesis correspondientes, y determine si hay evidencia suficiente para rechazar la hipótesis nula. También obtenga el valor-p asociado.
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 4
+:::
+
+La siguiente tabla muestra la duración (en días) de la carga para cuatro marcas diferentes de baterías, registradas a partir de cinco observaciones por marca:
+
+| Batería A | Batería B | Batería C | Batería D |
+|-----------|-----------|-----------|-----------|
+| 82        | 55        | 69        | 87        |
+| 79        | 67        | 72        | 61        |
+| 75        | 84        | 78        | 82        |
+| 68        | 77        | 83        | 61        |
+| 65        | 71        | 74        | 72        |
+
+Utilice un nivel de significancia $\alpha = 0{,}05$ para determinar si existen diferencias significativas en la duración media de las cargas entre las cuatro marcas de baterías.
+
+Suponga que las poblaciones en cuestión son normales y con varianzas iguales.
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 5
+:::
+
+Se realizó un estudio para conocer cuánto tiempo, en minutos, tardan los estudiantes de octavo grado de tres escuelas diferentes en terminar un ejercicio específico de álgebra. De cada una de las escuelas se seleccionaron al azar siete estudiantes. Los resultados obtenidos fueron los siguientes:
+
+| Escuela A | Escuela B | Escuela C |
+|-----------|-----------|-----------|
+| 17        | 24        | 25        |
+| 21        | 18        | 24        |
+| 25        | 19        | 25        |
+| 16        | 22        | 21        |
+| 19        | 23        | 24        |
+| 22        | 20        | 28        |
+| 18        | 21        | 19        |
+
+Utilice un nivel de significancia $\alpha = 0{,}01$ para determinar si existe diferencia significativa en los promedios de tiempo que tardan los estudiantes de las tres escuelas en resolver el ejercicio.
+
+Suponga que las poblaciones son normales y tienen varianzas iguales.
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 6
+:::
+
+Se analizaron seis muestras de docentes de cada una de las cuatro universidades privadas que hay en cierta ciudad, con el fin de realizar un estudio sobre el **incremento porcentual salarial** de los docentes en dichas instituciones. Los datos recolectados fueron los siguientes:
+
+| Universidad 1 | Universidad 2 | Universidad 3 | Universidad 4 |
+|---------------|---------------|---------------|---------------|
+| 6.0           | 6.1           | 6.4           | 7.8           |
+| 6.1           | 7.5           | 4.9           | 7.0           |
+| 6.7           | 5.9           | 6.0           | 5.5           |
+| 5.8           | 5.6           | 5.2           | 7.2           |
+| 5.2           | 6.5           | 5.8           | 8.3           |
+| 4.5           | 8.0           | 4.7           | 6.1           |
+
+¿Sugiere esta información que al menos dos universidades difieren en su promedio de incremento porcentual salarial docente?
+
+Utilice una prueba de ANOVA con nivel de significancia $\alpha = 0{,}05$, basada en el *p-valor*, y suponga que las poblaciones en cuestión son normales con varianzas iguales.
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 7
+:::
+
+En un diseño completamente aleatorizado, se aplicaron cinco niveles distintos de un factor. Para cada uno de estos niveles se usaron siete unidades experimentales. La tabla parcial del análisis de varianza (ANOVA) es la siguiente:
+
+| Fuente de variación | Suma de cuadrados | Grados de libertad | Cuadrado medio | F   | Valor-p |
+|---------------------|-------------------|--------------------|----------------|-----|---------|
+| Tratamientos        | 300               |                    |                |     |         |
+| Error               |                   |                    |                |     |         |
+| Total               | 460               |                    |                |     |         |
+
+a.  ¿Cuáles son las hipótesis en este problema?
+b.  Utilice un nivel de significancia $\alpha = 0{,}05$. ¿Se puede rechazar la hipótesis nula del inciso a)? Justifique su respuesta utilizando el valor del estadístico F y el p-valor correspondiente.
+:::
+
+### Comparaciones múltiples
+
+Aunque en un análisis de varianza se pueda rechazar la **hipótesis nula**, que establece que todas las medias poblacionales son iguales, en favor de la alternativa, que indica que **al menos una media difiere**, este resultado no permite identificar cuáles medias son diferentes ni entre qué grupos se presentan dichas diferencias.
+
+Por tanto, una vez detectada una diferencia significativa en el análisis global, es necesario aplicar una estrategia adicional que permita estudiar con mayor detalle las relaciones entre grupos y precisar cuáles presentan diferencias relevantes en sus medias.
+
+::: {.admon-box .teorema}
+::: admon-title
+[]{.icon} Teorema. CME y CMGE
+:::
+
+Si se define el cuadrado medio del error, **CME**, por:
+
+$$
+CME = \frac{\sum_{j=1}^{k} (n_j - 1) s_j^2}{N - k}
+$$
+
+y la media geométrica ponderada de las $s_j^2$, denotada por **CMGE**, por:
+
+$$
+CMGE = \left[ (s_1^2)^{n_1 - 1} \cdot (s_2^2)^{n_2 - 1} \cdots (s_k^2)^{n_k - 1} \right]^{1 / (N - k)},
+$$
+
+entonces se cumple que:
+
+$$
+CMGE \leq CME
+$$
+:::
+
+#### Método T de Tukey (o método HSD)
+
+El método de Tukey para comparaciones múltiples se aplica cuando se requiere comparar todos los pares posibles de medias $\mu_i$ y $\mu_j$, con $i \neq j$, de todas las poblaciones.
+
+Cuando todos los tamaños muestrales son iguales, el coeficiente de confianza del método de Tukey es exactamente $1 - \alpha$. Cuando los tamaños muestrales son diferentes, el método sigue siendo válido, aunque se vuelve más conservador, proporcionando estimaciones más prudentes.
+
+Este método utiliza como estadístico el **rango studentizado** $q$, definido como:
+
+$$
+q := \frac{\max \overline{Y}_j - \min \overline{Y}_j}{\sqrt{CME / N}}
+$$
+
+donde $CME$ es el cuadrado medio del error y $N$ es el número de observaciones por grupo.
+
+Para determinar si dos medias $\overline{Y}_i$ y $\overline{Y}_j$ difieren significativamente, se utiliza el valor HSD (“honestamente significativa diferencia”), definido de las siguientes formas:
+
+-   Cuando los tamaños muestrales son desiguales:
+
+$$
+HSD = q_{\alpha}(k, N - k) \cdot \sqrt{CME \left( \frac{1}{n_i} + \frac{1}{n_j} \right)}
+$$
+
+-   Cuando los tamaños muestrales son iguales:
+
+$$
+HSD = q_{\alpha}(k, N - k) \cdot \sqrt{\frac{k \cdot CME}{N}}
+$$
+
+donde $q_{\alpha}(k, N-k)$ es el valor crítico de la distribución del rango studentizado para los parámetros $k$ y $N-k$, que se obtiene de una tabla para los niveles de significancia $\alpha = 0.05$ o $0.01$.
+
+El intervalo de confianza para la diferencia entre dos medias $\mu_i - \mu_j$ con nivel de confianza $1 - \alpha$ está dado por:
+
+$$
+\overline{Y}_i - \overline{Y}_j \pm HSD.
+$$
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo
+:::
+
+En un estudio experimental se comparan seis tratamientos diferentes aplicados a una misma población con el fin de analizar su efecto sobre una variable cuantitativa de interés. Se ha diseñado un experimento completamente aleatorizado, con cinco observaciones independientes para cada tratamiento.
+
+Luego de aplicar un análisis de varianza (ANOVA), se obtuvo un valor del **cuadrado medio del error** igual a **CME = 2,45** con **24 grados de libertad**. A partir de este resultado, se desea realizar un análisis **post hoc** para identificar cuáles tratamientos presentan diferencias estadísticamente significativas en sus medias.
+
+Para ello, se utilizará el **método de Tukey** para comparaciones múltiples por pares, con un nivel de significancia $\alpha = 0{,}05$, considerando los siguientes promedios muestrales ordenados en forma creciente:
+
+$$
+\bar{y}_2 = 14{,}50, \quad \bar{y}_5 = 16{,}75, \quad \bar{y}_1 = 19{,}84, \quad \bar{y}_3 = 21{,}12, \quad \bar{y}_6 = 22{,}90, \quad \bar{y}_4 = 23{,}20
+$$
+
+El objetivo es determinar qué pares de tratamientos presentan diferencias significativas, utilizando el estadístico de Tukey y el umbral HSD correspondiente.
+:::
+
+**Solución**
+
+-   Tenemos los siguientes datos
+
+```{r}
+medias <- c(14.50, 16.75, 19.84, 21.12, 22.90, 23.20)
+n <- 5
+k <- 6
+CME <- 2.45
+gl_error <- 24
+
+#nivel de significancia
+alpha <- 0.05
+q <- qtukey(p = 1-alpha, nmeans = k, df = gl_error)
+```
+
+Por lo tanto, las diferencias absolutas se comparan
+
+```{r}
+HSD <- q * sqrt(CME / n)
+HSD  
+```
+
+Como resultado, las siguientes representan las medias encontradas que son significativamente diferentes con el método de Tukey:
+
+```{r}
+# Etiquetas de tratamientos (siguiendo orden de las medias)
+tratamientos <- c("Y2", "Y5", "Y1", "Y3", "Y6", "Y4")
+
+# Matriz de comparaciones por pares
+comparaciones <- combn(1:k, 2, function(idx) {
+  i <- idx[1]
+  j <- idx[2]
+  dif <- abs(medias[i] - medias[j])
+  c(Tratamiento_1 = tratamientos[i],
+    Tratamiento_2 = tratamientos[j],
+    Diferencia = round(dif, 3),
+    Diferentes = ifelse(dif > HSD, "Sí", "No"))
+})
+
+# Convertir a tabla
+comparacion_tukey <- as.data.frame(t(comparaciones), stringsAsFactors = FALSE)
+names(comparacion_tukey) <- c("Grupo 1", "Grupo 2", "Diferencia", "¿Significativa?")
+
+# Mostrar resultados
+comparacion_tukey
+```
+
+La función `TukeyHSD()` del paquete `stats` nos muestra los grupos diferentes. Para ello usemos los datos de porcentajes (en microgramos) de concentración plasmática de una sustancia química
+
+```{r}
+df <- data.frame(Empleados = c(0.66, 0.63, 0.65, 0.69, 0.44, 0.63, 0.61, 0.42, 0.59, 0.46),
+                 Agricultores = c(0.65, 0.60, 0.69, 0.73, 0.52, 0.85, 0.81, NA, NA, NA),
+                 NoExpuestos = c(0.93, 0.99, 0.96, 0.74, 0.81, 0.93, 0.63, 0.68, 0.99, NA))
+```
+
+Organicemos los datos
+
+```{r}
+# Reorganicemos al formato largo
+df_largo <- tidyr::pivot_longer(
+  df,
+  cols = everything(),
+  names_to = "Grupo",
+  values_to = "Concentracion"
+)
+
+# Eliminemos los NA
+df_largo <- na.omit(df_largo)
+
+# Verifiquemos
+head(df_largo)
+```
+
+Apliquemos el ANOVA y la prueba Tukey
+
+```{r}
+# Modelo ANOVA
+modelo <- aov(Concentracion ~ Grupo, data = df_largo)
+
+# Resumen del ANOVA
+summary(modelo)
+```
+
+```{r}
+# Prueba de comparaciones múltiples de Tukey
+resultado_tukey <- TukeyHSD(modelo)
+
+# Mostremos resultados
+resultado_tukey
+```
+
+Se concluye que los niveles de concentración plasmática en el grupo no expuestos son significativamente mayores que en los otros dos grupos. Esto sugiere que la exposición de los grupos empleados y agricultores podría estar asociada a una reducción en los niveles observados del compuesto químico.
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 1
+:::
+
+Investiga sobre el método de LSD (diferencia mínima significativa) y el método de Duncan
+:::
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio 2
+:::
+
+Con los datos de calificaciones por grupo de enseñanza, aplica los métodos de Tukey, LSD y Duncan.
+:::
+
+## Kruskal–Wallis
+
+El **test de Kruskal–Wallis**, también llamado **test H**, es la alternativa no paramétrica al análisis de varianza (**ANOVA**) de una vía cuando los datos no cumplen con los supuestos de normalidad o cuando las variables se miden en una escala ordinal. Es una extensión del test de Mann–Whitney para comparar más de dos grupos, y se basa en los **rangos** de los datos en lugar de sus valores originales.
+
+A diferencia del ANOVA, que compara medias, el test de Kruskal–Wallis evalúa si las muestras provienen de la misma distribución. En la práctica, suele interpretarse como una comparación de **medianas** bajo ciertas condiciones.
+
+### Hipótesis del test
+
+-   $H_0$: todas las muestras provienen de la misma población (misma distribución).
+-   $H_A$: al menos una muestra proviene de una población con distribución distinta.
+
+### Estadístico de prueba
+
+Para realizar el test, se ordenan todas las observaciones de menor a mayor, se les asignan rangos y se calcula el estadístico $H$ mediante la fórmula:
+
+$$
+H = \frac{12}{N(N+1)} \sum_{i=1}^{k} \frac{R_i^2}{n_i} - 3(N+1)
+$$
+
+donde
+
+-   $N$ es el número total de observaciones,
+-   $k$ es el número de grupos,
+-   $R_i$ es la suma de rangos del grupo $i$,
+-   $n_i$ es el tamaño del grupo $i$.
+
+### Condiciones del test de Kruskal–Wallis
+
+-   No se requiere que los datos provengan de una distribución normal.
+-   Se asume **homocedasticidad**: las muestras deben tener varianzas similares.
+-   La forma de las distribuciones debe ser igual entre grupos, aunque no necesariamente normal.
+-   Es adecuado cuando los datos tienen un orden natural o son ordinales.
+
+El estadístico $H$ se compara con una distribución $\chi^2$ con $k - 1$ grados de libertad. Si el número de grupos es 3 y el tamaño de muestra por grupo es pequeño (≤5), se recomienda utilizar valores críticos tabulados.
+
+### Comparaciones Post-Hoc
+
+Si el test de Kruskal–Wallis resulta significativo, indica que **al menos dos grupos difieren**, pero no especifica cuáles. Para identificarlos, se debe aplicar un análisis post-hoc que corrija el nivel de significancia para múltiples comparaciones.
+
+Dos opciones frecuentes en R:
+
+-   **Prueba de Mann–Whitney** para pares de grupos con corrección de p-valor:
+
+```{r eval=FALSE}
+  pairwise.wilcox.test(variable, grupo)
+```
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} Ejemplo
+:::
+
+En un estudio sobre el rendimiento cognitivo, se evaluó el **tiempo de reacción** (en milisegundos) de un grupo de participantes después de ser entrenados con tres métodos diferentes de estimulación mental: **Método A**, **Método B** y **Método C**. Cada uno de los métodos fue aplicado a un grupo de 18 personas seleccionadas aleatoriamente.
+
+Al finalizar las sesiones de entrenamiento, a todos los participantes se les aplicó una prueba de reacción ante estímulos visuales. A continuación, se registraron sus tiempos de respuesta.
+
+Dado que los datos muestran alta variabilidad y posibles valores extremos, se empleará una prueba estadística no paramétrica con el fin de comparar las distribuciones de los tiempos de reacción entre los tres métodos.
+
+El objetivo del análisis es determinar si existen **diferencias significativas en los tiempos de reacción** entre al menos dos de los métodos utilizados.
+
+```{r}
+# Crear conjunto de datos
+datos <- data.frame(
+  metodo = c(rep("Metodo_A", 18), rep("Metodo_B", 18), rep("Metodo_C", 18)),
+  tiempo_reaccion = c(
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 27, 28, 29, 30, 51, 52, 53, 342,          # Método A
+    40, 41, 42, 43, 44, 45, 46, 47, 48, 67, 88, 89, 90, 91, 92, 93, 94, 293, # Método B
+    19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 25, 36, 37, 58, 59, 60, 71, 72   # Método C
+  )
+)
+```
+:::
+
+**Solución**
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+Realiza el análisis exploratorio del conjunto de datos
+:::
+
+-   Verifiquemos la prueba de normalidad
+
+```{r}
+datos %>%
+  group_by(metodo) %>%
+  summarise(n = length(tiempo_reaccion),
+            estsw = shapiro.test(tiempo_reaccion)$statistic,
+            p_sw = shapiro.test(tiempo_reaccion)$p.value)
+```
+
+La prueba de Shapiro-Will muestra que cada método no tienen comportamiento de una distribución normal.
+
+-   Probemos homogeneidad de varianzas
+
+```{r}
+leveneTest(tiempo_reaccion ~ metodo, data = datos)
+```
+
+La prueba de Levene nos muestra que no se encuentra evidencia estadísticamente significativa para rechazar la hipótesis nula de homogeneidad de varianzas ($F_{(2,51)}=0.79, p-valor = 0.458$). En consecuencia, se concluye que los tres métodos presentan varianzas similares en los tiempos de reacción, y por tanto, se cumple uno de los supuestos fundamentales para la aplicación de pruebas estadísticas comparativas.
+
+-   Veamos si hay diferencias en los métodos
+
+```{r}
+kruskal.test(tiempo_reaccion ~ metodo, data = datos)
+```
+
+La prueba de Kruskal-Wallis nos indica que existen diferencias estadísticamente significativas en los tiempos de reacción entre al menos dos de los métodos aplicados ($\chi^2_{(2)}=19.964, p-valor < 0.0001$)
+
+-   Apliquemos una prueba post-hoc para ver que métodos son diferentes
+
+```{r}
+pairwise.wilcox.test(x = datos$tiempo_reaccion,
+                     g = datos$metodo,
+                     exact = FALSE,
+                     p.adjust.method = "bonferroni")
+```
+
+Con base en el ajuste de Bonferroni, se encontraron diferencias estadísticamente significativas entre los pares método A vs B y método B vs C (p \< 0.001 en ambos casos). No se detectó una diferencia significativa entre método A y método C (p = 0.14386). Esto sugiere que el método B se comporta de forma diferente respecto a los otros dos en términos de tiempo de reacción.
+
+::: {.admon-box .nota}
+::: admon-title
+[]{.icon} Nota técnica: Comparación entre Bonferroni y Holm
+:::
+
+Cuando se realizan múltiples comparaciones estadísticas, es necesario ajustar los valores-p para controlar el **error de tipo I** acumulado (la probabilidad de detectar falsos positivos). Dos métodos comunes para este ajuste son **Bonferroni** y **Holm**.
+
+A continuación, se presenta una comparación entre ambos métodos:
+
+| Característica          | Bonferroni              | Holm                                    |
+|-------------------------|-------------------------|-----------------------------------------|
+| Tipo de ajuste          | Fijo (directo)          | Secuencial (jerárquico)                 |
+| Fórmula                 | $p_i^\text{ajustado} = m \cdot p_i$            | Ajuste por posición en orden ascendente |
+| Conservadurismo         | Muy conservador         | Menos conservador                       |
+| Potencia estadística    | Baja                    | Alta                                    |
+| ¿Rechaza más hipótesis? | No necesariamente       | Sí                                      |
+| Controla el FWER        | Sí                      | Sí                                      |
+| Uso en R                | `method = “bonferroni”` | `method = “holm”`                       |
+
+En la práctica, **Holm** es preferido cuando se desea mantener un buen control del error sin perder demasiada potencia estadística, mientras que **Bonferroni** puede utilizarse cuando se requiere máxima precaución (por ejemplo, en estudios clínicos).
+:::

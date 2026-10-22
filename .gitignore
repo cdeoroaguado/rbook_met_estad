@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+_bookdown_files/
+*.log
+*.aux
+bookdown-demo.rds
+
+# Restos locales de compilación
+bookdown-demo_files/
+*.rds

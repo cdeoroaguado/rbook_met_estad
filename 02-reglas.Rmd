@@ -1,0 +1,326 @@
+# Reglas de curso y diagnostico {#reglas}
+
+Para asegurar que nuestro espacio de aprendizaje sea un ambiente productivo, respetuoso y justo para cada uno de ustedes, es fundamental que sigamos algunas pautas de convivencia y evaluación. Estas reglas están diseñadas para fomentar la concentración, facilitar la participación y garantizar la integridad académica en todo momento.
+
+## Reglas de las clases
+
+::: {.admon-box .advertencia}
+::: admon-title
+[]{.icon} **Durante la clase**
+:::
+
+1.  Respeto durante explicaciones. **Evitar el uso de celulares cuando no sea requerido.**
+2.  Evite conversaciones que puedan irrumpir con el desarrollo de las clases.
+3.  Si tiene alguna duda, pregunte todo lo que necesite.
+:::
+
+::: {.admon-box .advertencia}
+::: admon-title
+[]{.icon} **Durante los exámenes o evaluaciones**
+:::
+
+1.  **No se admite ningún tipo de pregunta** relacionada con las temáticas vistas.
+2.  Solo se responderán preguntas para aclaraciones relacionadas con **redacción o instrucciones.**
+3.  No se permiten dispositivos electrónicos.
+:::
+
+## Política de evaluación y normas de integridad académica
+
+::: {.admon-box .advertencia}
+::: admon-title
+[]{.icon} **Normas de evaluación y sanciones**
+:::
+
+**Todo fraude o intento de fraude, en cualquier tipo de evaluación, acarreará al estudiante una calificación de 0.0, sin perjuicio de las acciones disciplinarias a que hubiere lugar**
+
+1.  Se entiende por **FRAUDE ACADÉMICO**, cualquier comportamiento o práctica ilícita, empleada para obtener una nota o alcanzar un objetivo en el desarrollo de una actividad académica, que vaya en contra de las normas, reglamentos y procesos pedagógicos que la Institución establece y que atenta contra la integridad intelectual y moral del estudiante.
+2.  **Las evaluaciones parciales o finales no presentadas serán calificadas con cero (0.0).** Esta calificación solo podrá ser modificada por la calificación obtenida en una evaluación supletoria.
+
+Fuente: [Reglamento Estudiantil - Universidad del Norte](https://www.uninorte.edu.co/reglamento_estudiantil)
+:::
+
+::: {.admon-box .advertencia}
+::: admon-title
+[]{.icon} **Inasistencia**
+:::
+
+En toda clase se tomará asistencia. Si las faltas exceden el 25% del total de las clases, el estudiante perderá el derecho del examen final, el cual será calificado en 0,0.
+
+Fuente: [Reglamento Estudiantil - Universidad del Norte](https://www.uninorte.edu.co/reglamento_estudiantil)
+:::
+
+::: {.admon-box .advertencia}
+::: admon-title
+[]{.icon} Inasistencias
+:::
+
+Cuando un estudiante no pueda presentar exámenes o compromisos académicos en la fecha programada por motivos de fuerza mayor, podrá solicitar una **evaluación supletoria** al profesor de la asignatura, quien tendrá la facultad de autorizar la realización de la misma.
+
+**La evaluación supletoria se realizará dentro de los diez (10) días hábiles siguientes a la fecha inicialmente programada** y es **indispensable que el estudiante realice el trámite correspondiente en el sistema de información académico** donde será aprobado y fijada la fecha de su realización.
+
+Fuente: [Reglamento Estudiantil - Universidad del Norte](https://www.uninorte.edu.co/reglamento_estudiantil)
+:::
+
+## Fechas de taller y examenes
+
+Estas son las fecha de los taller y los examenes:
+
+::: {.admon-box .observacion}
+::: admon-title
+[]{.icon} Fechas importantes
+:::
+
+| Corte             | Porcentaje | Evaluación  | Semana             |
+|:------------------|:-----------|:------------|:-------------------|
+| Primer Corte 25%  | 5%         | Actividades | Hasta la semana 5  |
+|                   | 20%        | Parcial     | Semana 5           |
+| Segundo Corte 25% | 5%         | Actividades | Hasta la semana 9  |
+|                   | 20%        | Parcial     | Semana 9           |
+| Tercer Corte 25%  | 5%         | Actividades | Hasta la semana 13 |
+|                   | 20%        | Parcial     | Semana 13          |
+| Cuarto Corte 25%  | 5%         | Actividades | Hasta la semana 16 |
+|                   | 20%        | Parcial     | Fecha de registro  |
+
+: (\#tab:evaluacion) Fechas de cortes y distribución de porcentajes
+:::
+
+Otras fechas para tener en cuenta:
+
+-   $5-9$ de octubre. **Semana de receso**
+-   **Fecha limite de retiro**: 5 de noviembre del 2026
+
+## Programación del curso por unidad
+
+Este el contenido del curso de métodos estadísticos:
+
+::: {.admon-box .observacion}
+::: admon-title
+[]{.icon} **Contenido por corte**
+:::
+
+1.  **I corte. Diagnósticos Inferencial**
+    -   Análisis de correlación y RLS: introducción
+    -   Términos básicos
+2.  **II corte. Análisis de correlación y RLS**
+    -   Modelación y aplicaciones
+    -   Supuestos e inferencia sobre los parámetros
+3.  **III corte. RLM: Matemáticas y aplicaciones**
+    -   Supuestos e inferencia sobre los parámetros
+4.  **Temas adicionales**
+    -   Otros modelos de regresión
+    -   Introducción al análisis multivariado
+:::
+
+## Referencias
+
+Estas son algunas referencias para la clase de métodos
+
+::: {.admon-box .observacion}
+::: admon-title
+[]{.icon} Referencias bibliográficas
+:::
+
+| Referencia Bibliográfica                                                                                                | Tipo de referencia | Guía | De Referencia | Idioma  | Existe en Biblioteca |
+|:------------------------------------------|:-------|:--|:-----|:---|:--------|
+| Estadística Para Ingenieros y Científicos                                                                               | Libro impreso      | x    |               | Español | Sí                   |
+| Probabilidad Y Estadística Para Ingeniería Y Ciencias, 2015, CENGAGE Learning.                                          | Libro impreso      | x    |               | Español | Sí                   |
+| Estadística descriptiva y distribuciones de probabilidad, Ediciones Uninorte 2015. ISBN: 9587419154.                    | Libro impreso      | x    |               | Español | Sí                   |
+| Estadística inferencial, Ediciones Uninorte 2020. ISBN: 9587419154.                                                     | Libro impreso      | x    |               | Español | Sí                   |
+| Introducción Al análisis de Regresión Lineal                                                                            | Libro impreso      | x    |               | Español | Sí                   |
+| Practical Guide to Cluster Analysis in R: Unsupervised Machine Learning, 2017, STHDA.                                   | Libro impreso      |      | x             | Inglés  | Sí                   |
+| Practical Guide To Principal Component Methods in R: PCA, M(CA), FAMD, MFA, HCPC, factoextra, 2017, STHDA.              | Libro impreso      |      | x             | Inglés  | Sí                   |
+| Hands-On Time Series Analysis with R: Perform time series analysis and forecasting using R, 2019, Packt Publishing Ltd. | Libro impreso      |      | x             | Inglés  | Sí                   |
+
+: (\#tab:biblio) Referencias bibliográficas del curso
+:::
+
+## Terminos básicos de la estadística
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} **Definición: Unidad experimental.**
+:::
+
+Es el objeto o entidad sobre la cual se realiza una observación o medición dentro de un estudio estadístico.
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} **Ejemplo**
+:::
+
+En un estudio clínico, cada paciente corresponde a una unidad experimental.
+:::
+:::
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} **Definición: Población, muestra, censo.**
+:::
+
+-   La **población** es el conjunto completo de unidades experimentales de interés
+-   La **muestra** es un subconjunto de unidades experimentales o de una población. Debe ser representativa y aleatoria.
+-   El **censo** es la enumeración completa de las unidades experimentales de una población.
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} **Ejemplo**
+:::
+
+La colección de promedios por carreras de la Universidad del Norte (PPCUN) puede servir como una población estadística, y cualquier subcolección, digamos los PPCUN de la carrera de medicina, puede servir como una muestra de esa población.
+:::
+:::
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} **Definición: Variable aleatoria, dato y observación**
+:::
+
+-   La **variable** es la característica que se desea medir u observar.
+-   El **dato:** es el valor específico que toma una variable para una unidad experimental.
+-   La **observación** es el conjunto de datos registrados para una unidad experimental.
+:::
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} **Ejemplo**
+:::
+
+Una universidad está realizando un estudio para conocer el perfil de sus estudiantes de primer semestre. Para ello, se recolecta información de cada estudiante, como su edad, programa académico y puntaje obtenido en las pruebas de admisión.
+
+Para el estudiante Laura Torres, se registraron los siguientes valores:
+
+-   Edad: 18 años
+-   Programa académico: Psicología
+-   Puntaje de admisión: 92
+
+**Solución**
+
+-   **Variable:** Edad, programa académico, puntaje de admisión.
+
+-   **Dato:** *18 años* es el dato para la variable edad, *Psicología* para programa académico”, *92* para “Puntaje de admisión”.
+
+-   **Observación:** Edad = 18, Programa = Psicología, Puntaje = 92
+:::
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} **Definición: Parametro, estadístico.**
+:::
+
+-   Un **parámetro** es cualquier caractéristica numérica de una población.
+-   Un **estadístico** es cualquier caractéristica numérica de una muestra.
+:::
+
+::: {.admon-box .ejemplo}
+::: admon-title
+[]{.icon} **Ejemplo**
+:::
+
+Una universidad quiere conocer el promedio de edad de todos sus estudiantes de primer semestre. Como sería costoso y demorado consultar a toda la población, se toma una muestra aleatoria de 100 estudiantes y se calcula su promedio de edad. Identifique el paramétro y el estadístico.
+
+**Solución**
+
+-   **Parametro:** El promedio real de edad de **todos** los estudiantes de primer semestre de la universidad.
+-   **Estadístico:** El promedio de edad calculado con los **100 estudiantes** seleccionados en la muestra.
+:::
+
+::: {.admon-box .definicion}
+::: admon-title
+[]{.icon} **Definición: Estadística descriptiva e inferencial.**
+:::
+
+-   **Estadística descriptiva**: Parte de la estadística que organiza, resume y presenta los datos de forma útil.
+-   **Estadística inferencial**: Parte de la estadística que permite **inferir propiedades poblacionales** a partir de una muestra, sin necesidad de censar toda la población.
+:::
+
+## Diagnostico de estadística básica
+
+Se realizará un diagnoticos de conceptos básicos
+
+::: {.admon-box .ejercicio}
+::: admon-title
+[]{.icon} Ejercicio
+:::
+
+1.  En una muestra de pacientes, el número de varones dividido entre el total de pacientes es la:
+
+2.  ¿Cuál de las siguientes medidas define mejor la tendencia central de los datos:\
+    5, 4, 42, 4, 6?
+
+3.  **Estadística inferencial** es la rama de la estadística que se encarga de:
+    1.  Describir la información obtenida del estudio de una muestra para hacer inferencias sobre la población
+    2.  Describir un conjunto de datos recopilados en una muestra
+    3.  Diseñar científicamente un estudio con el objetivo de tomar decisiones respecto a un problema
+    4.  Estudiar el conjunto de individuos que poseen la característica sujeta a estudio
+
+4.  **La distribución normal:**:
+    1.  Es simétrica
+    2.  Es una distribución de probabilidad de variable discreta
+    3.  Es asimétrica
+    4.  La mediana no coincide con la moda
+    5.  Es bimodal
+
+5.  **El intervalo [media muestral ± 1,96 EEM (error estándar de la media)]:**:
+    1.  No dice gran cosa
+    2.  Comprende un 95% de las veces a la media poblacional
+    3.  Comprende un 99% de las veces a la media poblacional
+    4.  Da una seguridad del 68%
+    5.  Da una seguridad del 5%
+
+6.  **El intervalo [media muestral ± 1,96 EEM (error estándar de la media)]:**:
+    1.  No dice gran cosa
+    2.  Comprende un 95% de las veces a la media poblacional
+    3.  Comprende un 99% de las veces a la media poblacional
+    4.  Da una seguridad del 68%
+    5.  Da una seguridad del 5%
+
+7.  **Un estimador es:**
+    1.  Un parámetro que se utiliza para estimar los estadísticos
+    2.  Un estadístico que se utiliza para estimar los parámetros de la muestra
+    3.  Un estadístico que se utiliza para estimar parámetros poblacionales
+    4.  Un parámetro que se utiliza para estimar algunos estadísticos
+    5.  Son todas falsas
+
+8.  **Los grados de libertad de una tabla de contingencia (independencia) $2\times 2$ son:**
+    1.  1
+    2.  2
+    3.  3
+    4.  4
+    5.  5
+
+9.  **La estimación de medias se hace con:**
+    1.  La distribución normal
+    2.  El error estándar
+    3.  La distribución $t$ de Student
+    4.  La distribución binomial
+    5.  Ciertas i, ii y iii
+
+10. **La estimación de porcentajes se hace con (Señalar lo falso):**
+    1.  La distribución normal
+    2.  La distribución t de Student
+    3.  La distribución binomial
+    4.  El porcentaje muestral
+    5.  El error estándar del porcentaje
+
+11. **Se desea comparar la talla media entre hombres y mujeres. ¿Cuál será la prueba estadística más apropiada?**
+    1.  F de Snedecor
+    2.  Chi-cuadrado
+    3.  t de Student
+    4.  Coeficiente de correlación de Pearson
+    5.  Ninguna de las anteriores
+
+12. **Si el contraste $H_0: \mu = 50$ , $H_1: \mu < 50$ no se rechaza con un $p-valor = 0,12$, el contraste $H_0: \mu \geq 30$ , $H_1: \mu < 30$:**
+    1.  Se rechaza $H_0$
+    2.  Contraste unilateral cola a la izquierda
+    3.  $p-valor = 0.12$
+    4.  $p-valor = 0.88$
+    5.  Ciertas 2 y 4
+
+13. **Si el contraste $H_0: \mu = 100$ , $H_1: μ > 100$ se acepta con un $p-valor = 0,10$, el contraste $H_0: \mu \leq 100$ , $H_1: \mu > 100$ tiene:**
+
+    1.  $p-valor = 0.10$
+    2.  Contraste unilateral cola a la derecha
+    3.  $p-valor = 0.05$
+    4.  $p-valor = 0.90$
+    5.  Ciertas 2 y 3
+:::

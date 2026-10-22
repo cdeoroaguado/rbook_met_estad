@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="es" xml:lang="es">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 1 Introducción | Notas de métodos estadísticos</title>
   <meta name="description" content="Notas de clase de métodos estadísticos." />
-  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 1 Introducción | Notas de métodos estadísticos" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Notas de clase de métodos estadísticos." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta name="github-repo" content="cdeoroaguado/rbook_met_estad" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Capítulo 1 Introducción | Notas de métodos estadísticos" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Carlos de Oro Aguado" />
 
 
-<meta name="date" content="2026-09-04" />
+<meta name="date" content="2026-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,11 +53,22 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.12.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +78,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -129,7 +140,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -167,104 +177,104 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Asignatura</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="01-intro.html"><a href="#introducci%C3%B3n-a-r-y-rstudio"><i class="fa fa-check"></i><b>1.1</b> Introducción a R y RStudio</a>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#introducci%C3%B3n-a-r-y-rstudio"><i class="fa fa-check"></i><b>1.1</b> Introducción a R y RStudio</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="01-intro.html"><a href="#qu%C3%A9-es-r"><i class="fa fa-check"></i><b>1.1.1</b> ¿Qué es R?</a></li>
-<li class="chapter" data-level="1.1.2" data-path="01-intro.html"><a href="#qu%C3%A9-es-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es RStudio?</a></li>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#qu%C3%A9-es-r"><i class="fa fa-check"></i><b>1.1.1</b> ¿Qué es R?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#qu%C3%A9-es-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> ¿Qué es RStudio?</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="01-intro.html"><a href="#introducci%C3%B3n-a-git-y-github"><i class="fa fa-check"></i><b>1.2</b> Introducción a Git y GitHub</a>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#introducci%C3%B3n-a-git-y-github"><i class="fa fa-check"></i><b>1.2</b> Introducción a Git y GitHub</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="01-intro.html"><a href="#qu%C3%A9-es-git"><i class="fa fa-check"></i><b>1.2.1</b> ¿Qué es Git?</a></li>
-<li class="chapter" data-level="1.2.2" data-path="01-intro.html"><a href="#qu%C3%A9-es-github"><i class="fa fa-check"></i><b>1.2.2</b> ¿Qué es GitHub?</a></li>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#qu%C3%A9-es-git"><i class="fa fa-check"></i><b>1.2.1</b> ¿Qué es Git?</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#qu%C3%A9-es-github"><i class="fa fa-check"></i><b>1.2.2</b> ¿Qué es GitHub?</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="#introducci%C3%B3n-a-tidyverse"><i class="fa fa-check"></i><b>1.3</b> Introducción a Tidyverse</a>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#introducci%C3%B3n-a-tidyverse"><i class="fa fa-check"></i><b>1.3</b> Introducción a Tidyverse</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="01-intro.html"><a href="#representaci%C3%B3n-visual-del-ecosistema-tidyverse"><i class="fa fa-check"></i><b>1.3.1</b> Representación visual del ecosistema Tidyverse</a></li>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#representaci%C3%B3n-visual-del-ecosistema-tidyverse"><i class="fa fa-check"></i><b>1.3.1</b> Representación visual del ecosistema Tidyverse</a></li>
 <li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#principales-paquetes-del-tidyverse"><i class="fa fa-check"></i><b>1.3.2</b> Principales paquetes del Tidyverse</a></li>
-<li class="chapter" data-level="1.3.3" data-path="01-intro.html"><a href="#instalaci%C3%B3n-del-tidyverse-en-r"><i class="fa fa-check"></i><b>1.3.3</b> Instalación del Tidyverse en R</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#instalaci%C3%B3n-del-tidyverse-en-r"><i class="fa fa-check"></i><b>1.3.3</b> Instalación del Tidyverse en R</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#pasos-para-publicar-un-libro-bookdown-en-github-pages"><i class="fa fa-check"></i><b>1.4</b> Pasos para publicar un libro <code>bookdown</code> en GitHub Pages</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="01-intro.html"><a href="#video-paso-a-paso-de-la-publicaci%C3%B3n-del-libro-en-github-pages"><i class="fa fa-check"></i><b>1.4.1</b> Video paso a paso de la publicación del libro en GitHub Pages</a></li>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#video-paso-a-paso-de-la-publicaci%C3%B3n-del-libro-en-github-pages"><i class="fa fa-check"></i><b>1.4.1</b> Video paso a paso de la publicación del libro en GitHub Pages</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="reglas.html"><a href="reglas.html"><i class="fa fa-check"></i><b>2</b> Reglas de curso y diagnostico</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="reglas.html"><a href="reglas.html#reglas-de-las-clases"><i class="fa fa-check"></i><b>2.1</b> Reglas de las clases</a></li>
-<li class="chapter" data-level="2.2" data-path="01-intro.html"><a href="#pol%C3%ADtica-de-evaluaci%C3%B3n-y-normas-de-integridad-acad%C3%A9mica"><i class="fa fa-check"></i><b>2.2</b> Política de evaluación y normas de integridad académica</a></li>
+<li class="chapter" data-level="2.2" data-path="reglas.html"><a href="reglas.html#pol%C3%ADtica-de-evaluaci%C3%B3n-y-normas-de-integridad-acad%C3%A9mica"><i class="fa fa-check"></i><b>2.2</b> Política de evaluación y normas de integridad académica</a></li>
 <li class="chapter" data-level="2.3" data-path="reglas.html"><a href="reglas.html#fechas-de-taller-y-examenes"><i class="fa fa-check"></i><b>2.3</b> Fechas de taller y examenes</a></li>
-<li class="chapter" data-level="2.4" data-path="01-intro.html"><a href="#programaci%C3%B3n-del-curso-por-unidad"><i class="fa fa-check"></i><b>2.4</b> Programación del curso por unidad</a></li>
+<li class="chapter" data-level="2.4" data-path="reglas.html"><a href="reglas.html#programaci%C3%B3n-del-curso-por-unidad"><i class="fa fa-check"></i><b>2.4</b> Programación del curso por unidad</a></li>
 <li class="chapter" data-level="2.5" data-path="reglas.html"><a href="reglas.html#referencias"><i class="fa fa-check"></i><b>2.5</b> Referencias</a></li>
-<li class="chapter" data-level="2.6" data-path="01-intro.html"><a href="#terminos-b%C3%A1sicos-de-la-estad%C3%ADstica"><i class="fa fa-check"></i><b>2.6</b> Terminos básicos de la estadística</a></li>
-<li class="chapter" data-level="2.7" data-path="01-intro.html"><a href="#diagnostico-de-estad%C3%ADstica-b%C3%A1sica"><i class="fa fa-check"></i><b>2.7</b> Diagnostico de estadística básica</a></li>
+<li class="chapter" data-level="2.6" data-path="reglas.html"><a href="reglas.html#terminos-b%C3%A1sicos-de-la-estad%C3%ADstica"><i class="fa fa-check"></i><b>2.6</b> Terminos básicos de la estadística</a></li>
+<li class="chapter" data-level="2.7" data-path="reglas.html"><a href="reglas.html#diagnostico-de-estad%C3%ADstica-b%C3%A1sica"><i class="fa fa-check"></i><b>2.7</b> Diagnostico de estadística básica</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>3</b> Análisis exploratorio de datos (EDA)</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="01-intro.html"><a href="#cu%C3%A1ndo-debo-utilizarlo"><i class="fa fa-check"></i><b>3.1</b> ¿Cuándo debo utilizarlo?</a>
+<li class="chapter" data-level="3.1" data-path="eda.html"><a href="eda.html#cu%C3%A1ndo-debo-utilizarlo"><i class="fa fa-check"></i><b>3.1</b> ¿Cuándo debo utilizarlo?</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="01-intro.html"><a href="#tipos-de-an%C3%A1lisis-exploratorio"><i class="fa fa-check"></i><b>3.1.1</b> Tipos de análisis exploratorio:</a></li>
+<li class="chapter" data-level="3.1.1" data-path="eda.html"><a href="eda.html#tipos-de-an%C3%A1lisis-exploratorio"><i class="fa fa-check"></i><b>3.1.1</b> Tipos de análisis exploratorio:</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="01-intro.html"><a href="#representaci%C3%B3n-de-datos-seg%C3%BAn-su-naturaleza"><i class="fa fa-check"></i><b>3.2</b> Representación de datos según su naturaleza</a></li>
-<li class="chapter" data-level="3.3" data-path="01-intro.html"><a href="#presentaci%C3%B3n-y-an%C3%A1lisis-de-la-informaci%C3%B3n-en-estudios-descriptivos"><i class="fa fa-check"></i><b>3.3</b> Presentación y análisis de la información en estudios descriptivos</a></li>
-<li class="chapter" data-level="3.4" data-path="01-intro.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-num%C3%A9rica"><i class="fa fa-check"></i><b>3.4</b> Análisis explotario con variable respuesta numérica</a>
+<li class="chapter" data-level="3.2" data-path="eda.html"><a href="eda.html#representaci%C3%B3n-de-datos-seg%C3%BAn-su-naturaleza"><i class="fa fa-check"></i><b>3.2</b> Representación de datos según su naturaleza</a></li>
+<li class="chapter" data-level="3.3" data-path="eda.html"><a href="eda.html#presentaci%C3%B3n-y-an%C3%A1lisis-de-la-informaci%C3%B3n-en-estudios-descriptivos"><i class="fa fa-check"></i><b>3.3</b> Presentación y análisis de la información en estudios descriptivos</a></li>
+<li class="chapter" data-level="3.4" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-explotario-con-variable-respuesta-num%C3%A9rica"><i class="fa fa-check"></i><b>3.4</b> Análisis explotario con variable respuesta numérica</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="eda.html"><a href="eda.html#contexto-de-los-datos-de-housing"><i class="fa fa-check"></i><b>3.4.1</b> Contexto de los datos de housing</a></li>
-<li class="chapter" data-level="3.4.2" data-path="01-intro.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl"><i class="fa fa-check"></i><b>3.4.2</b> Extracción, transformación y carga (ETL)</a></li>
-<li class="chapter" data-level="3.4.3" data-path="01-intro.html"><a href="#an%C3%A1lisis-de-la-variable-median_house_value-target"><i class="fa fa-check"></i><b>3.4.3</b> Análisis de la variable <code>median_house_value</code> (Target)</a></li>
-<li class="chapter" data-level="3.4.4" data-path="01-intro.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes"><i class="fa fa-check"></i><b>3.4.4</b> Análisis de las variables características (independientes)</a></li>
-<li class="chapter" data-level="3.4.5" data-path="01-intro.html"><a href="#an%C3%A1lisis-exploratorio-bivariado"><i class="fa fa-check"></i><b>3.4.5</b> Análisis exploratorio bivariado</a></li>
+<li class="chapter" data-level="3.4.2" data-path="eda.html"><a href="eda.html#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl"><i class="fa fa-check"></i><b>3.4.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.4.3" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-de-la-variable-median_house_value-target"><i class="fa fa-check"></i><b>3.4.3</b> Análisis de la variable <code>median_house_value</code> (Target)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes"><i class="fa fa-check"></i><b>3.4.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.4.5" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-exploratorio-bivariado"><i class="fa fa-check"></i><b>3.4.5</b> Análisis exploratorio bivariado</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="01-intro.html"><a href="#an%C3%A1lisis-explotario-con-variable-respuesta-categ%C3%B3rica"><i class="fa fa-check"></i><b>3.5</b> Análisis explotario con variable respuesta categórica</a>
+<li class="chapter" data-level="3.5" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-explotario-con-variable-respuesta-categ%C3%B3rica"><i class="fa fa-check"></i><b>3.5</b> Análisis explotario con variable respuesta categórica</a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="eda.html"><a href="eda.html#contexto-del-conjunto-de-datos-de-marketing-de-un-banco"><i class="fa fa-check"></i><b>3.5.1</b> Contexto del conjunto de datos de marketing de un banco</a></li>
-<li class="chapter" data-level="3.5.2" data-path="01-intro.html"><a href="#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl-1"><i class="fa fa-check"></i><b>3.5.2</b> Extracción, transformación y carga (ETL)</a></li>
-<li class="chapter" data-level="3.5.3" data-path="01-intro.html"><a href="#an%C3%A1lisis-de-la-variable-y-target"><i class="fa fa-check"></i><b>3.5.3</b> Análisis de la variable <code>y</code> (Target)</a></li>
-<li class="chapter" data-level="3.5.4" data-path="01-intro.html"><a href="#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes-1"><i class="fa fa-check"></i><b>3.5.4</b> Análisis de las variables características (independientes)</a></li>
-<li class="chapter" data-level="3.5.5" data-path="01-intro.html"><a href="#an%C3%A1lisis-exploratorio-bivariado-1"><i class="fa fa-check"></i><b>3.5.5</b> Análisis exploratorio bivariado</a></li>
+<li class="chapter" data-level="3.5.2" data-path="eda.html"><a href="eda.html#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl-1"><i class="fa fa-check"></i><b>3.5.2</b> Extracción, transformación y carga (ETL)</a></li>
+<li class="chapter" data-level="3.5.3" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-de-la-variable-y-target"><i class="fa fa-check"></i><b>3.5.3</b> Análisis de la variable <code>y</code> (Target)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-de-las-variables-caracter%C3%ADsticas-independientes-1"><i class="fa fa-check"></i><b>3.5.4</b> Análisis de las variables características (independientes)</a></li>
+<li class="chapter" data-level="3.5.5" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-exploratorio-bivariado-1"><i class="fa fa-check"></i><b>3.5.5</b> Análisis exploratorio bivariado</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="estparynopar.html"><a href="estparynopar.html"><i class="fa fa-check"></i><b>4</b> Análisis de estadística paramétrica y no paramétrica</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="01-intro.html"><a href="#comparaci%C3%B3n-de-medias-entre-dos-grupos-independientes-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.1</b> Comparación de medias entre dos grupos independientes con estadística paramétrica</a>
+<li class="chapter" data-level="4.1" data-path="estparynopar.html"><a href="estparynopar.html#comparaci%C3%B3n-de-medias-entre-dos-grupos-independientes-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.1</b> Comparación de medias entre dos grupos independientes con estadística paramétrica</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="estparynopar.html"><a href="estparynopar.html#condiciones-del-t-test-para-muestras-independientes"><i class="fa fa-check"></i><b>4.1.1</b> Condiciones del t-test para muestras independientes</a></li>
 <li class="chapter" data-level="4.1.2" data-path="estparynopar.html"><a href="estparynopar.html#grados-de-libertad"><i class="fa fa-check"></i><b>4.1.2</b> Grados de libertad</a></li>
-<li class="chapter" data-level="4.1.3" data-path="01-intro.html"><a href="#error-est%C3%A1ndar-de-la-diferencia-de-medias"><i class="fa fa-check"></i><b>4.1.3</b> Error estándar de la diferencia de medias</a></li>
-<li class="chapter" data-level="4.1.4" data-path="01-intro.html"><a href="#tama%C3%B1o-del-efecto-effect-size-en-comparaciones-de-medias"><i class="fa fa-check"></i><b>4.1.4</b> Tamaño del Efecto (Effect Size) en comparaciones de medias</a></li>
+<li class="chapter" data-level="4.1.3" data-path="estparynopar.html"><a href="estparynopar.html#error-est%C3%A1ndar-de-la-diferencia-de-medias"><i class="fa fa-check"></i><b>4.1.3</b> Error estándar de la diferencia de medias</a></li>
+<li class="chapter" data-level="4.1.4" data-path="estparynopar.html"><a href="estparynopar.html#tama%C3%B1o-del-efecto-effect-size-en-comparaciones-de-medias"><i class="fa fa-check"></i><b>4.1.4</b> Tamaño del Efecto (Effect Size) en comparaciones de medias</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="01-intro.html"><a href="#comparaci%C3%B3n-de-medias-entre-dos-grupos-pareados-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.2</b> Comparación de medias entre dos grupos pareados con estadística paramétrica</a>
+<li class="chapter" data-level="4.2" data-path="estparynopar.html"><a href="estparynopar.html#comparaci%C3%B3n-de-medias-entre-dos-grupos-pareados-con-estad%C3%ADstica-param%C3%A9trica"><i class="fa fa-check"></i><b>4.2</b> Comparación de medias entre dos grupos pareados con estadística paramétrica</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="estparynopar.html"><a href="estparynopar.html#supuestos-del-t-test-para-muestras-dependientes"><i class="fa fa-check"></i><b>4.2.1</b> Supuestos del t-test para muestras dependientes</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="01-intro.html"><a href="#comparaci%C3%B3n-de-dos-grupos-independientes-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.3</b> Comparación de dos grupos independientes con estadística no paramétrica</a>
+<li class="chapter" data-level="4.3" data-path="estparynopar.html"><a href="estparynopar.html#comparaci%C3%B3n-de-dos-grupos-independientes-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.3</b> Comparación de dos grupos independientes con estadística no paramétrica</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="estparynopar.html"><a href="estparynopar.html#fundamento-conceptual"><i class="fa fa-check"></i><b>4.3.1</b> Fundamento conceptual</a></li>
-<li class="chapter" data-level="4.3.2" data-path="01-intro.html"><a href="#comparaci%C3%B3n-con-el-test-t"><i class="fa fa-check"></i><b>4.3.2</b> Comparación con el test t</a></li>
-<li class="chapter" data-level="4.3.3" data-path="01-intro.html"><a href="#supuestos-y-condiciones-de-aplicaci%C3%B3n"><i class="fa fa-check"></i><b>4.3.3</b> Supuestos y condiciones de aplicación</a></li>
+<li class="chapter" data-level="4.3.2" data-path="estparynopar.html"><a href="estparynopar.html#comparaci%C3%B3n-con-el-test-t"><i class="fa fa-check"></i><b>4.3.2</b> Comparación con el test t</a></li>
+<li class="chapter" data-level="4.3.3" data-path="estparynopar.html"><a href="estparynopar.html#supuestos-y-condiciones-de-aplicaci%C3%B3n"><i class="fa fa-check"></i><b>4.3.3</b> Supuestos y condiciones de aplicación</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="01-intro.html"><a href="#comparaci%C3%B3n-de-dos-grupos-pareados-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.4</b> Comparación de dos grupos pareados con estadística no paramétrica</a>
+<li class="chapter" data-level="4.4" data-path="estparynopar.html"><a href="estparynopar.html#comparaci%C3%B3n-de-dos-grupos-pareados-con-estad%C3%ADstica-no-param%C3%A9trica"><i class="fa fa-check"></i><b>4.4</b> Comparación de dos grupos pareados con estadística no paramétrica</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="01-intro.html"><a href="#cu%C3%A1ndo-se-recomienda-utilizar-esta-prueba"><i class="fa fa-check"></i><b>4.4.1</b> ¿Cuándo se recomienda utilizar esta prueba?</a></li>
+<li class="chapter" data-level="4.4.1" data-path="estparynopar.html"><a href="estparynopar.html#cu%C3%A1ndo-se-recomienda-utilizar-esta-prueba"><i class="fa fa-check"></i><b>4.4.1</b> ¿Cuándo se recomienda utilizar esta prueba?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="01-intro.html"><a href="#anova-an%C3%A1lisis-de-varianza-para-comparar-m%C3%BAltiples-medias"><i class="fa fa-check"></i><b>4.5</b> ANOVA (análisis de varianza para comparar múltiples medias)</a>
+<li class="chapter" data-level="4.5" data-path="estparynopar.html"><a href="estparynopar.html#anova-an%C3%A1lisis-de-varianza-para-comparar-m%C3%BAltiples-medias"><i class="fa fa-check"></i><b>4.5</b> ANOVA (análisis de varianza para comparar múltiples medias)</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="01-intro.html"><a href="#supuestos-y-formulaci%C3%B3n-de-las-hip%C3%B3tesis"><i class="fa fa-check"></i><b>4.5.1</b> Supuestos y formulación de las hipótesis</a></li>
-<li class="chapter" data-level="4.5.2" data-path="01-intro.html"><a href="#sumas-de-cuadrados-y-teorema-de-descomposici%C3%B3n"><i class="fa fa-check"></i><b>4.5.2</b> Sumas de cuadrados y teorema de descomposición</a></li>
+<li class="chapter" data-level="4.5.1" data-path="estparynopar.html"><a href="estparynopar.html#supuestos-y-formulaci%C3%B3n-de-las-hip%C3%B3tesis"><i class="fa fa-check"></i><b>4.5.1</b> Supuestos y formulación de las hipótesis</a></li>
+<li class="chapter" data-level="4.5.2" data-path="estparynopar.html"><a href="estparynopar.html#sumas-de-cuadrados-y-teorema-de-descomposici%C3%B3n"><i class="fa fa-check"></i><b>4.5.2</b> Sumas de cuadrados y teorema de descomposición</a></li>
 <li class="chapter" data-level="4.5.3" data-path="estparynopar.html"><a href="estparynopar.html#estimaciones-insesgadas-de-la-varianza-poblacional"><i class="fa fa-check"></i><b>4.5.3</b> Estimaciones insesgadas de la varianza poblacional</a></li>
-<li class="chapter" data-level="4.5.4" data-path="01-intro.html"><a href="#teorema-de-contraste-para-el-an%C3%A1lisis-de-varianza"><i class="fa fa-check"></i><b>4.5.4</b> Teorema de contraste para el análisis de varianza</a></li>
-<li class="chapter" data-level="4.5.5" data-path="01-intro.html"><a href="#comparaciones-m%C3%BAltiples"><i class="fa fa-check"></i><b>4.5.5</b> Comparaciones múltiples</a></li>
+<li class="chapter" data-level="4.5.4" data-path="estparynopar.html"><a href="estparynopar.html#teorema-de-contraste-para-el-an%C3%A1lisis-de-varianza"><i class="fa fa-check"></i><b>4.5.4</b> Teorema de contraste para el análisis de varianza</a></li>
+<li class="chapter" data-level="4.5.5" data-path="estparynopar.html"><a href="estparynopar.html#comparaciones-m%C3%BAltiples"><i class="fa fa-check"></i><b>4.5.5</b> Comparaciones múltiples</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="estparynopar.html"><a href="estparynopar.html#kruskalwallis"><i class="fa fa-check"></i><b>4.6</b> Kruskal–Wallis</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="01-intro.html"><a href="#hip%C3%B3tesis-del-test"><i class="fa fa-check"></i><b>4.6.1</b> Hipótesis del test</a></li>
-<li class="chapter" data-level="4.6.2" data-path="01-intro.html"><a href="#estad%C3%ADstico-de-prueba"><i class="fa fa-check"></i><b>4.6.2</b> Estadístico de prueba</a></li>
+<li class="chapter" data-level="4.6.1" data-path="estparynopar.html"><a href="estparynopar.html#hip%C3%B3tesis-del-test"><i class="fa fa-check"></i><b>4.6.1</b> Hipótesis del test</a></li>
+<li class="chapter" data-level="4.6.2" data-path="estparynopar.html"><a href="estparynopar.html#estad%C3%ADstico-de-prueba"><i class="fa fa-check"></i><b>4.6.2</b> Estadístico de prueba</a></li>
 <li class="chapter" data-level="4.6.3" data-path="estparynopar.html"><a href="estparynopar.html#condiciones-del-test-de-kruskalwallis"><i class="fa fa-check"></i><b>4.6.3</b> Condiciones del test de Kruskal–Wallis</a></li>
 <li class="chapter" data-level="4.6.4" data-path="estparynopar.html"><a href="estparynopar.html#comparaciones-post-hoc"><i class="fa fa-check"></i><b>4.6.4</b> Comparaciones Post-Hoc</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tabcontingencia.html"><a href="tabcontingencia.html"><i class="fa fa-check"></i><b>5</b> Tabla de contingencia</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="01-intro.html"><a href="#tablas-de-contingencia-con-dos-criterios-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia con dos criterios de clasificación</a>
+<li class="chapter" data-level="5.1" data-path="tabcontingencia.html"><a href="tabcontingencia.html#tablas-de-contingencia-con-dos-criterios-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia con dos criterios de clasificación</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="tabcontingencia.html"><a href="tabcontingencia.html#prueba-de-homogeneidad"><i class="fa fa-check"></i><b>5.1.1</b> Prueba de homogeneidad</a></li>
 <li class="chapter" data-level="5.1.2" data-path="tabcontingencia.html"><a href="tabcontingencia.html#prueba-de-independencia"><i class="fa fa-check"></i><b>5.1.2</b> Prueba de independencia</a></li>
@@ -272,54 +282,116 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6" data-path="correglin.html"><a href="correglin.html"><i class="fa fa-check"></i><b>6</b> Correlación lineal</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="01-intro.html"><a href="#definiciones-y-teorema-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Definiciones y teorema de correlación</a></li>
-<li class="chapter" data-level="6.2" data-path="01-intro.html"><a href="#an%C3%A1lisis-de-correlaci%C3%B3n-simple-dos-variables"><i class="fa fa-check"></i><b>6.2</b> Análisis de correlación simple (dos variables)</a>
+<li class="chapter" data-level="6.1" data-path="correglin.html"><a href="correglin.html#definiciones-y-teorema-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Definiciones y teorema de correlación</a></li>
+<li class="chapter" data-level="6.2" data-path="correglin.html"><a href="correglin.html#an%C3%A1lisis-de-correlaci%C3%B3n-simple-dos-variables"><i class="fa fa-check"></i><b>6.2</b> Análisis de correlación simple (dos variables)</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="01-intro.html"><a href="#tipos-de-coeficientes-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.1</b> Tipos de coeficientes de correlación</a></li>
-<li class="chapter" data-level="6.2.2" data-path="01-intro.html"><a href="#interpretaci%C3%B3n-del-coeficiente-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.2</b> Interpretación del coeficiente de correlación</a></li>
-<li class="chapter" data-level="6.2.3" data-path="01-intro.html"><a href="#correlaci%C3%B3n-de-pearson"><i class="fa fa-check"></i><b>6.2.3</b> Correlación de Pearson</a></li>
-<li class="chapter" data-level="6.2.4" data-path="01-intro.html"><a href="#correlaci%C3%B3n-de-spearman"><i class="fa fa-check"></i><b>6.2.4</b> Correlación de Spearman</a></li>
-<li class="chapter" data-level="6.2.5" data-path="01-intro.html"><a href="#correlaci%C3%B3n-de-kendall"><i class="fa fa-check"></i><b>6.2.5</b> Correlación de Kendall</a></li>
+<li class="chapter" data-level="6.2.1" data-path="correglin.html"><a href="correglin.html#tipos-de-coeficientes-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.1</b> Tipos de coeficientes de correlación</a></li>
+<li class="chapter" data-level="6.2.2" data-path="correglin.html"><a href="correglin.html#interpretaci%C3%B3n-del-coeficiente-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>6.2.2</b> Interpretación del coeficiente de correlación</a></li>
+<li class="chapter" data-level="6.2.3" data-path="correglin.html"><a href="correglin.html#correlaci%C3%B3n-de-pearson"><i class="fa fa-check"></i><b>6.2.3</b> Correlación de Pearson</a></li>
+<li class="chapter" data-level="6.2.4" data-path="correglin.html"><a href="correglin.html#correlaci%C3%B3n-de-spearman"><i class="fa fa-check"></i><b>6.2.4</b> Correlación de Spearman</a></li>
+<li class="chapter" data-level="6.2.5" data-path="correglin.html"><a href="correglin.html#correlaci%C3%B3n-de-kendall"><i class="fa fa-check"></i><b>6.2.5</b> Correlación de Kendall</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="rls.html"><a href="rls.html"><i class="fa fa-check"></i><b>7</b> Regresión lineal simple</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="01-intro.html"><a href="#el-modelo-de-regresi%C3%B3n-lineal-simple-rls"><i class="fa fa-check"></i><b>7.1</b> El modelo de regresión lineal simple (RLS)</a>
+<li class="chapter" data-level="7.1" data-path="rls.html"><a href="rls.html#el-modelo-de-regresi%C3%B3n-lineal-simple-rls"><i class="fa fa-check"></i><b>7.1</b> El modelo de regresión lineal simple (RLS)</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="01-intro.html"><a href="#modelo-determinista-y-modelo-probabil%C3%ADstico"><i class="fa fa-check"></i><b>7.1.1</b> Modelo determinista y modelo probabilístico</a></li>
-<li class="chapter" data-level="7.1.2" data-path="01-intro.html"><a href="#supuestos-b%C3%A1sicos-para-el-modelo-de-regresi%C3%B3n-lineal."><i class="fa fa-check"></i><b>7.1.2</b> Supuestos básicos para el modelo de regresión lineal.</a></li>
+<li class="chapter" data-level="7.1.1" data-path="rls.html"><a href="rls.html#modelo-determinista-y-modelo-probabil%C3%ADstico"><i class="fa fa-check"></i><b>7.1.1</b> Modelo determinista y modelo probabilístico</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rls.html"><a href="rls.html#supuestos-b%C3%A1sicos-para-el-modelo-de-regresi%C3%B3n-lineal."><i class="fa fa-check"></i><b>7.1.2</b> Supuestos básicos para el modelo de regresión lineal.</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="01-intro.html"><a href="#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1"><i class="fa fa-check"></i><b>7.2</b> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span></a></li>
-<li class="chapter" data-level="7.3" data-path="01-intro.html"><a href="#estimaci%C3%B3n-de-sigma2"><i class="fa fa-check"></i><b>7.3</b> Estimación de <span class="math inline">\(\sigma^2\)</span></a></li>
-<li class="chapter" data-level="7.4" data-path="01-intro.html"><a href="#coeficiente-de-determinaci%C3%B3n"><i class="fa fa-check"></i><b>7.4</b> Coeficiente de determinación</a></li>
-<li class="chapter" data-level="7.5" data-path="01-intro.html"><a href="#propiedades-de-estimadores-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>7.5</b> Propiedades de estimadores de mínimos cuadrados</a></li>
-<li class="chapter" data-level="7.6" data-path="01-intro.html"><a href="#estimaci%C3%B3n-de-invervalos-de-confianza-y-prueba-de-hip%C3%B3tesis-para-beta_1-beta_0-y-sigma2"><i class="fa fa-check"></i><b>7.6</b> Estimación de invervalos de confianza y prueba de hipótesis para <span class="math inline">\(\beta_1, \beta_0\)</span> y <span class="math inline">\(\sigma^2\)</span></a>
+<li class="chapter" data-level="7.2" data-path="rls.html"><a href="rls.html#estimaci%C3%B3n-de-los-par%C3%A1metros-por-minimos-cuadrados-de-beta_0-beta_1"><i class="fa fa-check"></i><b>7.2</b> Estimación de los parámetros por minimos cuadrados de <span class="math inline">\(\beta_0, \beta_1\)</span></a></li>
+<li class="chapter" data-level="7.3" data-path="rls.html"><a href="rls.html#estimaci%C3%B3n-de-sigma2"><i class="fa fa-check"></i><b>7.3</b> Estimación de <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.4" data-path="rls.html"><a href="rls.html#coeficiente-de-determinaci%C3%B3n"><i class="fa fa-check"></i><b>7.4</b> Coeficiente de determinación</a></li>
+<li class="chapter" data-level="7.5" data-path="rls.html"><a href="rls.html#propiedades-de-estimadores-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>7.5</b> Propiedades de estimadores de mínimos cuadrados</a></li>
+<li class="chapter" data-level="7.6" data-path="rls.html"><a href="rls.html#estimaci%C3%B3n-de-invervalos-de-confianza-y-prueba-de-hip%C3%B3tesis-para-beta_1-beta_0-y-sigma2"><i class="fa fa-check"></i><b>7.6</b> Estimación de invervalos de confianza y prueba de hipótesis para <span class="math inline">\(\beta_1, \beta_0\)</span> y <span class="math inline">\(\sigma^2\)</span></a>
 <ul>
 <li class="chapter" data-level="7.6.1" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-beta_1"><i class="fa fa-check"></i><b>7.6.1</b> Intervalo de confianza para <span class="math inline">\(\beta_1\)</span></a></li>
-<li class="chapter" data-level="7.6.2" data-path="01-intro.html"><a href="#prueba-de-hip%C3%B3tesis-para-beta_1"><i class="fa fa-check"></i><b>7.6.2</b> Prueba de hipótesis para <span class="math inline">\(\beta_1\)</span></a></li>
+<li class="chapter" data-level="7.6.2" data-path="rls.html"><a href="rls.html#prueba-de-hip%C3%B3tesis-para-beta_1"><i class="fa fa-check"></i><b>7.6.2</b> Prueba de hipótesis para <span class="math inline">\(\beta_1\)</span></a></li>
 <li class="chapter" data-level="7.6.3" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-beta_0"><i class="fa fa-check"></i><b>7.6.3</b> Intervalo de confianza para <span class="math inline">\(\beta_0\)</span></a></li>
-<li class="chapter" data-level="7.6.4" data-path="01-intro.html"><a href="#prueba-de-hip%C3%B3tesis-para-beta_0"><i class="fa fa-check"></i><b>7.6.4</b> Prueba de hipótesis para <span class="math inline">\(\beta_0\)</span></a></li>
+<li class="chapter" data-level="7.6.4" data-path="rls.html"><a href="rls.html#prueba-de-hip%C3%B3tesis-para-beta_0"><i class="fa fa-check"></i><b>7.6.4</b> Prueba de hipótesis para <span class="math inline">\(\beta_0\)</span></a></li>
 <li class="chapter" data-level="7.6.5" data-path="rls.html"><a href="rls.html#intervalo-de-confianza-para-sigma2"><i class="fa fa-check"></i><b>7.6.5</b> Intervalo de confianza para <span class="math inline">\(\sigma^2\)</span></a></li>
-<li class="chapter" data-level="7.6.6" data-path="01-intro.html"><a href="#prueba-de-hip%C3%B3tesis-para-sigma2"><i class="fa fa-check"></i><b>7.6.6</b> Prueba de hipótesis para <span class="math inline">\(\sigma^2\)</span></a></li>
-<li class="chapter" data-level="7.6.7" data-path="01-intro.html"><a href="#anova-en-regresi%C3%B3n-lineal"><i class="fa fa-check"></i><b>7.6.7</b> ANOVA en regresión lineal</a></li>
-<li class="chapter" data-level="7.6.8" data-path="01-intro.html"><a href="#hip%C3%B3tesis-global"><i class="fa fa-check"></i><b>7.6.8</b> Hipótesis global</a></li>
+<li class="chapter" data-level="7.6.6" data-path="rls.html"><a href="rls.html#prueba-de-hip%C3%B3tesis-para-sigma2"><i class="fa fa-check"></i><b>7.6.6</b> Prueba de hipótesis para <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="7.6.7" data-path="rls.html"><a href="rls.html#anova-en-regresi%C3%B3n-lineal"><i class="fa fa-check"></i><b>7.6.7</b> ANOVA en regresión lineal</a></li>
+<li class="chapter" data-level="7.6.8" data-path="rls.html"><a href="rls.html#hip%C3%B3tesis-global"><i class="fa fa-check"></i><b>7.6.8</b> Hipótesis global</a></li>
 </ul></li>
 <li class="chapter" data-level="7.7" data-path="rls.html"><a href="rls.html#transformaciones-para-mejorar-el-ajuste-del-modelo"><i class="fa fa-check"></i><b>7.7</b> Transformaciones para mejorar el ajuste del modelo</a>
 <ul>
-<li class="chapter" data-level="7.7.1" data-path="01-intro.html"><a href="#por-qu%C3%A9-transformar-variables"><i class="fa fa-check"></i><b>7.7.1</b> ¿Por qué transformar variables?</a></li>
+<li class="chapter" data-level="7.7.1" data-path="rls.html"><a href="rls.html#por-qu%C3%A9-transformar-variables"><i class="fa fa-check"></i><b>7.7.1</b> ¿Por qué transformar variables?</a></li>
 <li class="chapter" data-level="7.7.2" data-path="rls.html"><a href="rls.html#tipos-comunes-de-transformaciones"><i class="fa fa-check"></i><b>7.7.2</b> Tipos comunes de transformaciones</a></li>
-<li class="chapter" data-level="7.7.3" data-path="01-intro.html"><a href="#evaluaci%C3%B3n-posterior-a-la-transformaci%C3%B3n"><i class="fa fa-check"></i><b>7.7.3</b> Evaluación posterior a la transformación</a></li>
+<li class="chapter" data-level="7.7.3" data-path="rls.html"><a href="rls.html#evaluaci%C3%B3n-posterior-a-la-transformaci%C3%B3n"><i class="fa fa-check"></i><b>7.7.3</b> Evaluación posterior a la transformación</a></li>
 </ul></li>
-<li class="chapter" data-level="7.8" data-path="01-intro.html"><a href="#an%C3%A1lisis-de-residuales"><i class="fa fa-check"></i><b>7.8</b> Análisis de residuales</a>
+<li class="chapter" data-level="7.8" data-path="rls.html"><a href="rls.html#an%C3%A1lisis-de-residuales"><i class="fa fa-check"></i><b>7.8</b> Análisis de residuales</a>
 <ul>
-<li class="chapter" data-level="7.8.1" data-path="01-intro.html"><a href="#validaci%C3%B3n-de-supuestos"><i class="fa fa-check"></i><b>7.8.1</b> Validación de supuestos</a></li>
+<li class="chapter" data-level="7.8.1" data-path="rls.html"><a href="rls.html#validaci%C3%B3n-de-supuestos"><i class="fa fa-check"></i><b>7.8.1</b> Validación de supuestos</a></li>
 <li class="chapter" data-level="7.8.2" data-path="rls.html"><a href="rls.html#independencia-de-los-errores"><i class="fa fa-check"></i><b>7.8.2</b> Independencia de los errores</a></li>
 <li class="chapter" data-level="7.8.3" data-path="rls.html"><a href="rls.html#normalidad-de-los-errores"><i class="fa fa-check"></i><b>7.8.3</b> Normalidad de los errores</a></li>
 <li class="chapter" data-level="7.8.4" data-path="rls.html"><a href="rls.html#media-cero-de-los-errores"><i class="fa fa-check"></i><b>7.8.4</b> Media cero de los errores</a></li>
 <li class="chapter" data-level="7.8.5" data-path="rls.html"><a href="rls.html#varianza-constante-de-los-errores"><i class="fa fa-check"></i><b>7.8.5</b> Varianza constante de los errores</a></li>
 </ul></li>
-<li class="chapter" data-level="7.9" data-path="01-intro.html"><a href="#estimaci%C3%B3n-e-inferencia-para-la-widehatmathbbeymid-x_0-en-rls"><i class="fa fa-check"></i><b>7.9</b> Estimación e inferencia para la <span class="math inline">\(\widehat{\mathbb{E}}(y\mid x_0)\)</span> en RLS</a></li>
-<li class="chapter" data-level="7.10" data-path="01-intro.html"><a href="#intervalo-de-predicci%C3%B3n-para-una-nueva-y_0-en-x_0"><i class="fa fa-check"></i><b>7.10</b> Intervalo de predicción para una nueva <span class="math inline">\(y_0\)</span> en <span class="math inline">\(x_0\)</span></a></li>
+<li class="chapter" data-level="7.9" data-path="rls.html"><a href="rls.html#estimaci%C3%B3n-e-inferencia-para-la-widehatmathbbeymid-x_0-en-rls"><i class="fa fa-check"></i><b>7.9</b> Estimación e inferencia para la <span class="math inline">\(\widehat{\mathbb{E}}(y\mid x_0)\)</span> en RLS</a>
+<ul>
+<li class="chapter" data-level="7.9.1" data-path="rls.html"><a href="rls.html#ejemplo-con-los-datos-de-soldadura"><i class="fa fa-check"></i><b>7.9.1</b> Ejemplo con los datos de soldadura</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="rls.html"><a href="rls.html#intervalo-de-predicci%C3%B3n-para-una-nueva-y_0-en-x_0"><i class="fa fa-check"></i><b>7.10</b> Intervalo de predicción para una nueva <span class="math inline">\(y_0\)</span> en <span class="math inline">\(x_0\)</span></a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="rls.html"><a href="rls.html#ejemplo-con-los-datos-de-soldadura-1"><i class="fa fa-check"></i><b>7.10.1</b> Ejemplo con los datos de soldadura</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rlm.html"><a href="rlm.html"><i class="fa fa-check"></i><b>8</b> Regresión lineal multiple</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rlm.html"><a href="rlm.html#formulaci%C3%B3n-matem%C3%A1tica-del-modelo-de-rlm"><i class="fa fa-check"></i><b>8.1</b> Formulación matemática del modelo de RLM</a></li>
+<li class="chapter" data-level="8.2" data-path="rlm.html"><a href="rlm.html#estimaci%C3%B3n-de-los-coeficientes-del-modelo-de-rlm"><i class="fa fa-check"></i><b>8.2</b> Estimación de los coeficientes del modelo de RLM</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="rlm.html"><a href="rlm.html#modelo-ajustado-de-regresi%C3%B3n"><i class="fa fa-check"></i><b>8.2.1</b> Modelo ajustado de regresión</a></li>
+<li class="chapter" data-level="8.2.2" data-path="rlm.html"><a href="rlm.html#vector-de-residuales"><i class="fa fa-check"></i><b>8.2.2</b> Vector de residuales</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="rlm.html"><a href="rlm.html#propiedades-de-los-estimadores-de-beta"><i class="fa fa-check"></i><b>8.3</b> Propiedades de los estimadores de <span class="math inline">\(\beta\)</span></a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="rlm.html"><a href="rlm.html#esperanza-del-estimador-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>8.3.1</b> Esperanza del estimador de mínimos cuadrados</a></li>
+<li class="chapter" data-level="8.3.2" data-path="rlm.html"><a href="rlm.html#varianza-del-estimador-de-m%C3%ADnimos-cuadrados"><i class="fa fa-check"></i><b>8.3.2</b> Varianza del estimador de mínimos cuadrados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="rlm.html"><a href="rlm.html#estimaci%C3%B3n-de-la-varianza-del-modelo-sigma2"><i class="fa fa-check"></i><b>8.4</b> Estimación de la varianza del modelo <span class="math inline">\(\sigma^2\)</span></a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="rlm.html"><a href="rlm.html#estimador-insesgado-de-sigma2"><i class="fa fa-check"></i><b>8.4.1</b> Estimador insesgado de <span class="math inline">\(\sigma^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="rlm.html"><a href="rlm.html#prueba-de-significancia-global-de-la-rlm"><i class="fa fa-check"></i><b>8.5</b> Prueba de significancia global de la RLM</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="rlm.html"><a href="rlm.html#hip%C3%B3tesis"><i class="fa fa-check"></i><b>8.5.1</b> Hipótesis</a></li>
+<li class="chapter" data-level="8.5.2" data-path="rlm.html"><a href="rlm.html#descomposici%C3%B3n-de-la-suma-de-cuadrados"><i class="fa fa-check"></i><b>8.5.2</b> Descomposición de la suma de cuadrados</a></li>
+<li class="chapter" data-level="8.5.3" data-path="rlm.html"><a href="rlm.html#estad%C3%ADstico-de-prueba-2"><i class="fa fa-check"></i><b>8.5.3</b> Estadístico de prueba</a></li>
+<li class="chapter" data-level="8.5.4" data-path="rlm.html"><a href="rlm.html#cuadrados-medios-esperados"><i class="fa fa-check"></i><b>8.5.4</b> Cuadrados medios esperados</a></li>
+<li class="chapter" data-level="8.5.5" data-path="rlm.html"><a href="rlm.html#par%C3%A1metro-de-no-centralidad"><i class="fa fa-check"></i><b>8.5.5</b> Parámetro de no centralidad</a></li>
+<li class="chapter" data-level="8.5.6" data-path="rlm.html"><a href="rlm.html#regla-de-decisi%C3%B3n-1"><i class="fa fa-check"></i><b>8.5.6</b> Regla de decisión</a></li>
+<li class="chapter" data-level="8.5.7" data-path="rlm.html"><a href="rlm.html#tabla-anova-para-la-rlm"><i class="fa fa-check"></i><b>8.5.7</b> Tabla ANOVA para la RLM</a></li>
+<li class="chapter" data-level="8.5.8" data-path="rlm.html"><a href="rlm.html#formulas-de-la-suma-de-cuadrados-en-la-rlm"><i class="fa fa-check"></i><b>8.5.8</b> Formulas de la suma de cuadrados en la RLM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="rlm.html"><a href="rlm.html#prueba-individual-de-significancia-para-los-coeficientes"><i class="fa fa-check"></i><b>8.6</b> Prueba individual de significancia para los coeficientes</a></li>
+<li class="chapter" data-level="8.7" data-path="rlm.html"><a href="rlm.html#intervalos-de-confianza-para-beta_j"><i class="fa fa-check"></i><b>8.7</b> Intervalos de confianza para <span class="math inline">\(\beta_j\)</span></a></li>
+<li class="chapter" data-level="8.8" data-path="rlm.html"><a href="rlm.html#coeficiente-de-determinaci%C3%B3n-r2-y-r2-ajustado-de-la-rlm"><i class="fa fa-check"></i><b>8.8</b> Coeficiente de determinación <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado de la RLM</a></li>
+<li class="chapter" data-level="8.9" data-path="rlm.html"><a href="rlm.html#inferencia-para-la-respuesta"><i class="fa fa-check"></i><b>8.9</b> Inferencia para la respuesta</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="rlm.html"><a href="rlm.html#intervalos-de-confianza-para-ey-mid-mathbfx_0"><i class="fa fa-check"></i><b>8.9.1</b> Intervalos de confianza para <span class="math inline">\(E[Y \mid \mathbf{x}_0]\)</span></a></li>
+<li class="chapter" data-level="8.9.2" data-path="rlm.html"><a href="rlm.html#intervalos-de-predicci%C3%B3n-para-ey-mid-mathbfx_0"><i class="fa fa-check"></i><b>8.9.2</b> Intervalos de predicción para <span class="math inline">\(E[Y \mid \mathbf{x}_0]\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="rlm.html"><a href="rlm.html#an%C3%A1lisis-de-residuales-1"><i class="fa fa-check"></i><b>8.10</b> Análisis de residuales</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="rlm.html"><a href="rlm.html#identificaci%C3%B3n-de-outliers"><i class="fa fa-check"></i><b>8.10.1</b> Identificación de outliers</a></li>
+<li class="chapter" data-level="8.10.2" data-path="rlm.html"><a href="rlm.html#identificaci%C3%B3n-de-observaciones-influenciales"><i class="fa fa-check"></i><b>8.10.2</b> Identificación de observaciones influenciales</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="rlm.html"><a href="rlm.html#an%C3%A1lisis-de-multicolinealidad"><i class="fa fa-check"></i><b>8.11</b> Análisis de multicolinealidad</a>
+<ul>
+<li class="chapter" data-level="8.11.1" data-path="rlm.html"><a href="rlm.html#c%C3%B3mo-detectar-la-multicolinealidad"><i class="fa fa-check"></i><b>8.11.1</b> Cómo detectar la multicolinealidad?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.12" data-path="rlm.html"><a href="rlm.html#modelos-con-variables-cualitativas"><i class="fa fa-check"></i><b>8.12</b> Modelos con variables cualitativas</a>
+<ul>
+<li class="chapter" data-level="8.12.1" data-path="rlm.html"><a href="rlm.html#variables-dummy"><i class="fa fa-check"></i><b>8.12.1</b> Variables dummy</a></li>
+<li class="chapter" data-level="8.12.2" data-path="rlm.html"><a href="rlm.html#transformaci%C3%B3n-de-la-variable-house_age_years-en-variables-dummy"><i class="fa fa-check"></i><b>8.12.2</b> Transformación de la variable <code>house_age_years</code> en variables dummy</a></li>
+</ul></li>
+<li class="chapter" data-level="8.13" data-path="rlm.html"><a href="rlm.html#selecci%C3%B3n-de-variables"><i class="fa fa-check"></i><b>8.13</b> Selección de variables</a>
+<ul>
+<li class="chapter" data-level="8.13.1" data-path="rlm.html"><a href="rlm.html#m%C3%A9todo-de-todas-las-regresiones-posibles"><i class="fa fa-check"></i><b>8.13.1</b> Método de todas las regresiones posibles</a></li>
+<li class="chapter" data-level="8.13.2" data-path="rlm.html"><a href="rlm.html#selecci%C3%B3n-secuencial"><i class="fa fa-check"></i><b>8.13.2</b> Selección secuencial</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias-1.html"><a href="referencias-1.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -345,16 +417,16 @@ div.csl-indent {
 <div id="intro" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Capítulo 1</span> Introducción<a href="intro.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="introducción-a-r-y-rstudio" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Introducción a R y RStudio<a href="#introducci%C3%B3n-a-r-y-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">1.1</span> Introducción a R y RStudio<a href="intro.html#introducci%C3%B3n-a-r-y-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>El primer paso para comenzar a trabajar con <strong>R</strong>, un lenguaje de programación especializado en estadística, ciencia de datos y visualización, es instalarlo en tu computadora. <strong>R</strong> es compatible con los principales sistemas operativos, incluyendo <strong>Windows</strong>, <strong>macOS</strong> y <strong>Linux</strong>.</p>
 <div id="qué-es-r" class="section level3 hasAnchor" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> ¿Qué es R?<a href="#qu%C3%A9-es-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">1.1.1</span> ¿Qué es R?<a href="intro.html#qu%C3%A9-es-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>R</strong> es un lenguaje de programación y un entorno de software libre dedicado al análisis estadístico y la generación de gráficos. Su potencia radica en una gran variedad de paquetes estadísticos, su comunidad activa y su capacidad de integración con otras herramientas como Python, SQL, y plataformas de visualización como Power BI o Tableau.</p>
 <p>A continuación, se indican los enlaces oficiales para descargar (paso a paso) <strong>R</strong>:</p>
 <div id="descargar-r" class="section level4 unnumbered hasAnchor">
 <h4>Descargar R<a href="intro.html#descargar-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
-<li>Página oficial del proyecto R (<a href="https://cran.r-project.org">https://cran.r-project.org</a>):</li>
+<li>Página oficial del proyecto R (<a href="https://cran.r-project.org" class="uri">https://cran.r-project.org</a>):</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:rsinfondo"></span>
 <img src="images/rsinfondo.png" alt="Software R" width="30%" />
@@ -364,21 +436,63 @@ Figura 1.1: Software R
 </div>
 <p>En esta página puedes seleccionar tu sistema operativo:</p>
 <ul>
-<li>Para Windows: <a href="https://cran.r-project.org/bin/windows/base/">https://cran.r-project.org/bin/windows/base/</a></li>
-<li>Para macOS: <a href="https://cran.r-project.org/bin/macosx/">https://cran.r-project.org/bin/macosx/</a></li>
-<li>Para Linux: <a href="https://cran.r-project.org/bin/linux/">https://cran.r-project.org/bin/linux/</a></li>
+<li>Para Windows: <a href="https://cran.r-project.org/bin/windows/base/" class="uri">https://cran.r-project.org/bin/windows/base/</a></li>
+<li>Para macOS: <a href="https://cran.r-project.org/bin/macosx/" class="uri">https://cran.r-project.org/bin/macosx/</a></li>
+<li>Para Linux: <a href="https://cran.r-project.org/bin/linux/" class="uri">https://cran.r-project.org/bin/linux/</a></li>
 </ul>
 <p>Se realizará el proceso para la instalación de R para el sistema operativo Windows</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-r-fig"></span>
-<img src="images/r2.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" /><img src="images/r3.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" /><img src="images/r4.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" /><img src="images/r5.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" /><img src="images/r6.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" /><img src="images/r7.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" /><img src="images/r8.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" /><img src="images/r9.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-r-fig-1"></span>
+<img src="images/r2.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" />
 <p class="caption">
 Figura 1.2: Paso a paso de la instalación de R (izquierda a derecha)
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-r-fig-2"></span>
+<img src="images/r3.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" />
+<p class="caption">
+Figura 1.3: Paso a paso de la instalación de R (izquierda a derecha)
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-r-fig-3"></span>
+<img src="images/r4.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" />
+<p class="caption">
+Figura 1.4: Paso a paso de la instalación de R (izquierda a derecha)
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-r-fig-4"></span>
+<img src="images/r5.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" />
+<p class="caption">
+Figura 1.5: Paso a paso de la instalación de R (izquierda a derecha)
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-r-fig-5"></span>
+<img src="images/r6.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" />
+<p class="caption">
+Figura 1.6: Paso a paso de la instalación de R (izquierda a derecha)
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-r-fig-6"></span>
+<img src="images/r7.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" />
+<p class="caption">
+Figura 1.7: Paso a paso de la instalación de R (izquierda a derecha)
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-r-fig-7"></span>
+<img src="images/r8.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" />
+<p class="caption">
+Figura 1.8: Paso a paso de la instalación de R (izquierda a derecha)
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-r-fig-8"></span>
+<img src="images/r9.png" alt="Paso a paso de la instalación de R (izquierda a derecha)" width="48%" />
+<p class="caption">
+Figura 1.9: Paso a paso de la instalación de R (izquierda a derecha)
 </p>
 </div>
 </div>
 </div>
 <div id="qué-es-rstudio" class="section level3 hasAnchor" number="1.1.2">
-<h3><span class="header-section-number">1.1.2</span> ¿Qué es RStudio?<a href="#qu%C3%A9-es-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">1.1.2</span> ¿Qué es RStudio?<a href="intro.html#qu%C3%A9-es-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>RStudio</strong> es un <strong>entorno de desarrollo integrado (IDE)</strong> que proporciona una interfaz gráfica intuitiva y muy funcional para trabajar con R. Entre sus características destacan:</p>
 <ul>
 <li>Editor de scripts con <strong>resaltado de sintaxis</strong>.</li>
@@ -393,27 +507,45 @@ Figura 1.2: Paso a paso de la instalación de R (izquierda a derecha)
 <div id="descargar-rstudio" class="section level4 unnumbered hasAnchor">
 <h4>Descargar RStudio<a href="intro.html#descargar-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
-<li>Página oficial de RStudio (ahora llamado <strong>Posit</strong>, <a href="https://posit.co/download/rstudio-desktop/">https://posit.co/download/rstudio-desktop/</a>):</li>
+<li>Página oficial de RStudio (ahora llamado <strong>Posit</strong>, <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>):</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:rs-fig"></span>
 <img src="images/rstudiosinfondo.png" alt="Desarrollo de entorno integrado (IDE) RStudio" width="30%" />
 <p class="caption">
-Figura 1.3: Desarrollo de entorno integrado (IDE) RStudio
+Figura 1.10: Desarrollo de entorno integrado (IDE) RStudio
 </p>
 </div>
 <p>Selecciona la versión gratuita de <strong>RStudio Desktop</strong> y descarga el instalador correspondiente a tu sistema operativo.</p>
 <p>Se realizará el proceso para la instalación de RStudio para el sistema operativo Windows:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-rs-fig"></span>
-<img src="images/rs1.png" alt="Paso a paso de la instalación de RStudio" width="48%" /><img src="images/rs2.png" alt="Paso a paso de la instalación de RStudio" width="48%" /><img src="images/rs3.png" alt="Paso a paso de la instalación de RStudio" width="48%" /><img src="images/rs4.png" alt="Paso a paso de la instalación de RStudio" width="48%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-rs-fig-1"></span>
+<img src="images/rs1.png" alt="Paso a paso de la instalación de RStudio" width="48%" />
 <p class="caption">
-Figura 1.4: Paso a paso de la instalación de RStudio
+Figura 1.11: Paso a paso de la instalación de RStudio
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-rs-fig-2"></span>
+<img src="images/rs2.png" alt="Paso a paso de la instalación de RStudio" width="48%" />
+<p class="caption">
+Figura 1.12: Paso a paso de la instalación de RStudio
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-rs-fig-3"></span>
+<img src="images/rs3.png" alt="Paso a paso de la instalación de RStudio" width="48%" />
+<p class="caption">
+Figura 1.13: Paso a paso de la instalación de RStudio
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:inst-rs-fig-4"></span>
+<img src="images/rs4.png" alt="Paso a paso de la instalación de RStudio" width="48%" />
+<p class="caption">
+Figura 1.14: Paso a paso de la instalación de RStudio
 </p>
 </div>
 <p>Una vez finalizada la instalación, puedes iniciar RStudio desde el acceso directo en tu escritorio o buscándolo en el menú de inicio.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:rs-inst-fig"></span>
 <img src="images/rs5.png" alt="Visualización de RStudio" width="100%" />
 <p class="caption">
-Figura 1.5: Visualización de RStudio
+Figura 1.15: Visualización de RStudio
 </p>
 </div>
 <p>Al abrir RStudio por primera vez, se presenta un entorno dividido en cuatro paneles:</p>
@@ -431,19 +563,19 @@ Figura 1.5: Visualización de RStudio
 </div>
 </div>
 <div id="introducción-a-git-y-github" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Introducción a Git y GitHub<a href="#introducci%C3%B3n-a-git-y-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">1.2</span> Introducción a Git y GitHub<a href="intro.html#introducci%C3%B3n-a-git-y-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="qué-es-git" class="section level3 hasAnchor" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> ¿Qué es Git?<a href="#qu%C3%A9-es-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Git</strong> es un sistema de control de versiones distribuido que permite gestionar y registrar los cambios realizados en archivos de un proyecto a lo largo del tiempo. Fue creado por Linus Torvalds y se ha convertido en el estándar para el desarrollo de software y proyectos colaborativos. El enlace es <a href="https://git-scm.com/">https://git-scm.com/</a>.</p>
+<h3><span class="header-section-number">1.2.1</span> ¿Qué es Git?<a href="intro.html#qu%C3%A9-es-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Git</strong> es un sistema de control de versiones distribuido que permite gestionar y registrar los cambios realizados en archivos de un proyecto a lo largo del tiempo. Fue creado por Linus Torvalds y se ha convertido en el estándar para el desarrollo de software y proyectos colaborativos. El enlace es <a href="https://git-scm.com/" class="uri">https://git-scm.com/</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:git-fig"></span>
 <img src="images/git.png" alt="Sotfware Git" width="40%" />
 <p class="caption">
-Figura 1.6: Sotfware Git
+Figura 1.16: Sotfware Git
 </p>
 </div>
 <div class="admon-box ventaja">
 <div class="admon-title">
-<span class="icon"></span> Ventajas principales de Git
+<p><span class="icon"></span> Ventajas principales de Git</p>
 </div>
 <ul>
 <li>Permite llevar un <strong>historial detallado</strong> de versiones.</li>
@@ -457,38 +589,62 @@ Figura 1.6: Sotfware Git
 <p>Daremos una guía para la instalación de <strong>Git</strong> usando Windows (paso a paso):</p>
 <ol style="list-style-type: decimal">
 <li><p>Instalar <strong>Git</strong>:<br />
-🔗 <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p></li>
+🔗 <a href="https://git-scm.com/downloads" class="uri">https://git-scm.com/downloads</a></p></li>
 <li><p>Ahora, debes realizar lo siguiente:</p></li>
 </ol>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:git-inst-fig"></span>
-<img src="images/git1.png" alt="Instalación de Git" width="48%" /><img src="images/git2.png" alt="Instalación de Git" width="48%" /><img src="images/git3.png" alt="Instalación de Git" width="48%" /><img src="images/git4.png" alt="Instalación de Git" width="48%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:git-inst-fig-1"></span>
+<img src="images/git1.png" alt="Instalación de Git" width="48%" />
 <p class="caption">
-Figura 1.7: Instalación de Git
+Figura 1.17: Instalación de Git
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:git-inst-fig-2"></span>
+<img src="images/git2.png" alt="Instalación de Git" width="48%" />
+<p class="caption">
+Figura 1.18: Instalación de Git
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:git-inst-fig-3"></span>
+<img src="images/git3.png" alt="Instalación de Git" width="48%" />
+<p class="caption">
+Figura 1.19: Instalación de Git
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:git-inst-fig-4"></span>
+<img src="images/git4.png" alt="Instalación de Git" width="48%" />
+<p class="caption">
+Figura 1.20: Instalación de Git
 </p>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>A continuación, comprobemos la instalación de Git.</li>
 </ol>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:git-inst-b-fig"></span>
-<img src="images/gb1.png" alt="Verificación de Git" width="48%" /><img src="images/gb2.png" alt="Verificación de Git" width="48%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:git-inst-b-fig-1"></span>
+<img src="images/gb1.png" alt="Verificación de Git" width="48%" />
 <p class="caption">
-Figura 1.8: Verificación de Git
+Figura 1.21: Verificación de Git
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:git-inst-b-fig-2"></span>
+<img src="images/gb2.png" alt="Verificación de Git" width="48%" />
+<p class="caption">
+Figura 1.22: Verificación de Git
 </p>
 </div>
 </div>
 </div>
 <div id="qué-es-github" class="section level3 hasAnchor" number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> ¿Qué es GitHub?<a href="#qu%C3%A9-es-github" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>GitHub</strong> es una plataforma en línea que permite alojar repositorios de Git en la nube. Es ideal para compartir proyectos, colaborar en equipo y automatizar flujos de trabajo. Este es el enlace <a href="https://github.com">https://github.com</a>.</p>
+<h3><span class="header-section-number">1.2.2</span> ¿Qué es GitHub?<a href="intro.html#qu%C3%A9-es-github" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>GitHub</strong> es una plataforma en línea que permite alojar repositorios de Git en la nube. Es ideal para compartir proyectos, colaborar en equipo y automatizar flujos de trabajo. Este es el enlace <a href="https://github.com" class="uri">https://github.com</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-fig"></span>
 <img src="images/github.png" alt="Plataforma GitHub" width="30%" />
 <p class="caption">
-Figura 1.9: Plataforma GitHub
+Figura 1.23: Plataforma GitHub
 </p>
 </div>
 <div class="admon-box ventaja">
 <div class="admon-title">
-<span class="icon"></span> Funciones principales de GitHub
+<p><span class="icon"></span> Funciones principales de GitHub</p>
 </div>
 <ul>
 <li>Crear y administrar <strong>repositorios</strong> públicos o privados.</li>
@@ -503,13 +659,19 @@ Figura 1.9: Plataforma GitHub
 <p>A continuación, se presenta una guía paso a paso para la instalación de <strong>GitHub</strong> en Windows:</p>
 <ol style="list-style-type: decimal">
 <li><p>Crear una cuenta en <strong>GitHub</strong>:<br />
-🔗 <a href="https://github.com">https://github.com</a></p></li>
+🔗 <a href="https://github.com" class="uri">https://github.com</a></p></li>
 <li><p>Ahora, sigue las imagenes:</p></li>
 </ol>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-b-fig"></span>
-<img src="images/gh1.png" alt="Registro en GitHub" width="80%" /><img src="images/gh2.png" alt="Registro en GitHub" width="80%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-b-fig-1"></span>
+<img src="images/gh1.png" alt="Registro en GitHub" width="80%" />
 <p class="caption">
-Figura 1.10: Registro en GitHub
+Figura 1.24: Registro en GitHub
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-b-fig-2"></span>
+<img src="images/gh2.png" alt="Registro en GitHub" width="80%" />
+<p class="caption">
+Figura 1.25: Registro en GitHub
 </p>
 </div>
 <p>Despues haces el proceso de verificación</p>
@@ -518,28 +680,76 @@ Figura 1.10: Registro en GitHub
 <li><p>GitHub puede pedirte que verifiques tu correo electrónico. Revisa tu bandeja de entrada y haz clic en el enlace de confirmación.</p></li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
-<li>Ingresas al enlace <a href="https://github.com">https://github.com</a> y despues:</li>
+<li>Ingresas al enlace <a href="https://github.com" class="uri">https://github.com</a> y despues:</li>
 </ol>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-c-fig"></span>
-<img src="images/gh3.png" alt="Credenciales de verificación en GitHub" width="70%" /><img src="images/gh4.png" alt="Credenciales de verificación en GitHub" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-c-fig-1"></span>
+<img src="images/gh3.png" alt="Credenciales de verificación en GitHub" width="70%" />
 <p class="caption">
-Figura 1.11: Credenciales de verificación en GitHub
+Figura 1.26: Credenciales de verificación en GitHub
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-c-fig-2"></span>
+<img src="images/gh4.png" alt="Credenciales de verificación en GitHub" width="70%" />
+<p class="caption">
+Figura 1.27: Credenciales de verificación en GitHub
 </p>
 </div>
 <p>Al ingresar, este sería el inicio</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-d-fig"></span>
 <img src="images/gh5.png" alt="Dashboard de GitHub" width="100%" />
 <p class="caption">
-Figura 1.12: Dashboard de GitHub
+Figura 1.28: Dashboard de GitHub
 </p>
 </div>
 <ol start="4" style="list-style-type: decimal">
-<li>A continuación, vamos a descargar <strong>GitHub Desktop</strong> para Windows; para ello debes usar el enlace <a href="https://desktop.github.com/download/">https://desktop.github.com/download/</a></li>
+<li>A continuación, vamos a descargar <strong>GitHub Desktop</strong> para Windows; para ello debes usar el enlace <a href="https://desktop.github.com/download/" class="uri">https://desktop.github.com/download/</a></li>
 </ol>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-e-fig"></span>
-<img src="images/ghd1.png" alt="Credenciales de verificación en GitHub" width="48%" /><img src="images/ghd2.png" alt="Credenciales de verificación en GitHub" width="48%" /><img src="images/ghd3.png" alt="Credenciales de verificación en GitHub" width="48%" /><img src="images/ghd4.png" alt="Credenciales de verificación en GitHub" width="48%" /><img src="images/ghd5.png" alt="Credenciales de verificación en GitHub" width="48%" /><img src="images/ghd6.png" alt="Credenciales de verificación en GitHub" width="48%" /><img src="images/ghd7.png" alt="Credenciales de verificación en GitHub" width="48%" /><img src="images/ghd8.png" alt="Credenciales de verificación en GitHub" width="48%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-e-fig-1"></span>
+<img src="images/ghd1.png" alt="Credenciales de verificación en GitHub" width="48%" />
 <p class="caption">
-Figura 1.13: Credenciales de verificación en GitHub
+Figura 1.29: Credenciales de verificación en GitHub
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-e-fig-2"></span>
+<img src="images/ghd2.png" alt="Credenciales de verificación en GitHub" width="48%" />
+<p class="caption">
+Figura 1.30: Credenciales de verificación en GitHub
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-e-fig-3"></span>
+<img src="images/ghd3.png" alt="Credenciales de verificación en GitHub" width="48%" />
+<p class="caption">
+Figura 1.31: Credenciales de verificación en GitHub
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-e-fig-4"></span>
+<img src="images/ghd4.png" alt="Credenciales de verificación en GitHub" width="48%" />
+<p class="caption">
+Figura 1.32: Credenciales de verificación en GitHub
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-e-fig-5"></span>
+<img src="images/ghd5.png" alt="Credenciales de verificación en GitHub" width="48%" />
+<p class="caption">
+Figura 1.33: Credenciales de verificación en GitHub
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-e-fig-6"></span>
+<img src="images/ghd6.png" alt="Credenciales de verificación en GitHub" width="48%" />
+<p class="caption">
+Figura 1.34: Credenciales de verificación en GitHub
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-e-fig-7"></span>
+<img src="images/ghd7.png" alt="Credenciales de verificación en GitHub" width="48%" />
+<p class="caption">
+Figura 1.35: Credenciales de verificación en GitHub
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:github-e-fig-8"></span>
+<img src="images/ghd8.png" alt="Credenciales de verificación en GitHub" width="48%" />
+<p class="caption">
+Figura 1.36: Credenciales de verificación en GitHub
 </p>
 </div>
 </div>
@@ -573,7 +783,7 @@ Figura 1.13: Credenciales de verificación en GitHub
 </table>
 </div>
 <div id="cómo-se-relacionan" class="section level4 hasAnchor" number="1.2.2.2">
-<h4><span class="header-section-number">1.2.2.2</span> ¿Cómo se relacionan?<a href="#c%C3%B3mo-se-relacionan" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4><span class="header-section-number">1.2.2.2</span> ¿Cómo se relacionan?<a href="intro.html#c%C3%B3mo-se-relacionan" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>Git administra tu proyecto <strong>localmente</strong>, guardando versiones y cambios.</li>
 <li>GitHub actúa como <strong>repositorio remoto</strong>, permitiendo subir (<code>push</code>) o descargar (<code>pull</code>) cambios desde y hacia otros colaboradores.</li>
@@ -583,15 +793,15 @@ Figura 1.13: Credenciales de verificación en GitHub
 </div>
 </div>
 <div id="introducción-a-tidyverse" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Introducción a Tidyverse<a href="#introducci%C3%B3n-a-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">1.3</span> Introducción a Tidyverse<a href="intro.html#introducci%C3%B3n-a-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>El <strong>Tidyverse</strong> es un conjunto de paquetes integrados para el lenguaje de programación R, diseñados con el objetivo de facilitar el análisis de datos de manera estructurada, legible y eficiente. Su filosofía se basa en el concepto de <strong>“datos ordenados” (tidy data)</strong>, donde cada variable es una columna, cada observación una fila, y cada tipo de unidad observacional forma una tabla.</p>
 <p>Estos paquetes comparten principios de diseño comunes y una gramática coherente, lo que permite a los usuarios aprender un conjunto de reglas aplicables en todo el ecosistema, aumentando así la productividad y la claridad del código.</p>
 <div id="representación-visual-del-ecosistema-tidyverse" class="section level3 hasAnchor" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Representación visual del ecosistema Tidyverse<a href="#representaci%C3%B3n-visual-del-ecosistema-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">1.3.1</span> Representación visual del ecosistema Tidyverse<a href="intro.html#representaci%C3%B3n-visual-del-ecosistema-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:tidy-fig"></span>
 <img src="images/tidypacsinfondo.png" alt="Paquetes de tidyverse" width="50%" />
 <p class="caption">
-Figura 1.14: Paquetes de tidyverse
+Figura 1.37: Paquetes de tidyverse
 </p>
 </div>
 </div>
@@ -716,7 +926,7 @@ Figura 1.14: Paquetes de tidyverse
 </div>
 </div>
 <div id="instalación-del-tidyverse-en-r" class="section level3 hasAnchor" number="1.3.3">
-<h3><span class="header-section-number">1.3.3</span> Instalación del Tidyverse en R<a href="#instalaci%C3%B3n-del-tidyverse-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">1.3.3</span> Instalación del Tidyverse en R<a href="intro.html#instalaci%C3%B3n-del-tidyverse-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Para instalar todos los paquetes del núcleo del Tidyverse, simplemente se ejecuta en la consola de R:</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
@@ -782,28 +992,26 @@ Figura 1.14: Paquetes de tidyverse
 </ol>
 <div class="admon-box nota">
 <div class="admon-title">
-<span class="icon"></span> Enlace del texto
+<p><span class="icon"></span> Enlace del texto</p>
 </div>
 <p>Dale click en este enlace:</p>
 <p>👉 <a href="https://cdeoroaguado.github.io/rbook_met_estad/">https://cdeoroaguado.github.io/metodos_estadistico/</a></p>
 </div>
 <div id="video-paso-a-paso-de-la-publicación-del-libro-en-github-pages" class="section level3 hasAnchor" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> Video paso a paso de la publicación del libro en GitHub Pages<a href="#video-paso-a-paso-de-la-publicaci%C3%B3n-del-libro-en-github-pages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">1.4.1</span> Video paso a paso de la publicación del libro en GitHub Pages<a href="intro.html#video-paso-a-paso-de-la-publicaci%C3%B3n-del-libro-en-github-pages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Uno de los pasos más importantes al desarrollar un libro con <code>bookdown</code> es su publicación en línea, permitiendo el acceso abierto y permanente al contenido. Para ello, <code>GitHub Pages</code> se convierte en una herramienta ideal por su facilidad de uso y compatibilidad con proyectos de R. A continuación, se presenta un video tutorial donde se explican paso a paso los procedimientos necesarios para publicar correctamente un libro elaborado en <code>bookdown</code> a través de un repositorio en GitHub:</p>
-<iframe width="100%" height="400" src="https://www.youtube.com/embed/ZrR9QjrYBnI" frameborder="0" allowfullscreen>
-</iframe>
-<p>Cabe resaltar que este libro de muestra estamos utilizando el paquete bookdown <span class="citation">(<a href="#ref-R-bookdown">Xie 2025</a>)</span>, el cual fue construido sobre R Markdown y knitr <span class="citation">(<a href="#ref-xie2015">Xie 2015</a>)</span></p>
+<p>Cabe resaltar que este libro de muestra estamos utilizando el paquete bookdown <span class="citation">(<a href="#ref-R-bookdown">Xie 2026</a>)</span>, el cual fue construido sobre R Markdown y knitr <span class="citation">(<a href="#ref-xie2015">Xie 2015</a>)</span></p>
 
 </div>
 </div>
 </div>
 <h3>Referencias<a href="referencias-1.html#referencias-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-xie2015" class="csl-entry">
-Xie, Yihui. 2015. <em>Dynamic Documents with <span>R</span> and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
+Xie, Yihui. 2015. <em>Dynamic Documents with <span>R</span> and knitr</em>. 2nd ed. Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
 </div>
 <div id="ref-R-bookdown" class="csl-entry">
-———. 2025. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.
+Xie, Yihui. 2026. <em>bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.
 </div>
 </div>
             </section>
@@ -843,8 +1051,8 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
-    "text": "Edit"
+    "link": "https://github.com/cdeoroaguado/rbook_met_estad/edit/main/01-intro.Rmd",
+    "text": "Editar"
   },
   "history": {
     "link": null,

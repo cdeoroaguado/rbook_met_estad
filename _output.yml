@@ -1,0 +1,17 @@
+bookdown::gitbook:
+  css: style.css
+  code_folding: show
+  config:
+    toc:
+      collapse: subsection
+      before: |
+        <li><a href="./">Notas de métodos estadísticos</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+    edit: https://github.com/cdeoroaguado/rbook_met_estad/edit/main/%s
+    download: ["pdf", "epub"]
+bookdown::pdf_book:
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default
